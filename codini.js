@@ -1,5 +1,4 @@
-<script>
 let
-nem="hollaaa"
-document.write(nem)
-</script>
+nem="hollaaa";
+document.write(nem);
+
