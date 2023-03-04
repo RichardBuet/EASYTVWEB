@@ -1,2 +1,33 @@
 body
 {background-color: blue;}
+
+
+
+/* desactivado a proposito, solo prueba
+.jw-related-shelf-items.jw-related-shelf-start {width: calc(100% / 2);}
+.jw-related-shelf-list .jw-related-shelf-items { width: calc(100% / 2);}
+*/
+
+/*######## PERSONALIZADO JWPLAYER ########*/
+@media screen and (max-width: 1500px){
+#dimen{ position: relative; background: #0e0c0c; color: white;  width: 100%; margin: 5px auto; padding: 10px 10px;}
+.containerMain .container { width: 100%;}
+.content { width: 100%;}
+}
+
+body {background: #121212; font-family: system-ui; font-size: 0.8em;}
+.jw-related-more { visibility: hidden;}
+.jw-related-more:before { content: " Mas Canales en vivo:"; visibility:visible;}
+.jw-shelf-widget .jw-related-shelf-item .jw-related-shelf-item-image { background: round; background-size: cover; padding: 90px 0px; }
+
+#container{padding: 0 0}
+
+/*####### SOLO PARA TV Y PC #######*/
+@media only screen and (-webkit-max-device-pixel-ratio: 1.5),{
+h1 { display: none;}
+#dimen{ width: 75%;}
+.header { height: 90px; padding-top: 0px;}
+.content { padding: 0px 0px;}
+.jw-shelf-widget .jw-related-shelf-item .jw-related-shelf-item-image { background: round; background-size: cover; padding: 0 0 100%; height: 4em; width: 11em;}
+}
+
