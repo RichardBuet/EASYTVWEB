@@ -1,0 +1,1844 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-logo="" group-title="",Todo Noticias
+https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
+https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 4
+http://190.52.32.13:1935/canal4/smil:manifest.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 9 Litoral
+https://stream.arcast.live/ahora/ahora/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",13 Max
+http://coninfo.net:1935/13maxhd/live13maxtvnuevo_720p/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC Sports
+https://d3055hobuue3je.cloudfront.net/out/v1/188a8f3baf914a35868453bd5d0b0fd2/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC PLAY
+https://d3awnlgqz0szay.cloudfront.net/out/v1/09e35529553d472b8f14e437af642e2f/index_13.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC
+https://d3awnlgqz0szay.cloudfront.net/out/v1/19321d887c274b58a4f62fe0f6e2151b/index_9.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC Eventos
+https://dpyzprfzko681.cloudfront.net/out/v1/366fc52554ae42c58465ea4b278eac0c/index_15.m3u8
+
+
+
+#EXTINF:-1 tvg-logo="" group-title="",ESPN 2
+http://stream.flynetwifi.com:1935/live/mobile-033/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ESPN 3
+http://stream.flynetwifi.com:1935/live/mobile-121/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ESPN 4
+http://stream.flynetwifi.com:1935/live/mobile-205/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",FOX SPORTS 1 MX
+http://stream.flynetwifi.com:1935/live/mobile-010/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",FOX SPORTS 2 MX
+http://stream.flynetwifi.com:1935/live/mobile-031/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",FOX SPORTS 3 MX
+http://stream.flynetwifi.com:1935/live/mobile-108/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TNT SPORTS
+http://stream.flynetwifi.com:1935/live/mobile-143/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC Sports
+http://stream.flynetwifi.com:1935/live/mobile-005/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",NCN Deportes
+http://stream.flynetwifi.com:1935/live/mobile-072/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ANIMAL PLANET
+http://stream.flynetwifi.com:1935/live/mobile-068/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DISCOVERY H&H
+http://stream.flynetwifi.com:1935/live/mobile-107/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DISCOVERY HD
+http://stream.flynetwifi.com:1935/live/mobile-006/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Discovery Turbo
+http://stream.flynetwifi.com:1935/live/mobile-109/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",E!
+http://stream.flynetwifi.com:1935/live/mobile-156/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Gourmet
+http://stream.flynetwifi.com:1935/live/mobile-141/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HISTORY
+http://stream.flynetwifi.com:1935/live/mobile-058/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HISTORY 2
+http://stream.flynetwifi.com:1935/live/mobile-157/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HOLA TV!
+http://stream.flynetwifi.com:1935/live/mobile-013/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",LIFETIME
+http://stream.flynetwifi.com:1935/live/mobile-154/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",MAS CHIC
+http://stream.flynetwifi.com:1935/live/mobile-146/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",NATGEO
+http://stream.flynetwifi.com:1935/live/mobile-091/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TELEMUNDO INTER
+http://stream.flynetwifi.com:1935/live/mobile-152/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TSC 
+http://stream.flynetwifi.com:1935/live/mobile-135/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",tve
+http://stream.flynetwifi.com:1935/live/mobile-128/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Caracol
+http://stream.flynetwifi.com:1935/live/mobile-062/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Pasiones
+http://stream.flynetwifi.com:1935/live/mobile-014/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",AZTECA TV
+http://stream.flynetwifi.com:1935/live/mobile-148/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",24h
+http://stream.flynetwifi.com:1935/live/mobile-100/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DIARIO TRV
+http://stream.flynetwifi.com:1935/live/mobile-150/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",MEGAVISON
+http://stream.flynetwifi.com:1935/live/mobile-049/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RT
+http://stream.flynetwifi.com:1935/live/mobile-009/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TeleSUR
+http://stream.flynetwifi.com:1935/live/mobile-116/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",NCN Novelas
+http://stream.flynetwifi.com:1935/live/mobile-066/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",MTV
+http://stream.flynetwifi.com:1935/live/mobile-063/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",A&E
+http://stream.flynetwifi.com:1935/live/mobile-158/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",A3CIEN
+http://stream.flynetwifi.com:1935/live/mobile-028/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",A3Series
+http://stream.flynetwifi.com:1935/live/mobile-047/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ANTENA 3 INT
+http://stream.flynetwifi.com:1935/live/mobile-008/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",AXN
+http://stream.flynetwifi.com:1935/live/mobile-048/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CINECANAL
+http://stream.flynetwifi.com:1935/live/mobile-016/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CINEMA
+http://stream.flynetwifi.com:1935/live/mobile-120/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",COMEDY CENTER
+http://stream.flynetwifi.com:1935/live/mobile-001/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",EE
+http://stream.flynetwifi.com:1935/live/mobile-140/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",film&arts
+http://stream.flynetwifi.com:1935/live/mobile-142/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",FX
+http://stream.flynetwifi.com:1935/live/mobile-123/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",MP
+http://stream.flynetwifi.com:1935/live/mobile-021/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Paramount
+http://stream.flynetwifi.com:1935/live/mobile-004/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",peli…
+http://stream.flynetwifi.com:1935/live/mobile-094/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY CHANNEL
+http://stream.flynetwifi.com:1935/live/mobile-035/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY MOVIE
+http://stream.flynetwifi.com:1935/live/mobile-034/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",STAR CHANNEL
+http://stream.flynetwifi.com:1935/live/mobile-057/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TNT SERIES
+http://stream.flynetwifi.com:1935/live/mobile-046/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",tve STAR
+http://stream.flynetwifi.com:1935/live/mobile-129/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UNIVERSAL
+http://stream.flynetwifi.com:1935/live/mobile-026/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UNIVERSAL TV
+http://stream.flynetwifi.com:1935/live/mobile-064/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",WB
+http://stream.flynetwifi.com:1935/live/mobile-030/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CARTOON
+http://stream.flynetwifi.com:1935/live/mobile-029/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CARTOONITO
+http://stream.flynetwifi.com:1935/live/mobile-055/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Dreamworld
+http://stream.flynetwifi.com:1935/live/mobile-099/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",NICKMUSIC
+http://stream.flynetwifi.com:1935/live/mobile-039/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Tooncast
+http://stream.flynetwifi.com:1935/live/mobile-002/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CNBC us
+http://stream.flynetwifi.com:1935/live/mobile-098/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",USA
+http://stream.flynetwifi.com:1935/live/mobile-059/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",C10 3:4
+http://stream.flynetwifi.com:1935/live/mobile-037/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",canal 11
+http://stream.flynetwifi.com:1935/live/mobile-132/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",canal 2
+http://stream.flynetwifi.com:1935/live/mobile-110/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",canal 3
+http://stream.flynetwifi.com:1935/live/mobile-114/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 3:4
+http://stream.flynetwifi.com:1935/live/mobile-130/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CANAL 4
+http://stream.flynetwifi.com:1935/live/mobile-036/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",canal 6
+http://stream.flynetwifi.com:1935/live/mobile-111/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CANAL G
+http://stream.flynetwifi.com:1935/live/mobile-149/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Clio
+http://stream.flynetwifi.com:1935/live/mobile-119/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HISPANTV
+http://stream.flynetwifi.com:1935/live/mobile-147/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",IVC
+http://stream.flynetwifi.com:1935/live/mobile-153/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",KANAL D
+http://stream.flynetwifi.com:1935/live/mobile-097/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV U
+http://stream.flynetwifi.com:1935/live/mobile-113/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CCI
+http://stream.flynetwifi.com:1935/live/mobile-144/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Corazon
+http://stream.flynetwifi.com:1935/live/mobile-118/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ENLACE
+http://stream.flynetwifi.com:1935/live/mobile-145/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ESNE
+http://stream.flynetwifi.com:1935/live/mobile-124/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",EWTN
+http://stream.flynetwifi.com:1935/live/mobile-012/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",MC
+http://stream.flynetwifi.com:1935/live/mobile-044/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",mu
+http://stream.flynetwifi.com:1935/live/mobile-067/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Y
+http://stream.flynetwifi.com:1935/live/mobile-069/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",viro grip
+http://stream.flynetwifi.com:1935/live/mobile-082/playlist.m3u8
+
+
+
+
+
+
+#EXTINF:-1 tvg-logo="" group-title="",Neo TV
+https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Provincial
+https://streaming.telered.com.ar/provincial/streaming/mystream.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal U
+https://stream.arcast.live/canalu/canalu/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Multivisión
+https://panel.dattalive.com/8250/8250/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telesol
+https://cnnsanjuan.com:9999/live/telesol/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Telediez
+https://videohd.live:19360/8020/8020.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Motor
+http://digicom.hls.iptvdc.com/canalmotor/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",All Sports BR
+https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RedBull TV
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8
+
+
+
+
+#EXTINF:-1 tvg-logo="" group-title="",Onda Cadiz
+https://ondacadiztv.es:30443/octv/directo_multi/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ETB
+https://multimedia.eitb.eus/live-content/etb1hd-hls/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ETB
+https://multimedia.eitb.eus/live-content/etb2hd-hls/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Galicia America
+http://america-crtvg.flumotion.com/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RCN Xtra
+https://latv-rcn-xtra-1-mx.tcl.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RCN Mas
+https://rcntv-rcnmas-1-us.plex.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Tastemade
+https://tastemadees16intl-brightcove.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",My Zen TV Fit
+https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",AFV
+https://linear-46.frequency.stream/46/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ADN 40
+https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Once
+https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 10 Cancun
+https://canal10.mediaflix.istream.mx/wza_live/live/movil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal XFN
+https://streamconex.com:1936/canalxfn/canalxfn/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bolivia TV 7.1
+http://boliviatv1.srfms.com:5735/live/livestream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Latina
+https://master.tucableip.com/live/tvlatinamontero/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",La Red Chile
+https://unlimited1-cl-isp.dps.live/lared/lared.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UCV  Chile
+https://unlimited2-cl-isp.dps.live/ucvtv2/ucvtv2.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",U Chile TV
+https://unlimited1-cl-isp.dps.live/uchiletv/uchiletv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UCV 2  Chile
+https://unlimited10-cl.dps.live/ucvtveventos/ucvtveventos.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",STGO.TV
+https://stv.janus.cl/playlist/stream.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Campus TV
+https://unlimited1-cl-isp.dps.live/campustv/campustv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",T13  Chile
+https://unlimited1-cl-isp.dps.live/t13/t13.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Pop
+https://v4.tustreaming.cl/poptv/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Antofagasta TV
+https://unlimited1-cl-isp.dps.live/atv/atv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Chile Channel
+https://v2.tustreaming.cl/chilechannel/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TVR
+https://unlimited1-cl-isp.dps.live/tvr/tvr.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecanal Santa Cruz
+https://unlimited1-cl-isp.dps.live/tcsc/tcsc.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecanal Talca
+https://unlimited1-cl-isp.dps.live/tctc/tctc.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 9 Bío Bío
+https://unlimited1-cl-isp.dps.live/c9/c9.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Club TV
+https://mediacpstreamchile.com:1936/clubtv/clubtv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Pucon TV
+https://unlimited1-cl-isp.dps.live/pucontv/pucontv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SurTV
+https://paneltv.online:1936/8034/8034/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ITV Patagonia
+https://unlimited1-cl-isp.dps.live/itv/itv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bio Bio TV
+https://unlimited1-cl-isp.dps.live/bbtv/bbtv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal CNC Peru
+http://38.75.136.76:1935/cncmedellin720/canalcncmedellin.stream_720p/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Trece Colombia
+https://stream.logicideas.media/canaltrece-live/smil:live.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Señal Colombia
+https://streaming.rtvc.gov.co/TV_Senal_Colombia_live/smil:live.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TDI Colombia
+https://play.amelbasoluciones.co:3971/live/tdicolombiatvlive.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Telepacífico
+https://stream.logicideas.media/telepacifico-live/live.smil/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CB TV Costa Rica
+https://cloudvideo.servers10.com:8081/8030/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Sarapiqui TV
+http://tiquiciatv.com:1935/stv/envivo/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Limon TV
+http://k4.usastreams.com/limontv1/limontv1/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Sur Canal 9
+http://tv.ticosmedia.com:1935/TVSUR/TVSUR/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Promar TV Venezuela
+https://vcp.myplaytv.com/promar/promar/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal i Venezuela
+https://vcp.myplaytv.com/canali/canali/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Mi TV
+https://rds3.desdeparaguay.net/mitv/mitv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",OK TeVe
+https://stream.plixitv.live/oktv/oktv/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Trece PY
+https://streaming.trece.com.py/live/trece.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecolor TV
+https://live.obslivestream.com/telecolormux/index.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Punta Cana TV
+https://cdn4.hostlagarto.com:8081/static/puntacanatv/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",CGTN China
+https://livees.cgtn.com/1000e/prog_index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DW - Esp
+https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RT - Esp
+https://rt-esp.rttv.com/live/rtesp/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TeleSur
+https://cdnesmain.telesur.ultrabase.net/mbliveMain/480p/chunklist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Estrella News
+https://estrellanews-plex.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bloomberg - Ing
+https://www.bloomberg.com/media-manifest/streams/us.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Reuters - Ing
+https://reuters-reutersnow-1-us.plex.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CM
+http://g5.mc-hor.transport.edge-access.net/a09/ngrp:CM_CanaldelaMusica-100044_all/Playlist.m3u8?sense=true
+
+#EXTINF:-1 tvg-logo="" group-title="",Oxigeno TV
+https://vcp.myplaytv.com/oxigenotv/oxigenotv/chunklist_w34527763.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Zapping music
+https://zmlive.zappingtv.com/zm-free/zm.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Portal Fox Mix
+http://149.56.17.92:1935/portalfoxmix/_definst_/portalfoxmix/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Exitos
+https://vdo1.streamgato.us:3359/live/tvexitoslive.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HGM música relax
+https://livelist01.yowi.tv/lista/dc1b71c6fda2e687050facaa7242062cbf5a7f2a/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Video tour
+http://k4.usastreams.com/videotour/videotour/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Retro Plus music
+https://59f1cbe63db89.streamlock.net:1443/retroplussenal2/_definst_/retroplussenal2/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",SABER MÁS
+https://sabermas-plex.amagi.tv/SaberMas-xumo/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",¡Hola!TV
+https://live.atresmediainternacional.com/ATRESMEDIA/holatv-1080.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",COSMO
+http://154.62.74.12:1935/live/smil:cosmoHD/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Estrellas
+https://estrellatv-roku.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Mega TV
+https://livestream.lamusica.com/megatvP320/ngrp:megatvP320_all/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Failarmy
+https://failarmy-linear-us.sinclair.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",PlanetaTV Kids
+https://tls-cl.cdnz.cl/planetatvkids/live/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Los Simpsons D
+https://srv5.zcast.com.br/simpsons/simpsons/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Retro Mágico
+https://vivo.solumedia.com:19360/retromagico/retromagico.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TU CINE
+https://tucine-plex.amagi.tv/TuCine-xumo/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CINE REAL
+https://cinereal-plex.amagi.tv/CineReal/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CHIQUILINES
+https://chiquilines-plex.amagi.tv/Chiquilines-plex/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY Comedia
+https://spt-comedias-1-us.lg.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY Novelas
+https://spt-novelas-1-us.lg.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",JUNTOS
+https://olympusamagi.pc.cdn.bitgravity.com/Juntos-roku/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Novelas en español
+https://stormcast-novelas-2-es.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Hola Play
+https://rakuten-hola-2-es.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ViX Romance
+https://linear-194.frequency.stream/194/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ViX Familia
+https://linear-195.frequency.stream/195/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Sony Competencias
+https://spt-competencias-1-us.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Cocina TV
+https://linear-317.frequency.stream/mt/studio/317/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Fuakata!
+https://linear-304.frequency.stream/mt/studio/304/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",My Time Original
+https://linear-261.frequency.stream/mt/studio/261/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",vivo play
+https://linear-260.frequency.stream/mt/studio/260/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Adrenalina Sport
+https://linear-393.frequency.stream/mt/studio/393/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Afizzionados
+https://linear-348.frequency.stream/mt/studio/348/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",beIn Sports XTRA ÃƒÂ±
+https://linear-256.frequency.stream/mt/studio/256/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Lo Mejor Liga MX
+https://linear-452.frequency.stream/mt/studio/452/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TUDN
+https://linear-439.frequency.stream/mt/studio/439/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TUDN 2
+https://linear-441.frequency.stream/mt/studio/441/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TUDN 3
+https://linear-442.frequency.stream/mt/studio/442/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ATV+
+https://linear-258.frequency.stream/mt/studio/258/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 5
+https://linear-351.frequency.stream/mt/studio/351/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ForoTV
+https://linear-300.frequency.stream/mt/studio/300/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Las Estrellas
+https://linear-413.frequency.stream/mt/studio/413/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Las Estrellas Latam
+https://linear-416.frequency.stream/mt/studio/416/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",levelup
+https://linear-263.frequency.stream/mt/studio/263/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",N+ Media
+https://linear-301.frequency.stream/mt/studio/301/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Nu9ve
+https://linear-352.frequency.stream/mt/studio/352/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Nuestra Vision
+https://linear-262.frequency.stream/mt/studio/262/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Televisa Guadalajara
+https://linear-402.frequency.stream/mt/studio/402/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Televisa Monterrey
+https://linear-403.frequency.stream/mt/studio/403/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",The Weather Channel Español
+https://linear-453.frequency.stream/mt/studio/453/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TN23
+https://linear-259.frequency.stream/mt/studio/259/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Unicable
+https://linear-423.frequency.stream/mt/studio/423/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Univision Latam
+https://linear-424.frequency.stream/mt/studio/424/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CNN Español
+https://linear-358.frequency.stream/mt/studio/358/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Euronews
+https://linear-255.frequency.stream/mt/studio/255/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Noticias Univision 24/7
+https://linear-254.frequency.stream/mt/studio/254/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RCTV Novelas
+https://linear-334.frequency.stream/mt/studio/334/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Golden
+https://linear-406.frequency.stream/mt/studio/406/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Golden Edge
+https://linear-407.frequency.stream/mt/studio/407/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Golden Multiplex
+https://linear-409.frequency.stream/mt/studio/409/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Golden Plus
+https://linear-410.frequency.stream/mt/studio/410/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Golden Premier
+https://linear-411.frequency.stream/mt/studio/411/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TlNovelas
+https://linear-421.frequency.stream/mt/studio/421/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",40 Y 20
+https://linear-340.frequency.stream/mt/studio/340/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Cine de Oro
+https://linear-308.frequency.stream/mt/studio/308/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Cine Retro
+https://linear-307.frequency.stream/mt/studio/307/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Crónicas
+https://linear-315.frequency.stream/mt/studio/315/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",De pelicula
+https://linear-354.frequency.stream/mt/studio/354/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",De pelicula Plus
+https://linear-404.frequency.stream/mt/studio/404/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Distrito Comedia
+https://linear-405.frequency.stream/mt/studio/405/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Galanes
+https://linear-325.frequency.stream/mt/studio/325/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",La Parodia
+https://linear-468.frequency.stream/mt/studio/468/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Las 3 Marias
+https://linear-328.frequency.stream/mt/studio/328/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Novelas de Oro
+https://linear-429.frequency.stream/mt/studio/429/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Rebelde
+https://linear-335.frequency.stream/mt/studio/335/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Risas de Oro
+https://linear-313.frequency.stream/mt/studio/313/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Villanos de Novela
+https://linear-339.frequency.stream/mt/studio/339/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Jajaja
+https://linear-310.frequency.stream/mt/studio/310/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Los HÃƒÂ©roes del Norte
+https://linear-323.frequency.stream/mt/studio/323/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Moovi Mex
+https://linear-309.frequency.stream/mt/studio/309/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Sortilegio
+https://linear-337.frequency.stream/mt/studio/337/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Amores Verdaderos
+https://linear-305.frequency.stream/mt/studio/305/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Angelique
+https://linear-321.frequency.stream/mt/studio/321/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Aqui Y Ahora
+https://linear-306.frequency.stream/mt/studio/306/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Como dice el dicho
+https://linear-341.frequency.stream/mt/studio/341/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Hasta que el dinero nos separe
+https://linear-447.frequency.stream/mt/studio/447/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",La Familia P.Luche
+https://linear-311.frequency.stream/mt/studio/311/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",La Usurpadora
+https://linear-448.frequency.stream/mt/studio/448/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Nosotros los Guapos
+https://linear-451.frequency.stream/mt/studio/451/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Teresa
+https://linear-342.frequency.stream/mt/studio/342/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Triunfo del Amor
+https://linear-338.frequency.stream/mt/studio/338/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Una Familia de Diez
+https://linear-450.frequency.stream/mt/studio/450/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Vecinos
+https://linear-314.frequency.stream/mt/studio/314/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",bitMe
+https://linear-401.frequency.stream/mt/studio/401/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Pinkfong Baby Shark
+https://linear-355.frequency.stream/mt/studio/355/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telehit
+https://linear-417.frequency.stream/mt/studio/417/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telehit Musica
+https://linear-418.frequency.stream/mt/studio/418/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telehit Musica Plus
+https://linear-419.frequency.stream/mt/studio/419/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bandamax
+https://linear-400.frequency.stream/mt/studio/400/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",482 " NOVELA ESP"
+https://linear-482.frequency.stream/mt/studio/482/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",484 " NOVELA ESP"
+https://linear-484.frequency.stream/mt/studio/484/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",478 " NOVELA ESP"
+https://linear-478.frequency.stream/mt/studio/478/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",557 " NOVELA ESP"
+https://linear-557.frequency.stream/mt/studio/557/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",565 " NOVELA ESP"
+https://linear-565.frequency.stream/mt/studio/565/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",568 " NOVELA ESP"
+https://linear-568.frequency.stream/mt/studio/568/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",577 " NOVELA ESP"
+https://linear-577.frequency.stream/mt/studio/577/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",580 " NOVELA ESP"
+https://linear-580.frequency.stream/mt/studio/580/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",494 VEVO
+https://linear-494.frequency.stream/mt/studio/494/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",533 " tv en español"
+https://linear-533.frequency.stream/mt/studio/533/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",573 " tv en español"
+https://linear-573.frequency.stream/mt/studio/573/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",570 "futbol 3:4"
+https://linear-570.frequency.stream/mt/studio/570/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",46. ALWAYS FUNNY
+https://linear-46.frequency.stream/mt/studio/46/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",49. ALWAYS FUNNY
+https://linear-49.frequency.stream/mt/studio/49/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",548 AMERICAN PICKERS
+https://linear-548.frequency.stream/mt/studio/548/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",12. Animal LOLs
+https://linear-12.frequency.stream/mt/studio/12/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",524 Anime infantil
+https://linear-524.frequency.stream/mt/studio/524/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",526 Anime infantil pelis
+https://linear-526.frequency.stream/mt/studio/526/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",458 AT HOME
+https://linear-458.frequency.stream/mt/studio/458/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",505 AT HOME
+https://linear-505.frequency.stream/mt/studio/505/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",477 BLEAV
+https://linear-477.frequency.stream/mt/studio/477/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",493 BLEAV
+https://linear-493.frequency.stream/mt/studio/493/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",434 BOUNGE XL
+https://linear-434.frequency.stream/mt/studio/434/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",462 BOUNGE XL
+https://linear-462.frequency.stream/mt/studio/462/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",552 BUSINESS INSIDER
+https://linear-552.frequency.stream/mt/studio/552/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",604 Canal VIX
+https://linear-604.frequency.stream/mt/studio/604/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",605 Canal VIX
+https://linear-605.frequency.stream/mt/studio/605/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",455 CINEMA Century 21st
+https://linear-455.frequency.stream/mt/studio/455/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",102 CityLine
+https://linear-102.frequency.stream/mt/studio/102/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",454 Classic Movies
+https://linear-454.frequency.stream/mt/studio/454/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",465 COURT TV
+https://linear-465.frequency.stream/mt/studio/465/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",84. COURT TV
+https://linear-84.frequency.stream/mt/studio/84/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",549 CRIME & JUSTICE
+https://linear-549.frequency.stream/mt/studio/549/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",593 CRIME & JUSTICE ONE
+https://linear-593.frequency.stream/mt/studio/593/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",535 e-GAME tv
+https://linear-535.frequency.stream/mt/studio/535/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",594 e-GAME tv
+https://linear-594.frequency.stream/mt/studio/594/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",295 FAILARMY
+https://linear-295.frequency.stream/mt/studio/295/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",198 FAILARMY
+https://linear-198.frequency.stream/mt/studio/198/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",137 FLIX Family
+https://linear-137.frequency.stream/mt/studio/137/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",360 Futbol evento
+https://linear-360.frequency.stream/mt/studio/360/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",362 Futbol evento
+https://linear-362.frequency.stream/mt/studio/362/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",363 Futbol evento
+https://linear-363.frequency.stream/mt/studio/363/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",364 Futbol evento
+https://linear-364.frequency.stream/mt/studio/364/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",365 Futbol evento
+https://linear-365.frequency.stream/mt/studio/365/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",366 Futbol evento
+https://linear-366.frequency.stream/mt/studio/366/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",367 Futbol evento
+https://linear-367.frequency.stream/mt/studio/367/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",368 Futbol evento
+https://linear-368.frequency.stream/mt/studio/368/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",371 Futbol evento
+https://linear-371.frequency.stream/mt/studio/371/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",372 Futbol evento
+https://linear-372.frequency.stream/mt/studio/372/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",373 Futbol evento
+https://linear-373.frequency.stream/mt/studio/373/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",374 Futbol evento
+https://linear-374.frequency.stream/mt/studio/374/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",375 Futbol evento
+https://linear-375.frequency.stream/mt/studio/375/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",376 Futbol evento
+https://linear-376.frequency.stream/mt/studio/376/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",377 Futbol evento
+https://linear-377.frequency.stream/mt/studio/377/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",378 Futbol evento
+https://linear-378.frequency.stream/mt/studio/378/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",379 Futbol evento
+https://linear-379.frequency.stream/mt/studio/379/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",380 Futbol evento
+https://linear-380.frequency.stream/mt/studio/380/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",381 Futbol evento
+https://linear-381.frequency.stream/mt/studio/381/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",383 Futbol evento
+https://linear-383.frequency.stream/mt/studio/383/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",384 Futbol evento
+https://linear-384.frequency.stream/mt/studio/384/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",385 Futbol evento
+https://linear-385.frequency.stream/mt/studio/385/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",386 Futbol evento
+https://linear-386.frequency.stream/mt/studio/386/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",438 Futbol evento
+https://linear-438.frequency.stream/mt/studio/438/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",440 Futbol evento
+https://linear-440.frequency.stream/mt/studio/440/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",668 Futbol evento
+https://linear-668.frequency.stream/mt/studio/668/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",669 Futbol evento
+https://linear-669.frequency.stream/mt/studio/669/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",670 Futbol evento
+https://linear-670.frequency.stream/mt/studio/670/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",671 Futbol evento
+https://linear-671.frequency.stream/mt/studio/671/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",678 Futbol evento
+https://linear-678.frequency.stream/mt/studio/678/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",679 Futbol evento
+https://linear-679.frequency.stream/mt/studio/679/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",789 Gran Hermano MX bñ
+https://linear-789.frequency.stream/mt/studio/789/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",790 Gran Hermano MX com
+https://linear-790.frequency.stream/mt/studio/790/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",788 Gran Hermano MX dorX
+https://linear-788.frequency.stream/mt/studio/788/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",787 Gran Hermano MX dorY
+https://linear-787.frequency.stream/mt/studio/787/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",785 Gran Hermano MX ext
+https://linear-785.frequency.stream/mt/studio/785/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",786 Gran Hermano MX ext
+https://linear-786.frequency.stream/mt/studio/786/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",792 Gran Hermano MX gym
+https://linear-792.frequency.stream/mt/studio/792/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",791 Gran Hermano MX liv
+https://linear-791.frequency.stream/mt/studio/791/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",784 Gran Hermano MX viv
+https://linear-784.frequency.stream/mt/studio/784/hls/master/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="" group-title="",100 VERY LOCAL
+https://linear-100.frequency.stream/mt/studio/100/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",103 VERY LOCAL
+https://linear-103.frequency.stream/mt/studio/103/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",105 VERY LOCAL
+https://linear-105.frequency.stream/mt/studio/105/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",106 VERY LOCAL
+https://linear-106.frequency.stream/mt/studio/106/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",107 VERY LOCAL
+https://linear-107.frequency.stream/mt/studio/107/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",108 VERY LOCAL
+https://linear-108.frequency.stream/mt/studio/108/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",109 VERY LOCAL
+https://linear-109.frequency.stream/mt/studio/109/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",110 VERY LOCAL
+https://linear-110.frequency.stream/mt/studio/110/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",111 VERY LOCAL
+https://linear-111.frequency.stream/mt/studio/111/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",113 VERY LOCAL
+https://linear-113.frequency.stream/mt/studio/113/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",114 VERY LOCAL
+https://linear-114.frequency.stream/mt/studio/114/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",115 VERY LOCAL
+https://linear-115.frequency.stream/mt/studio/115/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",116 VERY LOCAL
+https://linear-116.frequency.stream/mt/studio/116/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",117 VERY LOCAL
+https://linear-117.frequency.stream/mt/studio/117/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",200 VERY LOCAL
+https://linear-200.frequency.stream/mt/studio/200/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",22. VERY LOCAL
+https://linear-22.frequency.stream/mt/studio/22/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",33. VERY LOCAL
+https://linear-33.frequency.stream/mt/studio/33/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",36. VERY LOCAL
+https://linear-36.frequency.stream/mt/studio/36/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",93. VERY LOCAL
+https://linear-93.frequency.stream/mt/studio/93/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",94. VERY LOCAL
+https://linear-94.frequency.stream/mt/studio/94/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",95. VERY LOCAL
+https://linear-95.frequency.stream/mt/studio/95/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",96. VERY LOCAL
+https://linear-96.frequency.stream/mt/studio/96/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",97. VERY LOCAL
+https://linear-97.frequency.stream/mt/studio/97/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",98. VERY LOCAL
+https://linear-98.frequency.stream/mt/studio/98/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",99. VERY LOCAL
+https://linear-99.frequency.stream/mt/studio/99/hls/master/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="" group-title="",312 VIX
+https://linear-312.frequency.stream/mt/studio/312/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",480 VIX
+https://linear-480.frequency.stream/mt/studio/480/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",481 VIX
+https://linear-481.frequency.stream/mt/studio/481/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",483 VIX
+https://linear-483.frequency.stream/mt/studio/483/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",487 VIX
+https://linear-487.frequency.stream/mt/studio/487/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",574 VIX
+https://linear-574.frequency.stream/mt/studio/574/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",575 VIX
+https://linear-575.frequency.stream/mt/studio/575/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",660 VIX
+https://linear-660.frequency.stream/mt/studio/660/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",576 VIX …
+https://linear-576.frequency.stream/mt/studio/576/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",734 VIX …
+https://linear-734.frequency.stream/mt/studio/734/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",735 VIX …
+https://linear-735.frequency.stream/mt/studio/735/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",784 VIX …
+https://linear-784.frequency.stream/mt/studio/784/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",566 VIX ….
+https://linear-566.frequency.stream/mt/studio/566/hls/master/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="" group-title="",467 GRIT xtra
+https://linear-467.frequency.stream/mt/studio/467/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",83. GRIT xtra
+https://linear-83.frequency.stream/mt/studio/83/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",59. HI-YAH!
+https://linear-59.frequency.stream/mt/studio/59/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",64. GEAR SCOUT
+https://linear-64.frequency.stream/mt/studio/64/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",444 Home Refresh
+https://linear-444.frequency.stream/mt/studio/444/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",723 Homeful
+https://linear-723.frequency.stream/mt/studio/723/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",432 ION
+https://linear-432.frequency.stream/mt/studio/432/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",464 ION
+https://linear-464.frequency.stream/mt/studio/464/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",436 ION MYSTERY
+https://linear-436.frequency.stream/mt/studio/436/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",466 ION MYSTERY
+https://linear-466.frequency.stream/mt/studio/466/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",433 ION PLUS
+https://linear-433.frequency.stream/mt/studio/433/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",463 ION PLUS
+https://linear-463.frequency.stream/mt/studio/463/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",459 Jamie Kennedy Channel
+https://linear-459.frequency.stream/mt/studio/459/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",252 JOURNY
+https://linear-252.frequency.stream/mt/studio/252/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",291 JOURNY
+https://linear-291.frequency.stream/mt/studio/291/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",298 JOURNY
+https://linear-298.frequency.stream/mt/studio/298/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",90. JUSTICE
+https://linear-90.frequency.stream/mt/studio/90/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",92. KCRA Sacramento
+https://linear-92.frequency.stream/mt/studio/92/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",640 Las Noticias +
+https://linear-640.frequency.stream/mt/studio/640/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",717 Las Noticias +
+https://linear-717.frequency.stream/mt/studio/717/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",553 Las Noticias +2
+https://linear-553.frequency.stream/mt/studio/553/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",569 Liga MX Futbol
+https://linear-569.frequency.stream/mt/studio/569/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",272 LOCAL NEW CafeeHouse
+https://linear-272.frequency.stream/mt/studio/272/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",135 Local News FUNNY
+https://linear-135.frequency.stream/mt/studio/135/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",125 Local News ZEN
+https://linear-125.frequency.stream/mt/studio/125/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",519 Love animal
+https://linear-519.frequency.stream/mt/studio/519/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",639 MGM ACTION
+https://linear-639.frequency.stream/mt/studio/639/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",513 MGM Addams Family
+https://linear-513.frequency.stream/mt/studio/513/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",718 MGM ClassicTV
+https://linear-718.frequency.stream/mt/studio/718/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",638 MGM Green acres
+https://linear-638.frequency.stream/mt/studio/638/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",515 MGM HEAT NIGHT
+https://linear-515.frequency.stream/mt/studio/515/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",642 MGM OUTHER
+https://linear-642.frequency.stream/mt/studio/642/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",518 MGM PATERNITY
+https://linear-518.frequency.stream/mt/studio/518/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",637 MGM Pink Panther
+https://linear-637.frequency.stream/mt/studio/637/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",686 MGM SCI-FI
+https://linear-686.frequency.stream/mt/studio/686/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",658 MGM STARGATE
+https://linear-658.frequency.stream/mt/studio/658/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",563 MOOVI MEX
+https://linear-563.frequency.stream/mt/studio/563/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",564 MOOVI MEX
+https://linear-564.frequency.stream/mt/studio/564/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",236 MOVIES OF THE WEEK
+https://linear-236.frequency.stream/mt/studio/236/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",286 NCN mas
+https://linear-286.frequency.stream/mt/studio/286/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",736 NCN noticias
+https://linear-736.frequency.stream/mt/studio/736/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",280 o
+https://linear-280.frequency.stream/mt/studio/280/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",190 OPIL
+https://linear-190.frequency.stream/mt/studio/190/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",600 OUTDOOR AMERICA
+https://linear-600.frequency.stream/mt/studio/600/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",293 OVATION
+https://linear-293.frequency.stream/mt/studio/293/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",76. pattrn
+https://linear-76.frequency.stream/mt/studio/76/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",175 PEOPLE are AWESOME
+https://linear-175.frequency.stream/mt/studio/175/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",174 PET collective
+https://linear-174.frequency.stream/mt/studio/174/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",426 Poker GO
+https://linear-426.frequency.stream/mt/studio/426/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",205 pursuiyUP
+https://linear-205.frequency.stream/mt/studio/205/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",491 Real Madrid TV
+https://linear-491.frequency.stream/mt/studio/491/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",582 RedBull
+https://linear-582.frequency.stream/mt/studio/582/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",296 REPO operative
+https://linear-296.frequency.stream/mt/studio/296/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",181 revry Brasil
+https://linear-181.frequency.stream/mt/studio/181/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",73. revry her
+https://linear-73.frequency.stream/mt/studio/73/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",142 revry latinX
+https://linear-142.frequency.stream/mt/studio/142/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",44. revry news
+https://linear-44.frequency.stream/mt/studio/44/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",43. revry TV
+https://linear-43.frequency.stream/mt/studio/43/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",5.f revry TV
+https://linear-5.frequency.stream/mt/studio/5/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",456 REWIND 80&90s
+https://linear-456.frequency.stream/mt/studio/456/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",461 ROXI Music
+https://linear-461.frequency.stream/mt/studio/461/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",611 scan me
+https://linear-611.frequency.stream/mt/studio/611/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",460 SCRIPPS NEWS
+https://linear-460.frequency.stream/mt/studio/460/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",78. SCRIPPS NEWS
+https://linear-78.frequency.stream/mt/studio/78/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",496 SN TV
+https://linear-496.frequency.stream/mt/studio/496/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",497 SN TV
+https://linear-497.frequency.stream/mt/studio/497/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",502 SN TV
+https://linear-502.frequency.stream/mt/studio/502/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",165 SN TV
+https://linear-165.frequency.stream/mt/studio/165/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",836 STAY
+https://linear-836.frequency.stream/mt/studio/836/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",112 stitch
+https://linear-112.frequency.stream/mt/studio/112/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",253 SWERVE combat
+https://linear-253.frequency.stream/mt/studio/253/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",596 TEAL D!SASTER
+https://linear-596.frequency.stream/mt/studio/596/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",514 TEEN WOLF
+https://linear-514.frequency.stream/mt/studio/514/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",479 TeleHITS MX
+https://linear-479.frequency.stream/mt/studio/479/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",188 TH usa
+https://linear-188.frequency.stream/mt/studio/188/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",11. The Family
+https://linear-11.frequency.stream/mt/studio/11/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",584 The Grios
+https://linear-584.frequency.stream/mt/studio/584/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",197 the PETcollective
+https://linear-197.frequency.stream/mt/studio/197/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",598 the Sullivan SHOW
+https://linear-598.frequency.stream/mt/studio/598/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",431 The Weather Español
+https://linear-431.frequency.stream/mt/studio/431/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",556 Tigo SPORTS
+https://linear-556.frequency.stream/mt/studio/556/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",727 TODO CINE
+https://linear-727.frequency.stream/mt/studio/727/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",347 TUDN
+https://linear-347.frequency.stream/mt/studio/347/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",581 TUDN futbol
+https://linear-581.frequency.stream/mt/studio/581/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",356 TUDN zona
+https://linear-356.frequency.stream/mt/studio/356/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",554 US Sport old race
+https://linear-554.frequency.stream/mt/studio/554/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",685 US Tortuga ninjas
+https://linear-685.frequency.stream/mt/studio/685/hls/master/playlist.m3u8
+
+
+#EXTINF:-1 tvg-logo="" group-title="",559 VIX CINE CLUB
+https://linear-559.frequency.stream/mt/studio/559/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",567 VIX CINE CLUB
+https://linear-567.frequency.stream/mt/studio/567/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",357 VIX Deporte
+https://linear-357.frequency.stream/mt/studio/357/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",558 VIX GRANDES PAREJAS
+https://linear-558.frequency.stream/mt/studio/558/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",560 VIX JAJAJA
+https://linear-560.frequency.stream/mt/studio/560/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",561 VIX NOVELAS DE ORO
+https://linear-561.frequency.stream/mt/studio/561/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",361 VIX TUDN
+https://linear-361.frequency.stream/mt/studio/361/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",571 VIX VILLANOS DE NOVELA
+https://linear-571.frequency.stream/mt/studio/571/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",562 VIXRETRO CINE
+https://linear-562.frequency.stream/mt/studio/562/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",737 Wapa +
+https://linear-737.frequency.stream/mt/studio/737/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",176 WEATHER SPY
+https://linear-176.frequency.stream/mt/studio/176/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",199 WEATHER SPY
+https://linear-199.frequency.stream/mt/studio/199/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",279 WeThePeople
+https://linear-279.frequency.stream/mt/studio/279/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",799 WILDWEST TV
+https://linear-799.frequency.stream/mt/studio/799/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",715 Laff more!
+https://linear-715.frequency.stream/mt/studio/715/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",716 Laff more!
+https://linear-716.frequency.stream/mt/studio/716/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",597 Poker GO
+https://linear-597.frequency.stream/mt/studio/597/hls/master/playlist.m3u8
+
+
+
+#EXTINF:-1 tvg-logo="" group-title="",
+<!-- OTTERA TV .... -
+
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3034
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3035
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY DJAZZ
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3037
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY INTERMISION
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3038
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3032
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3033
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3040
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE FUN
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3029
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC AFTER NATIVE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3026
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EASY LISTENING
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3021
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EURO HIT
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3019
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EXITOS DEL MOMENTO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3025
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC FLASHBACK 70S
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3030
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC HIP-HOP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3024
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC K-POP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3018
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC NOTHIN BUT 90S
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3028
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC POP ADULT
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3023
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC SMOOTH JAZZ
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3022
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC THE SPA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3027
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC Y2K
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3020
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3036
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE Fire
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3041
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3031
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3039
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3042
+
+#EXTINF:-1 tvg-logo="" group-title="",Dexule Lounge HD
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3159
+
+#EXTINF:-1 tvg-logo="" group-title="",Musica
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3156
+
+#EXTINF:-1 tvg-logo="" group-title="",Musica
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3193
+
+
+#EXTINF:-1 tvg-logo="" group-title="",CANELA TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3078
+
+#EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3105
+
+#EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3178
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3054
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3056
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3057
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3058
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3059
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3060
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3061
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3062
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3063
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3064
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME Retro - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3053
+
+#EXTINF:-1 tvg-logo="" group-title="",COOKING PANDA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3080
+
+#EXTINF:-1 tvg-logo="" group-title="",Documental US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3098
+
+#EXTINF:-1 tvg-logo="" group-title="",Documental US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3166
+
+#EXTINF:-1 tvg-logo="" group-title="",Policial US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3165
+
+#EXTINF:-1 tvg-logo="" group-title="",Policial US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3171
+
+#EXTINF:-1 tvg-logo="" group-title="",Survival wild
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3177
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3096
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3181
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3196
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3148
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3176
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3179
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3192
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3137
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3182
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3095
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3151
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV kind
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3184
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV life
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3136
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3099
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3141
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3157
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3158
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3101
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3152
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3199
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3107
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3154
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3189
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3103
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3188
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3104
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3183
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3197
+
+#EXTINF:-1 tvg-logo="" group-title="",Cheddar
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3112
+
+#EXTINF:-1 tvg-logo="" group-title="",GO Traveler
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3082
+
+#EXTINF:-1 tvg-logo="" group-title="",Honda STAGE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3076
+
+#EXTINF:-1 tvg-logo="" group-title="",NBC kcra
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3046
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3083
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3084
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3160
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3167
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3168
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3169
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3190
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3097
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3100
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3110
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3135
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3150
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3140
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3143
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3164
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3170
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3174
+
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3091
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3092
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3149
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3153
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3155
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3185
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3194
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3198
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3106
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3180
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3195
+
+#EXTINF:-1 tvg-logo="" group-title="",ABC tilt
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3043
+
+#EXTINF:-1 tvg-logo="" group-title="",Impact Proffesionls
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3113
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3069
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3090
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3161
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3162
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3172
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3173
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3175
+
+#EXTINF:-1 tvg-logo="" group-title="",Pelicula ESP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3075
+
+#EXTINF:-1 tvg-logo="" group-title="",Pelicula ESP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3134
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3049
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3070
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3111
+
+#EXTINF:-1 tvg-logo="" group-title="",FIGHT NETWORK
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3118
+
+#EXTINF:-1 tvg-logo="" group-title="",ITV deportes
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3010
+
+#EXTINF:-1 tvg-logo="" group-title="",MOTORVISION
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3126
+
+#EXTINF:-1 tvg-logo="" group-title="",EN PUBLICIDAD
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3133
