@@ -6,8 +6,8 @@ https://live-01-01-tn.vodgc.net/TN24/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
 https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Canal 4
-http://190.52.32.13:1935/canal4/smil:manifest.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",Canal 7 Jujuy
+https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8?PlaylistM3UCL
 
 #EXTINF:-1 tvg-logo="" group-title="",Canal 9 Litoral
 https://stream.arcast.live/ahora/ahora/playlist.m3u8?PlaylistM3UCL
@@ -18,16 +18,8 @@ http://coninfo.net:1935/13maxhd/live13maxtvnuevo_720p/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",TyC Sports
 https://d3055hobuue3je.cloudfront.net/out/v1/188a8f3baf914a35868453bd5d0b0fd2/index.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",TyC PLAY
-https://d3awnlgqz0szay.cloudfront.net/out/v1/09e35529553d472b8f14e437af642e2f/index_13.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",TyC
-https://d3awnlgqz0szay.cloudfront.net/out/v1/19321d887c274b58a4f62fe0f6e2151b/index_9.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",TyC Eventos
 https://dpyzprfzko681.cloudfront.net/out/v1/366fc52554ae42c58465ea4b278eac0c/index_15.m3u8
-
-
 
 #EXTINF:-1 tvg-logo="" group-title="",ESPN 2
 http://stream.flynetwifi.com:1935/live/mobile-033/playlist.m3u8
@@ -95,7 +87,7 @@ http://stream.flynetwifi.com:1935/live/mobile-091/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",TELEMUNDO INTER
 http://stream.flynetwifi.com:1935/live/mobile-152/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",TSC 
+#EXTINF:-1 tvg-logo="" group-title="",TSC +
 http://stream.flynetwifi.com:1935/live/mobile-135/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",tve
@@ -134,7 +126,7 @@ http://stream.flynetwifi.com:1935/live/mobile-063/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",A&E
 http://stream.flynetwifi.com:1935/live/mobile-158/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",A3CIEN
+#EXTINF:-1 tvg-logo="" group-title="",A3CINE
 http://stream.flynetwifi.com:1935/live/mobile-028/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",A3Series
@@ -146,7 +138,7 @@ http://stream.flynetwifi.com:1935/live/mobile-008/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",AXN
 http://stream.flynetwifi.com:1935/live/mobile-048/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",CINECANAL
+#EXTINF:-1 tvg-logo="" group-title="",CINECanal
 http://stream.flynetwifi.com:1935/live/mobile-016/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",CINEMA
@@ -155,10 +147,10 @@ http://stream.flynetwifi.com:1935/live/mobile-120/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",COMEDY CENTER
 http://stream.flynetwifi.com:1935/live/mobile-001/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",EE
+#EXTINF:-1 tvg-logo="" group-title="",EuropaEuropa
 http://stream.flynetwifi.com:1935/live/mobile-140/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",film&arts
+#EXTINF:-1 tvg-logo="" group-title="",Film&arts
 http://stream.flynetwifi.com:1935/live/mobile-142/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",FX
@@ -170,7 +162,7 @@ http://stream.flynetwifi.com:1935/live/mobile-021/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Paramount
 http://stream.flynetwifi.com:1935/live/mobile-004/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",peli…
+#EXTINF:-1 tvg-logo="" group-title="",HBO 2
 http://stream.flynetwifi.com:1935/live/mobile-094/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",SONY CHANNEL
@@ -218,28 +210,34 @@ http://stream.flynetwifi.com:1935/live/mobile-098/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",USA
 http://stream.flynetwifi.com:1935/live/mobile-059/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",C10 3:4
+#EXTINF:-1 tvg-logo="" group-title="",C10 old tv
 http://stream.flynetwifi.com:1935/live/mobile-037/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",canal 11
+#EXTINF:-1 tvg-logo="" group-title="",Canal - en publicidad
+http://stream.flynetwifi.com:1935/live/mobile-040/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TVO
+http://stream.flynetwifi.com:1935/live/mobile-071/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 11
 http://stream.flynetwifi.com:1935/live/mobile-132/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",canal 2
+#EXTINF:-1 tvg-logo="" group-title="",Canal 2
 http://stream.flynetwifi.com:1935/live/mobile-110/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",canal 3
+#EXTINF:-1 tvg-logo="" group-title="",Canal 3
 http://stream.flynetwifi.com:1935/live/mobile-114/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Canal 3:4
+#EXTINF:-1 tvg-logo="" group-title="",TN23
 http://stream.flynetwifi.com:1935/live/mobile-130/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",CANAL 4
+#EXTINF:-1 tvg-logo="" group-title="",Canal 4
 http://stream.flynetwifi.com:1935/live/mobile-036/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",canal 6
+#EXTINF:-1 tvg-logo="" group-title="",Canal 6
 http://stream.flynetwifi.com:1935/live/mobile-111/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",CANAL G
+#EXTINF:-1 tvg-logo="" group-title="",Canal G
 http://stream.flynetwifi.com:1935/live/mobile-149/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Clio
@@ -284,11 +282,6 @@ http://stream.flynetwifi.com:1935/live/mobile-069/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",viro grip
 http://stream.flynetwifi.com:1935/live/mobile-082/playlist.m3u8
 
-
-
-
-
-
 #EXTINF:-1 tvg-logo="" group-title="",Neo TV
 https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8
 
@@ -316,9 +309,6 @@ https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",RedBull TV
 https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8
 
-
-
-
 #EXTINF:-1 tvg-logo="" group-title="",Onda Cadiz
 https://ondacadiztv.es:30443/octv/directo_multi/playlist.m3u8
 
@@ -337,26 +327,14 @@ https://latv-rcn-xtra-1-mx.tcl.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",RCN Mas
 https://rcntv-rcnmas-1-us.plex.wurl.tv/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Tastemade
-https://tastemadees16intl-brightcove.amagi.tv/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",My Zen TV Fit
 https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",AFV
-https://linear-46.frequency.stream/46/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",ADN 40
 https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Canal Once
-https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Canal 10 Cancun
 https://canal10.mediaflix.istream.mx/wza_live/live/movil/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Canal XFN
-https://streamconex.com:1936/canalxfn/canalxfn/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Bolivia TV 7.1
 http://boliviatv1.srfms.com:5735/live/livestream/playlist.m3u8
@@ -373,20 +351,11 @@ https://unlimited2-cl-isp.dps.live/ucvtv2/ucvtv2.smil/playlist.m3u8?PlaylistM3UC
 #EXTINF:-1 tvg-logo="" group-title="",U Chile TV
 https://unlimited1-cl-isp.dps.live/uchiletv/uchiletv.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",UCV 2  Chile
-https://unlimited10-cl.dps.live/ucvtveventos/ucvtveventos.smil/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",STGO.TV
-https://stv.janus.cl/playlist/stream.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Campus TV
 https://unlimited1-cl-isp.dps.live/campustv/campustv.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",T13  Chile
+#EXTINF:-1 tvg-logo="" group-title="",UTALCA tv
 https://unlimited1-cl-isp.dps.live/t13/t13.smil/playlist.m3u8?PlaylistM3UCL
-
-#EXTINF:-1 tvg-logo="" group-title="",TV Pop
-https://v4.tustreaming.cl/poptv/index.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Antofagasta TV
 https://unlimited1-cl-isp.dps.live/atv/atv.smil/playlist.m3u8
@@ -397,50 +366,29 @@ https://v2.tustreaming.cl/chilechannel/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",TVR
 https://unlimited1-cl-isp.dps.live/tvr/tvr.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Telecanal Santa Cruz
+#EXTINF:-1 tvg-logo="" group-title="",TeleCanal Santa Cruz
 https://unlimited1-cl-isp.dps.live/tcsc/tcsc.smil/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Telecanal Talca
-https://unlimited1-cl-isp.dps.live/tctc/tctc.smil/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Canal 9 Bío Bío
 https://unlimited1-cl-isp.dps.live/c9/c9.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Club TV
-https://mediacpstreamchile.com:1936/clubtv/clubtv/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Pucon TV
 https://unlimited1-cl-isp.dps.live/pucontv/pucontv.smil/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",SurTV
-https://paneltv.online:1936/8034/8034/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",ITV Patagonia
 https://unlimited1-cl-isp.dps.live/itv/itv.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Bio Bio TV
-https://unlimited1-cl-isp.dps.live/bbtv/bbtv.smil/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Canal CNC Peru
 http://38.75.136.76:1935/cncmedellin720/canalcncmedellin.stream_720p/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Canal Trece Colombia
-https://stream.logicideas.media/canaltrece-live/smil:live.smil/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Señal Colombia
 https://streaming.rtvc.gov.co/TV_Senal_Colombia_live/smil:live.smil/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",TDI Colombia
+#EXTINF:-1 tvg-logo="" group-title="",TDI HD Colombia
 https://play.amelbasoluciones.co:3971/live/tdicolombiatvlive.m3u8?PlaylistM3UCL
-
-#EXTINF:-1 tvg-logo="" group-title="",Telepacífico
-https://stream.logicideas.media/telepacifico-live/live.smil/.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",CB TV Costa Rica
 https://cloudvideo.servers10.com:8081/8030/index.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Sarapiqui TV
-http://tiquiciatv.com:1935/stv/envivo/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Limon TV
 http://k4.usastreams.com/limontv1/limontv1/playlist.m3u8
@@ -456,12 +404,6 @@ https://vcp.myplaytv.com/canali/canali/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Mi TV
 https://rds3.desdeparaguay.net/mitv/mitv/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",OK TeVe
-https://stream.plixitv.live/oktv/oktv/playlist.m3u8?PlaylistM3UCL
-
-#EXTINF:-1 tvg-logo="" group-title="",Trece PY
-https://streaming.trece.com.py/live/trece.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Telecolor TV
 https://live.obslivestream.com/telecolormux/index.m3u8?PlaylistM3UCL
@@ -487,12 +429,6 @@ https://estrellanews-plex.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Bloomberg - Ing
 https://www.bloomberg.com/media-manifest/streams/us.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Reuters - Ing
-https://reuters-reutersnow-1-us.plex.wurl.tv/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",CM
-http://g5.mc-hor.transport.edge-access.net/a09/ngrp:CM_CanaldelaMusica-100044_all/Playlist.m3u8?sense=true
-
 #EXTINF:-1 tvg-logo="" group-title="",Oxigeno TV
 https://vcp.myplaytv.com/oxigenotv/oxigenotv/chunklist_w34527763.m3u8
 
@@ -502,44 +438,20 @@ https://zmlive.zappingtv.com/zm-free/zm.smil/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-logo="" group-title="",Portal Fox Mix
 http://149.56.17.92:1935/portalfoxmix/_definst_/portalfoxmix/playlist.m3u8?PlaylistM3UCL
 
-#EXTINF:-1 tvg-logo="" group-title="",TV Exitos
-https://vdo1.streamgato.us:3359/live/tvexitoslive.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",HGM música relax
-https://livelist01.yowi.tv/lista/dc1b71c6fda2e687050facaa7242062cbf5a7f2a/master.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Video tour
 http://k4.usastreams.com/videotour/videotour/playlist.m3u8?PlaylistM3UCL
-
-#EXTINF:-1 tvg-logo="" group-title="",Retro Plus music
-https://59f1cbe63db89.streamlock.net:1443/retroplussenal2/_definst_/retroplussenal2/playlist.m3u8?PlaylistM3UCL
 
 #EXTINF:-1 tvg-logo="" group-title="",SABER MÁS
 https://sabermas-plex.amagi.tv/SaberMas-xumo/master.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",¡Hola!TV
-https://live.atresmediainternacional.com/ATRESMEDIA/holatv-1080.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",COSMO
 http://154.62.74.12:1935/live/smil:cosmoHD/.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Estrellas
-https://estrellatv-roku.amagi.tv/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Mega TV
 https://livestream.lamusica.com/megatvP320/ngrp:megatvP320_all/.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Failarmy
-https://failarmy-linear-us.sinclair.wurl.tv/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",PlanetaTV Kids
 https://tls-cl.cdnz.cl/planetatvkids/live/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Los Simpsons D
-https://srv5.zcast.com.br/simpsons/simpsons/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Retro Mágico
-https://vivo.solumedia.com:19360/retromagico/retromagico.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",TU CINE
 https://tucine-plex.amagi.tv/TuCine-xumo/master_6.m3u8
@@ -550,35 +462,23 @@ https://cinereal-plex.amagi.tv/CineReal/master_6.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",CHIQUILINES
 https://chiquilines-plex.amagi.tv/Chiquilines-plex/master_6.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",SONY Comedia
-https://spt-comedias-1-us.lg.wurl.tv/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",SONY Novelas
 https://spt-novelas-1-us.lg.wurl.tv/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",JUNTOS
 https://olympusamagi.pc.cdn.bitgravity.com/Juntos-roku/master_6.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Novelas en español
+#EXTINF:-1 tvg-logo="" group-title="",Stormcast Novelas
 https://stormcast-novelas-2-es.samsung.wurl.tv/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Hola Play
 https://rakuten-hola-2-es.samsung.wurl.tv/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",ViX Romance
-https://linear-194.frequency.stream/194/hls/master/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",ViX Familia
-https://linear-195.frequency.stream/195/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Sony Competencias
 https://spt-competencias-1-us.samsung.wurl.tv/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Cocina TV
 https://linear-317.frequency.stream/mt/studio/317/hls/master/playlist.m3u8
-
-#EXTINF:-1 tvg-logo="" group-title="",Fuakata!
-https://linear-304.frequency.stream/mt/studio/304/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",My Time Original
 https://linear-261.frequency.stream/mt/studio/261/hls/master/playlist.m3u8
@@ -592,7 +492,7 @@ https://linear-393.frequency.stream/mt/studio/393/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Afizzionados
 https://linear-348.frequency.stream/mt/studio/348/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",beIn Sports XTRA ÃƒÂ±
+#EXTINF:-1 tvg-logo="" group-title="",beIN Sports XTRA ñ
 https://linear-256.frequency.stream/mt/studio/256/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Lo Mejor Liga MX
@@ -640,7 +540,7 @@ https://linear-402.frequency.stream/mt/studio/402/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Televisa Monterrey
 https://linear-403.frequency.stream/mt/studio/403/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",The Weather Channel Español
+#EXTINF:-1 tvg-logo="" group-title="",Weather Channel Esp
 https://linear-453.frequency.stream/mt/studio/453/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",TN23
@@ -679,7 +579,7 @@ https://linear-410.frequency.stream/mt/studio/410/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Golden Premier
 https://linear-411.frequency.stream/mt/studio/411/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",TlNovelas
+#EXTINF:-1 tvg-logo="" group-title="",TLNovelas
 https://linear-421.frequency.stream/mt/studio/421/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",40 Y 20
@@ -727,7 +627,7 @@ https://linear-339.frequency.stream/mt/studio/339/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Jajaja
 https://linear-310.frequency.stream/mt/studio/310/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Los HÃƒÂ©roes del Norte
+#EXTINF:-1 tvg-logo="" group-title="",Los Heroes del Norte
 https://linear-323.frequency.stream/mt/studio/323/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",Moovi Mex
@@ -775,9 +675,6 @@ https://linear-314.frequency.stream/mt/studio/314/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",bitMe
 https://linear-401.frequency.stream/mt/studio/401/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",Pinkfong Baby Shark
-https://linear-355.frequency.stream/mt/studio/355/hls/master/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",Telehit
 https://linear-417.frequency.stream/mt/studio/417/hls/master/playlist.m3u8
 
@@ -814,34 +711,31 @@ https://linear-577.frequency.stream/mt/studio/577/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",580 " NOVELA ESP"
 https://linear-580.frequency.stream/mt/studio/580/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",494 VEVO
-https://linear-494.frequency.stream/mt/studio/494/hls/master/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",533 " tv en español"
 https://linear-533.frequency.stream/mt/studio/533/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",573 " tv en español"
+#EXTINF:-1 tvg-logo="" group-title="","100 mx dijeron"
 https://linear-573.frequency.stream/mt/studio/573/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",570 "futbol 3:4"
+#EXTINF:-1 tvg-logo="" group-title="",Liga MX vix
 https://linear-570.frequency.stream/mt/studio/570/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",46. ALWAYS FUNNY
+#EXTINF:-1 tvg-logo="" group-title="",ALWAYS FUNNY 1
 https://linear-46.frequency.stream/mt/studio/46/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",49. ALWAYS FUNNY
+#EXTINF:-1 tvg-logo="" group-title="",ALWAYS FUNNY 2
 https://linear-49.frequency.stream/mt/studio/49/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",548 AMERICAN PICKERS
+#EXTINF:-1 tvg-logo="" group-title="",AMERICAN PICKERS
 https://linear-548.frequency.stream/mt/studio/548/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",12. Animal LOLs
+#EXTINF:-1 tvg-logo="" group-title="",ALWAYS FUNNY 3
 https://linear-12.frequency.stream/mt/studio/12/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",524 Anime infantil
+#EXTINF:-1 tvg-logo="" group-title="",Anime infantil Zenon
 https://linear-524.frequency.stream/mt/studio/524/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",526 Anime infantil pelis
+#EXTINF:-1 tvg-logo="" group-title="",Anime infantil pelis
 https://linear-526.frequency.stream/mt/studio/526/hls/master/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="",458 AT HOME
@@ -1000,33 +894,32 @@ https://linear-678.frequency.stream/mt/studio/678/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",679 Futbol evento
 https://linear-679.frequency.stream/mt/studio/679/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",789 Gran Hermano MX bñ
+#EXTINF:-1 tvg-logo="" group-title="",789 GH Sud - Baño
 https://linear-789.frequency.stream/mt/studio/789/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",790 Gran Hermano MX com
+#EXTINF:-1 tvg-logo="" group-title="",790 GH Sud - Comedor
 https://linear-790.frequency.stream/mt/studio/790/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",788 Gran Hermano MX dorX
+#EXTINF:-1 tvg-logo="" group-title="",788 GH Sud - DormX
 https://linear-788.frequency.stream/mt/studio/788/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",787 Gran Hermano MX dorY
+#EXTINF:-1 tvg-logo="" group-title="",787 GH Sud - DormY
 https://linear-787.frequency.stream/mt/studio/787/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",785 Gran Hermano MX ext
+#EXTINF:-1 tvg-logo="" group-title="",785 GH Sud - ext 1
 https://linear-785.frequency.stream/mt/studio/785/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",786 Gran Hermano MX ext
+#EXTINF:-1 tvg-logo="" group-title="",785 GH Sud - ext 1
 https://linear-786.frequency.stream/mt/studio/786/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",792 Gran Hermano MX gym
+#EXTINF:-1 tvg-logo="" group-title="",785 GH Sud - GYM
 https://linear-792.frequency.stream/mt/studio/792/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",791 Gran Hermano MX liv
+#EXTINF:-1 tvg-logo="" group-title="",791 GH Sud - Living
 https://linear-791.frequency.stream/mt/studio/791/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",784 Gran Hermano MX viv
+#EXTINF:-1 tvg-logo="" group-title="",784 GH Sud - Aire
 https://linear-784.frequency.stream/mt/studio/784/hls/master/playlist.m3u8
-
 
 #EXTINF:-1 tvg-logo="" group-title="",100 VERY LOCAL
 https://linear-100.frequency.stream/mt/studio/100/hls/master/playlist.m3u8
@@ -1103,7 +996,6 @@ https://linear-98.frequency.stream/mt/studio/98/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",99. VERY LOCAL
 https://linear-99.frequency.stream/mt/studio/99/hls/master/playlist.m3u8
 
-
 #EXTINF:-1 tvg-logo="" group-title="",312 VIX
 https://linear-312.frequency.stream/mt/studio/312/hls/master/playlist.m3u8
 
@@ -1137,12 +1029,8 @@ https://linear-734.frequency.stream/mt/studio/734/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",735 VIX …
 https://linear-735.frequency.stream/mt/studio/735/hls/master/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="" group-title="",784 VIX …
-https://linear-784.frequency.stream/mt/studio/784/hls/master/playlist.m3u8
-
 #EXTINF:-1 tvg-logo="" group-title="",566 VIX ….
 https://linear-566.frequency.stream/mt/studio/566/hls/master/playlist.m3u8
-
 
 #EXTINF:-1 tvg-logo="" group-title="",467 GRIT xtra
 https://linear-467.frequency.stream/mt/studio/467/hls/master/playlist.m3u8
@@ -1405,7 +1293,6 @@ https://linear-554.frequency.stream/mt/studio/554/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",685 US Tortuga ninjas
 https://linear-685.frequency.stream/mt/studio/685/hls/master/playlist.m3u8
 
-
 #EXTINF:-1 tvg-logo="" group-title="",559 VIX CINE CLUB
 https://linear-559.frequency.stream/mt/studio/559/hls/master/playlist.m3u8
 
@@ -1457,85 +1344,79 @@ https://linear-716.frequency.stream/mt/studio/716/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",597 Poker GO
 https://linear-597.frequency.stream/mt/studio/597/hls/master/playlist.m3u8
 
-
-
-#EXTINF:-1 tvg-logo="" group-title="",
-<!-- OTTERA TV .... -
-
-
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Cmusic
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3034
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Cmusic
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3035
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY DJAZZ
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Djazz
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3037
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY INTERMISION
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Intermision
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3038
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Karaoke
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3032
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Karaoke
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3033
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Karaoke
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3040
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE FUN
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Karaoke Fun
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3029
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC AFTER NATIVE
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music After Native
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3026
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EASY LISTENING
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Easy Listening
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3021
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EURO HIT
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Euro Hit
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3019
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EXITOS DEL MOMENTO
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Exitos Del Momento
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3025
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC FLASHBACK 70S
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Flashback 70S
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3030
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC HIP-HOP
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Hip-Hop
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3024
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC K-POP
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music K-Pop
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3018
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC NOTHIN BUT 90S
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Nothin But 90S
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3028
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC POP ADULT
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Pop Adult
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3023
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC SMOOTH JAZZ
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Smooth Jazz
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3022
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC THE SPA
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music The Spa
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3027
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC Y2K
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Music Y2K
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3020
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Naturescape
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3036
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE Fire
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Naturescape Fire
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3041
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Qello
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3031
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Qello
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3039
 
-#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+#EXTINF:-1 tvg-logo="" group-title="",Stingray Qello
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3042
 
 #EXTINF:-1 tvg-logo="" group-title="",Dexule Lounge HD
@@ -1547,15 +1428,12 @@ https://stream.ads.ottera.tv/playlist.m3u8?network_id=3156
 #EXTINF:-1 tvg-logo="" group-title="",Musica
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3193
 
-
 #EXTINF:-1 tvg-logo="" group-title="",CANELA TV
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3078
 
 #EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3105
 
-#EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3178
 
 #EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3054
@@ -1608,88 +1486,55 @@ https://stream.ads.ottera.tv/playlist.m3u8?network_id=3171
 #EXTINF:-1 tvg-logo="" group-title="",Survival wild
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3177
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV -
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3096
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV -
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3181
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV -
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3196
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - africwood
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3148
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3176
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3179
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - diva
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3182
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3192
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3137
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3182
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - fresh
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3095
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - fresh
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3151
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV kind
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - kind
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3184
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV life
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - life
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3136
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3099
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3141
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3157
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - limelight
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3158
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3101
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3152
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - pulse
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3199
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - rpm
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3107
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3154
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3189
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3103
-
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - sports
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3188
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - true african
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3104
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3183
 
-#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+#EXTINF:-1 tvg-logo="" group-title="",Premium TV - true african
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3197
 
 #EXTINF:-1 tvg-logo="" group-title="",Cheddar
@@ -1739,21 +1584,6 @@ https://stream.ads.ottera.tv/playlist.m3u8?network_id=3135
 
 #EXTINF:-1 tvg-logo="" group-title="",Infantil US
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3150
-
-#EXTINF:-1 tvg-logo="" group-title="",load…
-<!-- https://stream.ads.ottera.tv/playlist.m3u8?network_id=3140
-
-#EXTINF:-1 tvg-logo="" group-title="",load…
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3143
-
-#EXTINF:-1 tvg-logo="" group-title="",load…
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3164
-
-#EXTINF:-1 tvg-logo="" group-title="",load…
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3170
-
-#EXTINF:-1 tvg-logo="" group-title="",load…
-https://stream.ads.ottera.tv/playlist.m3u8?network_id=3174
 
 
 #EXTINF:-1 tvg-logo="" group-title="",AFRIC
@@ -1842,3 +1672,4 @@ https://stream.ads.ottera.tv/playlist.m3u8?network_id=3126
 
 #EXTINF:-1 tvg-logo="" group-title="",EN PUBLICIDAD
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3133
+
