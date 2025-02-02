@@ -197,13 +197,13 @@ h2 {margin: 0;}
 
 </div>
 
-<!--  <div class="controls">
+<div class="controls">
   <button tabindex="0" id="mute">Mute</button>
   <button tabindex="0" id="anterior">Prev</button>
   <button tabindex="0" id="playPause">Play</button>
   <button tabindex="0" id="siguiente">Next</button>
   <button tabindex="0" id="fullScreen">Full</button>
-</div> -->
+</div>
 <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 <script>
     // Function to play HLS with given URL
@@ -232,7 +232,7 @@ h2 {margin: 0;}
 
     $.ajax({
     type: "GET",
-    url: 'https://raw.githubusercontent.com/RichardBuet/demjs/main/listRB.m3u',
+    url: 'https://iptv-org.github.io/iptv/countries/ar.m3u',
     success: function (message, text, response) {
         let str = message;
         let lines = str.split("\n");
