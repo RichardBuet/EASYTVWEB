@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Easy Web TV RB - BTN v3.3</title>
+
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
+    <meta name="description" content="Prueba de lista M3U">
+
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+<style>
+
+body, html { 
+    background: #111111; 
+    overflow-x: hidden;
+    overflow-y: clip;
+    font-family: sans-serif;
+    color: #fff; 
+    height: -webkit-fill-available; 
+    min-width: 290px;}
+
+h2 {margin: 0;} 
+
+*::-webkit-scrollbar {
+    width: 10px;
+
+    margin: 0 4px;
+    background: #5f9ea01c;
+    border-radius: 15px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #74089342;
+    border-radius: 15px;
+    border: 2px solid #8e06d49e;
+    height: 10%;
+}
+*:focus-visible {
+    outline: #00FF00;
+    outline-style: groove;
+}
+
+/* ####  TITULO  #### */
+#top-bar { background: #111222; text-align: center; cursor: pointer; padding-bottom: 20px;}
+
+/* ####  MENU  #### */
+#rl-bar{display: flex; flex-direction: row; margin-top: 10px; gap: 10px; }
+
+/* ####  PRIMERO  #### */
+#player { display: flex; margin: 0 auto; width: max-content; z-index: 2;}
+#my-video {border-radius: 4px;}
+
+.video-js{ width: 131vh; height: auto; max-height: 100vh; max-width: calc(100vh* 16 / 9);}
+.video-js .vjs-tech {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+/*    height: auto;*/
+    max-height: 100vh;
+    border-radius: 4px;}
+:not(:root):fullscreen { user-select: text; height: 100%;}
+.vjs-big-play-button { 
+    position: absolute;
+    top: 34%!important;
+    left: calc(100% / 2 - 0.65em) !important;
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85!important;}
+.vjs-error .vjs-error-display:before {top: 34%!important;}
+.vjs-loading-spinner { top: 34%!important;}
+.vjs-error .vjs-loading-spinner { display: none!important;}
+
+
+.vjs-poster, .video-js .vjs-progress-control { display: none;}
+.video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
+
+.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 2.4em !important;}
+.vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+.video-js .vjs-big-play-button { font-size: 0!important;}
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+    content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
+    SCALE: 80%;
+    /* top: 22% !important; */
+    /* left: calc(100% / 3 - 0.35em) !important; */
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85 !important;}
+
+/* ####  SEGUNDO  #### */
+#lists { 
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow: auto;
+    overflow-x: hidden;
+    height: 74vh;
+    width: -webkit-fill-available;
+    z-index: 2;
+    list-style: none;}
+.list-item { 
+    cursor: pointer; 
+    color: #fff; 
+    text-overflow: ellipsis;
+    text-transform: uppercase; /* Convertir todo el texto a minúsculas lowercase */
+    white-space: nowrap;
+    overflow: hidden;}
+.list-item:hover { color: crimson; font-size: medium; font-weight: bolder;}
+.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ }
+
+#playList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    /*gap: 0.45rem; 1y2opciones 0.6rem;*/
+    gap: calc(100vh / 50);
+    padding-top: 2px;
+    height: auto!important;
+    }
+
+button.list-item{
+    /*padding: 10px 0; */
+    height: calc(100vh / 24);
+    margin: auto 3px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 0.6em;
+    border: 1px solid rgb(72 97 135);
+    border-radius: 8px;
+    overflow: hidden;
+    /*background: linear-gradient(to bottom, #265a8aa3, #08153f00);*/
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+    cursor: pointer;
+    transition: background 1.3s, color 1.3s;
+    border-style: inset;
+}
+
+
+
+
+
+/* #### Estilos para el formulario flotante #### */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#m3u-url {
+    width: 50vw;
+    min-width: 200px;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    background: #f0fff0;
+}
+
+#form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#form-btn {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#form-container button { width: inherit; }
+
+
+
+#nombreCanal {
+    animation: none;    
+    font-size: small;
+    text-transform: uppercase;
+    opacity: 1;
+    color: rgb(8 254 0 / 80%);
+    display: flex;
+    justify-content: space-around;    
+    position: absolute;
+    width: calc(100vw - 16px);
+    top: 36px;
+    cursor: pointer;
+} 
+
+
+
+
+/*  PARA PANTALLA VERTICAL  */
+
+
+@media (max-aspect-ratio: 1.40) {
+    #rl-bar { flex-direction: column;}
+    .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px);}
+    #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
+    #playList { padding-top: 2px; gap: 0.6rem; }
+    button.list-item {  padding: 8px 0; font-size: 0.6em; }
+}
+
+
+@keyframes fadeInOut {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutIn {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
+</style>
+
+</head>
+ 
+
+<body>
+<!-- Titulo -->
+<div id="top-bar">
+    <h2>EASY TV WEB - LINK M3U</h2>
+</div>
+
+ <!-- Formulario flotante 
+    url: 'https://raw.githubusercontent.com/RichardBuet/demjs/main/listRB.m3u',
+    https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+    https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
+
+ -->
+    <div id="overlay"></div>
+    <div id="form-container">
+       <!-- <input type="text" id="m3u-url" placeholder="Introducir dirección M3U"> -->
+       <input type="text" id="m3u-url" placeholder="Introducir dirección M3U">
+       <div id="form-btn">
+        <button id="ok-button">Cargar</button>
+        <button id="clear-button">Limpiar</button>
+        <button id="exit-button">Cerrar</button>
+        </div>
+    </div>
+
+<div id="nombreCanal">Bienvenido Easy Web TV || Canales Online con opción de probar M3U y ver URL de Link</div>
+
+<!-- Contenedor flotante para mostrar el enlace -->
+<div id="link-info-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
+    color: black;">
+    Enlace actual:
+</div>
+
+<div id="rl-bar">
+
+    <div id="player">
+        <video id="my-video" class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <source src="https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8" type="application/x-mpegURL">
+        </video>
+
+
+    </div>
+
+    <!-- The element where the channel list -->
+    <div id="lists">
+        <div id="playList"></div>
+    </div>
+
+</div>
+
+
+<!--  <div class="controls">
+  <button tabindex="0" id="mute">Mute</button>
+  <button tabindex="0" id="anterior">Prev</button>
+  <button tabindex="0" id="playPause">Play</button>
+  <button tabindex="0" id="siguiente">Next</button>
+  <button tabindex="0" id="fullScreen">Full</button>
+</div> -->
+
+<script>
+    // Function to play HLS with given URL
+    function playHLS(url) {
+        var player = videojs(document.querySelector('.video-js'));
+        player.src({
+            src: url,
+            type: 'application/x-mpegURL' /*video type*/
+        });
+        player.play();
+    }
+
+    // Function to extract channel name from EXTINF line
+    function getChannelName(line) {
+        const match = line.match(/,([^"]*)/);
+        if (match && match[1]) {
+            return match[1];
+        } else {
+            return "Unknown";
+        }
+    }
+
+    //https://raw.githubusercontent.com/RichardBuet/demjs/main/listRB.m3u
+    //https://raw.githubusercontent.com/ivantapia882804/rasta12/main/prr.txt
+    //https://raw.githubusercontent.com/RichardBuet/demjs/main/securityoffv1.m3u
+    //https://iptv-org.github.io/iptv/countries/ar.m3u
+
+    $.ajax({
+    type: "GET",
+    url: 'https://raw.githubusercontent.com/RichardBuet/demjs/main/securityoffv1.m3u',
+    success: function (message, text, response) {
+        let str = message;
+        let lines = str.split("\n");
+        let channels = [];
+        let currentChannel = { name: "", url: "" };
+        lines.forEach(line => {
+            if (line.startsWith("#EXTINF")) {
+                currentChannel.name = getChannelName(line);
+            } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { // Omitir líneas que comienzan con ##EXTVLCOPT
+                currentChannel.url = line;
+                channels.push({ name: currentChannel.name, url: currentChannel.url });
+                currentChannel = { name: "", url: "" };
+            }
+        });
+        channels.forEach(channel => {
+            $("#playList").append("<button tabindex='0'  class='list-item' data-src='" + channel.url + "'>" + channel.name +  "</button>")
+        });
+    }
+    });
+
+    // Click channel to play it
+    $("#playList").on('click', 'button', function() {
+        let url = $(this).data('src');
+        playHLS(url);
+    });
+
+    // Click button to play HLS from input field
+    $("#play-button").click(function () {
+        var url = $("#url-field").val();
+        if (url !== "") {
+            playHLS(url);
+        } else {
+            alert("Please enter a valid HLS URL.");
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Mostrar el formulario flotante al hacer clic en el título
+        $("#top-bar h2").click(function () {
+            $("#overlay").show();
+            $("#form-container").show();
+        });
+
+        // Ocultar el formulario flotante al hacer clic en el botón OK
+        $("#ok-button").click(function () {
+            var newUrl = $("#m3u-url").val();
+            if (newUrl !== "") {
+                $("#playList").empty(); // Limpiar la lista actual
+                loadChannels(newUrl); // Cargar los nuevos canales
+                $("#overlay").hide();
+                $("#form-container").hide();
+            } else {
+                alert("Por favor, introduzca una dirección M3U.");
+            }
+        });
+
+        // Limpiar el campo de entrada al hacer clic en el botón CLEAR
+        $("#clear-button").click(function () {
+            $("#m3u-url").val("");
+        });
+
+        // Ocultar el formulario flotante al hacer clic en el botón EXIT
+        $("#exit-button").click(function () {
+            $("#overlay").hide();
+            $("#form-container").hide();
+        });
+
+        // Función para cargar los canales desde una URL M3U
+        function loadChannels(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (message, text, response) {
+                let str = message;
+                let lines = str.split("\n");
+                let channels = [];
+                let currentChannel = { name: "", url: "" };
+                lines.forEach(line => {
+                if (line.startsWith("#EXTINF")) {
+                currentChannel.name = getChannelName(line);
+                } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { 
+                // Omitir líneas que comienzan con ##EXTVLCOPT
+                currentChannel.url = line;
+                channels.push({ name: currentChannel.name, url: currentChannel.url });
+                currentChannel = { name: "", url: "" };
+                }
+                });
+                channels.forEach(channel => {
+                    $("#playList").append("<button tabindex='0' class='list-item' data-src='" + channel.url + "'>" + channel.name + "</button>")
+                });
+            }
+        });
+        }
+
+
+
+        // Play next channel
+        function playNextChannel() {
+            if (currentChannelIndex < channels.length) {
+                playHLS(channels[currentChannelIndex].src);
+                $("#nombreCanal").text(channels[currentChannelIndex].name);
+                currentChannelIndex++;
+            } else {
+                // No more channels to play
+                if (currentChannelIndex < elementos.length - 1) {
+                loadVideo(currentChannelIndex + 1);}
+            }
+        }
+
+        // Click channel to play it
+        $("#playList").on('click', 'button', function() {
+            let url = $(this).data('url');
+            playHLS(url);
+            var channelName = $(this).text();
+            $("#nombreCanal").text(channelName);
+        });
+
+
+    });
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        var player = videojs('my-video');
+        player.on('error', function(e) {
+            if (e && e.statusCode !== 200) {
+                player.errorDisplay.fillWith('Señal fuera de servicio, cambie de canal...');
+                player.errorDisplay.show();
+                setTimeout(playNextChannel, 3000); // Esperar 5 segundos y pasar al siguiente canal
+            } else {
+                player.errorDisplay.fillWith('Señal no disponible');
+                player.errorDisplay.show();
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var nombreCanal = document.getElementById('nombreCanal');
+    var inactividadTimer;
+
+    window.onmousemove = function () {
+        clearTimeout(inactividadTimer);
+        nombreCanal.style.animation = 'fadeInOut 0.5s forwards'; 
+        // Inicia la animación fadeInOut
+        inactividadTimer = setTimeout(function () {
+        nombreCanal.style.animation = 'fadeOutIn 0.5s forwards'; 
+        // Inicia la animación fadeOutIn después de 5 segundos de inactividad
+        }, 15000);
+    };
+    });
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    var currentLink = ""; // Variable para almacenar el enlace actual
+
+    // Función para reproducir HLS con el URL dado
+    function playHLS(url) {
+        var player = videojs('my-video');
+        player.src({
+            src: url,
+            type: 'application/x-mpegURL' /*video type*/
+        });
+        player.play();
+        // Actualizar el enlace actual
+        currentLink = url;
+    }
+
+    // Evento de clic en #nombreCanal
+    $("#nombreCanal").click(function() {
+        // Mostrar el contenedor flotante y el enlace actual
+        $("#link-info-container").text(currentLink).show();
+        // Configurar el temporizador para cerrar el contenedor después de 5 segundos
+        setTimeout(function() {
+            $("#link-info-container").hide();
+        }, 7000);
+    });
+
+    // Evento de clic en un canal de la lista para reproducirlo
+    $("#playList").on('click', 'button', function() {
+        var url = $(this).data('url');
+        playHLS(url);
+    });
+
+    // Actualizar el enlace actual cuando cambie el canal
+    var player = videojs('my-video');
+    player.on('play', function() {
+        currentLink = player.currentSrc();
+        $("#link-info-container").text(currentLink);
+    });
+
+    // Detectar el cierre del reproductor de video
+    player.on('ended', function() {
+        // Ocultar el contenedor flotante cuando se cierre el reproductor de video
+        $("#link-info-container").hide();
+    });
+
+    // Cargar la lista de canales al cargar la página
+    $.ajax({
+        type: "GET",
+        url: '',
+        success: function (message, text, response) {
+            var str = message;
+            var lines = str.split("\n");
+            var channels = [];
+            var currentChannel = { name: "", url: "" };
+            lines.forEach(line => {
+                if (line.startsWith("#EXTINF")) {
+                    currentChannel.name = getChannelName(line);
+                } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) {
+                    currentChannel.url = line;
+                    channels.push({ name: currentChannel.name, url: currentChannel.url });
+                    currentChannel = { name: "", url: "" };
+                }
+            });
+            channels.forEach(channel => {
+                $("#playList").append("<button class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>")
+            });
+        }
+    });
+
+    // Función para extraer el nombre del canal de la línea EXTINF
+    function getChannelName(line) {
+        var match = line.match(/,([^"]*)/);
+        return match && match[1] ? match[1] : "Unknown";
+    }
+});
+</script>
+
+
+
+<script>
+    // Función para establecer la altura de la barra lateral
+    function setScrollbarHeight() {
+        var playListHeight = document.getElementById('playList').scrollHeight;
+        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducción
+        document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + scrollbarHeight + 'px'); // Establece la altura de la barra lateral
+    }
+
+    // Llama a la función para establecer la altura de la barra lateral cuando la página se carga completamente
+    window.onload = function() {
+        setScrollbarHeight();
+    };
+</script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Establecer el enfoque inicial en el primer elemento de la lista de reproducción
+        // const firstPlaylistItem = document.querySelector('#playList');  
+        const firstPlaylistItem = document.querySelector('#.video-js .vjs-big-play-button');
+        firstPlaylistItem.focus();
+    });
+</script>
+
+
+</body>
+
+</html>
