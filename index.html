@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.3</title>
+    <title>Easy Web TV RB - BTN v3.4</title>
 
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -283,13 +283,6 @@ button.list-item{
 </div>
 
 
-<!--  <div class="controls">
-  <button tabindex="0" id="mute">Mute</button>
-  <button tabindex="0" id="anterior">Prev</button>
-  <button tabindex="0" id="playPause">Play</button>
-  <button tabindex="0" id="siguiente">Next</button>
-  <button tabindex="0" id="fullScreen">Full</button>
-</div> -->
 
 <script>
     // Function to play HLS with given URL
@@ -317,11 +310,18 @@ button.list-item{
     //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/securityoffv1.m3u
     //https://iptv-org.github.io/iptv/countries/ar.m3u
 
-    $.ajax({
+  //  $.ajax({
+  //  type: "GET",
+  //  url: 'Lista2024.m3u',
+  //  success: function (message, text, response) {
+
+
+    const defaultM3U = "https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u"; // tu URL real aquí
+
+$.ajax({
     type: "GET",
- //   url: 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/securityoffv1.m3u',
-    url: 'Lista2024.m3u',
-    success: function (message, text, response) {
+    url: defaultM3U,
+    success: function (message) {
         let str = message;
         let lines = str.split("\n");
         let channels = [];
@@ -336,7 +336,7 @@ button.list-item{
             }
         });
         channels.forEach(channel => {
-            $("#playList").append("<button tabindex='0'  class='list-item' data-src='" + channel.url + "'>" + channel.name +  "</button>")
+            $("#playList").append("<button tabindex='0'  class='list-item' data-url='" + channel.url + "'>" + channel.name +  "</button>")
         });
     }
     });
@@ -412,7 +412,7 @@ button.list-item{
                 }
                 });
                 channels.forEach(channel => {
-                    $("#playList").append("<button tabindex='0' class='list-item' data-src='" + channel.url + "'>" + channel.name + "</button>")
+                    $("#playList").append("<button tabindex='0' class='list-item' ='" + channel.url + "'>" + channel.name + "</button>")
                 });
             }
         });
