@@ -412,7 +412,7 @@ $.ajax({
                 }
                 });
                 channels.forEach(channel => {
-                    $("#playList").append("<button tabindex='0' class='list-item' ='" + channel.url + "'>" + channel.name + "</button>")
+                    $("#playList").append("<button tabindex='0' class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>")
                 });
             }
         });
