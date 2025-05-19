@@ -483,9 +483,101 @@ $.ajax({
 
 
 
+    
+<script>
+
+$(document).ready(function() {
+    var currentLink = "";
+
+    function playHLS(url) {
+        var player = videojs('my-video');
+        player.src({
+            src: url,
+            type: 'application/x-mpegURL'
+        });
+        player.play();
+        currentLink = url;
+    }
+
+    $("#nombreCanal").click(function() {
+        $("#link-info-container").text(currentLink).show();
+        setTimeout(function() {
+            $("#link-info-container").hide();
+        }, 7000);
+    });
+
+    $("#playList").on('click', 'button', function() {
+        var url = $(this).data('url');
+        playHLS(url);
+    });
+
+    var player = videojs('my-video');
+    player.on('play', function() {
+        currentLink = player.currentSrc();
+        $("#link-info-container").text(currentLink);
+    });
+
+    player.on('ended', function() {
+        $("#link-info-container").hide();
+    });
+
+    // Función para cargar lista M3U desde URL
+    function loadM3U(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(message) {
+                var lines = message.split("\n");
+                var channels = [];
+                var currentChannel = { name: "", url: "" };
+
+                lines.forEach(function(line) {
+                    line = line.trim();
+                    if (line.startsWith("#EXTINF")) {
+                        currentChannel.name = getChannelName(line);
+                    } else if (line !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT") && !line.startsWith("#")) {
+                        // Solo aceptar líneas que no empiezan con '#'
+                        currentChannel.url = line;
+                        if(currentChannel.name && currentChannel.url) {
+                            channels.push({ name: currentChannel.name, url: currentChannel.url });
+                        }
+                        currentChannel = { name: "", url: "" };
+                    }
+                });
+
+                // Limpiar lista previa antes de agregar nuevos canales
+                $("#playList").empty();
+
+                // Añadir botones para cada canal
+                channels.forEach(function(channel) {
+                    $("#playList").append("<button class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>");
+                });
+            },
+            error: function(xhr, status, error) {
+                alert("Error al cargar la lista M3U: " + error);
+            }
+        });
+    }
+
+    function getChannelName(line) {
+        var match = line.match(/,(.*)/);
+        return match && match[1] ? match[1].trim() : "Unknown";
+    }
+
+    // Ejemplo: carga inicial con URL definida
+    var m3uUrl = 'ruta/a/tu/archivo.m3u'; // Cambia por la URL real o usa input para que el usuario cargue su archivo
+    loadM3U(m3uUrl);
+
+    // Aquí podrías añadir la lógica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
+
+});
+
+    
+</script>
 
 
 
+    
 
 <script>
     // Función para establecer la altura de la barra lateral
