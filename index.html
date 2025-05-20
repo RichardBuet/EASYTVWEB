@@ -392,7 +392,38 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Escucha el clic en el contenedor de canales
+  document.getElementById("playList").addEventListener("click", function (e) {
+    const target = e.target.closest(".top-bar");
+    if (target) {
+      const url = target.getAttribute("data-url");
+      if (url) {
+        const player = videojs("my-video");
+        player.src({ type: "application/x-mpegURL", src: url });
 
+        // Actualiza también la URL en pantalla (si usás un input o texto)
+        document.getElementById("currentUrl").value = url;
+      }
+    }
+  });
+});
+</script>
+
+<script>
+    // Función para establecer la altura de la barra lateral
+    function setScrollbarHeight() {
+        var playListHeight = document.getElementById('playList').scrollHeight;
+        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducción
+        document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + scrollbarHeight + 'px'); // Establece la altura de la barra lateral
+    }
+
+    // Llama a la función para establecer la altura de la barra lateral cuando la página se carga completamente
+    window.onload = function() {
+        setScrollbarHeight();
+    };
+</script>
 
 </body>
 
