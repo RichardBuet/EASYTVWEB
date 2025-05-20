@@ -331,7 +331,10 @@ $.ajax({
         });
     }
     });
-
+$(document).ready(function () {
+    const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
+    loadM3U(defaultM3U);
+});
     // Click channel to play it
     $("#playList").on('click', 'button', function() {
         let url = $(this).data('src');
@@ -562,7 +565,10 @@ $(document).ready(function() {
     // Aquí podrías añadir la lógica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
 
 });
-
+$(document).ready(function () {
+    const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
+    loadM3U(defaultM3U);
+});
     
 </script>
 
