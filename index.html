@@ -281,6 +281,95 @@ button.list-item{
 
 </div>
 
+
+<script>
+    $(document).ready(function () {
+        // Mostrar el formulario flotante al hacer clic en el título
+        $("#top-bar h2").click(function () {
+            $("#overlay").show();
+            $("#form-container").show();
+        });
+
+        // Ocultar el formulario flotante al hacer clic en el botón OK
+        $("#ok-button").click(function () {
+            var newUrl = $("#m3u-url").val();
+            if (newUrl !== "") {
+                $("#playList").empty(); // Limpiar la lista actual
+                loadChannels(newUrl); // Cargar los nuevos canales
+                $("#overlay").hide();
+                $("#form-container").hide();
+            } else {
+                alert("Por favor, introduzca una dirección M3U.");
+            }
+        });
+
+        // Limpiar el campo de entrada al hacer clic en el botón CLEAR
+        $("#clear-button").click(function () {
+            $("#m3u-url").val("");
+        });
+
+        // Ocultar el formulario flotante al hacer clic en el botón EXIT
+        $("#exit-button").click(function () {
+            $("#overlay").hide();
+            $("#form-container").hide();
+        });
+
+        // Función para cargar los canales desde una URL M3U
+        function loadChannels(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (message, text, response) {
+                let str = message;
+                let lines = str.split("\n");
+                let channels = [];
+                let currentChannel = { name: "", url: "" };
+                lines.forEach(line => {
+                if (line.startsWith("#EXTINF")) {
+                currentChannel.name = getChannelName(line);
+                } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { 
+                // Omitir líneas que comienzan con ##EXTVLCOPT
+                currentChannel.url = line;
+                channels.push({ name: currentChannel.name, url: currentChannel.url });
+                currentChannel = { name: "", url: "" };
+                }
+                });
+                channels.forEach(channel => {
+                    $("#playList").append("<button tabindex='0' class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>")
+                });
+            }
+        });
+        }
+
+
+
+        // Play next channel
+        function playNextChannel() {
+            if (currentChannelIndex < channels.length) {
+                playHLS(channels[currentChannelIndex].src);
+                $("#nombreCanal").text(channels[currentChannelIndex].name);
+                currentChannelIndex++;
+            } else {
+                // No more channels to play
+                if (currentChannelIndex < elementos.length - 1) {
+                loadVideo(currentChannelIndex + 1);}
+            }
+        }
+
+        // Click channel to play it
+        $("#playList").on('click', 'button', function() {
+            let url = $(this).data('url');
+            playHLS(url);
+            var channelName = $(this).text();
+            $("#nombreCanal").text(channelName);
+        });
+
+
+    });
+</script>
+
+
+    
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
