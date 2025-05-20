@@ -273,145 +273,121 @@ button.list-item{
         </div>
     </div>
 
-    <!-- Script principal -->
 <script>
-    $(document).ready(function () {
-        const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
-        let currentLink = '';
-        let channels = [];
+const player = videojs("miVideo", {
+    controls: true,
+    autoplay: false,
+    preload: "auto",
+    responsive: true,
+    fluid: true
+});
 
-        const player = videojs('my-video');
-        const $nombreCanal = $('#nombreCanal');
-        const $playList = $('#playList');
-        const $linkInfo = $('#link-info-container');
+const $nombreCanal = $("#nombreCanal");
+const $playList = $("#playList");
+let channels = [];
 
-        function playHLS(url, name = "Canal") {
-            if (!url) return;
-            player.src({ src: url, type: 'application/x-mpegURL' });
-            player.play();
-            currentLink = url;
-            $nombreCanal.text(name);
-            $linkInfo.text(url);
-        }
+// ✅ Filtro de nombre
+function getChannelName(extinfLine) {
+    const match = extinfLine.match(/,(.*)/);
+    return match ? match[1].trim() : "Canal sin nombre";
+}
 
-        function getChannelName(line) {
-            const match = line.match(/,(.*)/);
-            return match ? match[1].trim() : "Canal sin nombre";
-        }
+// ✅ Reproducir canal
+function playHLS(url, name) {
+    player.pause();
+    player.src({ src: url, type: "application/x-mpegURL" });
+    $nombreCanal.text(name);
+    player.play();
 
-        function loadM3U(url) {
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function (data) {
-                    channels = [];
-                    const lines = data.split("\n");
-                    let currentChannel = { name: "", url: "" };
+    $("#urlActual").text(url);
+    $("#copiarBtn").show();
+}
 
-                    lines.forEach(line => {
-                        line = line.trim();
+// ✅ Cargar y filtrar lista M3U
+function loadM3U(url) {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error("No se pudo cargar la lista.");
+            return response.text();
+        })
+        .then(data => {
+            channels = [];
+            const lines = data.split("\n");
+            let currentChannel = { name: "", url: "" };
 
-                        if (line.startsWith("#EXTINF")) {
-                            currentChannel.name = getChannelName(line);
-                        } else if (
-                            line !== "" &&
-                            !line.startsWith("#EXTM3U") &&
-                            !line.startsWith("#EXTVLCOPT") &&
-                            !line.startsWith("##EXTVLCOPT")
-                        ) {
-                            currentChannel.url = line;
+            lines.forEach(line => {
+                line = line.trim();
 
-                            // Guardar canal solo si tiene URL válida con .m3u8
-                            if (currentChannel.url.includes(".m3u8")) {
-                                channels.push({
-                                    name: currentChannel.name || "Canal sin nombre",
-                                    url: currentChannel.url
-                                });
-                            }
+                if (line.startsWith("#EXTINF")) {
+                    currentChannel.name = getChannelName(line);
+                } else if (
+                    line !== "" &&
+                    !line.startsWith("#EXTM3U") &&
+                    !line.startsWith("#EXTVLCOPT") &&
+                    !line.startsWith("##EXTVLCOPT")
+                ) {
+                    currentChannel.url = line;
 
-                            currentChannel = { name: "", url: "" };
-                        }
-                    });
-
-                    $playList.empty();
-
-                    if (channels.length > 0) {
-                        channels.forEach(channel => {
-                            $playList.append(`<button class="list-item" data-url="${channel.url}" data-name="${channel.name}">${channel.name}</button>`);
+                    if (currentChannel.url.includes(".m3u8")) {
+                        channels.push({
+                            name: currentChannel.name || "Canal sin nombre",
+                            url: currentChannel.url
                         });
-                        playHLS(channels[0].url, channels[0].name);
-                    } else {
-                        $nombreCanal.text("No se encontraron canales válidos.");
-                        alert("No se encontraron canales .m3u8 en la lista.");
                     }
-                },
-                error: function (_, __, error) {
-                    alert("Error al cargar la lista M3U: " + error);
-                    console.error("M3U LOAD ERROR:", error);
+
+                    currentChannel = { name: "", url: "" };
                 }
             });
-        }
 
-        // Mostrar formulario
-        $("#top-bar h2").click(function () {
-            $("#overlay").show();
-            $("#form-container").show();
-        });
+            $playList.empty();
 
-        // Botones formulario
-        $("#ok-button").click(function () {
-            const newUrl = $("#m3u-url").val().trim();
-            if (newUrl !== "") {
-                loadM3U(newUrl);
-                $("#overlay").hide();
-                $("#form-container").hide();
+            if (channels.length > 0) {
+                channels.forEach(channel => {
+                    $playList.append(`<button class="list-item" data-url="${channel.url}" data-name="${channel.name}">${channel.name}</button>`);
+                });
+                playHLS(channels[0].url, channels[0].name);
             } else {
-                alert("Por favor, introduzca una dirección M3U.");
+                $nombreCanal.text("No se encontraron canales válidos.");
+                alert("La lista no contiene canales válidos.");
             }
+        })
+        .catch(error => {
+            alert("Error al cargar la lista M3U: " + error.message);
+            console.error(error);
         });
+}
 
-        $("#clear-button").click(() => $("#m3u-url").val(""));
-        $("#exit-button").click(() => {
-            $("#overlay").hide();
-            $("#form-container").hide();
-        });
+// ✅ Evento al hacer clic en canal
+$playList.on("click", ".list-item", function () {
+    const url = $(this).data("url");
+    const name = $(this).data("name");
+    playHLS(url, name);
+});
 
-        // Click en canal
-        $playList.on('click', 'button', function () {
-            const url = $(this).data('url');
-            const name = $(this).data('name');
-            playHLS(url, name);
-        });
+// ✅ Copiar URL actual
+$("#copiarBtn").on("click", function () {
+    const url = $("#urlActual").text();
+    navigator.clipboard.writeText(url)
+        .then(() => alert("URL copiada: " + url))
+        .catch(() => alert("No se pudo copiar la URL."));
+});
 
-        // Mostrar URL al hacer click en nombre de canal
-        $nombreCanal.click(function () {
-            if (currentLink) {
-                $linkInfo.text(currentLink).fadeIn();
-                setTimeout(() => $linkInfo.fadeOut(), 5000);
-            } else {
-                alert("Ningún canal en reproducción.");
-            }
-        });
+// ✅ Botón para cargar una nueva lista
+$("#cargarBtn").on("click", function () {
+    const newURL = $("#m3uInput").val().trim();
+    if (newURL) {
+        loadM3U(newURL);
+    } else {
+        alert("Por favor, ingresa una URL válida.");
+    }
+});
 
-        // Manejo de error del player
-        player.on('error', function () {
-            player.errorDisplay.fillWith('Señal fuera de servicio. Cambie de canal...');
-            player.errorDisplay.show();
-        });
-
-        // Mostrar canal al mover el mouse
-        let inactividadTimer;
-        window.onmousemove = function () {
-            clearTimeout(inactividadTimer);
-            $nombreCanal.fadeIn();
-            inactividadTimer = setTimeout(() => $nombreCanal.fadeOut(), 15000);
-        };
-
-        // Cargar lista inicial
-        loadM3U(defaultM3U);
-    });
+// ✅ Cargar lista predeterminada al inicio
+$(document).ready(function () {
+    const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
+    loadM3U(defaultM3U);
+});
 </script>
-
 
     <!-- Scrollbar personalizado -->
     <script>
