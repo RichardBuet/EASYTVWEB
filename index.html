@@ -235,9 +235,10 @@ button.list-item{
  
 
 <body>
-    <div id="top-bar">
+<!-- Titulo -->
+<div id="top-bar">
     <h2>EASY TV WEB - LINK M3U</h2>
-    </div>
+</div>
 
  <!-- Formulario flotante 
     url: 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u',
@@ -247,7 +248,6 @@ button.list-item{
  -->
     <div id="overlay"></div>
     <div id="form-container">
-       <!-- <input type="text" id="m3u-url" placeholder="Introducir dirección M3U"> -->
        <input type="text" id="m3u-url" placeholder="Introducir dirección M3U">
        <div id="form-btn">
         <button id="ok-button">Cargar</button>
@@ -260,385 +260,140 @@ button.list-item{
 
 <!-- Contenedor flotante para mostrar el enlace -->
 <div id="link-info-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
-    color: black;"> Enlace actual:
+    color: black;">
+    Enlace actual:
 </div>
 
 <div id="rl-bar">
 
     <div id="player">
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
-        <source src="https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8" type="application/x-mpegURL">
+        <source src="https://live-01-01-tn.vodgc.net/TN24/index.m3u8" type="application/x-mpegURL">
         </video>
+
+
     </div>
-    <!-- Elemento de formación de Lista -->
-    <div id="lists"> <div id="playList"></div> </div>
+
+    <!-- The element where the channel list -->
+    <div id="lists">
+        <div id="playList"></div>
+    </div>
 
 </div>
 
-
-
 <script>
-    // Function to play HLS with given URL
-    function playHLS(url) {
-        var player = videojs(document.querySelector('.video-js'));
-        player.src({
-            src: url,
-            type: 'application/x-mpegURL' /*video type*/
-        });
-        player.play();
-    }
-
-    // Function to extract channel name from EXTINF line
-    function getChannelName(line) {
-        const match = line.match(/,([^"]*)/);
-        if (match && match[1]) {
-            return match[1];
-        } else {
-            return "Unknown";
-        }
-    }
-
-    //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u
-    //https://raw.githubusercontent.com/ivantapia882804/rasta12/main/prr.txt
-    //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/securityoffv1.m3u
-    //https://iptv-org.github.io/iptv/countries/ar.m3u
-
-  //  $.ajax({
-  //  type: "GET",
-  //  url: 'Lista2024.m3u',
-  //  success: function (message, text, response) {
-
-
-const defaultM3U = "https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u"; // tu URL real aquí
-
-$.ajax({
-    type: "GET",
-    url: defaultM3U,
-    success: function (message) {
-        let str = message;
-        let lines = str.split("\n");
+    document.addEventListener('DOMContentLoaded', function () {
+        const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u';
+        let currentLink = '';
         let channels = [];
-        let currentChannel = { name: "", url: "" };
-        lines.forEach(line => {
-            if (line.startsWith("#EXTINF")) {
-                currentChannel.name = getChannelName(line);
-            } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { // Omitir líneas que comienzan con ##EXTVLCOPT
-                currentChannel.url = line;
-                channels.push({ name: currentChannel.name, url: currentChannel.url });
-                currentChannel = { name: "", url: "" };
+
+        const player = videojs('my-video');
+        const $nombreCanal = $('#nombreCanal');
+        const $playList = $('#playList');
+        const $linkInfo = $('#link-info-container');
+
+        function getChannelName(line) {
+            const match = line.match(/,(.*)/);
+            return match && match[1] ? match[1].trim() : "Unknown";
+        }
+
+        function playHLS(url, name = "Canal") {
+            player.src({ src: url, type: 'application/x-mpegURL' });
+            player.play();
+            currentLink = url;
+            $nombreCanal.text(name);
+            $linkInfo.text(url);
+        }
+
+        function loadM3U(url) {
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (message) {
+                    channels = [];
+                    const lines = message.split("\n");
+                    let currentChannel = { name: "", url: "" };
+
+                    lines.forEach(function (line) {
+                        line = line.trim();
+                        if (line.startsWith("#EXTINF")) {
+                            currentChannel.name = getChannelName(line);
+                        } else if (line !== "" && !line.startsWith("#")) {
+                            currentChannel.url = line;
+                            if (currentChannel.name && currentChannel.url) {
+                                channels.push({ ...currentChannel });
+                            }
+                            currentChannel = { name: "", url: "" };
+                        }
+                    });
+
+                    $playList.empty();
+                    channels.forEach(channel => {
+                        $playList.append(`<button class="list-item" data-url="${channel.url}" data-name="${channel.name}">${channel.name}</button>`);
+                    });
+                },
+                error: function (_, __, error) {
+                    alert("Error al cargar la lista M3U: " + error);
+                }
+            });
+        }
+
+        // Eventos
+        $playList.on('click', 'button', function () {
+            const url = $(this).data('url');
+            const name = $(this).data('name');
+            playHLS(url, name);
+        });
+
+        $('#play-button').click(function () {
+            const url = $('#url-field').val();
+            if (url !== "") {
+                playHLS(url, "Manual");
+            } else {
+                alert("Por favor, ingresa una URL válida.");
             }
         });
-        channels.forEach(channel => {
-            $("#playList").append("<button tabindex='0'  class='list-item' data-url='" + channel.url + "'>" + channel.name +  "</button>")
+
+        $nombreCanal.click(function () {
+            $linkInfo.text(currentLink).show();
+            setTimeout(() => $linkInfo.hide(), 7000);
         });
 
-            // Manejar el evento de clic largo en los elementos de la lista
-            $(".list-item").mousedown(function(event) {
-                // Obtener el enlace del canal correspondiente
-                longPressLink = $(this).data('url');
-                // Si el botón del ratón es presionado durante 2 segundos o más
-                setTimeout(handleLongPress, 2000);
-            }).mouseup(function(event) {
-                // Cancelar la ejecución de la función handleLongPress si el botón del ratón se suelta antes de 2 segundos
-                clearTimeout(handleLongPress);
-            });
-        
-    }
-    });
-
-    // Click channel to play it
-    $("#playList").on('click', 'button', function() {
-        let url = $(this).data('url');
-        playHLS(url);
-    });
-
-    // Click button to play HLS from input field
-    $("#play-button").click(function () {
-        var url = $("#url-field").val();
-        if (url !== "") {
-            playHLS(url);
-        } else {
-            alert("Please enter a valid HLS URL.");
-        }
-    });
-// /script>
-
-
-// script>
-    $(document).ready(function () {
-     // Mostrar el formulario flotante al hacer clic en el título y cargar nueva M3U
-        $("#top-bar h2").click(function () {
-            $("#overlay").show();
-            $("#form-container").show();
+        $('#top-bar h2').click(function () {
+            $('#overlay, #form-container').show();
         });
 
-    // Ocultar el formulario flotante al hacer clic en el botón OK
-        $("#ok-button").click(function () {
-            var newUrl = $("#m3u-url").val();
+        $('#ok-button').click(function () {
+            const newUrl = $('#m3u-url').val();
             if (newUrl !== "") {
-                $("#playList").empty(); // Limpiar la lista actual
-                loadChannels(newUrl); // Cargar los nuevos canales
-                $("#overlay").hide();
-                $("#form-container").hide();
+                loadM3U(newUrl);
+                $('#overlay, #form-container').hide();
             } else {
                 alert("Por favor, introduzca una dirección M3U.");
             }
         });
 
-    // Limpiar el campo de entrada al hacer clic en el botón CLEAR
-        $("#clear-button").click(function () {
-            $("#m3u-url").val("");
+        $('#clear-button').click(() => $('#m3u-url').val(""));
+        $('#exit-button').click(() => $('#overlay, #form-container').hide());
+
+        // Errores del reproductor
+        player.on('error', function () {
+            player.errorDisplay.fillWith('Señal fuera de servicio. Cambie de canal...');
+            player.errorDisplay.show();
         });
 
-    // Ocultar el formulario flotante al hacer clic en el botón EXIT
-        $("#exit-button").click(function () {
-            $("#overlay").hide();
-            $("#form-container").hide();
-        });
+        // Animación con movimiento
+        let inactividadTimer;
+        window.onmousemove = function () {
+            clearTimeout(inactividadTimer);
+            $nombreCanal.css('animation', 'fadeInOut 0.5s forwards');
+            inactividadTimer = setTimeout(() => {
+                $nombreCanal.css('animation', 'fadeOutIn 0.5s forwards');
+            }, 15000);
+        };
 
-    // Variable para almacenar el enlace del canal al que se le ha dado clic largo
-    var longPressLink = "";
-
-    // Manejar el evento de clic largo
-    function handleLongPress() {
-    // Copiar el enlace al portapapeles
-    navigator.clipboard.writeText(longPressLink).then(function() {
-        console.log("Enlace copiado al portapapeles: " + longPressLink);
-        // Puedes mostrar un mensaje de éxito u otra acción aquí si lo deseas
-    }, function(err) {
-        console.error("Error al copiar el enlace al portapapeles: ", err);
-    });
-    }
-
-
-</script>
-
-
-<!--script>
-
-
-        
-    // Función para cargar los canales desde una URL M3U
-        function loadChannels(url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (message, text, response) {
-                let str = message;
-                let lines = str.split("\n");
-                let channels = [];
-                let currentChannel = { name: "", url: "" };
-                lines.forEach(line => {
-                if (line.startsWith("#EXTINF")) {
-                currentChannel.name = getChannelName(line);
-                } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { 
-                // Omitir líneas que comienzan con ##EXTVLCOPT
-                currentChannel.url = line;
-                channels.push({ name: currentChannel.name, url: currentChannel.url });
-                currentChannel = { name: "", url: "" };
-                }
-                });
-                channels.forEach(channel => {
-                    $("#playList").append("<button tabindex='0' class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>")
-                });
-
-                // Manejar el evento de clic largo en los elementos de la lista
-                    $(".list-item").mousedown(function(event) {
-                // Obtener el enlace del canal correspondiente
-                    longPressLink = $(this).data('url');
-                // Si el botón del ratón es presionado durante 2 segundos o más
-                    setTimeout(handleLongPress, 2000);
-                    }).mouseup(function(event) {
-                // Cancelar la ejecución de la función handleLongPress si el botón del ratón se suelta antes de 2 segundos
-                    clearTimeout(handleLongPress);
-                    });
-                
-            }
-        });
-        }
-    // Final para cargar URL de Nueva M3U
-
-
-    // Play next channel
-        function playNextChannel() {
-            if (currentChannelIndex < channels.length) {
-                playHLS(channels[currentChannelIndex].src);
-                $("#nombreCanal").text(channels[currentChannelIndex].name);
-                currentChannelIndex++;
-            } else {
-    // No more channels to play
-                if (currentChannelIndex < elementos.length - 1) {
-                loadVideo(currentChannelIndex + 1);}
-            }
-        }
-    // Click channel to play it
-        $("#playList").on('click', 'button', function() {
-            let url = $(this).data('url');
-            playHLS(url);
-            var channelName = $(this).text();
-            $("#nombreCanal").text(channelName);
-        });
-    
-    });
-</script-->
-
-
-
-<script>
-    //Mensjae de error de conexión
-    $(document).ready(function() {
-        var player = videojs('my-video');
-        player.on('error', function(e) {
-            if (e && e.statusCode !== 200) {
-                player.errorDisplay.fillWith('Señal fuera de servicio, cambie de canal...');
-                player.errorDisplay.show();
-                setTimeout(playNextChannel, 5000); // Esperar 5 segundos y pasar al siguiente canal
-            } else {
-                player.errorDisplay.fillWith('Señal no disponible');
-                player.errorDisplay.show();
-            }
-        });
-    });
-</script>
-
-
-<script>
-    //Animacion del nombre del canal flotante en front
-    document.addEventListener('DOMContentLoaded', function () {
-    var nombreCanal = document.getElementById('nombreCanal');
-    var inactividadTimer;
-
-    window.onmousemove = function () {
-        clearTimeout(inactividadTimer);
-        nombreCanal.style.animation = 'fadeInOut 0.5s forwards'; 
-        // Inicia la animación fadeInOut
-        inactividadTimer = setTimeout(function () {
-        nombreCanal.style.animation = 'fadeOutIn 0.5s forwards'; 
-        // Inicia la animación fadeOutIn después de 5 segundos de inactividad
-        }, 15000);
-    };
-    });
-</script>
-
-
-
-    
-<script>
-
-$(document).ready(function() {
-    var currentLink = "";
-
-    function playHLS(url) {
-        var player = videojs('my-video');
-        player.src({
-            src: url,
-            type: 'application/x-mpegURL'
-        });
-        player.play();
-        currentLink = url;
-    }
-
-    $("#nombreCanal").click(function() {
-        $("#link-info-container").text(currentLink).show();
-        setTimeout(function() {
-            $("#link-info-container").hide();
-        }, 7000);
-    });
-
-    $("#playList").on('click', 'button', function() {
-        var url = $(this).data('url');
-        playHLS(url);
-    });
-
-    var player = videojs('my-video');
-    player.on('play', function() {
-        currentLink = player.currentSrc();
-        $("#link-info-container").text(currentLink);
-    });
-
-    player.on('ended', function() {
-        $("#link-info-container").hide();
-    });
-
-    // Función para cargar lista M3U desde URL
-    function loadM3U(url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function(message) {
-                var lines = message.split("\n");
-                var channels = [];
-                var currentChannel = { name: "", url: "" };
-
-                lines.forEach(function(line) {
-                    line = line.trim();
-                    if (line.startsWith("#EXTINF")) {
-                        currentChannel.name = getChannelName(line);
-                    } else if (line !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT") && !line.startsWith("#")) {
-                        // Solo aceptar líneas que no empiezan con '#'
-                        currentChannel.url = line;
-                        if(currentChannel.name && currentChannel.url) {
-                            channels.push({ name: currentChannel.name, url: currentChannel.url });
-                        }
-                        currentChannel = { name: "", url: "" };
-                    }
-                });
-
-                // Limpiar lista previa antes de agregar nuevos canales
-                $("#playList").empty();
-
-                // Añadir botones para cada canal
-                channels.forEach(function(channel) {
-                    $("#playList").append("<button class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>");
-                });
-            },
-            error: function(xhr, status, error) {
-                alert("Error al cargar la lista M3U: " + error);
-            }
-        });
-    }
-
-    function getChannelName(line) {
-        var match = line.match(/,(.*)/);
-        return match && match[1] ? match[1].trim() : "Unknown";
-    }
-
-    // Ejemplo: carga inicial con URL definida
-    var m3uUrl = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u'; // Cambia por la URL real o usa input para que el usuario cargue su archivo
-    loadM3U(m3uUrl);
-
-    // Aquí podrías añadir la lógica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
-
-});
-
-    
-</script>
-
-
-
-    
-
-<script>
-    // Función para establecer la altura de la barra lateral
-    function setScrollbarHeight() {
-        var playListHeight = document.getElementById('playList').scrollHeight;
-        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducción
-        document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + scrollbarHeight + 'px'); // Establece la altura de la barra lateral
-    }
-    // Llama a la función para establecer la altura de la barra lateral cuando la página se carga completamente
-    window.onload = function() {
-        setScrollbarHeight();
-    };
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Establecer el enfoque inicial en el primer elemento de la lista de reproducción
-        // const firstPlaylistItem = document.querySelector('#playList');  
-        const firstPlaylistItem = document.querySelector('#.video-js .vjs-big-play-button');
-        firstPlaylistItem.focus();
+        // Carga inicial
+        loadM3U(defaultM3U);
     });
 </script>
 
