@@ -337,7 +337,7 @@ $(document).ready(function () {
 });
     // Click channel to play it
     $("#playList").on('click', 'button', function() {
-        let url = $(this).data('src');
+        let url = $(this).data('url');
         playHLS(url);
     });
 
@@ -366,7 +366,7 @@ $(document).ready(function () {
             var newUrl = $("#m3u-url").val();
             if (newUrl !== "") {
                 $("#playList").empty(); // Limpiar la lista actual
-                loadChannels(newUrl); // Cargar los nuevos canales
+                loadChannels(newUrl); // Cargar los nuevos canales 
                 $("#overlay").hide();
                 $("#form-container").hide();
             } else {
