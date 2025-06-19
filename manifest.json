@@ -1,12 +1,12 @@
 {
-  "name": "Easy TV M3U",
+  "name": "EasTVM3U",
   "short_name": "EasyTV",
   "start_url": "./index.html",
   "display": "standalone",
   "icons": [
     {
-      "src": "https://cdn-icons-png.freepik.com/256/1313/1313570.png",
-      "sizes": "192x192",
+      "src": "https://images.icon-icons.com/366/ICO/128/whatsapp2_36998.ico",
+      "sizes": "128x128",
       "type": "image/png"
     }
   ]
