@@ -1,0 +1,776 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Publica
+https://g1.vxral-hor.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/c7_vivo01_dai_source-20001.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",América TV
+https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",NET TV
+https://unlimited1-us.dps.live/nettv/nettv.smil/nettv/livestream1/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telemax
+https://live-edge01.telecentro.net.ar/live/tlxhd-720/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
+https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal
+http://190.52.32.13:1935/canal4/smil:manifest.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 7 Jujuy
+https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 9 Litoral
+https://stream.arcast.live/ahora/ahora/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 10
+https://stream.arcast.live/canal10/ngrp:canal10_all/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 12 Misiones
+https://g3.mc-hor.transport.edge-access.net/a05/ngrp:c12_live01-100129_all/Playlist.m3u8?sense=true
+
+#EXTINF:-1 tvg-logo="" group-title="",13 Max
+http://coninfo.net:1935/13maxhd/live13maxtvnuevo_720p/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Encuentro
+https://5fb24b460df87.streamlock.net/live-cont.ar/encuentro/chunklist_w1733579940.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telpin Canal
+https://wowza.telpin.com.ar:1935/telpintv/smil:ttv.stream.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",PANC TV
+https://video.streamtvradio.com:8443/uv096/uv096/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Neo TV
+https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Net TV
+https://unlimited1-us.dps.live/nettv/nettv.smil/nettv/livestream2/chunks.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Provincial
+https://streaming.telered.com.ar/provincial/streaming/mystream.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Rural
+https://cda2.alsolnet.com/elrural/live/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal U
+https://stream.arcast.live/canalu/canalu/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Milenium TV
+https://video.alfasocialmedia.com.ar:3396/live/milleniumtvlive.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Multivisión
+https://panel.dattalive.com/8250/8250/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telesol
+https://cnnsanjuan.com:9999/live/telesol/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Telediez
+https://videohd.live:19360/8020/8020.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Bein Sport XTRA 
+Ñhttps://siloh.pluto.tv/lilo/production/BEIN/ES/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC Sports
+https://d3055hobuue3je.cloudfront.net/out/v1/188a8f3baf914a35868453bd5d0b0fd2/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC PLAY
+https://d3awnlgqz0szay.cloudfront.net/out/v1/09e35529553d472b8f14e437af642e2f/index_13.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC
+https://d3awnlgqz0szay.cloudfront.net/out/v1/19321d887c274b58a4f62fe0f6e2151b/index_9.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TyC Eventos
+https://dpyzprfzko681.cloudfront.net/out/v1/366fc52554ae42c58465ea4b278eac0c/index_15.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DeporTV
+https://5fb24b460df87.streamlock.net/live-cont.ar/deportv/chunklist_w442563431.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Claro Sports
+https://claro-jw.cdn.vustreams.com/live/channel07/live.isml/live-audio_0=64000-video=6499968.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Motor
+http://digicom.hls.iptvdc.com/canalmotor/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",All Sports BR
+https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RedBull TV
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TU CINE
+https://tucine-plex.amagi.tv/TuCine-xumo/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CINE REAL
+https://cinereal-plex.amagi.tv/CineReal/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CHIQUILINES
+https://chiquilines-plex.amagi.tv/Chiquilines-plex/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY Comedia
+https://spt-comedias-1-us.lg.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SONY Novelas
+https://spt-novelas-1-us.lg.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",JUNTOS
+https://olympusamagi.pc.cdn.bitgravity.com/Juntos-roku/master_6.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",A3cine
+https://live.atresmediainternacional.com/ATRESMEDIA/a3cine-1080.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SABER MÁS
+https://sabermas-plex.amagi.tv/SaberMas-xumo/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",¡Hola!TV
+https://live.atresmediainternacional.com/ATRESMEDIA/holatv-1080.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CGTN China
+https://livees.cgtn.com/1000e/prog_index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",COSMO
+http://154.62.74.12:1935/live/smil:cosmoHD/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Estrellas
+https://estrellatv-roku.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Animal Planet
+https://edge2.prepro.cvattv.com.ar/live/live/AnimalPlanet/SA_Live_WebVTT_FTA/AnimalPlanet-spa=20001-AVC1=10000.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Los Simpsons D
+https://srv5.zcast.com.br/simpsons/simpsons/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Love Nature 4K
+https://bamus-spa-roku.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Retro Mágico
+https://vivo.solumedia.com:19360/retromagico/retromagico.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal
+https://live-edge01.telecentro.net.ar/live/smil:c26.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",IP TV
+https://d1nmqgphjn0y4.cloudfront.net/live/ip/live.isml/5ee6e167-1167-4a85-9d8d-e08a3f55cff3.m3u8?caster
+
+#EXTINF:-1 tvg-logo="" group-title="",EuroNews - Esp
+https://euronews-euronews-spanish-2-mx.samsung.wurl.com/manifest/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",DW - Esp
+https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RT - Esp
+https://rt-esp.rttv.com/live/rtesp/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TeleSur
+https://cdnesmain.telesur.ultrabase.net/mbliveMain/480p/chunklist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Estrella News
+https://estrellanews-plex.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bloomberg - Ing
+https://www.bloomberg.com/media-manifest/streams/us.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Reuters - Ing
+https://reuters-reutersnow-1-us.plex.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CM
+http://g5.mc-hor.transport.edge-access.net/a09/ngrp:CM_CanaldelaMusica-100044_all/Playlist.m3u8?sense=true
+
+#EXTINF:-1 tvg-logo="" group-title="",Oxigeno TV
+https://vcp.myplaytv.com/oxigenotv/oxigenotv/chunklist_w34527763.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Zapping music
+https://zmlive.zappingtv.com/zm-free/zm.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Portal Fox Mix
+http://149.56.17.92:1935/portalfoxmix/_definst_/portalfoxmix/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Exitos
+https://vdo1.streamgato.us:3359/live/tvexitoslive.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",HGM música relax
+https://livelist01.yowi.tv/lista/dc1b71c6fda2e687050facaa7242062cbf5a7f2a/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Video tour
+http://k4.usastreams.com/videotour/videotour/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Retro Plus music
+https://59f1cbe63db89.streamlock.net:1443/retroplussenal2/_definst_/retroplussenal2/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",ADN 40
+https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Once
+https://vivo.canaloncelive.tv/alivepkgr3/ngrp:cepro_all/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 10 Cancun
+https://canal10.mediaflix.istream.mx/wza_live/live/movil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal XFN
+https://streamconex.com:1936/canalxfn/canalxfn/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bolivia TV 7.1
+http://boliviatv1.srfms.com:5735/live/livestream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Latina
+https://master.tucableip.com/live/tvlatinamontero/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",La Red Chile
+https://unlimited1-cl-isp.dps.live/lared/lared.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UCV  Chile
+https://unlimited2-cl-isp.dps.live/ucvtv2/ucvtv2.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",U Chile TV
+https://unlimited1-cl-isp.dps.live/uchiletv/uchiletv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",UCV 2  Chile
+https://unlimited10-cl.dps.live/ucvtveventos/ucvtveventos.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",STGO.TV
+https://stv.janus.cl/playlist/stream.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Campus TV
+https://unlimited1-cl-isp.dps.live/campustv/campustv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",T13  Chile
+https://unlimited1-cl-isp.dps.live/t13/t13.smil/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Pop
+https://v4.tustreaming.cl/poptv/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Antofagasta TV
+https://unlimited1-cl-isp.dps.live/atv/atv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Chile Channel
+https://v2.tustreaming.cl/chilechannel/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TVR
+https://unlimited1-cl-isp.dps.live/tvr/tvr.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecanal Santa Cruz
+https://unlimited1-cl-isp.dps.live/tcsc/tcsc.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecanal Talca
+https://unlimited1-cl-isp.dps.live/tctc/tctc.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal 9 Bío Bío
+https://unlimited1-cl-isp.dps.live/c9/c9.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Club TV
+https://mediacpstreamchile.com:1936/clubtv/clubtv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Pucon TV
+https://unlimited1-cl-isp.dps.live/pucontv/pucontv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",SurTV
+https://paneltv.online:1936/8034/8034/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ITV Patagonia
+https://unlimited1-cl-isp.dps.live/itv/itv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Bio Bio TV
+https://unlimited1-cl-isp.dps.live/bbtv/bbtv.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal CNC Peru
+http://38.75.136.76:1935/cncmedellin720/canalcncmedellin.stream_720p/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal Trece Colombia
+https://stream.logicideas.media/canaltrece-live/smil:live.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Señal Colombia
+https://streaming.rtvc.gov.co/TV_Senal_Colombia_live/smil:live.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TDI Colombia
+https://play.amelbasoluciones.co:3971/live/tdicolombiatvlive.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Telepacífico
+https://stream.logicideas.media/telepacifico-live/live.smil/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CB TV Costa Rica
+https://cloudvideo.servers10.com:8081/8030/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Sarapiqui TV
+http://tiquiciatv.com:1935/stv/envivo/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Limon TV
+http://k4.usastreams.com/limontv1/limontv1/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Sur Canal 9
+http://tv.ticosmedia.com:1935/TVSUR/TVSUR/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Promar TV Venezuela
+https://vcp.myplaytv.com/promar/promar/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Canal i Venezuela
+https://vcp.myplaytv.com/canali/canali/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Mi TV
+https://rds3.desdeparaguay.net/mitv/mitv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",OK TeVe
+https://stream.plixitv.live/oktv/oktv/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Trece PY
+https://streaming.trece.com.py/live/trece.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Telecolor TV
+https://live.obslivestream.com/telecolormux/index.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Punta Cana TV
+https://cdn4.hostlagarto.com:8081/static/puntacanatv/playlist.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",Aragon TV
+http://cartv.streaming.aranova.es/hls/live/aragontv_canal1.m3u8?PlaylistM3UCL
+
+#EXTINF:-1 tvg-logo="" group-title="",La 2
+https://rtvelivestream.akamaized.net/rtvesec/la2/la2_main_dvr.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV3 Catalunya
+https://directes-tv-int.ccma.cat/live-origin/tvi-hls/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Onda Cadiz
+https://ondacadiztv.es:30443/octv/directo_multi/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ETB
+https://multimedia.eitb.eus/live-content/etb1hd-hls/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ETB
+https://multimedia.eitb.eus/live-content/etb2hd-hls/master.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",TV Galicia America
+http://america-crtvg.flumotion.com/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RCN Xtra
+https://latv-rcn-xtra-1-mx.tcl.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",RCN Mas
+https://rcntv-rcnmas-1-us.plex.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Novelas en español
+https://stormcast-novelas-2-es.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Hola Play
+https://rakuten-hola-2-es.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Tastemade
+https://tastemadees16intl-brightcove.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ViX Romance
+https://linear-194.frequency.stream/194/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",ViX Familia
+https://linear-195.frequency.stream/195/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Mega TV
+https://livestream.lamusica.com/megatvP320/ngrp:megatvP320_all/.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",My Zen TV Fit
+https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",AFV
+https://linear-46.frequency.stream/46/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Failarmy
+https://failarmy-linear-us.sinclair.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",Sony Competencias
+https://spt-competencias-1-us.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",PlanetaTV Kids
+https://tls-cl.cdnz.cl/planetatvkids/live/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",CANELA TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3078
+
+#EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3105
+
+#EXTINF:-1 tvg-logo="" group-title="",CINEMA KAUSA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3178
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3054
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3056
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3057
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3058
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3059
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3060
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3061
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3062
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3063
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME  - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3064
+
+#EXTINF:-1 tvg-logo="" group-title="",RUN TIME Retro - ES
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3053
+
+#EXTINF:-1 tvg-logo="" group-title="",COOKING PANDA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3080
+
+#EXTINF:-1 tvg-logo="" group-title="",Documental US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3098
+
+#EXTINF:-1 tvg-logo="" group-title="",Documental US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3166
+
+#EXTINF:-1 tvg-logo="" group-title="",Policial US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3165
+
+#EXTINF:-1 tvg-logo="" group-title="",Policial US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3171
+
+#EXTINF:-1 tvg-logo="" group-title="",Survival wild
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3177
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3096
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3181
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3196
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3148
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3176
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3179
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV africwood
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3192
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3137
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV diva
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3182
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3095
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV fresh
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3151
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV kind
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3184
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV life
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3136
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3099
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3141
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3157
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV limelight
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3158
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3101
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3152
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV pulse
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3199
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3107
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3154
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV rpm
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3189
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3103
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV sports
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3188
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3104
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3183
+
+#EXTINF:-1 tvg-logo="" group-title="",PREMIUMFREE TV true african
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3197
+
+#EXTINF:-1 tvg-logo="" group-title="",Cheddar
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3112
+
+#EXTINF:-1 tvg-logo="" group-title="",GO Traveler
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3082
+
+#EXTINF:-1 tvg-logo="" group-title="",Honda STAGE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3076
+
+#EXTINF:-1 tvg-logo="" group-title="",NBC kcra
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3046
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3083
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3084
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3160
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3167
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3168
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3169
+
+#EXTINF:-1 tvg-logo="" group-title="",TV US 3.4
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3190
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3097
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3100
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3110
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3135
+
+#EXTINF:-1 tvg-logo="" group-title="",Infantil US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3150
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3140
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3143
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3164
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3170
+
+#EXTINF:-1 tvg-logo="" group-title="",load…
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3174
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3034
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY CMUSIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3035
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY DJAZZ
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3037
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY INTERMISION
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3038
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3032
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3033
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3040
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY KARAOKE FUN
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3029
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC AFTER NATIVE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3026
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EASY LISTENING
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3021
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EURO HIT
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3019
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC EXITOS DEL MOMENTO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3025
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC FLASHBACK 70S
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3030
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC HIP-HOP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3024
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC K-POP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3018
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC NOTHIN BUT 90S
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3028
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC POP ADULT
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3023
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC SMOOTH JAZZ
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3022
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC THE SPA
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3027
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY MUSIC Y2K
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3020
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3036
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY NATURESCAPE Fire
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3041
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3031
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3039
+
+#EXTINF:-1 tvg-logo="" group-title="",STINGRAY QELLO
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3042
+
+#EXTINF:-1 tvg-logo="" group-title="",Dexule Lounge HD
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3159
+
+#EXTINF:-1 tvg-logo="" group-title="",Musica
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3156
+
+#EXTINF:-1 tvg-logo="" group-title="",Musica
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3193
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3091
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3092
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3149
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRIC
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3153
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3155
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3185
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3194
+
+#EXTINF:-1 tvg-logo="" group-title="",AFRICA LOL
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3198
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3106
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3180
+
+#EXTINF:-1 tvg-logo="" group-title="",BONGO TV
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3195
+
+#EXTINF:-1 tvg-logo="" group-title="",ABC tilt
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3043
+
+#EXTINF:-1 tvg-logo="" group-title="",Impact Proffesionls
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3113
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3069
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3090
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3161
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3162
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3172
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3173
+
+#EXTINF:-1 tvg-logo="" group-title="",Peli US
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3175
+
+#EXTINF:-1 tvg-logo="" group-title="",Pelicula ESP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3075
+
+#EXTINF:-1 tvg-logo="" group-title="",Pelicula ESP
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3134
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3049
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3070
+
+#EXTINF:-1 tvg-logo="" group-title="","lucha"
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3111
+
+#EXTINF:-1 tvg-logo="" group-title="",FIGHT NETWORK
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3118
+
+#EXTINF:-1 tvg-logo="" group-title="",ITV deportes
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3010
+
+#EXTINF:-1 tvg-logo="" group-title="",MOTORVISION
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3126
+
+#EXTINF:-1 tvg-logo="" group-title="",EN PUBLICIDAD
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3133
+
+#EXTINF:-1 tvg-logo="" group-title="",tilt
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3044
+
+#EXTINF:-1 tvg-logo="" group-title="",tilt
+https://stream.ads.ottera.tv/playlist.m3u8?network_id=3047
+
+#EXTINF:-1 tvg-logo="" group-title="",Todo Noticias
+https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",VIX Univision Ahora
+https://linear-306.frequency.stream/mt/studio/306/hls/master/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="" group-title="",VIX Univision Noticias
+https://linear-254.frequency.stream/mt/studio/254/hls/master/playlist.m3u8
+
