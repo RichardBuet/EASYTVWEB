@@ -1,0 +1,13 @@
+{
+  "name": "EasyTVweb",
+  "short_name": "EasyTV",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
