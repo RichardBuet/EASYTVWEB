@@ -269,6 +269,9 @@ button.list-item{
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
     </div>
+    <input type="text" id="search" placeholder="Buscar canal..." 
+style="margin:5px; padding:6px; width:95%; border-radius:6px;">
+    <button onclick="volverCanal()" style="margin:5px;">⬅ Volver</button>
     <!-- Elemento de formación de Lista -->
     <div id="lists"> <div id="playList"></div> </div>
 
@@ -276,6 +279,24 @@ button.list-item{
 
 
 <script>
+    $("#search").on("input", function() {
+    let value = $(this).val().toLowerCase();
+
+    $("#playList button").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().includes(value));
+    });
+});
+  function volverCanal() {
+    if (canalAnterior) {
+        playHLS(canalAnterior);
+
+        let temp = canalActual;
+        canalActual = canalAnterior;
+        canalAnterior = temp;
+    }
+};
+    
+
     // Function to play HLS with given URL
     function playHLS(url) {
         var player = videojs(document.querySelector('.video-js'));
