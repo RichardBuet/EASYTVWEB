@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.6</title>
+    <title>Easy Web TV RB - BTN v3.7</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -265,13 +265,13 @@ button.list-item{
 <div id="rl-bar">
 
     <div id="player">
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <video id="my-video" iplaysinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
     </div>
-    <input type="text" id="search" placeholder="Buscar canal..." 
+    <input type="text" id="search" placeholder="Buscador de canal..." 
 style="margin:5px; padding:6px; width:95%; border-radius:6px;">
-    <button onclick="volverCanal()" style="margin:5px;">⬅ Volver</button>
+    
     <!-- Elemento de formación de Lista -->
     <div id="lists"> <div id="playList"></div> </div>
 
@@ -286,17 +286,7 @@ style="margin:5px; padding:6px; width:95%; border-radius:6px;">
         $(this).toggle($(this).text().toLowerCase().includes(value));
     });
 });
-  function volverCanal() {
-    if (canalAnterior) {
-        playHLS(canalAnterior);
-
-        let temp = canalActual;
-        canalActual = canalAnterior;
-        canalAnterior = temp;
-    }
-};
-    
-
+  
     // Function to play HLS with given URL
     function playHLS(url) {
         var player = videojs(document.querySelector('.video-js'));
