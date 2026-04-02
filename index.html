@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.7</title>
+    <title>Easy Web TV RB - BTN v3.6</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -105,11 +105,11 @@ h2 {margin: 0;}
     cursor: pointer; 
     color: #fff; 
     text-overflow: ellipsis;
-    text-transform: uppercase; /* Convertir todo el texto a minúsculas lowercase */
+    text-transform: uppercase; /* Convertir todo el texto a minÃºsculas lowercase */
     white-space: nowrap;
     overflow: hidden;}
 .list-item:hover { color: crimson; /*font-size: medium;*/ font-weight: bolder;}
-.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ }
+.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayÃºscula uppercase */ }
 
 #playList {
     display: grid;
@@ -246,8 +246,8 @@ button.list-item{
  -->
     <div id="overlay"></div>
     <div id="form-container">
-       <!-- <input type="text" id="m3u-url" placeholder="Introducir dirección M3U"> -->
-       <input type="text" id="m3u-url" placeholder="Introducir dirección M3U">
+       <!-- <input type="text" id="m3u-url" placeholder="Introducir direcciÃ³n M3U"> -->
+       <input type="text" id="m3u-url" placeholder="Introducir direcciÃ³n M3U">
        <div id="form-btn">
         <button id="ok-button">Cargar</button>
         <button id="clear-button">Limpiar</button>
@@ -255,7 +255,7 @@ button.list-item{
         </div>
     </div>
 
-<div id="nombreCanal">Bienvenido Easy Web TV || Probá M3U y ver URL de Link</div>
+<div id="nombreCanal">Bienvenido Easy Web TV || ProbÃ¡ M3U y ver URL de Link</div>
 
 <!-- Contenedor flotante para mostrar el enlace -->
 <div id="link-info-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
@@ -265,18 +265,18 @@ button.list-item{
 <div id="rl-bar">
 
     <div id="player">
-        <video id="my-video" iplaysinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
     </div>
-    <input type="text" id="search" placeholder="Buscador de canal..." 
+    
+    <input type="text" id="search" placeholder="Buscar canal..." 
 style="margin:5px; padding:6px; width:95%; border-radius:6px;">
     
-    <!-- Elemento de formación de Lista -->
+    <!-- Elemento de formaciÃ³n de Lista -->
     <div id="lists"> <div id="playList"></div> </div>
 
 </div>
-
 
 <script>
     $("#search").on("input", function() {
@@ -286,7 +286,9 @@ style="margin:5px; padding:6px; width:95%; border-radius:6px;">
         $(this).toggle($(this).text().toLowerCase().includes(value));
     });
 });
-  
+</script>
+    
+<script>
     // Function to play HLS with given URL
     function playHLS(url) {
         var player = videojs(document.querySelector('.video-js'));
@@ -333,7 +335,7 @@ $.ajax({
         lines.forEach(line => {
             if (line.startsWith("#EXTINF")) {
                 currentChannel.name = getChannelName(line);
-            } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { // Omitir líneas que comienzan con ##EXTVLCOPT
+            } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { // Omitir lÃ­neas que comienzan con ##EXTVLCOPT
                 currentChannel.url = line;
                 channels.push({ name: currentChannel.name, url: currentChannel.url });
                 currentChannel = { name: "", url: "" };
@@ -368,13 +370,13 @@ $(document).ready(function () {
 
 <script>
     $(document).ready(function () {
-        // Mostrar el formulario flotante al hacer clic en el título
+        // Mostrar el formulario flotante al hacer clic en el tÃ­tulo
         $("#top-bar h2").click(function () {
             $("#overlay").show();
             $("#form-container").show();
         });
 
-        // Ocultar el formulario flotante al hacer clic en el botón OK
+        // Ocultar el formulario flotante al hacer clic en el botÃ³n OK
         $("#ok-button").click(function () {
             var newUrl = $("#m3u-url").val();
             if (newUrl !== "") {
@@ -383,22 +385,22 @@ $(document).ready(function () {
                 $("#overlay").hide();
                 $("#form-container").hide();
             } else {
-                alert("Por favor, introduzca una dirección M3U.");
+                alert("Por favor, introduzca una direcciÃ³n M3U.");
             }
         });
 
-        // Limpiar el campo de entrada al hacer clic en el botón CLEAR
+        // Limpiar el campo de entrada al hacer clic en el botÃ³n CLEAR
         $("#clear-button").click(function () {
             $("#m3u-url").val("");
         });
 
-        // Ocultar el formulario flotante al hacer clic en el botón EXIT
+        // Ocultar el formulario flotante al hacer clic en el botÃ³n EXIT
         $("#exit-button").click(function () {
             $("#overlay").hide();
             $("#form-container").hide();
         });
 
-        // Función para cargar los canales desde una URL M3U
+        // FunciÃ³n para cargar los canales desde una URL M3U
         function loadChannels(url) {
         $.ajax({
             type: "GET",
@@ -412,7 +414,7 @@ $(document).ready(function () {
                 if (line.startsWith("#EXTINF")) {
                 currentChannel.name = getChannelName(line);
                 } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { 
-                // Omitir líneas que comienzan con ##EXTVLCOPT
+                // Omitir lÃ­neas que comienzan con ##EXTVLCOPT
                 currentChannel.url = line;
                 channels.push({ name: currentChannel.name, url: currentChannel.url });
                 currentChannel = { name: "", url: "" };
@@ -459,11 +461,11 @@ $(document).ready(function () {
         var player = videojs('my-video');
         player.on('error', function(e) {
             if (e && e.statusCode !== 200) {
-                player.errorDisplay.fillWith('Señal fuera de servicio, cambie de canal...');
+                player.errorDisplay.fillWith('SeÃ±al fuera de servicio, cambie de canal...');
                 player.errorDisplay.show();
                 setTimeout(playNextChannel, 3000); // Esperar 5 segundos y pasar al siguiente canal
             } else {
-                player.errorDisplay.fillWith('Señal no disponible');
+                player.errorDisplay.fillWith('SeÃ±al no disponible');
                 player.errorDisplay.show();
             }
         });
@@ -479,10 +481,10 @@ $(document).ready(function () {
     window.onmousemove = function () {
         clearTimeout(inactividadTimer);
         nombreCanal.style.animation = 'fadeInOut 0.5s forwards'; 
-        // Inicia la animación fadeInOut
+        // Inicia la animaciÃ³n fadeInOut
         inactividadTimer = setTimeout(function () {
         nombreCanal.style.animation = 'fadeOutIn 0.5s forwards'; 
-        // Inicia la animación fadeOutIn después de 5 segundos de inactividad
+        // Inicia la animaciÃ³n fadeOutIn despuÃ©s de 5 segundos de inactividad
         }, 15000);
     };
     });
@@ -528,7 +530,7 @@ $(document).ready(function() {
         $("#link-info-container").hide();
     });
 
-    // Función para cargar lista M3U desde URL
+    // FunciÃ³n para cargar lista M3U desde URL
     function loadM3U(url) {
         $.ajax({
             type: "GET",
@@ -543,7 +545,7 @@ $(document).ready(function() {
                     if (line.startsWith("#EXTINF")) {
                         currentChannel.name = getChannelName(line);
                     } else if (line !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT") && !line.startsWith("#")) {
-                        // Solo aceptar líneas que no empiezan con '#'
+                        // Solo aceptar lÃ­neas que no empiezan con '#'
                         currentChannel.url = line;
                         if(currentChannel.name && currentChannel.url) {
                             channels.push({ name: currentChannel.name, url: currentChannel.url });
@@ -555,7 +557,7 @@ $(document).ready(function() {
                 // Limpiar lista previa antes de agregar nuevos canales
                 $("#playList").empty();
 
-                // Añadir botones para cada canal
+                // AÃ±adir botones para cada canal
                 channels.forEach(function(channel) {
                     $("#playList").append("<button class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>");
                 });
@@ -575,7 +577,7 @@ $(document).ready(function() {
     var m3uUrl = ''; // Cambia por la URL real o usa input para que el usuario cargue su archivo
     loadM3U(m3uUrl);
 
-    // Aquí podrías añadir la lógica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
+    // AquÃ­ podrÃ­as aÃ±adir la lÃ³gica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
     //https://iptv-org.github.io/iptv/index.m3u
 });
 $(document).ready(function () {
@@ -590,14 +592,14 @@ $(document).ready(function () {
     
 
 <script>
-    // Función para establecer la altura de la barra lateral
+    // FunciÃ³n para establecer la altura de la barra lateral
     function setScrollbarHeight() {
         var playListHeight = document.getElementById('playList').scrollHeight;
-        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducción
+        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducciÃ³n
         document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + scrollbarHeight + 'px'); // Establece la altura de la barra lateral
     }
 
-    // Llama a la función para establecer la altura de la barra lateral cuando la página se carga completamente
+    // Llama a la funciÃ³n para establecer la altura de la barra lateral cuando la pÃ¡gina se carga completamente
     window.onload = function() {
         setScrollbarHeight();
     };
@@ -607,7 +609,7 @@ $(document).ready(function () {
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Establecer el enfoque inicial en el primer elemento de la lista de reproducción
+        // Establecer el enfoque inicial en el primer elemento de la lista de reproducciÃ³n
         // const firstPlaylistItem = document.querySelector('#playList');  
         const firstPlaylistItem = document.querySelector('#.video-js .vjs-big-play-button');
         firstPlaylistItem.focus();
