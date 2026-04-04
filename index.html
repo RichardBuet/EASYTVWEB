@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.6</title>
+    <title>Easy Web TV RB - BTN v3.7</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -128,7 +128,7 @@ button.list-item{
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
-    font-size: 0.65em;
+    font-size: 0.5rem;
     border: 1px solid rgb(72 97 135);
     border-radius: 8px;
     overflow: hidden;
@@ -213,7 +213,7 @@ button.list-item{
     #rl-bar { flex-direction: column;}
     .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px);}
     #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
-    #playList { padding-top: 2px; gap: 0.6rem; }
+    #playList { padding-top: 2px; gap: 0.5rem; }
     button.list-item {  padding: 8px 0; font-size: 0.6em; }
 }
 
@@ -243,7 +243,7 @@ button.list-item{
     border: 1px solid #ccc;
     border-radius: 8px;
     z-index: 1000;
-    color: black;
+    color:#000000;
 
     word-break: break-all;       /* 🔥 corta URLs largas */
     overflow-wrap: break-word;   /* 🔥 fallback */
@@ -287,7 +287,20 @@ button.list-item{
 #exit-button { border-color: #e74c3c; }    /* rojo */
 #default-button { border-color: #3498db; } /* azul */
 
+/*#playList div {
+    grid-column: 1 / -1; /* 🔥 ocupa toda la fila */
+    /*text-align: left;*/
+    /*padding-left: 5px;*/
+/*}*/
 
+#playList div {
+    grid-column: 1 / -1;
+    color: #00ffcc;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #00ffcc33;
+}
 </style>
 
 </head>
@@ -349,7 +362,7 @@ button.list-item{
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
-        <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;">
+        <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;color: #00ffcc;">
         <!-- Canales -->
         <div id="playList"></div> </div>
 
@@ -360,15 +373,19 @@ button.list-item{
 let currentLink = "";
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
 
-// 🔍 Buscador
+// 🔍 BUSCADOR
 $("#search").on("input", function() {
     let value = $(this).val().toLowerCase();
+$("#search").on("focus", function() {
+    $(this).val("");
+    $("#playList button").show();
+});
     $("#playList button").filter(function() {
         $(this).toggle($(this).text().toLowerCase().includes(value));
     });
 });
 
-// 🎬 Reproducir video
+// 🎬 PLAYER
 function playHLS(url) {
     var player = videojs('my-video');
     player.src({
@@ -379,13 +396,18 @@ function playHLS(url) {
     currentLink = url;
 }
 
-// 🧠 Obtener nombre del canal
-function getChannelName(line) {
-    const match = line.match(/,(.*)/);
-    return match && match[1] ? match[1].trim() : "Unknown";
+// 🧠 PARSER (nombre + grupo)
+function getChannelData(line) {
+    const nameMatch = line.match(/,(.*)/);
+    const groupMatch = line.match(/group-title="([^"]*)"/);
+
+    return {
+        name: nameMatch ? nameMatch[1].trim() : "Unknown",
+        group: groupMatch ? groupMatch[1].trim() : "General"
+    };
 }
 
-// 📡 Cargar lista M3U (VERSIÓN FINAL ROBUSTA)
+// 📡 CARGA DE LISTA
 function loadChannels(url) {
 
     $("#playList").html(`
@@ -403,28 +425,47 @@ function loadChannels(url) {
 
             let lines = message.split("\n");
             let channels = [];
-            let currentChannel = { name: "", url: "" };
+            let currentChannel = { name: "", url: "", group: "General" };
 
             lines.forEach(line => {
                 line = line.trim();
 
                 if (line.startsWith("#EXTINF")) {
-                    currentChannel.name = getChannelName(line);
+                    let data = getChannelData(line);
+                    currentChannel.name = data.name;
+                    currentChannel.group = data.group;
 
                 } else if (line !== "" && !line.startsWith("#")) {
+
                     currentChannel.url = line;
 
                     if (currentChannel.name && currentChannel.url) {
+                        let groups = currentChannel.group.split(";");
+
+                    groups.forEach(g => {
+                        let groupName = g.trim() || "General";
+
                         channels.push({
                             name: currentChannel.name,
-                            url: currentChannel.url
+                            url: currentChannel.url,
+                            group: groupName
                         });
+                    });
                     }
+                    let seen = new Set();
 
-                    currentChannel = { name: "", url: "" };
+                    channels = channels.filter(ch => {
+                        let key = ch.name + ch.group;
+                        if (seen.has(key)) return false;
+                        seen.add(key);
+                        return true;
+                    });
+
+                    currentChannel = { name: "", url: "", group: "General" };
                 }
             });
 
+            // ⚠️ Lista vacía
             if (channels.length === 0) {
                 $("#playList").html(`
                     <div style="text-align:center; padding:20px;">
@@ -434,15 +475,33 @@ function loadChannels(url) {
                 return;
             }
 
+            // 🔥 AGRUPAR
+            let grouped = {};
+
+            channels.forEach(ch => {
+                if (!grouped[ch.group]) grouped[ch.group] = [];
+                grouped[ch.group].push(ch);
+            });
+
+            // 🎛️ RENDER
             $("#playList").empty();
 
-            channels.forEach(channel => {
+            for (let group in grouped) {
+
                 $("#playList").append(`
-                    <button class='list-item' data-url='${channel.url}'>
-                        ${channel.name}
-                    </button>
+                    <div style="color:#00ffcc; font-weight:bold; margin-top:10px;">
+                        ${group}
+                    </div>
                 `);
-            });
+
+                grouped[group].forEach(channel => {
+                    $("#playList").append(`
+                        <button class='list-item' data-url='${channel.url}'>
+                            ${channel.name}
+                        </button>
+                    `);
+                });
+            }
         },
 
         error: function (xhr, status, error) {
@@ -466,19 +525,19 @@ function loadChannels(url) {
     });
 }
 
-// 🔁 Volver a lista original
+// 🔁 VOLVER A LISTA ORIGINAL
 function cargarDefault() {
     $("#m3u-url").val(defaultM3U);
     loadChannels(defaultM3U);
 }
 
-// 🎛️ EVENTOS PRINCIPALES
+// 🎛️ EVENTOS
 $(document).ready(function () {
 
-    // Carga inicial
+    // 🔥 CARGA INICIAL
     loadChannels(defaultM3U);
 
-    // Click canal
+    // ▶️ CLICK CANAL
     $("#playList").on('click', 'button', function() {
         let url = $(this).data('url');
         let nombre = $(this).text();
@@ -487,15 +546,15 @@ $(document).ready(function () {
         $("#nombreCanal").text(nombre);
     });
 
-    // Mostrar modal
+    // 🪟 ABRIR MODAL
     $("#top-bar h2").click(function () {
         $("#overlay").show();
         $("#form-container").show();
     });
 
-    // Cargar URL manual
+    // 📥 CARGAR URL
     $("#ok-button").click(function () {
-        var url = $("#m3u-url").val();
+        let url = $("#m3u-url").val();
 
         if (url !== "") {
             loadChannels(url);
@@ -506,27 +565,27 @@ $(document).ready(function () {
         }
     });
 
-    // Lista original
+    // 🔄 DEFAULT
     $("#default-button").click(function () {
         cargarDefault();
         $("#overlay").hide();
         $("#form-container").hide();
     });
 
-    // Limpiar input
+    // 🧹 LIMPIAR
     $("#clear-button").click(function () {
         $("#m3u-url").val("");
     });
 
-    // Cerrar modal
+    // ❌ CERRAR
     $("#exit-button").click(function () {
         $("#overlay").hide();
         $("#form-container").hide();
     });
 
-    // Listas rápidas
+    // ⭐ LISTAS RÁPIDAS
     $(".preset").click(function () {
-        const url = $(this).data("url");
+        let url = $(this).data("url");
 
         $("#m3u-url").val(url);
         loadChannels(url);
@@ -535,21 +594,43 @@ $(document).ready(function () {
         $("#form-container").hide();
     });
 
-    // Mostrar link actual
+    // 🔗 VER LINK
     $("#nombreCanal").click(function() {
         $("#link-info-container").text(currentLink).show();
         setTimeout(() => $("#link-info-container").hide(), 7000);
     });
 
-    // Error del player
+    // ⚠️ ERROR PLAYER
     var player = videojs('my-video');
 
     player.on('error', function() {
-        player.errorDisplay.fillWith('Señal fuera de servicio, cambiando canal...');
+        player.errorDisplay.fillWith('Señal fuera de servicio...');
         player.errorDisplay.show();
     });
 
 });
+
+// 🎨 ANIMACIÓN NOMBRE
+document.addEventListener('DOMContentLoaded', function () {
+    var nombreCanal = document.getElementById('nombreCanal');
+    var timer;
+
+    window.onmousemove = function () {
+        clearTimeout(timer);
+        nombreCanal.style.animation = 'fadeInOut 0.5s forwards';
+
+        timer = setTimeout(function () {
+            nombreCanal.style.animation = 'fadeOutIn 0.5s forwards';
+        }, 10000);
+    };
+});
+
+// 📏 SCROLLBAR
+window.onload = function() {
+    let h = document.getElementById('playList').scrollHeight;
+    let size = h * 0.05;
+    document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + size + 'px');
+};
 
 </script>
 
