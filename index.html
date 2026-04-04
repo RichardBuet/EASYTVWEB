@@ -373,16 +373,89 @@ button.list-item{
 let currentLink = "";
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
 
-// 🔍 BUSCADOR
-$("#search").on("input", function() {
+// 🔍 BUSCADOR COMPLETO
+$("#search")
+.on("focus", function() {
+    this.select();
+})
+.on("input", function() {
+
     let value = $(this).val().toLowerCase();
-$("#search").on("focus", function() {
-    $(this).val("");
-    $("#playList button").show();
-});
-    $("#playList button").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().includes(value));
+
+    $("#no-results").remove();
+
+    let anyVisible = false;
+
+    // 🔍 Filtrar botones
+    $("#playList button").each(function() {
+        let match = $(this).text().toLowerCase().includes(value);
+
+        if (match) {
+            $(this).css("display", "");
+            anyVisible = true;
+        } else {
+            $(this).css("display", "none");
+        }
     });
+
+    // 🔥 Ocultar/mostrar grupos correctamente
+    let currentGroup = null;
+    let groupHasVisible = false;
+
+    $("#playList").children().each(function() {
+
+        if ($(this).hasClass("group-title")) {
+
+            // cerrar grupo anterior
+            if (currentGroup) {
+                currentGroup.css("display", groupHasVisible ? "" : "none");
+            }
+
+            currentGroup = $(this);
+            groupHasVisible = false;
+
+        } else if ($(this).is("button")) {
+
+            if ($(this).css("display") !== "none") {
+                groupHasVisible = true;
+            }
+        }
+    });
+//link-info-container
+
+// 🔥 ocultar/mostrar grupos correctamente (FIX FINAL)
+$("#playList .group-title").each(function() {
+
+    let group = $(this);
+
+    let hasVisible = group
+        .nextUntil(".group-title")
+        .filter("button")
+        .filter(":visible")
+        .length > 0;
+
+    group.css("display", hasVisible ? "" : "none");
+});
+
+    // ⚠️ sin resultados
+if ($("#playList button:visible").length === 0) {
+
+    $(".group-title").css("display", "none");
+
+    $("#playList").append(`
+        <div id="no-results" style="text-align:center; padding:10px;">
+            ❌ Sin resultados
+        </div>
+    `);
+}
+
+    // 🔄 reset
+    if (value === "") {
+        $("#playList button").css("display", "");
+        $("#playList .group-title").css("display", "");
+        $("#no-results").remove();
+    }
+
 });
 
 // 🎬 PLAYER
@@ -396,14 +469,27 @@ function playHLS(url) {
     currentLink = url;
 }
 
-// 🧠 PARSER (nombre + grupo)
+
+// 🧠 PARSER (nombre + grupo) 
 function getChannelData(line) {
     const nameMatch = line.match(/,(.*)/);
     const groupMatch = line.match(/group-title="([^"]*)"/);
 
+    let name = nameMatch ? nameMatch[1].trim() : "Unknown";
+    let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
+
+    // 🔥 LIMPIEZA DE GRUPOS FEOS
+    if (!group || 
+        group.toLowerCase() === "undefined" ||
+        group.toLowerCase() === "n/a" ||
+        group.toLowerCase() === "none"
+        ) {
+        group = "Canales de TV";
+    }
+
     return {
-        name: nameMatch ? nameMatch[1].trim() : "Unknown",
-        group: groupMatch ? groupMatch[1].trim() : "General"
+        name: name,
+        group: group
     };
 }
 
@@ -489,7 +575,7 @@ function loadChannels(url) {
             for (let group in grouped) {
 
                 $("#playList").append(`
-                    <div style="color:#00ffcc; font-weight:bold; margin-top:10px;">
+                    <div class="group-title" style="color:#00ffcc; font-weight:bold; margin-top:10px;">
                         ${group}
                     </div>
                 `);
