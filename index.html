@@ -105,15 +105,15 @@ h2 {margin: 0;}
     cursor: pointer; 
     color: #fff; 
     text-overflow: ellipsis;
-    text-transform: uppercase; /* Convertir todo el texto a minÃºsculas lowercase */
+    text-transform: uppercase; /* Convertir todo el texto a minúsculas lowercase */
     white-space: nowrap;
     overflow: hidden;}
 .list-item:hover { color: crimson; /*font-size: medium;*/ font-weight: bolder;}
-.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayÃºscula uppercase */ }
+.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ }
 
 #playList {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     /*gap: 0.45rem; 1y2opciones 0.6rem;*/
     gap: calc(100vh / 50);
     padding-top: 2px;
@@ -157,8 +157,8 @@ button.list-item{
 }
 
 #m3u-url {
-    width: 50vw;
-    min-width: 200px;
+    width: 80vw;
+    /* min-width: 200px;*/
     border-color: rgba(0, 0, 0, 0.5);
     border-radius: 3px;
     background: #f0fff0;
@@ -191,7 +191,7 @@ button.list-item{
 
 #nombreCanal {
     animation: none;    
-    font-size: small;
+    font-size: 0.8rem; /*medium;*/
     text-transform: uppercase;
     opacity: 1;
     color: rgb(8 254 0 / 80%);
@@ -228,6 +228,65 @@ button.list-item{
   to { opacity: 0; }
 }
 
+#link-info-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    max-width: 70vw;
+    min-width: 50vw;
+    
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 1000;
+    color: black;
+
+    word-break: break-all;       /* 🔥 corta URLs largas */
+    overflow-wrap: break-word;   /* 🔥 fallback */
+    white-space: normal;         /* 🔥 permite salto de línea */
+}
+
+#preset-lists button {
+    font-size: 0.7em;
+    padding: 6px;
+    border-radius: 6px;
+    background: #1f3f5b;
+    color: #fff;
+    border: 1px solid #3a6b9a;
+}
+
+#form-container button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #3a6b9a;
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+    font-size: 0.75em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#form-container button:hover {
+    background: #2a5f8f;
+    color: #fff;
+}
+
+#form-container button:active {
+    transform: scale(0.95);
+}
+
+#ok-button { 
+    border-color: #2ecc71;     
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);}      /* verde */
+#clear-button { border-color: #f39c12; }   /* naranja */
+#exit-button { border-color: #e74c3c; }    /* rojo */
+#default-button { border-color: #3498db; } /* azul */
+
 
 </style>
 
@@ -245,22 +304,40 @@ button.list-item{
 
  -->
     <div id="overlay"></div>
-    <div id="form-container">
-       <!-- <input type="text" id="m3u-url" placeholder="Introducir direcciÃ³n M3U"> -->
-       <input type="text" id="m3u-url" placeholder="Introducir direcciÃ³n M3U">
-       <div id="form-btn">
+<div id="form-container">
+
+    <input type="text" id="m3u-url" placeholder="Introducir dirección M3U">
+
+    <div id="form-btn">
         <button id="ok-button">Cargar</button>
         <button id="clear-button">Limpiar</button>
         <button id="exit-button">Cerrar</button>
-        </div>
+        <button id="default-button">Default</button>
     </div>
 
-<div id="nombreCanal">Bienvenido Easy Web TV || ProbÃ¡ M3U y ver URL de Link</div>
+    <!-- 🔥 NUEVO BLOQUE (ACÁ VA) -->
+    <div id="preset-lists" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.m3u">🌍 Global</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Argentina</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/categories/news.m3u">📰 Noticias</button>
+        <!-- <button class="preset" data-url="https://iptv-org.github.io/iptv/streams/es_pluto.m3u">📺 Pluto</button> -->
+        <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_pluto.m3u">📺 Pluto</button>
+        <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_rakuten.m3u">📺 Rakuten</button>
+        <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio 40 TV</button>
+        <!-- <button class="preset" data-url="https://i.mjh.nz/Plex/all.m3u8">🎬 Plex TV</button> -->
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Categorías</button>
+    </div>
+
+</div>
+
+<div id="nombreCanal">Bienvenido Easy Web TV || Probá M3U y ver URL de Link</div>
 
 <!-- Contenedor flotante para mostrar el enlace -->
-<div id="link-info-container" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
-    color: black;"> Enlace actual:
+<div id="link-info-container" > Enlace actual:
 </div>
+
+<!-- style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
+    color: black;" -->
 
 <div id="rl-bar">
 
@@ -269,353 +346,212 @@ button.list-item{
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
     </div>
-    
-    <input type="text" id="search" placeholder="Buscar canal..." 
-style="margin:5px; padding:6px; width:95%; border-radius:6px;">
-    
-    <!-- Elemento de formaciÃ³n de Lista -->
-    <div id="lists"> <div id="playList"></div> </div>
+    <!-- Elemento de formación de Lista -->
+    <div id="lists"> 
+        <!-- Buscador -->
+        <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;">
+        <!-- Canales -->
+        <div id="playList"></div> </div>
 
 </div>
 
 <script>
-    $("#search").on("input", function() {
-    let value = $(this).val().toLowerCase();
 
+let currentLink = "";
+const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
+
+// 🔍 Buscador
+$("#search").on("input", function() {
+    let value = $(this).val().toLowerCase();
     $("#playList button").filter(function() {
         $(this).toggle($(this).text().toLowerCase().includes(value));
     });
 });
-</script>
-    
-<script>
-    // Function to play HLS with given URL
-    function playHLS(url) {
-        var player = videojs(document.querySelector('.video-js'));
-        player.src({
-            src: url,
-            type: 'application/x-mpegURL' /*video type*/
-        });
-        player.play();
-    }
 
-    // Function to extract channel name from EXTINF line
-    function getChannelName(line) {
-        const match = line.match(/,([^"]*)/);
-        if (match && match[1]) {
-            return match[1];
-        } else {
-            return "Unknown";
-        }
-    }
-
-    //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/Lista2024.m3u
-    //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u
-    //https://raw.githubusercontent.com/ivantapia882804/rasta12/main/prr.txt
-    //https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/securityoffv1.m3u
-    //https://iptv-org.github.io/iptv/countries/ar.m3u
-    //https://iptv-org.github.io/iptv/index.m3u
-//https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u
-  //  $.ajax({
-  //  type: "GET",
-  //  url: 'Lista2024.m3u',
-  //  success: function (message, text, response) {
-
-
-    const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u"; //
-
-$.ajax({
-    type: "GET",
-    url: defaultM3U,
-    success: function (message) {
-        let str = message;
-        let lines = str.split("\n");
-        let channels = [];
-        let currentChannel = { name: "", url: "" };
-        lines.forEach(line => {
-            if (line.startsWith("#EXTINF")) {
-                currentChannel.name = getChannelName(line);
-            } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { // Omitir lÃ­neas que comienzan con ##EXTVLCOPT
-                currentChannel.url = line;
-                channels.push({ name: currentChannel.name, url: currentChannel.url });
-                currentChannel = { name: "", url: "" };
-            }
-        });
-        channels.forEach(channel => {
-            $("#playList").append("<button tabindex='0'  class='list-item' data-url='" + channel.url + "'>" + channel.name +  "</button>")
-        });
-    }
+// 🎬 Reproducir video
+function playHLS(url) {
+    var player = videojs('my-video');
+    player.src({
+        src: url,
+        type: 'application/x-mpegURL'
     });
+    player.play();
+    currentLink = url;
+}
+
+// 🧠 Obtener nombre del canal
+function getChannelName(line) {
+    const match = line.match(/,(.*)/);
+    return match && match[1] ? match[1].trim() : "Unknown";
+}
+
+// 📡 Cargar lista M3U (VERSIÓN FINAL ROBUSTA)
+function loadChannels(url) {
+
+    $("#playList").html(`
+        <div style="text-align:center; padding:20px;">
+            ⏳ Cargando lista...
+        </div>
+    `);
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 10000,
+
+        success: function (message) {
+
+            let lines = message.split("\n");
+            let channels = [];
+            let currentChannel = { name: "", url: "" };
+
+            lines.forEach(line => {
+                line = line.trim();
+
+                if (line.startsWith("#EXTINF")) {
+                    currentChannel.name = getChannelName(line);
+
+                } else if (line !== "" && !line.startsWith("#")) {
+                    currentChannel.url = line;
+
+                    if (currentChannel.name && currentChannel.url) {
+                        channels.push({
+                            name: currentChannel.name,
+                            url: currentChannel.url
+                        });
+                    }
+
+                    currentChannel = { name: "", url: "" };
+                }
+            });
+
+            if (channels.length === 0) {
+                $("#playList").html(`
+                    <div style="text-align:center; padding:20px;">
+                        ⚠️ La lista no contiene canales válidos
+                    </div>
+                `);
+                return;
+            }
+
+            $("#playList").empty();
+
+            channels.forEach(channel => {
+                $("#playList").append(`
+                    <button class='list-item' data-url='${channel.url}'>
+                        ${channel.name}
+                    </button>
+                `);
+            });
+        },
+
+        error: function (xhr, status, error) {
+
+            let mensaje = "❌ Error al cargar la lista";
+
+            if (status === "timeout") {
+                mensaje = "⏱️ La carga tardó demasiado";
+            } else if (xhr.status === 404) {
+                mensaje = "❌ Lista no encontrada (404)";
+            }
+
+            $("#playList").html(`
+                <div style="text-align:center; padding:20px;">
+                    ${mensaje}<br>
+                    <small>${xhr.status || ""} ${error || ""}</small><br><br>
+                    <button onclick="cargarDefault()">🔄 Lista original</button>
+                </div>
+            `);
+        }
+    });
+}
+
+// 🔁 Volver a lista original
+function cargarDefault() {
+    $("#m3u-url").val(defaultM3U);
+    loadChannels(defaultM3U);
+}
+
+// 🎛️ EVENTOS PRINCIPALES
 $(document).ready(function () {
-    const defaultM3U = 'https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u';
-    loadM3U(defaultM3U);
-});
-    // Click channel to play it
+
+    // Carga inicial
+    loadChannels(defaultM3U);
+
+    // Click canal
     $("#playList").on('click', 'button', function() {
         let url = $(this).data('url');
+        let nombre = $(this).text();
+
         playHLS(url);
+        $("#nombreCanal").text(nombre);
     });
 
-    // Click button to play HLS from input field
-    $("#play-button").click(function () {
-        var url = $("#url-field").val();
+    // Mostrar modal
+    $("#top-bar h2").click(function () {
+        $("#overlay").show();
+        $("#form-container").show();
+    });
+
+    // Cargar URL manual
+    $("#ok-button").click(function () {
+        var url = $("#m3u-url").val();
+
         if (url !== "") {
-            playHLS(url);
-        } else {
-            alert("Please enter a valid HLS URL.");
-        }
-    });
-</script>
-
-
-<script>
-    $(document).ready(function () {
-        // Mostrar el formulario flotante al hacer clic en el tÃ­tulo
-        $("#top-bar h2").click(function () {
-            $("#overlay").show();
-            $("#form-container").show();
-        });
-
-        // Ocultar el formulario flotante al hacer clic en el botÃ³n OK
-        $("#ok-button").click(function () {
-            var newUrl = $("#m3u-url").val();
-            if (newUrl !== "") {
-                $("#playList").empty(); // Limpiar la lista actual
-                loadChannels(newUrl); // Cargar los nuevos canales 
-                $("#overlay").hide();
-                $("#form-container").hide();
-            } else {
-                alert("Por favor, introduzca una direcciÃ³n M3U.");
-            }
-        });
-
-        // Limpiar el campo de entrada al hacer clic en el botÃ³n CLEAR
-        $("#clear-button").click(function () {
-            $("#m3u-url").val("");
-        });
-
-        // Ocultar el formulario flotante al hacer clic en el botÃ³n EXIT
-        $("#exit-button").click(function () {
+            loadChannels(url);
             $("#overlay").hide();
             $("#form-container").hide();
-        });
-
-        // FunciÃ³n para cargar los canales desde una URL M3U
-        function loadChannels(url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (message, text, response) {
-                let str = message;
-                let lines = str.split("\n");
-                let channels = [];
-                let currentChannel = { name: "", url: "" };
-                lines.forEach(line => {
-                if (line.startsWith("#EXTINF")) {
-                currentChannel.name = getChannelName(line);
-                } else if (line.trim() !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT")) { 
-                // Omitir lÃ­neas que comienzan con ##EXTVLCOPT
-                currentChannel.url = line;
-                channels.push({ name: currentChannel.name, url: currentChannel.url });
-                currentChannel = { name: "", url: "" };
-                }
-                });
-                channels.forEach(channel => {
-                    $("#playList").append("<button tabindex='0' class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>")
-                });
-            }
-        });
+        } else {
+            alert("Ingresá una URL válida");
         }
-
-
-
-        // Play next channel
-        function playNextChannel() {
-            if (currentChannelIndex < channels.length) {
-                playHLS(channels[currentChannelIndex].src);
-                $("#nombreCanal").text(channels[currentChannelIndex].name);
-                currentChannelIndex++;
-            } else {
-                // No more channels to play
-                if (currentChannelIndex < elementos.length - 1) {
-                loadVideo(currentChannelIndex + 1);}
-            }
-        }
-
-        // Click channel to play it
-        $("#playList").on('click', 'button', function() {
-            let url = $(this).data('url');
-            playHLS(url);
-            var channelName = $(this).text();
-            $("#nombreCanal").text(channelName);
-        });
-
-
     });
-</script>
 
-
-
-<script>
-    $(document).ready(function() {
-        var player = videojs('my-video');
-        player.on('error', function(e) {
-            if (e && e.statusCode !== 200) {
-                player.errorDisplay.fillWith('SeÃ±al fuera de servicio, cambie de canal...');
-                player.errorDisplay.show();
-                setTimeout(playNextChannel, 3000); // Esperar 5 segundos y pasar al siguiente canal
-            } else {
-                player.errorDisplay.fillWith('SeÃ±al no disponible');
-                player.errorDisplay.show();
-            }
-        });
+    // Lista original
+    $("#default-button").click(function () {
+        cargarDefault();
+        $("#overlay").hide();
+        $("#form-container").hide();
     });
-</script>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    var nombreCanal = document.getElementById('nombreCanal');
-    var inactividadTimer;
-
-    window.onmousemove = function () {
-        clearTimeout(inactividadTimer);
-        nombreCanal.style.animation = 'fadeInOut 0.5s forwards'; 
-        // Inicia la animaciÃ³n fadeInOut
-        inactividadTimer = setTimeout(function () {
-        nombreCanal.style.animation = 'fadeOutIn 0.5s forwards'; 
-        // Inicia la animaciÃ³n fadeOutIn despuÃ©s de 5 segundos de inactividad
-        }, 15000);
-    };
+    // Limpiar input
+    $("#clear-button").click(function () {
+        $("#m3u-url").val("");
     });
-</script>
 
+    // Cerrar modal
+    $("#exit-button").click(function () {
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
 
+    // Listas rápidas
+    $(".preset").click(function () {
+        const url = $(this).data("url");
 
-    
-<script>
+        $("#m3u-url").val(url);
+        loadChannels(url);
 
-$(document).ready(function() {
-    var currentLink = "";
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
 
-    function playHLS(url) {
-        var player = videojs('my-video');
-        player.src({
-            src: url,
-            type: 'application/x-mpegURL'
-        });
-        player.play();
-        currentLink = url;
-    }
-
+    // Mostrar link actual
     $("#nombreCanal").click(function() {
         $("#link-info-container").text(currentLink).show();
-        setTimeout(function() {
-            $("#link-info-container").hide();
-        }, 7000);
+        setTimeout(() => $("#link-info-container").hide(), 7000);
     });
 
-    $("#playList").on('click', 'button', function() {
-        var url = $(this).data('url');
-        playHLS(url);
-    });
-
+    // Error del player
     var player = videojs('my-video');
-    player.on('play', function() {
-        currentLink = player.currentSrc();
-        $("#link-info-container").text(currentLink);
+
+    player.on('error', function() {
+        player.errorDisplay.fillWith('Señal fuera de servicio, cambiando canal...');
+        player.errorDisplay.show();
     });
 
-    player.on('ended', function() {
-        $("#link-info-container").hide();
-    });
-
-    // FunciÃ³n para cargar lista M3U desde URL
-    function loadM3U(url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function(message) {
-                var lines = message.split("\n");
-                var channels = [];
-                var currentChannel = { name: "", url: "" };
-
-                lines.forEach(function(line) {
-                    line = line.trim();
-                    if (line.startsWith("#EXTINF")) {
-                        currentChannel.name = getChannelName(line);
-                    } else if (line !== "" && !line.startsWith("#EXTM3U") && !line.startsWith("##EXTVLCOPT") && !line.startsWith("#EXTVLCOPT") && !line.startsWith("#")) {
-                        // Solo aceptar lÃ­neas que no empiezan con '#'
-                        currentChannel.url = line;
-                        if(currentChannel.name && currentChannel.url) {
-                            channels.push({ name: currentChannel.name, url: currentChannel.url });
-                        }
-                        currentChannel = { name: "", url: "" };
-                    }
-                });
-
-                // Limpiar lista previa antes de agregar nuevos canales
-                $("#playList").empty();
-
-                // AÃ±adir botones para cada canal
-                channels.forEach(function(channel) {
-                    $("#playList").append("<button class='list-item' data-url='" + channel.url + "'>" + channel.name + "</button>");
-                });
-            },
-            error: function(xhr, status, error) {
-                alert("Error al cargar la lista M3U: " + error);
-            }
-        });
-    }
-
-    function getChannelName(line) {
-        var match = line.match(/,(.*)/);
-        return match && match[1] ? match[1].trim() : "Unknown";
-    }
-
-    // Ejemplo: carga inicial con URL definida
-    var m3uUrl = ''; // Cambia por la URL real o usa input para que el usuario cargue su archivo
-    loadM3U(m3uUrl);
-
-    // AquÃ­ podrÃ­as aÃ±adir la lÃ³gica para que el usuario cargue otra lista y llamar loadM3U(urlNueva);
-    //https://iptv-org.github.io/iptv/index.m3u
 });
-$(document).ready(function () {
-    const defaultM3U = 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/AIO2506V0.m3u';
-    loadM3U(defaultM3U);
-});
-    
+
 </script>
-
-
-
-    
-
-<script>
-    // FunciÃ³n para establecer la altura de la barra lateral
-    function setScrollbarHeight() {
-        var playListHeight = document.getElementById('playList').scrollHeight;
-        var scrollbarHeight = playListHeight * 0.05; // Calcula el 5% de la altura de la lista de reproducciÃ³n
-        document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + scrollbarHeight + 'px'); // Establece la altura de la barra lateral
-    }
-
-    // Llama a la funciÃ³n para establecer la altura de la barra lateral cuando la pÃ¡gina se carga completamente
-    window.onload = function() {
-        setScrollbarHeight();
-    };
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Establecer el enfoque inicial en el primer elemento de la lista de reproducciÃ³n
-        // const firstPlaylistItem = document.querySelector('#playList');  
-        const firstPlaylistItem = document.querySelector('#.video-js .vjs-big-play-button');
-        firstPlaylistItem.focus();
-    });
-</script>
-
 
 </body>
 
