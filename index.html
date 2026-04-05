@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.7</title>
+    <title>Easy Web TV RB - BTN v3.7d</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -100,16 +100,32 @@ h2 {margin: 0;}
     height: 74vh;
     width: -webkit-fill-available;
     z-index: 2;
-    list-style: none;}
+    list-style: none;
+}
 .list-item { 
     cursor: pointer; 
     color: #fff; 
     text-overflow: ellipsis;
     text-transform: uppercase; /* Convertir todo el texto a minúsculas lowercase */
     white-space: nowrap;
-    overflow: hidden;}
-.list-item:hover { color: crimson; /*font-size: medium;*/ font-weight: bolder;}
-.list-item:first-letter {  text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ }
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+/*.list-item:hover { color: crimson; font-weight: bolder;}*/
+.list-item:not(.active):hover {
+    background: #ffffff10;
+    transform: scale(1.03);
+}
+.list-item:first-letter {  
+    text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ 
+}
+.list-item.active {
+    border: 2px solid #00ffcc;
+    background: linear-gradient(90deg, #00ffcc33, #00ffcc66);
+    color: #00ffcc;
+    font-weight: bold;
+    box-shadow: 0 0 4px #00ffcc;
+}
 
 #playList {
     display: grid;
@@ -119,6 +135,16 @@ h2 {margin: 0;}
     padding-top: 2px;
     height: auto!important;
     }
+
+
+#playList div {
+    grid-column: 1 / -1;
+    color: #00ffcc;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #00ffcc33;
+}
 
 button.list-item{
     padding: 8px 0; 
@@ -139,8 +165,6 @@ button.list-item{
     transition: background 1.3s, color 1.3s;
     border-style: inset;
 }
-
-
 
 
 
@@ -180,12 +204,75 @@ button.list-item{
 #form-btn {
     margin-top: 15px;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;   /* 🔥 CLAVE */
+    gap: 8px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-#form-container button { width: inherit; }
+
+#preset-lists button {
+    font-size: 0.7em;
+    padding: 6px;
+    border-radius: 6px;
+    background: #1f3f5b;
+    color: #fff;
+    border: 1px solid #3a6b9a;
+}
+
+#form-container button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #3a6b9a;
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+    font-size: 0.75em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#form-container button:hover {
+    background: #2a5f8f;
+    color: #fff;
+}
+
+#form-container button:active {
+    transform: scale(0.95);
+}
+
+#ok-button { 
+    border-color: #2ecc71;     
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);}      /* verde */
+#clear-button { border-color: #f39c12; }   /* naranja */
+#exit-button { border-color: #e74c3c; }    /* rojo */
+#default-button { border-color: #3498db; } /* azul */
+
+.form-btn {
+    flex: 1 1 auto;      /* 🔥 clave */
+    min-width: 80px;    /* controla cuándo baja */
+
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #3a6b9a;
+
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+
+    font-size: 0.75em;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.form-btn:hover {
+    background: #2a5f8f;
+    color: #fff;
+}
+
+.form-btn:active {
+    transform: scale(0.95);
+}
 
 
 
@@ -227,7 +314,7 @@ button.list-item{
   from { opacity: 1; }
   to { opacity: 0; }
 }
-
+/*
 #link-info-container {
     display: none;
     position: fixed;
@@ -245,47 +332,37 @@ button.list-item{
     z-index: 1000;
     color:#000000;
 
-    word-break: break-all;       /* 🔥 corta URLs largas */
-    overflow-wrap: break-word;   /* 🔥 fallback */
-    white-space: normal;         /* 🔥 permite salto de línea */
+    word-break: break-all;        🔥 corta URLs largas * /
+    overflow-wrap: break-word;   /* 🔥 fallback * /
+    white-space: normal;         /* 🔥 permite salto de línea * /
+}
+*/
+#link-info-container {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    max-width: 94vw;
+    width: auto;    
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 1000;
+    color: #000;
+
+    white-space: normal;
+    word-break: break-word;
+
+    padding: 6px 10px;
+    font-size: 0.85em;
 }
 
-#preset-lists button {
-    font-size: 0.7em;
-    padding: 6px;
-    border-radius: 6px;
-    background: #1f3f5b;
-    color: #fff;
-    border: 1px solid #3a6b9a;
+#link-info-container.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
-#form-container button {
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #3a6b9a;
-    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
-    color: #dae6ec;
-    font-size: 0.75em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#form-container button:hover {
-    background: #2a5f8f;
-    color: #fff;
-}
-
-#form-container button:active {
-    transform: scale(0.95);
-}
-
-#ok-button { 
-    border-color: #2ecc71;     
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);}      /* verde */
-#clear-button { border-color: #f39c12; }   /* naranja */
-#exit-button { border-color: #e74c3c; }    /* rojo */
-#default-button { border-color: #3498db; } /* azul */
 
 /*#playList div {
     grid-column: 1 / -1; /* 🔥 ocupa toda la fila */
@@ -293,53 +370,121 @@ button.list-item{
     /*padding-left: 5px;*/
 /*}*/
 
-#playList div {
-    grid-column: 1 / -1;
-    color: #00ffcc;
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 5px 0;
-    border-bottom: 1px solid #00ffcc33;
+
+/*-------------------*/
+#search-bar {
+    display: flex;
+    gap: 6px;
+    margin: 3px;
 }
+
+#search {
+    flex: 7;
+    padding: 6px;
+    border-radius: 8px;
+    background: #111;
+    color: #00ffcc;
+    border: 1px solid #333;
+}
+
+#auto-next-btn {
+    flex: 3;
+    border-radius: 8px;
+    background: #14395b;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    font-size: 0.7em;
+}
+
+#m3u-url {
+    width: 80vw;
+    max-width: 90vw;
+    border-radius: 6px;
+    padding: 6px;
+    resize: none;
+    overflow-wrap: break-word;
+    background: #f0fff0;
+}
+
+#m3u-history {
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.history-item {
+    font-size: 0.7em;
+    padding: 4px;
+    cursor: pointer;
+    color: #00ffcc;
+}
+
+.history-item:hover {
+    background: #00ffcc22;
+}
+
+/*#clear-history {
+    margin-top: 8px;
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #e74c3c;
+    background: #2b1a1a;
+    color: #ff6b6b;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+#clear-history:hover {
+    background: #3a1f1f;
+}*/
+
+
+
 </style>
 
 </head>
 
 <body>
-    <div id="top-bar">
-    <h2>EASY TV WEB - LINK M3U</h2>
-    </div>
+<div id="top-bar">
+<h2>EASY TV WEB - LINK M3U</h2>
+</div>
 
- <!-- Formulario flotante 
-    url: 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u',
-    https://live-01-01-tn.vodgc.net/TN24/index.m3u8
-    https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
+<!-- Formulario flotante 
+url: 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u',
+https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 
- -->
-    <div id="overlay"></div>
+-->
+<div id="overlay"></div>
+<!-- 🔽 SOLO TE MUESTRO LA PARTE MODIFICADA DEL FORM PARA NO ROMPER NADA -->
 <div id="form-container">
 
-    <input type="text" id="m3u-url" placeholder="Introducir dirección M3U">
+    <!-- 🔥 textarea en vez de input -->
+    <textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U"></textarea>
 
     <div id="form-btn">
-        <button id="ok-button">Cargar</button>
-        <button id="clear-button">Limpiar</button>
-        <button id="exit-button">Cerrar</button>
-        <button id="default-button">Default</button>
+        <button class="form-btn" id="ok-button">Cargar</button>
+        <button class="form-btn" id="clear-button">Limpiar</button>
+        <button class="form-btn" id="exit-button">Cerrar</button>
+        <button class="form-btn" id="default-button">Default</button>
+        <button class="form-btn" id="clear-history">🗑 Borrar historial</button>
+        <button class="form-btn" id="paste-button">📋 Pegar</button>
     </div>
 
-    <!-- 🔥 NUEVO BLOQUE (ACÁ VA) -->
+    <!-- presets -->
     <div id="preset-lists" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
         <button class="preset" data-url="https://iptv-org.github.io/iptv/index.m3u">🌍 Global</button>
         <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Argentina</button>
         <button class="preset" data-url="https://iptv-org.github.io/iptv/categories/news.m3u">📰 Noticias</button>
-        <!-- <button class="preset" data-url="https://iptv-org.github.io/iptv/streams/es_pluto.m3u">📺 Pluto</button> -->
         <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_pluto.m3u">📺 Pluto</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_rakuten.m3u">📺 Rakuten</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio 40 TV</button>
-        <!-- <button class="preset" data-url="https://i.mjh.nz/Plex/all.m3u8">🎬 Plex TV</button> -->
         <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Categorías</button>
     </div>
+
+    <!-- 🔥 HISTORIAL -->
+    <div id="m3u-history"></div>
 
 </div>
 
@@ -362,16 +507,33 @@ button.list-item{
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
-        <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;color: #00ffcc;">
+<!--         <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;color: #00ffcc;">
+        <button id="auto-next-btn">Auto ▶ OFF</button> -->
         <!-- Canales -->
+        
+
+
+<div id="search-bar">
+    <input type="text" id="search" placeholder="Buscador de canal...">
+    <button id="auto-next-btn">Auto ▶ OFF</button>
+</div>
+
+
+
         <div id="playList"></div> </div>
 
 </div>
 
+
 <script>
+// ================== VARIABLES ==================
+let autoNextEnabled = false;
+let channelsGlobal = [];
+let currentIndex = 0;
 
 let currentLink = "";
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
+
 
 // 🔍 BUSCADOR COMPLETO
 $("#search")
@@ -384,93 +546,74 @@ $("#search")
 
     $("#no-results").remove();
 
-    let anyVisible = false;
-
     // 🔍 Filtrar botones
     $("#playList button").each(function() {
         let match = $(this).text().toLowerCase().includes(value);
-
-        if (match) {
-            $(this).css("display", "");
-            anyVisible = true;
-        } else {
-            $(this).css("display", "none");
-        }
+        $(this).css("display", match ? "" : "none");
     });
 
-    // 🔥 Ocultar/mostrar grupos correctamente
-    let currentGroup = null;
-    let groupHasVisible = false;
+    // 🔥 Ocultar grupos
+    $("#playList .group-title").each(function() {
 
-    $("#playList").children().each(function() {
+        let group = $(this);
 
-        if ($(this).hasClass("group-title")) {
+        let hasVisible = group
+            .nextUntil(".group-title")
+            .filter("button:visible")
+            .length > 0;
 
-            // cerrar grupo anterior
-            if (currentGroup) {
-                currentGroup.css("display", groupHasVisible ? "" : "none");
-            }
-
-            currentGroup = $(this);
-            groupHasVisible = false;
-
-        } else if ($(this).is("button")) {
-
-            if ($(this).css("display") !== "none") {
-                groupHasVisible = true;
-            }
-        }
+        group.css("display", hasVisible ? "" : "none");
     });
-//link-info-container
-
-// 🔥 ocultar/mostrar grupos correctamente (FIX FINAL)
-$("#playList .group-title").each(function() {
-
-    let group = $(this);
-
-    let hasVisible = group
-        .nextUntil(".group-title")
-        .filter("button")
-        .filter(":visible")
-        .length > 0;
-
-    group.css("display", hasVisible ? "" : "none");
-});
 
     // ⚠️ sin resultados
-if ($("#playList button:visible").length === 0) {
+    if ($("#playList button:visible").length === 0) {
 
-    $(".group-title").css("display", "none");
+        $(".group-title").hide();
 
-    $("#playList").append(`
-        <div id="no-results" style="text-align:center; padding:10px;">
-            ❌ Sin resultados
-        </div>
-    `);
-}
+        $("#playList").append(`
+            <div id="no-results" style="text-align:center; padding:10px;">
+                ❌ Sin resultados
+            </div>
+        `);
+    }
 
     // 🔄 reset
     if (value === "") {
-        $("#playList button").css("display", "");
-        $("#playList .group-title").css("display", "");
+        $("#playList button").show();
+        $("#playList .group-title").show();
         $("#no-results").remove();
     }
 
 });
 
+
 // 🎬 PLAYER
 function playHLS(url) {
     var player = videojs('my-video');
+
     player.src({
         src: url,
         type: 'application/x-mpegURL'
     });
+
     player.play();
     currentLink = url;
+
+    player.on('playing', function () {
+    $("#link-info-container").fadeOut();
+    });
+
+
+    player.on('waiting', function () {
+    // 🔥 SOLO si auto-next está activo
+    if (autoNextEnabled) {
+        $("#link-info-container")
+            .html("🔄 Buscando señal...")
+            .show();
+        }
+    });
 }
-
-
-// 🧠 PARSER (nombre + grupo) 
+// 🧠 PARSER
 function getChannelData(line) {
     const nameMatch = line.match(/,(.*)/);
     const groupMatch = line.match(/group-title="([^"]*)"/);
@@ -478,20 +621,17 @@ function getChannelData(line) {
     let name = nameMatch ? nameMatch[1].trim() : "Unknown";
     let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
 
-    // 🔥 LIMPIEZA DE GRUPOS FEOS
-    if (!group || 
+    if (!group ||
         group.toLowerCase() === "undefined" ||
         group.toLowerCase() === "n/a" ||
         group.toLowerCase() === "none"
-        ) {
+    ) {
         group = "Canales de TV";
     }
 
-    return {
-        name: name,
-        group: group
-    };
+    return { name, group };
 }
+
 
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
@@ -528,36 +668,33 @@ function loadChannels(url) {
                     if (currentChannel.name && currentChannel.url) {
                         let groups = currentChannel.group.split(";");
 
-                    groups.forEach(g => {
-                        let groupName = g.trim() || "General";
-
-                        channels.push({
-                            name: currentChannel.name,
-                            url: currentChannel.url,
-                            group: groupName
+                        groups.forEach(g => {
+                            channels.push({
+                                name: currentChannel.name,
+                                url: currentChannel.url,
+                                group: g.trim() || "General"
+                            });
                         });
-                    });
                     }
-                    let seen = new Set();
-
-                    channels = channels.filter(ch => {
-                        let key = ch.name + ch.group;
-                        if (seen.has(key)) return false;
-                        seen.add(key);
-                        return true;
-                    });
 
                     currentChannel = { name: "", url: "", group: "General" };
                 }
             });
 
-            // ⚠️ Lista vacía
+            // 🔥 eliminar duplicados (FIX)
+            let seen = new Set();
+            channels = channels.filter(ch => {
+                let key = ch.name + ch.group;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+
+            // 🔥 GUARDAR LISTA GLOBAL (CLAVE)
+            channelsGlobal = channels;
+
             if (channels.length === 0) {
-                $("#playList").html(`
-                    <div style="text-align:center; padding:20px;">
-                        ⚠️ La lista no contiene canales válidos
-                    </div>
-                `);
+                $("#playList").html(`⚠️ Lista sin canales`);
                 return;
             }
 
@@ -594,43 +731,47 @@ function loadChannels(url) {
 
             let mensaje = "❌ Error al cargar la lista";
 
-            if (status === "timeout") {
-                mensaje = "⏱️ La carga tardó demasiado";
-            } else if (xhr.status === 404) {
-                mensaje = "❌ Lista no encontrada (404)";
-            }
+            if (status === "timeout") mensaje = "⏱️ La carga tardó demasiado";
+            if (xhr.status === 404) mensaje = "❌ Lista no encontrada";
 
             $("#playList").html(`
                 <div style="text-align:center; padding:20px;">
                     ${mensaje}<br>
-                    <small>${xhr.status || ""} ${error || ""}</small><br><br>
                     <button onclick="cargarDefault()">🔄 Lista original</button>
                 </div>
             `);
         }
     });
-}
+};
+
 
 // 🔁 VOLVER A LISTA ORIGINAL
 function cargarDefault() {
     $("#m3u-url").val(defaultM3U);
     loadChannels(defaultM3U);
-}
+};
+
 
 // 🎛️ EVENTOS
 $(document).ready(function () {
 
-    // 🔥 CARGA INICIAL
     loadChannels(defaultM3U);
+    renderHistory();
 
     // ▶️ CLICK CANAL
     $("#playList").on('click', 'button', function() {
         let url = $(this).data('url');
         let nombre = $(this).text();
-
+        // 🔥 índice correcto
+        currentIndex = channelsGlobal.findIndex(c => c.url === url);
         playHLS(url);
         $("#nombreCanal").text(nombre);
+        // 🔥 NUEVO: marcar activo
+        $(".list-item").removeClass("active");
+        $(this).addClass("active");
     });
+
+
 
     // 🪟 ABRIR MODAL
     $("#top-bar h2").click(function () {
@@ -640,10 +781,12 @@ $(document).ready(function () {
 
     // 📥 CARGAR URL
     $("#ok-button").click(function () {
-        let url = $("#m3u-url").val();
-
+       // let url = $("#m3u-url").val("");
+        let url = $("#m3u-url").val().trim();
         if (url !== "") {
+            saveM3U(url);  //opción nueva
             loadChannels(url);
+            renderHistory();   //opción nueva
             $("#overlay").hide();
             $("#form-container").hide();
         } else {
@@ -680,21 +823,79 @@ $(document).ready(function () {
         $("#form-container").hide();
     });
 
+
+
+
     // 🔗 VER LINK
     $("#nombreCanal").click(function() {
         $("#link-info-container").text(currentLink).show();
-        setTimeout(() => $("#link-info-container").hide(), 7000);
+        setTimeout(() => $("#link-info-container").hide(), 5000);
     });
 
-    // ⚠️ ERROR PLAYER
+    // 🎬 PLAYER
     var player = videojs('my-video');
 
     player.on('error', function() {
+
         player.errorDisplay.fillWith('Señal fuera de servicio...');
-        player.errorDisplay.show();
+
+        if (autoNextEnabled) {
+
+            let attempts = 0;
+
+            function tryNext() {
+
+                currentIndex++;
+
+                if (currentIndex >= channelsGlobal.length || attempts > 10) {
+                    console.log("No se encontró canal válido");
+                    player.errorDisplay.show();
+                    return;
+                }
+
+                let next = channelsGlobal[currentIndex];
+
+                console.log("Probando:", next.name);
+
+                $("#link-info-container")
+                .html(`🔄 Probando: <br><b>${next.name}</b>`)
+                .show();
+
+                playHLS(next.url);
+                $("#nombreCanal").text(next.name);
+
+                // 🔥 marcar botón activo correctamente
+                $(".list-item").removeClass("active");
+
+                // usar índice real (MUY IMPORTANTE)
+                let btn = $("#playList button").eq(currentIndex);
+
+                btn.addClass("active");
+
+                // opcional: scroll
+               // btn[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
+
+                attempts++;
+            }
+
+            setTimeout(tryNext, 1500);
+
+        } else {
+            player.errorDisplay.show();
+        }
     });
 
 });
+
+
+// 🔘 BOTÓN AUTO NEXT
+$("#auto-next-btn").click(function () {
+
+    autoNextEnabled = !autoNextEnabled;
+
+    $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
+});
+
 
 // 🎨 ANIMACIÓN NOMBRE
 document.addEventListener('DOMContentLoaded', function () {
@@ -711,12 +912,123 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 
+
 // 📏 SCROLLBAR
 window.onload = function() {
     let h = document.getElementById('playList').scrollHeight;
     let size = h * 0.05;
     document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + size + 'px');
 };
+
+$("#paste-button").click(async function () {
+    try {
+        const text = await navigator.clipboard.readText();
+        $("#m3u-url").val(text);
+    } catch (err) {
+        alert("No se pudo acceder al portapapeles");
+    }
+});
+
+
+// function saveM3U(url) {
+
+//     let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+
+//     let u = new URL(url);
+
+//     let shortName = u.hostname + " / " + u.pathname.split("/").pop();
+
+//     let item = {
+//         name: shortName,
+//         url: url
+//     };
+//     // let item = {
+
+//     //     name: new URL(url).hostname,
+//     //     url: url
+//     // };
+
+//     history = history.filter(h => h.url !== url);
+
+//     history.unshift(item);
+//     history = history.slice(0, 5);
+
+//     localStorage.setItem("m3uHistory", JSON.stringify(history));
+// }
+
+
+function saveM3U(url) {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    let u = new URL(url);
+
+    let file = u.pathname.split("/").pop() || "lista";
+    let shortName = u.hostname + " / " + file;
+
+    let item = {
+        name: shortName,
+        url: url
+    };
+
+    // 🔥 evitar duplicados por URL completa
+    history = history.filter(h => h.url !== url);
+
+    // 🔥 agregar al inicio
+    history.unshift(item);
+
+    // 🔥 limitar a 5 elementos
+    history = history.slice(0, 5);
+
+    // 🔥 guardar
+    localStorage.setItem("m3uHistory", JSON.stringify(history));
+}
+
+
+
+function renderHistory() {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    $("#m3u-history").empty();
+
+    history.forEach(item => {
+        $("#m3u-history").append(`
+            <div class="history-item" data-url="${item.url}">
+                🔗 ${item.name}
+            </div>
+        `);
+    });
+}
+
+$("#m3u-history").on("click", ".history-item", function () {
+
+    let url = $(this).data("url");
+
+    $("#m3u-url").val(url);
+    loadChannels(url);
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+});
+
+$("#clear-history").click(function () {
+
+    if (confirm("¿Borrar historial de listas?")) {
+
+        localStorage.removeItem("m3uHistory");
+
+        renderHistory(); // refresca UI
+
+        $("#m3u-url").val(""); // opcional limpiar input
+    }
+    if (!localStorage.getItem("m3uHistory")) {
+    $("#clear-history").hide();
+}
+});
+
+
 
 </script>
 
