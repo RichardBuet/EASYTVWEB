@@ -61,7 +61,6 @@ h2 {margin: 0;}
     top: 0;
     left: 0;
     width: 100%;
-/*    height: auto;*/
     max-height: 100vh;
     border-radius: 4px;}
 :not(:root):fullscreen { user-select: text; height: 100%;}
@@ -75,7 +74,6 @@ h2 {margin: 0;}
 .vjs-loading-spinner { top: 34%!important;}
 .vjs-error .vjs-loading-spinner { display: none!important;}
 
-
 .vjs-poster, .video-js .vjs-progress-control { display: none;}
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
@@ -85,8 +83,6 @@ h2 {margin: 0;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
     content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
     SCALE: 80%;
-    /* top: 22% !important; */
-    /* left: calc(100% / 3 - 0.35em) !important; */
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;}
 
@@ -111,7 +107,7 @@ h2 {margin: 0;}
     overflow: hidden;
     transition: all 0.2s ease;
 }
-/*.list-item:hover { color: crimson; font-weight: bolder;}*/
+
 .list-item:not(.active):hover {
     background: #ffffff10;
     transform: scale(1.03);
@@ -148,7 +144,6 @@ h2 {margin: 0;}
 
 button.list-item{
     padding: 8px 0; 
-   /* height: calc(100vh / 24);*/
     margin: auto 3px;
     text-align: center;
     text-overflow: ellipsis;
@@ -158,7 +153,6 @@ button.list-item{
     border: 1px solid rgb(72 97 135);
     border-radius: 8px;
     overflow: hidden;
-    /*background: linear-gradient(to bottom, #265a8aa3, #08153f00);*/
     background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
     color: #dae6ec;
     cursor: pointer;
@@ -182,7 +176,6 @@ button.list-item{
 
 #m3u-url {
     width: 80vw;
-    /* min-width: 200px;*/
     border-color: rgba(0, 0, 0, 0.5);
     border-radius: 3px;
     background: #f0fff0;
@@ -314,29 +307,8 @@ button.list-item{
   from { opacity: 1; }
   to { opacity: 0; }
 }
-/*
-#link-info-container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    max-width: 70vw;
-    min-width: 50vw;
-    
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    z-index: 1000;
-    color:#000000;
 
-    word-break: break-all;        🔥 corta URLs largas * /
-    overflow-wrap: break-word;   /* 🔥 fallback * /
-    white-space: normal;         /* 🔥 permite salto de línea * /
-}
-*/
+
 #link-info-container {
     display: none;
     position: fixed;
@@ -362,14 +334,6 @@ button.list-item{
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
-
-
-/*#playList div {
-    grid-column: 1 / -1; /* 🔥 ocupa toda la fila */
-    /*text-align: left;*/
-    /*padding-left: 5px;*/
-/*}*/
-
 
 /*-------------------*/
 #search-bar {
@@ -413,31 +377,15 @@ button.list-item{
 }
 
 .history-item {
-    font-size: 0.7em;
+    font-size: 0.9em;
     padding: 4px;
     cursor: pointer;
-    color: #00ffcc;
+    color: #1904fd;
 }
 
 .history-item:hover {
     background: #00ffcc22;
 }
-
-/*#clear-history {
-    margin-top: 8px;
-    width: 100%;
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #e74c3c;
-    background: #2b1a1a;
-    color: #ff6b6b;
-    font-size: 0.7em;
-    cursor: pointer;
-}
-
-#clear-history:hover {
-    background: #3a1f1f;
-}*/
 
 
 
@@ -457,7 +405,7 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 
 -->
 <div id="overlay"></div>
-<!-- 🔽 SOLO TE MUESTRO LA PARTE MODIFICADA DEL FORM PARA NO ROMPER NADA -->
+<!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
 <div id="form-container">
 
     <!-- 🔥 textarea en vez de input -->
@@ -494,9 +442,6 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 <div id="link-info-container" > Enlace actual:
 </div>
 
-<!-- style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border: 1px solid #ccc; border-radius: 5px; z-index: 1000;
-    color: black;" -->
-
 <div id="rl-bar">
 
     <div id="player">
@@ -507,20 +452,13 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
-<!--         <input type="text" id="search" placeholder="Buscador de canal..." style="margin: 3px;margin-bottom: 0.6rem;padding:6px;border-radius: 8px;background: #111111;color: #00ffcc;">
-        <button id="auto-next-btn">Auto ▶ OFF</button> -->
-        <!-- Canales -->
-        
 
+    <div id="search-bar">
+        <input type="text" id="search" placeholder="Buscador de canal...">
+        <button id="auto-next-btn">Auto ▶ OFF</button>
+    </div>
 
-<div id="search-bar">
-    <input type="text" id="search" placeholder="Buscador de canal...">
-    <button id="auto-next-btn">Auto ▶ OFF</button>
-</div>
-
-
-
-        <div id="playList"></div> </div>
+    <div id="playList"></div> </div>
 
 </div>
 
@@ -928,34 +866,6 @@ $("#paste-button").click(async function () {
         alert("No se pudo acceder al portapapeles");
     }
 });
-
-
-// function saveM3U(url) {
-
-//     let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
-
-
-//     let u = new URL(url);
-
-//     let shortName = u.hostname + " / " + u.pathname.split("/").pop();
-
-//     let item = {
-//         name: shortName,
-//         url: url
-//     };
-//     // let item = {
-
-//     //     name: new URL(url).hostname,
-//     //     url: url
-//     // };
-
-//     history = history.filter(h => h.url !== url);
-
-//     history.unshift(item);
-//     history = history.slice(0, 5);
-
-//     localStorage.setItem("m3uHistory", JSON.stringify(history));
-// }
 
 
 function saveM3U(url) {
