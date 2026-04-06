@@ -1,6 +1,23 @@
 #EXTM3U
 #EXTINF:-1 tvg-logo="" group-title="",Todo Noticias
 https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",TV Publica
+https://g1.vxral-hor.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/c7_vivo01_dai_source-20001.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",América TV
+https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",NET TV
+https://unlimited1-us.dps.live/nettv/nettv.smil/nettv/livestream1/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",Telemax
+https://live-edge01.telecentro.net.ar/live/tlxhd-720/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
+https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",Canal
+http://190.52.32.13:1935/canal4/smil:manifest.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",Canal 10
+https://stream.arcast.live/canal10/ngrp:canal10_all/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-logo="" group-title="",Canal 12 Misiones
+https://g3.mc-hor.transport.edge-access.net/a05/ngrp:c12_live01-100129_all/Playlist.m3u8?sense=true
+#EXTINF:-1 tvg-logo="" group-title="",Encuentro
 #EXTINF:-1 tvg-logo="" group-title="",Canal 7 Jujuy
 https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-logo="" group-title="",Canal 9 Litoral
@@ -176,23 +193,6 @@ https://linear-306.frequency.stream/mt/studio/306/hls/master/playlist.m3u8
 https://linear-254.frequency.stream/mt/studio/254/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",VIX Grandes parejas
 https://linear-318.frequency.stream/mt/studio/318/hls/master/playlist.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",TV Publica
-https://g1.vxral-hor.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/c7_vivo01_dai_source-20001.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",América TV
-https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",NET TV
-https://unlimited1-us.dps.live/nettv/nettv.smil/nettv/livestream1/playlist.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",Telemax
-https://live-edge01.telecentro.net.ar/live/tlxhd-720/playlist.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
-https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",Canal
-http://190.52.32.13:1935/canal4/smil:manifest.smil/playlist.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",Canal 10
-https://stream.arcast.live/canal10/ngrp:canal10_all/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-logo="" group-title="",Canal 12 Misiones
-https://g3.mc-hor.transport.edge-access.net/a05/ngrp:c12_live01-100129_all/Playlist.m3u8?sense=true
-#EXTINF:-1 tvg-logo="" group-title="",Encuentro
 https://5fb24b460df87.streamlock.net/live-cont.ar/encuentro/chunklist_w1733579940.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",PANC TV
 https://video.streamtvradio.com:8443/uv096/uv096/playlist.m3u8?PlaylistM3UCL
