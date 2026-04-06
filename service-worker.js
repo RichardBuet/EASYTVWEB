@@ -3,6 +3,10 @@ self.addEventListener("install", event => {
     self.skipWaiting();
 });
 
+self.addEventListener("activate", event => {
+    event.waitUntil(self.clients.claim());
+});
+
 self.addEventListener("fetch", event => {
-    // por ahora no cachea nada (mínimo viable)
+    // opcional por ahora (no hace nada)
 });
