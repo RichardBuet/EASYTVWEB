@@ -10,7 +10,6 @@
     <meta name="description" content="Prueba de lista M3U">
 
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
@@ -387,7 +386,21 @@ button.list-item{
     background: #00ffcc22;
 }
 
-
+#install-banner {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1abc9c;
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.8em;
+    z-index: 9999;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
 
 </style>
 
@@ -462,6 +475,45 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 
 </div>
 
+    <div id="install-banner">
+    📲 Instalar Easy TV
+</div>
+
+<script>
+    
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // mostrar banner
+    $("#install-banner").fadeIn();
+});
+
+// click → instalar
+$("#install-banner").click(async function () {
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const { outcome } = await deferredPrompt.userChoice;
+
+    console.log("Resultado instalación:", outcome);
+
+    deferredPrompt = null;
+
+    $("#install-banner").fadeOut();
+});
+
+</script>
+
+<script>
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+    $("#install-banner").hide();
+}
+</script>
 
 <script>
 // ================== VARIABLES ==================
