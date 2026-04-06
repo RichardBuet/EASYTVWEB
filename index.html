@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.7d</title>
+    <title>Easy Web TV RB - BTN v3.8</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -938,10 +938,16 @@ $("#clear-history").click(function () {
 }
 });
 
-
-
 </script>
 
+<script id="sw-register">
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("SW registrado"))
+        .catch(err => console.log("SW error", err));
+}
+</script>
+    
 </body>
 
 </html>
