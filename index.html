@@ -24,7 +24,7 @@ body, html {
     height: -webkit-fill-available; 
     min-width: 290px;}
 
-h2 {margin: 0;} 
+h2 {margin: 0; font-size: 1.8em;} 
 
 *::-webkit-scrollbar {
     width: 10px;
@@ -68,7 +68,8 @@ h2 {margin: 0;}
     top: 34%!important;
     left: calc(100% / 2 - 0.65em) !important;
     margin: -25px 0px 0px -25px;
-    opacity: 0.85!important;}
+    opacity: 0.85!important;
+}
 .vjs-error .vjs-error-display:before {top: 34%!important;}
 .vjs-loading-spinner { top: 34%!important;}
 .vjs-error .vjs-loading-spinner { display: none!important;}
@@ -76,8 +77,18 @@ h2 {margin: 0;}
 .vjs-poster, .video-js .vjs-progress-control { display: none;}
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
-.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.7em !important;}
+.vjs-error .vjs-error-display .vjs-modal-dialog-content {
+    font-size: 1rem !important;
+    /* top: 40%; */
+    translate: 0 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.6rem;
+}
+      /*font-size: 1.7em !important;}*/
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
 .video-js .vjs-big-play-button { font-size: 0!important;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
     content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
@@ -278,7 +289,7 @@ button.list-item{
     justify-content: space-around;    
     position: absolute;
     width: calc(100vw - 16px);
-    top: 36px;
+    top: 42px;
     cursor: pointer;
 } 
 
@@ -289,6 +300,9 @@ button.list-item{
 
 
 @media (max-aspect-ratio: 1.40) {
+    .vjs-error .vjs-error-display:before { 
+    content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 27% !important; scale: 0.7;}
+    .vjs-error .vjs-error-display .vjs-modal-dialog-content { font-size: 0.7rem !important;}
     #rl-bar { flex-direction: column;}
     .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px);}
     #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
@@ -475,7 +489,7 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 
 </div>
 
-    <div id="install-banner">
+<div id="install-banner">
     📲 Instalar Easy TV
 </div>
 
@@ -514,6 +528,7 @@ $("#install-banner").click(async function () {
     $("#install-banner").hide();
 }
 </script>
+
 
 <script>
 // ================== VARIABLES ==================
@@ -992,6 +1007,7 @@ $("#clear-history").click(function () {
 
 </script>
 
+
 <script id="sw-register">
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js')
@@ -999,7 +1015,8 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.log("SW error", err));
 }
 </script>
-    
+
+
 </body>
 
 </html>
