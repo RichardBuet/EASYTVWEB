@@ -77,17 +77,17 @@ h2 {margin: 0; font-size: 1.8em;}
 .vjs-poster, .video-js .vjs-progress-control { display: none;}
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
-/*.vjs-error .vjs-error-display .vjs-modal-dialog-content {
+.vjs-modal-dialog-content {
     font-size: 1rem !important;
-    /* top: 40%; * /
+    /* top: 40%; */
     translate: 0 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 0.6rem;
+    padding-top: 0.6rem !important;
 }
       /*font-size: 1.7em !important;}*/
-.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
+/*.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}*/
 
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
 
@@ -302,9 +302,9 @@ button.list-item{
 
 
 @media (max-aspect-ratio: 1.40) {
-/*    .vjs-error .vjs-error-display:before { 
+    .vjs-error .vjs-error-display:before { 
     content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 27% !important; scale: 0.7;}
-    .vjs-error .vjs-error-display .vjs-modal-dialog-content { font-size: 0.7rem !important;}*/
+    .vjs-modal-dialog-content { font-size: 0.7rem !important;}
     #rl-bar { flex-direction: column;}
     .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px);}
     #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
