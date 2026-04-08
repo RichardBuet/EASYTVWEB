@@ -109,7 +109,14 @@ h2 {margin: 0; font-size: 1.8em;}
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;}
 
+/* Asegura que el póster no se oculte mientras el vídeo está en estado de carga */
+.vjs-waiting .vjs-poster, 
+.vjs-seeking .vjs-poster {
+    display: block !important;
+}
 
+
+    
 /* ####  SEGUNDO  #### */
 #lists { 
     display: flex;
