@@ -70,7 +70,11 @@ h2 {margin: 0; font-size: 1.8em;}
 
 #my-video {border-radius: 4px;}
 
-.video-js{ width: 131vh; height:  -webkit-fill-available; max-height: 100vh; max-width: calc(100vh* 16 / 9);}
+.video-js{ width: 131vh; 
+    height:  -webkit-fill-available; 
+    max-height: 100vh; 
+    max-width: calc(100vh* 16 / 9);
+}
 /*.video-js .vjs-tech {
     position: absolute;
     top: 0;
@@ -83,10 +87,11 @@ h2 {margin: 0; font-size: 1.8em;}
 /* 🎬 VIDEO (SIEMPRE ARRIBA) */
 .video-js .vjs-tech {
     position: absolute;
-    top: 0;
+    top: -3px;
     left: 0;
     width: 100%;
-    height: auto;
+    /* height: auto; */
+    max-height: 100vh;
     z-index: 2; /* 🔥 más alto */
 }
 .video-js .vjs-control-bar {
