@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v3.8</title>
+    <title>Easy Web TV RB - BTN v3.8a</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -74,7 +74,16 @@ h2 {margin: 0; font-size: 1.8em;}
 .vjs-loading-spinner { top: 34%!important;}
 .vjs-error .vjs-loading-spinner { display: none!important;}
 
-.vjs-poster, .video-js .vjs-progress-control { display: none;}
+/*.vjs-poster, .video-js .vjs-progress-control { display: none;}*/
+
+.video-js .vjs-progress-control { 
+    display: none;
+}
+
+.vjs-poster {
+    display: block !important;
+}
+
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
 /*.vjs-modal-dialog-content {
@@ -109,14 +118,7 @@ h2 {margin: 0; font-size: 1.8em;}
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;}
 
-/* Asegura que el póster no se oculte mientras el vídeo está en estado de carga */
-.vjs-waiting .vjs-poster, 
-.vjs-seeking .vjs-poster {
-    display: block !important;
-}
 
-
-    
 /* ####  SEGUNDO  #### */
 #lists { 
     display: flex;
@@ -614,31 +616,82 @@ $("#search")
 
 
 // 🎬 PLAYER
+// function playHLS(url) {
+//     var player = videojs('my-video');
+
+//     player.src({
+//         src: url,
+//         type: 'application/x-mpegURL'
+//     });
+
+//     player.play();
+//     currentLink = url;
+
+//     player.on('playing', function () {
+//     $("#link-info-container").fadeOut();
+//     });
+
+
+//     player.on('waiting', function () {
+//     // 🔥 SOLO si auto-next está activo
+//     if (autoNextEnabled) {
+//         $("#link-info-container")
+//             .html("🔄 Buscando señal...")
+//             .show();
+//         }
+//     });
+// }
+
 function playHLS(url) {
+
     var player = videojs('my-video');
 
+    // 🔥 limpiar eventos (CLAVE)
+    player.off('playing');
+    player.off('waiting');
+
+    // 🔥 limpiar estado de video (CLAVE PARA iPHONE)
+    player.pause();
+
     player.src({
-        src: url,
-        type: 'application/x-mpegURL'
+        src: "",
+        type: ""
     });
 
-    player.play();
+    player.load(); // 🔥 ESTE ES EL SECRETO
+
+    // 🔥 forzar poster
+    player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
+
+    setTimeout(() => {
+
+        player.src({
+            src: url,
+            type: 'application/x-mpegURL'
+        });
+
+        player.play();
+
+    }, 120);
+
     currentLink = url;
 
     player.on('playing', function () {
-    $("#link-info-container").fadeOut();
+        $("#link-info-container").fadeOut();
     });
 
-
     player.on('waiting', function () {
-    // 🔥 SOLO si auto-next está activo
-    if (autoNextEnabled) {
-        $("#link-info-container")
-            .html("🔄 Buscando señal...")
-            .show();
+        if (autoNextEnabled) {
+            $("#link-info-container")
+                .html("🔄 Buscando señal...")
+                .show();
         }
     });
 }
+
+
+
+
 // 🧠 PARSER
 function getChannelData(line) {
     const nameMatch = line.match(/,(.*)/);
