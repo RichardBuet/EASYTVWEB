@@ -51,17 +51,46 @@ h2 {margin: 0; font-size: 1.8em;}
 #rl-bar{display: flex; flex-direction: row; margin-top: 10px; gap: 10px; }
 
 /* ####  PRIMERO  #### */
-#player { display: flex; margin: 0 auto; width: max-content; z-index: 2;}
+/*#player { 
+    display: flex; 
+    margin: 0 auto; 
+    width: max-content; 
+    z-index: 2;
+}*/
+
+#player {
+    display: flex;
+    margin: 0 auto;
+    width: max-content;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 #my-video {border-radius: 4px;}
 
-.video-js{ width: 131vh; height: auto; max-height: 100vh; max-width: calc(100vh* 16 / 9);}
-.video-js .vjs-tech {
+.video-js{ width: 131vh; height:  -webkit-fill-available; max-height: 100vh; max-width: calc(100vh* 16 / 9);}
+/*.video-js .vjs-tech {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     max-height: 100vh;
-    border-radius: 4px;}
+    border-radius: 4px;}*/
+
+
+/* 🎬 VIDEO (SIEMPRE ARRIBA) */
+.video-js .vjs-tech {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 2; /* 🔥 más alto */
+}
+
 :not(:root):fullscreen { user-select: text; height: 100%;}
 .vjs-big-play-button { 
     position: absolute;
@@ -70,7 +99,7 @@ h2 {margin: 0; font-size: 1.8em;}
     margin: -25px 0px 0px -25px;
     opacity: 0.85!important;
 }
-.vjs-error .vjs-error-display:before {top: 34%!important;}
+
 .vjs-loading-spinner { top: 34%!important;}
 .vjs-error .vjs-loading-spinner { display: none!important;}
 
@@ -79,10 +108,6 @@ h2 {margin: 0; font-size: 1.8em;}
 .video-js .vjs-progress-control { 
     display: none;
 }
-
-/*.vjs-poster {
-    display: block !important;
-}*/
 
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
@@ -107,8 +132,23 @@ h2 {margin: 0; font-size: 1.8em;}
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;}*/
 
+/*.vjs-error .vjs-error-display:before {top: 34%!important;}*/
+
+/* 🖼 POSTER (ATRÁS) */
+.vjs-poster {
+    display: block !important;
+    z-index: 1;
+}
+
+/* 🚫 OCULTAR overlay de error */
+.vjs-error-display {
+    display: none !important;
+}
+
 .vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
+
 .video-js .vjs-big-play-button { font-size: 0!important;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
     content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
@@ -117,6 +157,9 @@ h2 {margin: 0; font-size: 1.8em;}
     /* left: calc(100% / 3 - 0.35em) !important; */
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;}
+
+
+
 
 
 /* ####  SEGUNDO  #### */
@@ -350,7 +393,7 @@ button.list-item{
     content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 27% !important; scale: 0.7;}
     .vjs-modal-dialog-content { font-size: 0.7rem !important;}*/
     #rl-bar { flex-direction: column;}
-    .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px);}
+    .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px); position: relative;}
     #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
     #playList { padding-top: 2px; gap: 0.5rem; }
     button.list-item {  padding: 8px 0; font-size: 0.6em; }
@@ -367,11 +410,14 @@ button.list-item{
   to { opacity: 0; }
 }
 
+.video-js {
+    position: relative;
+}
 
-#link-info-container {
+/*#link-info-container {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 74px;
     left: 50%;
     transform: translate(-50%, 0%);
     max-width: 94vw;
@@ -387,6 +433,34 @@ button.list-item{
 
     padding: 6px 10px;
     font-size: 0.85em;
+}*/
+
+.video-wrapper {
+    position: relative; /* 🔥 referencia correcta */
+}
+
+#link-info-container {
+    position: absolute;
+
+/*    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+
+    max-width: 80%;
+    padding: 6px 9px;
+
+    background-color: rgba(0,0,0,0.75);
+    color: #fff;
+
+    border-radius: 5px;
+    text-align: center;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    font-size: 0.6em;
+    margin-bottom: 36px;
 }
 
 #link-info-container.show {
@@ -512,8 +586,7 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 <div id="nombreCanal">Bienvenido Easy Web TV || Probá M3U y ver URL de Link</div>
 
 <!-- Contenedor flotante para mostrar el enlace -->
-<div id="link-info-container" > Enlace actual:
-</div>
+
 
 <div id="rl-bar">
 
@@ -521,6 +594,8 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
+        <div id="link-info-container" > Enlace actual:
+</div>
     </div>
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
@@ -923,65 +998,59 @@ $(document).ready(function () {
     });
 
     // 🎬 PLAYER
-    var player = videojs('my-video');
+// 🎬 PLAYER
+var player = videojs('my-video');
 
-    player.on('error', function() {
-
+player.on('error', function() {
 
     console.log("Error de señal");
 
     player.pause();
 
-    // 🔥 mostrar poster SOLO en error
+    // 🖼 mostrar poster
     player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
 
-        player.errorDisplay.fillWith('Señal fuera de servicio...');
+    if (autoNextEnabled) {
 
-        if (autoNextEnabled) {
+        let attempts = 0;
 
-            let attempts = 0;
+        function tryNext() {
 
-            function tryNext() {
+            currentIndex++;
 
-                currentIndex++;
-
-                if (currentIndex >= channelsGlobal.length || attempts > 10) {
-                    console.log("No se encontró canal válido");
-                    player.errorDisplay.show();
-                    return;
-                }
-
-                let next = channelsGlobal[currentIndex];
-
-                console.log("Probando:", next.name);
-
-                $("#link-info-container")
-                .html(`🔄 Probando: <br><b>${next.name}</b>`)
-                .show();
-
-                playHLS(next.url);
-                $("#nombreCanal").text(next.name);
-
-                // 🔥 marcar botón activo correctamente
-                $(".list-item").removeClass("active");
-
-                // usar índice real (MUY IMPORTANTE)
-                let btn = $("#playList button").eq(currentIndex);
-
-                btn.addClass("active");
-
-                // opcional: scroll
-               // btn[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
-
-                attempts++;
+            if (currentIndex >= channelsGlobal.length || attempts > 10) {
+                console.log("No se encontró canal válido");
+                return;
             }
 
-            setTimeout(tryNext, 1500);
+            let next = channelsGlobal[currentIndex];
 
-        } else {
-            player.errorDisplay.show();
+            console.log("Probando:", next.name);
+
+            $("#link-info-container")
+            .html(`🔄 Probando: <br><b>${next.name}</b>`)
+            .show();
+
+            playHLS(next.url);
+            $("#nombreCanal").text(next.name);
+
+            $(".list-item").removeClass("active");
+
+            let btn = $("#playList button").eq(currentIndex);
+            btn.addClass("active");
+
+            attempts++;
         }
-    });
+
+        setTimeout(tryNext, 1500);
+
+    } else {
+
+        $("#link-info-container")
+        .html("❌ Señal fuera de servicio")
+        .show();
+    }
+});
 
 });
 
