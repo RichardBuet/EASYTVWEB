@@ -80,9 +80,9 @@ h2 {margin: 0; font-size: 1.8em;}
     display: none;
 }
 
-.vjs-poster {
+/*.vjs-poster {
     display: block !important;
-}
+}*/
 
 .video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
 
@@ -141,10 +141,6 @@ h2 {margin: 0; font-size: 1.8em;}
     transition: all 0.2s ease;
 }
 
-.list-item:not(.active):hover {
-    background: #ffffff10;
-    transform: scale(1.03);
-}
 .list-item:first-letter {  
     text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ 
 }
@@ -316,6 +312,33 @@ button.list-item{
     cursor: pointer;
 } 
 
+/*  PARA PANTALLA TACTIL Y CONVENCIONAL  */
+
+/* Estilos para dispositivos con mouse (puntero fino) */
+@media (hover: hover) and (pointer: fine) {
+  .active:hover {
+        background: #ffffff10; /*#ffffff10;*/
+        transform: scale(1.03); /* Tu estilo de hover aquí */
+    /* Ejemplo: .btn:hover { ... } */
+  }
+  .list-item:not(.active):hover {
+    background: #2aba21; /*#ffffff10;*/
+    transform: scale(1.03);
+}
+}
+
+/* Estilos para pantallas táctiles (sin hover o tacto) */
+@media (hover: hover) { /*none) {*/
+  .active:active {
+        background: #14395b;
+        transform: scale(1.03);  /* Mismo estilo al tocar */
+  }
+}
+
+/*.list-item:not(.active):hover {
+    background: #ffffff10;
+    transform: scale(1.03);
+}*/
 
 
 
@@ -646,33 +669,21 @@ function playHLS(url) {
 
     var player = videojs('my-video');
 
-    // 🔥 limpiar eventos (CLAVE)
+    // 🔥 limpiar eventos duplicados
     player.off('playing');
     player.off('waiting');
 
-    // 🔥 limpiar estado de video (CLAVE PARA iPHONE)
+    // 🔥 pausar video actual
     player.pause();
 
+    // 🔥 cambiar fuente directamente (SIN limpiar de más)
     player.src({
-        src: "",
-        type: ""
+        src: url,
+        type: 'application/x-mpegURL'
     });
 
-    player.load(); // 🔥 ESTE ES EL SECRETO
-
-    // 🔥 forzar poster
-    player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
-
-    setTimeout(() => {
-
-        player.src({
-            src: url,
-            type: 'application/x-mpegURL'
-        });
-
-        player.play();
-
-    }, 120);
+    // 🔥 forzar play
+    player.play();
 
     currentLink = url;
 
@@ -915,6 +926,14 @@ $(document).ready(function () {
     var player = videojs('my-video');
 
     player.on('error', function() {
+
+
+    console.log("Error de señal");
+
+    player.pause();
+
+    // 🔥 mostrar poster SOLO en error
+    player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
 
         player.errorDisplay.fillWith('Señal fuera de servicio...');
 
