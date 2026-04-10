@@ -401,7 +401,7 @@ button.list-item{
     content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 27% !important; scale: 0.7;}
     .vjs-modal-dialog-content { font-size: 0.7rem !important;}*/
     #rl-bar { flex-direction: column;}
-    .video-js { width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px); position: relative;}
+    .video-js { max-height: 100vh; width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px); position: relative;}
     #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
     #playList { padding-top: 2px; gap: 0.5rem; }
     button.list-item {  padding: 8px 0; font-size: 0.6em; }
@@ -782,6 +782,8 @@ function playHLS(url) {
                 .show();
         }
     });
+
+// SIEMPRE APARECE "BUSCANDO CANAL EN ON Y OFF"
 
 let showingLoading = false;
 
