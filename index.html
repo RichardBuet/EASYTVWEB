@@ -100,9 +100,16 @@ h2 {margin: 0; font-size: 1.8em;}
     opacity: 0.85!important;
 }
 
-.vjs-loading-spinner { top: 34%!important;}
-.vjs-error .vjs-loading-spinner { display: none!important;}
+/*.vjs-loading-spinner { top: 34%!important;}*/
+/*.vjs-error .vjs-loading-spinner { display: none!important;}*/
 
+.vjs-loading-spinner {
+    /*display: block !important;*/
+    /*display: none !important;*/
+    z-index: 2;
+    top: 32%!important;
+     transform: scale(0.5);
+}
 /*.vjs-poster, .video-js .vjs-progress-control { display: none;}*/
 
 .video-js .vjs-progress-control { 
@@ -460,7 +467,7 @@ button.list-item{
     pointer-events: none;
 
     font-size: 0.6em;
-    margin-bottom: 36px;
+    margin-bottom: 2.5em;
 }
 
 #link-info-container.show {
@@ -657,7 +664,8 @@ let autoNextEnabled = false;
 let channelsGlobal = [];
 let currentIndex = 0;
 
-let currentLink = "";
+// let currentLink = "";
+let currentLink = null;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
 
 
@@ -920,6 +928,7 @@ function cargarDefault() {
 // 🎛️ EVENTOS
 $(document).ready(function () {
 
+    $("#link-info-container").hide(); 
     loadChannels(defaultM3U);
     renderHistory();
 
@@ -992,10 +1001,20 @@ $(document).ready(function () {
 
 
     // 🔗 VER LINK
+    // $("#nombreCanal").click(function() {
+    //     $("#link-info-container").text(currentLink).show();
+    //     setTimeout(() => $("#link-info-container").hide(), 5000);
+    // });
     $("#nombreCanal").click(function() {
-        $("#link-info-container").text(currentLink).show();
-        setTimeout(() => $("#link-info-container").hide(), 5000);
-    });
+
+    if (!currentLink) return; // 🔥 clave
+
+    $("#link-info-container")
+        .text(currentLink)
+        .show();
+
+    setTimeout(() => $("#link-info-container").hide(), 5000);
+});
 
     // 🎬 PLAYER
 // 🎬 PLAYER
@@ -1049,6 +1068,8 @@ player.on('error', function() {
         $("#link-info-container")
         .html("❌ Señal fuera de servicio")
         .show();
+        // $(".vjs-loading-spinner").fadeOut(100);
+
     }
 });
 
