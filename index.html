@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Easy Web TV RB - BTN v3.8a</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png">
+    <meta name="description" content="Prueba de lista M3U">
+
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+<style>
+
+body, html { 
+    background: #111111; 
+    overflow-x: hidden;
+    overflow-y: clip;
+    font-family: sans-serif;
+    color: #fff; 
+    height: -webkit-fill-available; 
+    min-width: 290px;}
+
+h2 {margin: 0; font-size: 1.8em;} 
+
+*::-webkit-scrollbar {
+    width: 10px;
+
+    margin: 0 4px;
+    background: #5f9ea01c;
+    border-radius: 15px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #74089342;
+    border-radius: 15px;
+    border: 2px solid #8e06d49e;
+    height: 10%;
+}
+*:focus-visible {
+    outline: #00FF00;
+    outline-style: groove;
+}
+
+/* ####  TITULO  #### */
+#top-bar { background: #111222; text-align: center; cursor: pointer; padding-bottom: 20px;}
+
+/* ####  MENU  #### */
+#rl-bar{display: flex; flex-direction: row; margin-top: 10px; gap: 10px; }
+
+/* ####  PRIMERO  #### */
+/*#player { 
+    display: flex; 
+    margin: 0 auto; 
+    width: max-content; 
+    z-index: 2;
+}*/
+
+#player {
+    display: flex;
+    margin: 0 auto;
+    width: max-content;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#my-video {border-radius: 4px;}
+
+.video-js{ width: 131vh; 
+    height:  -webkit-fill-available; 
+    max-height: 100vh; 
+    max-width: calc(100vh* 16 / 9);
+}
+/*.video-js .vjs-tech {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+    border-radius: 4px;}*/
+
+
+/* 🎬 VIDEO (SIEMPRE ARRIBA) */
+.video-js .vjs-tech {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    /* height: auto; */
+    max-height: 100vh;
+    z-index: 2; /* 🔥 más alto */
+}
+.video-js .vjs-control-bar {
+    z-index: 2;
+}
+
+:not(:root):fullscreen { user-select: text; height: 100%;}
+.vjs-big-play-button { 
+    position: absolute;
+    top: 34%!important;
+    left: calc(100% / 2 - 0.65em) !important;
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85!important;
+}
+
+/*.vjs-loading-spinner { top: 34%!important;}*/
+/*.vjs-error .vjs-loading-spinner { display: none!important;}*/
+
+.vjs-loading-spinner {
+    z-index: 2;
+    top: 32%!important;
+    transform: scale(0.5);
+}
+/*.vjs-poster, .video-js .vjs-progress-control { display: none;}*/
+
+.video-js .vjs-progress-control { 
+    display: none;
+}
+
+.video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
+
+/*.vjs-modal-dialog-content {
+    font-size: 1rem !important;
+    /* top: 40%; * /
+    translate: 0 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.6rem !important;
+}
+      /*font-size: 1.7em !important;}*/
+/*.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}* /
+
+.vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
+.video-js .vjs-big-play-button { font-size: 0!important;}
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+    content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
+    SCALE: 80%;
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85 !important;}*/
+
+/*.vjs-error .vjs-error-display:before {top: 34%!important;}*/
+
+/* 🖼 POSTER (ATRÁS) */
+.vjs-poster {
+    display: block !important;
+    z-index: 1;
+}
+
+/* 🚫 OCULTAR overlay de error */
+.vjs-error-display {
+    display: none !important;
+}
+
+.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
+.vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
+
+.video-js .vjs-big-play-button { font-size: 0!important;}
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+    content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
+    SCALE: 80%;
+    /* top: 22% !important; */
+    /* left: calc(100% / 3 - 0.35em) !important; */
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85 !important;}
+
+
+
+
+
+/* ####  SEGUNDO  #### */
+#lists { 
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow: auto;
+    overflow-x: hidden;
+    height: 74vh;
+    width: -webkit-fill-available;
+    z-index: 2;
+    list-style: none;
+}
+.list-item { 
+    cursor: pointer; 
+    color: #fff; 
+    text-overflow: ellipsis;
+    text-transform: uppercase; /* Convertir todo el texto a minúsculas lowercase */
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.list-item:first-letter {  
+    text-transform: uppercase; /* Convertir la primera letra a mayúscula uppercase */ 
+}
+.list-item.active {
+    border: 2px solid #00ffcc;
+    background: linear-gradient(90deg, #00ffcc33, #00ffcc66);
+    color: #00ffcc;
+    font-weight: bold;
+    box-shadow: 0 0 4px #00ffcc;
+}
+
+#playList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    /*gap: 0.45rem; 1y2opciones 0.6rem;*/
+    gap: calc(100vh / 50);
+    padding-top: 2px;
+    height: auto!important;
+    }
+
+
+#playList div {
+    grid-column: 1 / -1;
+    color: #00ffcc;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #00ffcc33;
+}
+
+button.list-item{
+    padding: 8px 0; 
+    margin: auto 3px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 0.5rem;
+    border: 1px solid rgb(72 97 135);
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+    cursor: pointer;
+    transition: background 1.3s, color 1.3s;
+    border-style: inset;
+}
+
+
+
+/* #### Estilos para el formulario flotante #### */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
+#m3u-url {
+    width: 80vw;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    background: #f0fff0;
+}
+
+#form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
+#form-btn {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;   /* 🔥 CLAVE */
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+}
+
+
+#preset-lists button {
+    font-size: 0.7em;
+    padding: 6px;
+    border-radius: 6px;
+    background: #1f3f5b;
+    color: #fff;
+    border: 1px solid #3a6b9a;
+}
+
+#form-container button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #3a6b9a;
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+    font-size: 0.75em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#form-container button:hover {
+    background: #2a5f8f;
+    color: #fff;
+}
+
+#form-container button:active {
+    transform: scale(0.95);
+}
+
+#ok-button { 
+    border-color: #2ecc71;     
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);}      /* verde */
+#clear-button { border-color: #f39c12; }   /* naranja */
+#exit-button { border-color: #e74c3c; }    /* rojo */
+#default-button { border-color: #3498db; } /* azul */
+
+.form-btn {
+    flex: 1 1 auto;      /* 🔥 clave */
+    min-width: 80px;    /* controla cuándo baja */
+
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #3a6b9a;
+
+    background: linear-gradient(90deg, #14395b 10%, #20496e 50%, #14395b 90%);
+    color: #dae6ec;
+
+    font-size: 0.75em;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.form-btn:hover {
+    background: #2a5f8f;
+    color: #fff;
+}
+
+.form-btn:active {
+    transform: scale(0.95);
+}
+
+
+
+#nombreCanal {
+    animation: none;    
+    font-size: 0.8rem; /*medium;*/
+    text-transform: uppercase;
+    opacity: 1;
+    color: rgb(8 254 0 / 80%);
+    display: flex;
+    justify-content: space-around;    
+    position: absolute;
+    width: calc(100vw - 16px);
+    top: 42px;
+    cursor: pointer;
+} 
+
+/*  PARA PANTALLA TACTIL Y CONVENCIONAL  */
+
+/* Estilos para dispositivos con mouse (puntero fino) */
+@media (hover: hover) and (pointer: fine) {
+  .active:hover {
+        background: #ffffff10; /*#ffffff10;*/
+        transform: scale(1.03); /* Tu estilo de hover aquí */
+    /* Ejemplo: .btn:hover { ... } */
+  }
+  .list-item:not(.active):hover {
+    background: #2aba21; /*#ffffff10;*/
+    transform: scale(1.03);
+}
+}
+
+/* Estilos para pantallas táctiles (sin hover o tacto) */
+@media (hover: hover) { /*none) {*/
+  .active:active {
+        background: #14395b;
+        transform: scale(1.03);  /* Mismo estilo al tocar */
+  }
+}
+
+/*.list-item:not(.active):hover {
+    background: #ffffff10;
+    transform: scale(1.03);
+}*/
+
+
+
+/*  PARA PANTALLA VERTICAL  */
+
+
+@media (max-aspect-ratio: 1.40) {
+/*    .vjs-error .vjs-error-display:before { 
+    content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 27% !important; scale: 0.7;}
+    .vjs-modal-dialog-content { font-size: 0.7rem !important;}*/
+    #rl-bar { flex-direction: column;}
+    .video-js { max-height: 100vh; width: calc(100vw - 16px); height: calc((100vw * 9 / 16) - 8px); position: relative;}
+    #lists { height: calc(100vh - (100vw * 9 / 16) - 80px);  margin-top: 3px; }
+    #playList { padding-top: 2px; gap: 0.5rem; }
+    button.list-item {  padding: 8px 0; font-size: 0.6em; }
+}
+
+
+@keyframes fadeInOut {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutIn {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.video-js {
+    position: relative;
+}
+
+/*#link-info-container {
+    display: none;
+    position: fixed;
+    top: 74px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    max-width: 94vw;
+    width: auto;    
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    z-index: 1000;
+    color: #000;
+
+    white-space: normal;
+    word-break: break-word;
+
+    padding: 6px 10px;
+    font-size: 0.85em;
+}*/
+
+.video-wrapper {
+    position: relative; /* 🔥 referencia correcta */
+}
+
+#link-info-container {
+    position: absolute;
+
+/*    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+
+    max-width: 80%;
+    padding: 6px 9px;
+
+    background-color: rgba(0,0,0,0.75);
+    color: #fff;
+
+    border-radius: 5px;
+    text-align: center;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    font-size: 0.6em;
+    margin-bottom: 2.5em;
+}
+
+#link-info-container.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/*-------------------*/
+#search-bar {
+    display: flex;
+    gap: 6px;
+    margin: 3px;
+}
+
+#search {
+    flex: 7;
+    padding: 6px;
+    border-radius: 8px;
+    background: #111;
+    color: #00ffcc;
+    border: 1px solid #333;
+}
+
+#auto-next-btn {
+    flex: 3;
+    border-radius: 8px;
+    background: #14395b;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    font-size: 0.7em;
+}
+
+#m3u-url {
+    width: 80vw;
+    max-width: 90vw;
+    border-radius: 6px;
+    padding: 6px;
+    resize: none;
+    overflow-wrap: break-word;
+    background: #f0fff0;
+}
+
+#m3u-history {
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.history-item {
+    font-size: 0.9em;
+    padding: 4px;
+    cursor: pointer;
+    color: #1904fd;
+}
+
+.history-item:hover {
+    background: #00ffcc22;
+}
+
+#install-banner {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1abc9c;
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.8em;
+    z-index: 4;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="top-bar">
+<h2>EASY TV WEB - LINK M3U</h2>
+</div>
+
+<!-- Formulario flotante 
+url: 'https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/main/listRB.m3u',
+https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
+
+-->
+<div id="overlay"></div>
+<!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
+<div id="form-container">
+
+    <!-- 🔥 textarea en vez de input -->
+    <textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U"></textarea>
+
+    <div id="form-btn">
+        <button class="form-btn" id="ok-button">Cargar</button>
+        <button class="form-btn" id="clear-button">Limpiar</button>
+        <button class="form-btn" id="exit-button">Cerrar</button>
+        <button class="form-btn" id="default-button">Default</button>
+        <button class="form-btn" id="clear-history">🗑 Borrar historial</button>
+        <button class="form-btn" id="paste-button">📋 Pegar</button>
+    </div>
+
+    <!-- presets -->
+    <div id="preset-lists" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.m3u">🌍 Global</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Argentina</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/categories/news.m3u">📰 Noticias</button>
+        <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_pluto.m3u">📺 Pluto</button>
+        <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_rakuten.m3u">📺 Rakuten</button>
+        <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio 40 TV</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Categorías</button>
+    </div>
+
+    <!-- 🔥 HISTORIAL -->
+    <div id="m3u-history"></div>
+
+</div>
+
+<div id="nombreCanal">Bienvenido Easy Web TV || Probá M3U y ver URL de Link</div>
+
+<!-- Contenedor flotante para mostrar el enlace -->
+
+
+<div id="rl-bar">
+
+    <div id="player">
+        <div id="link-info-container" > Enlace actual:</div>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
+        </video>
+
+    </div>
+    <!-- Elemento de formación de Lista -->
+    <div id="lists"> 
+        <!-- Buscador -->
+
+    <div id="search-bar">
+        <input type="text" id="search" placeholder="Buscador de canal...">
+        <button id="auto-next-btn">Auto ▶ OFF</button>
+    </div>
+
+    <div id="playList"></div> </div>
+
+</div>
+
+<div id="install-banner">
+    📲 Instalar Easy TV
+</div>
+
+<script>
+    
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // mostrar banner
+    $("#install-banner").fadeIn();
+});
+
+// click → instalar
+$("#install-banner").click(async function () {
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const { outcome } = await deferredPrompt.userChoice;
+
+    console.log("Resultado instalación:", outcome);
+
+    deferredPrompt = null;
+
+    $("#install-banner").fadeOut();
+});
+
+</script>
+
+<script>
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+    $("#install-banner").hide();
+}
+</script>
+
+
+<script>
+// ================== VARIABLES ==================
+let autoNextEnabled = false;
+let channelsGlobal = [];
+let currentIndex = 0;
+
+// let currentLink = "";
+let currentLink = null;
+const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
+
+
+// 🔍 BUSCADOR COMPLETO
+$("#search")
+.on("focus", function() {
+    this.select();
+})
+.on("input", function() {
+
+    let value = $(this).val().toLowerCase();
+
+    $("#no-results").remove();
+
+    // 🔍 Filtrar botones
+    $("#playList button").each(function() {
+        let match = $(this).text().toLowerCase().includes(value);
+        $(this).css("display", match ? "" : "none");
+    });
+
+    // 🔥 Ocultar grupos
+    $("#playList .group-title").each(function() {
+
+        let group = $(this);
+
+        let hasVisible = group
+            .nextUntil(".group-title")
+            .filter("button:visible")
+            .length > 0;
+
+        group.css("display", hasVisible ? "" : "none");
+    });
+
+    // ⚠️ sin resultados
+    if ($("#playList button:visible").length === 0) {
+
+        $(".group-title").hide();
+
+        $("#playList").append(`
+            <div id="no-results" style="text-align:center; padding:10px;">
+                ❌ Sin resultados
+            </div>
+        `);
+    }
+
+    // 🔄 reset
+    if (value === "") {
+        $("#playList button").show();
+        $("#playList .group-title").show();
+        $("#no-results").remove();
+    }
+
+});
+
+
+// 🎬 PLAYER
+// function playHLS(url) {
+//     var player = videojs('my-video');
+
+//     player.src({
+//         src: url,
+//         type: 'application/x-mpegURL'
+//     });
+
+//     player.play();
+//     currentLink = url;
+
+//     player.on('playing', function () {
+//     $("#link-info-container").fadeOut();
+//     });
+
+
+//     player.on('waiting', function () {
+//     // 🔥 SOLO si auto-next está activo
+//     if (autoNextEnabled) {
+//         $("#link-info-container")
+//             .html("🔄 Buscando señal...")
+//             .show();
+//         }
+//     });
+// }
+
+function playHLS(url) {
+
+    var player = videojs('my-video');
+
+    // 🔥 limpiar eventos duplicados
+    player.off('playing');
+    player.off('waiting');
+
+    // 🔥 pausar video actual
+    player.pause();
+
+    // 🔥 cambiar fuente directamente (SIN limpiar de más)
+    player.src({
+        src: url,
+        type: 'application/x-mpegURL'
+    });
+
+    // 🔥 forzar play
+    player.play();
+
+    currentLink = url;
+
+    player.on('playing', function () {
+        $("#link-info-container").fadeOut();
+    });
+
+    player.on('waiting', function () {
+        if (autoNextEnabled) {
+            $("#link-info-container")
+                .html("🔄 Buscando señal...")
+                .show();
+        }
+    });
+
+// SIEMPRE APARECE "BUSCANDO CANAL EN ON Y OFF"
+
+let showingLoading = false;
+
+player.on('waiting', function () {
+
+    if (!showingLoading) {
+
+        showingLoading = true;
+
+        $("#link-info-container")
+            .html("🔄 Buscando señal...")
+            .show();
+    }
+});
+
+player.on('playing', function () {
+    showingLoading = false;
+    $("#link-info-container").fadeOut();
+});
+
+player.on('error', function () {
+    showingLoading = false;
+});
+
+}
+
+
+
+
+// 🧠 PARSER
+function getChannelData(line) {
+    const nameMatch = line.match(/,(.*)/);
+    const groupMatch = line.match(/group-title="([^"]*)"/);
+
+    let name = nameMatch ? nameMatch[1].trim() : "Unknown";
+    let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
+
+    if (!group ||
+        group.toLowerCase() === "undefined" ||
+        group.toLowerCase() === "n/a" ||
+        group.toLowerCase() === "none"
+    ) {
+        group = "Canales de TV";
+    }
+
+    return { name, group };
+}
+
+
+// 📡 CARGA DE LISTA
+function loadChannels(url) {
+
+    $("#playList").html(`
+        <div style="text-align:center; padding:20px;">
+            ⏳ Cargando lista...
+        </div>
+    `);
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 10000,
+
+        success: function (message) {
+
+            let lines = message.split("\n");
+            let channels = [];
+            let currentChannel = { name: "", url: "", group: "General" };
+
+            lines.forEach(line => {
+                line = line.trim();
+
+                if (line.startsWith("#EXTINF")) {
+                    let data = getChannelData(line);
+                    currentChannel.name = data.name;
+                    currentChannel.group = data.group;
+
+                } else if (line !== "" && !line.startsWith("#")) {
+
+                    currentChannel.url = line;
+
+                    if (currentChannel.name && currentChannel.url) {
+                        let groups = currentChannel.group.split(";");
+
+                        groups.forEach(g => {
+                            channels.push({
+                                name: currentChannel.name,
+                                url: currentChannel.url,
+                                group: g.trim() || "General"
+                            });
+                        });
+                    }
+
+                    currentChannel = { name: "", url: "", group: "General" };
+                }
+            });
+
+            // 🔥 eliminar duplicados (FIX)
+            let seen = new Set();
+            channels = channels.filter(ch => {
+                let key = ch.name + ch.group;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+
+            // 🔥 GUARDAR LISTA GLOBAL (CLAVE)
+            channelsGlobal = channels;
+
+            if (channels.length === 0) {
+                $("#playList").html(`⚠️ Lista sin canales`);
+                return;
+            }
+
+            // 🔥 AGRUPAR
+            let grouped = {};
+
+            channels.forEach(ch => {
+                if (!grouped[ch.group]) grouped[ch.group] = [];
+                grouped[ch.group].push(ch);
+            });
+
+            // 🎛️ RENDER
+            $("#playList").empty();
+
+            for (let group in grouped) {
+
+                $("#playList").append(`
+                    <div class="group-title" style="color:#00ffcc; font-weight:bold; margin-top:10px;">
+                        ${group}
+                    </div>
+                `);
+
+                grouped[group].forEach(channel => {
+                    $("#playList").append(`
+                        <button class='list-item' data-url='${channel.url}'>
+                            ${channel.name}
+                        </button>
+                    `);
+                });
+            }
+        },
+
+        error: function (xhr, status, error) {
+
+            let mensaje = "❌ Error al cargar la lista";
+
+            if (status === "timeout") mensaje = "⏱️ La carga tardó demasiado";
+            if (xhr.status === 404) mensaje = "❌ Lista no encontrada";
+
+            $("#playList").html(`
+                <div style="text-align:center; padding:20px;">
+                    ${mensaje}<br>
+                    <button onclick="cargarDefault()">🔄 Lista original</button>
+                </div>
+            `);
+        }
+    });
+};
+
+
+// 🔁 VOLVER A LISTA ORIGINAL
+function cargarDefault() {
+    $("#m3u-url").val(defaultM3U);
+    loadChannels(defaultM3U);
+};
+
+
+// 🎛️ EVENTOS
+$(document).ready(function () {
+
+    $("#link-info-container").hide(); 
+    loadChannels(defaultM3U);
+    renderHistory();
+
+    // ▶️ CLICK CANAL
+    $("#playList").on('click', 'button', function() {
+        let url = $(this).data('url');
+        let nombre = $(this).text();
+        // 🔥 índice correcto
+        currentIndex = channelsGlobal.findIndex(c => c.url === url);
+        playHLS(url);
+        $("#nombreCanal").text(nombre);
+        // 🔥 NUEVO: marcar activo
+        $(".list-item").removeClass("active");
+        $(this).addClass("active");
+    });
+
+
+
+    // 🪟 ABRIR MODAL
+    $("#top-bar h2").click(function () {
+        $("#overlay").show();
+        $("#form-container").show();
+    });
+
+    // 📥 CARGAR URL
+    $("#ok-button").click(function () {
+       // let url = $("#m3u-url").val("");
+        let url = $("#m3u-url").val().trim();
+        if (url !== "") {
+            saveM3U(url);  //opción nueva
+            loadChannels(url);
+            renderHistory();   //opción nueva
+            $("#overlay").hide();
+            $("#form-container").hide();
+        } else {
+            alert("Ingresá una URL válida");
+        }
+    });
+
+    // 🔄 DEFAULT
+    $("#default-button").click(function () {
+        cargarDefault();
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+    // 🧹 LIMPIAR
+    $("#clear-button").click(function () {
+        $("#m3u-url").val("");
+    });
+
+    // ❌ CERRAR
+    $("#exit-button").click(function () {
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+    // ⭐ LISTAS RÁPIDAS
+    $(".preset").click(function () {
+        let url = $(this).data("url");
+
+        $("#m3u-url").val(url);
+        loadChannels(url);
+
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+
+
+
+    // 🔗 VER LINK
+    // $("#nombreCanal").click(function() {
+    //     $("#link-info-container").text(currentLink).show();
+    //     setTimeout(() => $("#link-info-container").hide(), 5000);
+    // });
+    $("#nombreCanal").click(function() {
+
+    if (!currentLink) return; // 🔥 clave
+
+    $("#link-info-container")
+        .text(currentLink)
+        .show();
+
+    setTimeout(() => $("#link-info-container").hide(), 5000);
+});
+
+    // 🎬 PLAYER
+// 🎬 PLAYER
+var player = videojs('my-video');
+
+player.on('error', function() {
+
+    console.log("Error de señal");
+
+    player.pause();
+
+    // 🖼 mostrar poster
+    player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
+
+    if (autoNextEnabled) {
+
+        let attempts = 0;
+
+        function tryNext() {
+
+            currentIndex++;
+
+            if (currentIndex >= channelsGlobal.length || attempts > 10) {
+                console.log("No se encontró canal válido");
+                return;
+            }
+
+            let next = channelsGlobal[currentIndex];
+
+            console.log("Probando:", next.name);
+
+            $("#link-info-container")
+            .html(`🔄 Probando: <br><b>${next.name}</b>`)
+            .show();
+
+            playHLS(next.url);
+            $("#nombreCanal").text(next.name);
+
+            $(".list-item").removeClass("active");
+
+            let btn = $("#playList button").eq(currentIndex);
+            btn.addClass("active");
+
+            attempts++;
+        }
+
+        setTimeout(tryNext, 1500);
+
+    } else {
+
+        $("#link-info-container")
+        .html("❌ Señal fuera de servicio")
+        .show();
+        // $(".vjs-loading-spinner").fadeOut(100);
+
+    }
+});
+
+});
+
+
+// 🔘 BOTÓN AUTO NEXT
+$("#auto-next-btn").click(function () {
+
+    autoNextEnabled = !autoNextEnabled;
+
+    $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
+});
+
+
+// 🎨 ANIMACIÓN NOMBRE
+document.addEventListener('DOMContentLoaded', function () {
+    var nombreCanal = document.getElementById('nombreCanal');
+    var timer;
+
+    window.onmousemove = function () {
+        clearTimeout(timer);
+        nombreCanal.style.animation = 'fadeInOut 0.5s forwards';
+
+        timer = setTimeout(function () {
+            nombreCanal.style.animation = 'fadeOutIn 0.5s forwards';
+        }, 10000);
+    };
+});
+
+
+// 📏 SCROLLBAR
+window.onload = function() {
+    let h = document.getElementById('playList').scrollHeight;
+    let size = h * 0.05;
+    document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + size + 'px');
+};
+
+$("#paste-button").click(async function () {
+    try {
+        const text = await navigator.clipboard.readText();
+        $("#m3u-url").val(text);
+    } catch (err) {
+        alert("No se pudo acceder al portapapeles");
+    }
+});
+
+
+function saveM3U(url) {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    let u = new URL(url);
+
+    let file = u.pathname.split("/").pop() || "lista";
+    let shortName = u.hostname + " / " + file;
+
+    let item = {
+        name: shortName,
+        url: url
+    };
+
+    // 🔥 evitar duplicados por URL completa
+    history = history.filter(h => h.url !== url);
+
+    // 🔥 agregar al inicio
+    history.unshift(item);
+
+    // 🔥 limitar a 5 elementos
+    history = history.slice(0, 5);
+
+    // 🔥 guardar
+    localStorage.setItem("m3uHistory", JSON.stringify(history));
+}
+
+
+
+function renderHistory() {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    $("#m3u-history").empty();
+
+    history.forEach(item => {
+        $("#m3u-history").append(`
+            <div class="history-item" data-url="${item.url}">
+                🔗 ${item.name}
+            </div>
+        `);
+    });
+}
+
+$("#m3u-history").on("click", ".history-item", function () {
+
+    let url = $(this).data("url");
+
+    $("#m3u-url").val(url);
+    loadChannels(url);
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+});
+
+$("#clear-history").click(function () {
+
+    if (confirm("¿Borrar historial de listas?")) {
+
+        localStorage.removeItem("m3uHistory");
+
+        renderHistory(); // refresca UI
+
+        $("#m3u-url").val(""); // opcional limpiar input
+    }
+    if (!localStorage.getItem("m3uHistory")) {
+    $("#clear-history").hide();
+}
+});
+
+</script>
+
+
+<script id="sw-register">
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("SW registrado"))
+        .catch(err => console.log("SW error", err));
+}
+</script>
+
+
+</body>
+
+</html>
