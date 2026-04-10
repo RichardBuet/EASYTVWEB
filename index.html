@@ -599,11 +599,11 @@ https://live-01-01-tn.vodgc.net/TN24/index_TN24_480.m3u8
 <div id="rl-bar">
 
     <div id="player">
+        <div id="link-info-container" > Enlace actual:</div>
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
         <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
-        <div id="link-info-container" > Enlace actual:
-</div>
+
     </div>
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
@@ -782,6 +782,30 @@ function playHLS(url) {
                 .show();
         }
     });
+
+let showingLoading = false;
+
+player.on('waiting', function () {
+
+    if (!showingLoading) {
+
+        showingLoading = true;
+
+        $("#link-info-container")
+            .html("🔄 Buscando señal...")
+            .show();
+    }
+});
+
+player.on('playing', function () {
+    showingLoading = false;
+    $("#link-info-container").fadeOut();
+});
+
+player.on('error', function () {
+    showingLoading = false;
+});
+
 }
 
 
