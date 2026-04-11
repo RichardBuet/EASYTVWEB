@@ -7,12 +7,22 @@ https://g1.vxral-hor.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-200
 https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",El Trece (1080p)
 https://livetrx01.vodgc.net/eltrecetv/index.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",El Nueve (720p)
+http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-16_720.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Canal 26
 https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
-https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="LaNacionPlus.ar@SD" tvg-logo="" group-title="",La Nacion + (720p)
+http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/lntv.playlist.m3u8
+#EXTINF:-1 tvg-id="LitusTV.ar@SD" tvg-logo="" group-title="",Litus TV (720p)
+https://stream.arcast.com.ar/litustv/ngrp:litustv_all/playlist.m3u8
+#EXTINF:-1 tvg-id="Telemax.ar@SD" tvg-logo="" group-title="",Telemax
+https://stream-gtlc.telecentro.net.ar/hls/telemaxhls/main.m3u8
+#EXTINF:-1 tvg-id="CronicaTV.ar@SD" tvg-logo="" group-title="",Cronica TV (1280p)
+http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/CronicaTv.playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Canal E
 https://unlimited1-us.dps.live/perfiltv/perfiltv.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="" group-title="",CN 3 pinamar
+https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Canal 7 Jujuy
 https://stream.arcast.live/canal7jujuy/ngrp:canal7jujuy_all/playlist.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-logo="" group-title="",Canal 9 Litoral
@@ -27,14 +37,15 @@ https://unlimited1-us.dps.live/nettv/nettv.smil/nettv/livestream2/chunks.m3u8
 https://streaming.telered.com.ar/provincial/streaming/mystream.m3u8?PlaylistM3UCL
 #EXTINF:-1 tvg-logo="" group-title="",Telesol
 https://cnnsanjuan.com:9999/live/telesol/playlist.m3u8?PlaylistM3UCL
-#EXTINF:-1 tvg-logo="" group-title="",TyC Eventos
-https://dpyzprfzko681.cloudfront.net/out/v1/366fc52554ae42c58465ea4b278eac0c/index_15.m3u8
+#EXTINF:-1 tvg-id="TyCSports.ar@SD" tvg-logo="" group-title="",TyC Sports (720p)
+http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-90.playlist.m3u8
+#EXTINF:-1 tvg-id="FoxSports.ar@SD" tvg-logo="" http-referrer="https://foxsports.com.ar/" group-title="",Fox Sports (1080p)
+#EXTVLCOPT:http-referrer=https://foxsports.com.ar/
+http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Canal Motor
 http://digicom.hls.iptvdc.com/canalmotor/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",RedBull TV
 https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8
-#EXTINF:-1 tvg-logo="" group-title="",SONY Novelas
-https://spt-novelas-1-us.lg.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",DW - Esp
 https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",RT - Esp
@@ -45,6 +56,8 @@ https://estrellanews-plex.amagi.tv/playlist.m3u8
 https://www.bloomberg.com/media-manifest/streams/us.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Video tour
 http://k4.usastreams.com/videotour/videotour/playlist.m3u8?PlaylistM3UCL
+#EXTINF:-1 tvg-id="TelemundoInternacional.us@South" tvg-logo="" group-title="",Telemundo Internacional (720p)
+http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-26_720.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",ADN 40
 https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8
 #EXTINF:-1 tvg-logo="" group-title="",Canal Once
