@@ -296,11 +296,17 @@ button.list-item.active {
 @media  (max-aspect-ratio: 1.20) {
     #rl-bar {  flex-direction: column; }
     #playList {
-    display: grid;
+/*    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: calc(100vh / 50);
     padding-top: 2px;
+    height: auto !important;*/
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: calc(100vh / 50);
+    padding-top: 2px;
     height: auto !important;
+    gap: 0.5rem;
 }
 #lists {
     display: flex;
@@ -315,6 +321,11 @@ button.list-item.active {
     max-width: 100%;
 }
 #player { flex: 0; width: 100vw;}
+
+/*button.list-item {
+        padding: 8px 0;
+        font-size: 0.6em;
+    }*/
 /*    #player { flex: 0 0 auto; width: 100%; }
     #lists { width: 100%; border-left: none; }*/
 }
