@@ -45,7 +45,7 @@
 /* 🎬 VIDEO (SIEMPRE ARRIBA) */
 .video-js .vjs-tech {
     position: absolute;
-    /*top: -3px;*/
+    border-radius: 4px !important;
     left: 0;
     width: 100%;
     max-height: 100vh;
@@ -115,11 +115,17 @@ body, html {
     cursor: pointer;
 }
 #top-bar h2 {    
-    font-size: 1.2rem;
     letter-spacing: 1px;
     color: var(--accent);
     margin: 10px;
     position: relative;
+    font-size: larger;
+    width: auto;
+    text-shadow: 0 0 5px var(--bg-dark), 0 0 7px #fff, 0 0 15px #0fa;
+    /* text-overflow: ellipsis; */
+    /* text-transform: uppercase; */
+    white-space: nowrap;
+    /* overflow: hidden;*/
 }
 
 /* 3. Overlays del Video (Nombre e Info) */
@@ -142,7 +148,7 @@ body, html {
 /* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
-    height: calc(100vh - 71px);
+    height: calc(100vh - 80px);
     flex-direction: row;
     justify-content: center;/* Por defecto para PC/TV */
     justify-content: space-around;
@@ -155,7 +161,8 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc((100vh - 71px) * 16 / 9);
+    width: calc((100vh - 80px) * 16 / 9);
+    aspect-ratio: 16 / 9;
 }
 #playList div {
     grid-column: 1 / -1;
@@ -329,8 +336,7 @@ button.list-item.active {
 /*    #player { flex: 0 0 auto; width: 100%; }
     #lists { width: 100%; border-left: none; }*/
 }
-#top-bar h2 {
-    font-size: 1.0em;}
+
 
 
 /* 9. Adaptación Android TV */
@@ -349,8 +355,8 @@ button.list-item.active {
 <body>
 
 <div id="top-bar">
-    <h2>EASY TV WEB - LINK M3U</h2>
-    <div id="nombreCanal">Bienvenido Easy Web TV || Probá M3U y ver URL de Link</div>
+    <h2> EASY TV WEB</h2>
+    <div id="nombreCanal">Probá M3U y URL de Link</div>
 </div>
 
 <div id="overlay"></div>
