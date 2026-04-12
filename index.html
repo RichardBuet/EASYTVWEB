@@ -140,9 +140,12 @@ body, html {
     border-radius: 4px;
     color: var(--accent);
     font-size: 0.9rem;
-    font-weight: bold;
+    color: #00ffee;
+    /*font-weight: bold;*/
     border-left: 3px solid var(--accent);
     /* pointer-events: none;*/
+    cursor: pointer;
+    user-select: none; /* Evita que se seleccione el texto azul al hacer doble clic */
 }
 
 /* 4. Layout Principal (Flexbox) */
@@ -207,7 +210,8 @@ body, html {
     border-left: 1px solid #30363d;
     width: min-content;
     /* width: calc(100vw / 16 * 9); */
-     max-width: 30ch;
+     max-width: 34%;
+     font-size: 0.7em;
 }
 
 #search-bar { padding: 10px; display: flex; gap: 5px; background: #0d1117; }
@@ -294,50 +298,76 @@ button.list-item.active {
     box-sizing: border-box; margin-bottom: 10px;
 }
 
-#form-btn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.form-btn { padding: 10px; border-radius: 6px; border: 1px solid #30363d; background: #21262d; color: #fff; cursor: pointer; font-size: 0.8rem; }
+#form-btn { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.form-btn { padding: 5px 0; border-radius: 6px; border: 1px solid #30363d; background: #21262d; color: #fff; cursor: pointer; font-size: 0.7rem; }
 #ok-button { background: var(--accent); color: #000; font-weight: bold; }
+
+#preset-lists{
+    margin-top: 10px;
+    gap: 6px;
+    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 3px;
+}
+
+.preset {
+    font-size: 0.7rem;
+    background: lavender;
+    border-style: none;
+    border-radius: 3px;
+}
+
+
+#m3u-history{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+    overflow-y: auto;
+    height: 115px;
+}
+
+.history-item{
+    font-size: small;
+    width: stretch;
+}
+
 
 /* 8. RESPONSIVE (Móvil) */
 /*@media (max-width: 8000px) {*/
 @media  (max-aspect-ratio: 1.20) {
-    #rl-bar {  flex-direction: column; }
-    #playList {
-/*    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: calc(100vh / 50);
-    padding-top: 2px;
-    height: auto !important;*/
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: calc(100vh / 50);
-    padding-top: 2px;
-    height: auto !important;
-    gap: 0.5rem;
-}
-#lists {
-    display: flex;
-    flex-direction: column;
-    scroll-snap-type: y mandatory;
-    overflow: auto;
-    overflow-x: hidden;
-    height: 74vh;
-    width: -webkit-fill-available;
-    z-index: 2;
-    list-style: none;
-    max-width: 100%;
-}
-#player { flex: 0; width: 100vw;}
+        #rl-bar {  flex-direction: column; }
+        #playList {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: calc(100vh / 50);
+        padding-top: 2px;
+        height: auto !important;
+        gap: 0.5rem;
+    }
+    #lists {
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y mandatory;
+        overflow: auto;
+        overflow-x: hidden;
+        height: 74vh;
+        width: -webkit-fill-available;
+        z-index: 2;
+        list-style: none;
+        max-width: 100%;
+    }
+    #player { flex: 0; width: 100vw;}
 
-/*button.list-item {
-        padding: 8px 0;
-        font-size: 0.6em;
-    }*/
-/*    #player { flex: 0 0 auto; width: 100%; }
-    #lists { width: 100%; border-left: none; }*/
-}
+    #m3u-history{
+        height: auto;
+        max-height: 20vh;
+    }
 
 
+}
 
 /* 9. Adaptación Android TV */
 @media (hover: none) {
@@ -376,14 +406,14 @@ button.list-item.active {
     </div>
 
     <!-- presets -->
-    <div id="preset-lists" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+    <div id="preset-lists">
         <button class="preset" data-url="https://iptv-org.github.io/iptv/index.m3u">🌍 Global</button>
-        <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Argentina</button>
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Arg</button>
         <button class="preset" data-url="https://iptv-org.github.io/iptv/categories/news.m3u">📰 Noticias</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_pluto.m3u">📺 Pluto</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_rakuten.m3u">📺 Rakuten</button>
-        <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio 40 TV</button>
-        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Categorías</button>
+        <!-- <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio TV</button> -->
+        <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Grupos</button>
     </div>
 
     <!-- 🔥 HISTORIAL -->
@@ -523,32 +553,6 @@ $("#search")
 
 
 // 🎬 PLAYER
-// function playHLS(url) {
-//     var player = videojs('my-video');
-
-//     player.src({
-//         src: url,
-//         type: 'application/x-mpegURL'
-//     });
-
-//     player.play();
-//     currentLink = url;
-
-//     player.on('playing', function () {
-//     $("#link-info-container").fadeOut();
-//     });
-
-
-//     player.on('waiting', function () {
-//     // 🔥 SOLO si auto-next está activo
-//     if (autoNextEnabled) {
-//         $("#link-info-container")
-//             .html("🔄 Buscando señal...")
-//             .show();
-//         }
-//     });
-// }
-
 function playHLS(url) {
 
     var player = videojs('my-video');
@@ -645,7 +649,7 @@ function loadChannels(url) {
     $.ajax({
         type: "GET",
         url: url,
-        timeout: 10000,
+        timeout: 20000,
 
         success: function (message) {
 
@@ -658,7 +662,8 @@ function loadChannels(url) {
 
                 if (line.startsWith("#EXTINF")) {
                     let data = getChannelData(line);
-                    currentChannel.name = data.name;
+                    // ... dentro del forEach ajuste de longitud
+                    currentChannel.name = data.name.substring(0, 30); ;
                     currentChannel.group = data.group;
 
                 } else if (line !== "" && !line.startsWith("#")) {
@@ -828,26 +833,60 @@ $(document).ready(function () {
 
 
     // 🔗 VER LINK
-    // $("#nombreCanal").click(function() {
-    //     $("#link-info-container").text(currentLink).show();
-    //     setTimeout(() => $("#link-info-container").hide(), 5000);
-    // });
-    $("#nombreCanal").click(function() {
+//     $("#nombreCanal").click(function() {
 
-    if (!currentLink) return; // 🔥 clave
+//     if (!currentLink) return; // 🔥 clave
 
-    $("#link-info-container")
-        .text(currentLink)
-        .show();
+//     $("#link-info-container")
+//         .text(currentLink)
+//         .show();
 
-    setTimeout(() => $("#link-info-container").hide(), 5000);
-});
+//     setTimeout(() => $("#link-info-container").hide(), 5000);
+// });
+
+    // 🔗 VER LINK OPCION GEMINIS
+    let clickTimer;
+
+    $("#nombreCanal").on("click", function() {
+        if (!currentLink) return;
+
+        // Cancelamos cualquier click previo para esperar el segundo (doble clic)
+        clearTimeout(clickTimer);
+
+        clickTimer = setTimeout(() => {
+            // --- LÓGICA DE 1 CLIC: MOSTRAR EN PANTALLA ---
+            $("#link-info-container")
+               // .text("Link: " + currentLink)
+                .html("<b>Link:</b><br><span>" + currentLink + "</span>")
+                .stop(true, true).fadeIn(200);
+
+            setTimeout(() => $("#link-info-container").fadeOut(500), 5000);
+            
+        }, 250); // 250ms es el tiempo estándar de espera para detectar un doble clic
+    });
+
+    $("#nombreCanal").on("dblclick", function() {
+        if (!currentLink) return;
+
+        // Cancelamos el temporizador del click simple para que no se ejecute
+        clearTimeout(clickTimer);
+
+        // --- LÓGICA DE 2 CLICS: COPIAR AL PORTAPAPELES ---
+        navigator.clipboard.writeText(currentLink).then(() => {
+            $("#link-info-container")
+                .text("✅ ¡Copiado al portapapeles!")
+                .stop(true, true).show().fadeOut(3000);
+        });
+    });
+
+
+
 
     // 🎬 PLAYER
 // 🎬 PLAYER
 var player = videojs('my-video');
 
-player.on('error', function() {
+    player.on('error', function() {
 
     console.log("Error de señal");
 
