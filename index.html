@@ -1069,18 +1069,33 @@ $("#clear-history").click(function () {
     $("#clear-history").hide();
 }
 });
-function actualizarTitulo(canal) {
-  const base = "EASY TV";
 
-  const nombre =
-    canal?.nombre ||
-    canal?.name ||
-    canal?.title ||
-    canal?.["tvg-name"] ||
-    document.getElementById("nombreCanal")?.textContent;
+      // Actualiza el título usando el contenido visible del canal
+function actualizarTituloDesdeDOM() {
+  const el = document.getElementById("nombreCanal");
+  const nombre = el?.textContent?.trim();
 
-  document.title = nombre ? `${base} - ${nombre}` : base;
+  document.title = nombre ? `EASY TV - ${nombre}` : "EASY TV";
 }
+
+// Ejecutar cuando carga la página
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarTituloDesdeDOM();
+
+  const el = document.getElementById("nombreCanal");
+
+  if (el) {
+    const observer = new MutationObserver(() => {
+      actualizarTituloDesdeDOM();
+    });
+
+    observer.observe(el, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+  }
+});
 </script>
 
 
