@@ -22,9 +22,10 @@
     --text: #e6edf3;
 }
 
-/* Scroll */
+
 *::-webkit-scrollbar {
     width: 10px;
+
     margin: 0 4px;
     background: #5f9ea01c;
     border-radius: 15px;
@@ -33,116 +34,199 @@
     background-color: #74089342;
     border-radius: 15px;
     border: 2px solid #8e06d49e;
+    height: 10%;
+}
+*:focus-visible {
+    outline: #00FF00;
+    outline-style: groove;
 }
 
-/* BASE */
+/*0. Configuración del reproductor de video*/
+/* 🎬 VIDEO (SIEMPRE ARRIBA) */
+.video-js .vjs-tech {
+    position: absolute;
+    border-radius: 4px !important;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+    z-index: 2; /* 🔥 más alto */
+}
+.video-js .vjs-control-bar {
+    z-index: 2;
+}
+
+:not(:root):fullscreen { user-select: text; height: 100%;}
+.vjs-big-play-button { 
+    position: absolute;
+    top: 34%!important;
+    left: calc(100% / 2 - 0.65em) !important;
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85!important;
+}
+
+.vjs-loading-spinner {
+    z-index: 2;
+    top: 32%!important;
+    transform: scale(0.5);
+}
+
+.video-js .vjs-progress-control { display: none;
+}
+
+.video-js .vjs-volume-panel .vjs-volume-control.vjs-volume-horizontal { display: none !important;}
+
+/* 🖼 POSTER (ATRÁS) */
+.vjs-poster { display: block !important; z-index: 1;}
+
+/* 🚫 OCULTAR overlay de error */
+.vjs-error-display {display: none !important;}
+
+.vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
+.vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
+
+.video-js .vjs-big-play-button { font-size: 0!important;}
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+    content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
+    SCALE: 80%;
+    margin: -25px 0px 0px -25px;
+    opacity: 0.85 !important;
+}
+
+
+/* 1. Base y Reset */
 body, html {
     background: var(--bg-dark);
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--text);
-    height: 100%;
-    overflow-x: hidden;
+    height: 100vh;
+    overflow: hidden; /* Evita el scroll global molesto */
 }
 
-/* TOP BAR */
+/* 2. Barra Superior */
 #top-bar {
     height: 50px;
     background: #010409;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     border-bottom: 1px solid #30363d;
+    cursor: pointer;
 }
-
-#top-bar h2 {
+#top-bar h2 {    
+    letter-spacing: 1px;
     color: var(--accent);
     margin: 10px;
+    position: relative;
     font-size: larger;
+    width: auto;
+    text-shadow: 0 0 5px var(--bg-dark), 0 0 7px #fff, 0 0 15px #0fa;
+    /* text-overflow: ellipsis; */
+    /* text-transform: uppercase; */
     white-space: nowrap;
+    /* overflow: hidden;*/
 }
 
+/* 3. Overlays del Video (Nombre e Info) */
 #nombreCanal {
-    background: rgba(0,0,0,0.7);
+    /* position: absolute; */
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.7);
     padding: 6px 12px;
     margin-left: 10px;
     border-radius: 4px;
+    color: var(--accent);
+    font-size: 0.9rem;
     color: #00ffee;
+    /*font-weight: bold;*/
     border-left: 3px solid var(--accent);
+    /* pointer-events: none;*/
+    cursor: pointer;
+    user-select: none; /* Evita que se seleccione el texto azul al hacer doble clic */
 }
 
-/* LAYOUT */
+/* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
+    height: calc(100vh - 80px);
     flex-direction: row;
+    justify-content: center;/* Por defecto para PC/TV */
+    justify-content: space-around;
 }
 
-/* PLAYER (🔥 FIX REAL) */
+/* 5. Contenedor del Reproductor */
 #player {
     position: relative;
     background: #000;
-    width: 100%;
-    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc((100vh - 80px) * 16 / 9);
     aspect-ratio: 16 / 9;
-    margin: 0 auto;
 }
-
-/* VIDEO */
+#playList div {
+    grid-column: 1 / -1;
+    color: #00ffcc;
+    font-weight: bold;
+    /*margin-top: 10px;*/
+    padding: 5px 0;
+    border-bottom: 1px solid #00ffcc33;
+}
+/* Forzar Proporción 16:9 */
 .video-js {
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    max-height: 100%;
 }
 
-.video-js .vjs-tech {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-height: none;
-}
 
-/* CONTROLES */
-.video-js .vjs-control-bar {
-    z-index: 2;
-}
 
-.vjs-loading-spinner {
-    z-index: 2;
-}
-
-/* INFO */
 #link-info-container {
     position: absolute;
-    bottom: 60px;
+    bottom: 60px; /* Arriba de los controles */
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.85);
-    padding: 8px;
-    border-radius: 6px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
     font-size: 0.7rem;
-    z-index: 5;
+    max-width: 80%;
+    z-index: 6;
+    word-break: break-all;
 }
 
-/* LISTA */
+/* 6. Lista de Canales */
 #lists {
+    /* flex: 2; */
     min-width: 150px;
     background: var(--panel-bg);
     display: flex;
     flex-direction: column;
     border-left: 1px solid #30363d;
-    max-width: 34%;
+    width: min-content;
+    /* width: calc(100vw / 16 * 9); */
+     max-width: 34%;
+     font-size: 0.7em;
 }
 
-#search-bar {
-    padding: 10px;
-    display: flex;
-    gap: 5px;
+#search-bar { padding: 10px; display: flex; gap: 5px; background: #0d1117; }
+#search { 
+    flex: 1; background: #010409; border: 1px solid #30363d; 
+    color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
-
-#search {
-    flex: 1;
-    padding: 8px;
+#auto-next-btn {
+    /*flex: 3;*/
+    border-radius: 8px;
+    background: #14395b;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    font-size: 0.7em;
+    padding: 3px;
 }
 
 #playList {
@@ -151,65 +235,151 @@ body, html {
     flex: 1;
 }
 
-/* BOTONES */
+/* Botones de la lista (Mejorados para TV/Móvil) */
 button.list-item {
     width: 100%;
     padding: 10px;
     margin: 3px 0;
     background: #21262d;
     border: 1px solid #30363d;
-    color: #fff;
+    color: #c9d1d9;
     border-radius: 6px;
     text-align: left;
-    font-size: 0.6rem;
+    cursor: pointer;
+    font-size: 0.55rem;
+    align-self: anchor-center;
+    cursor: pointer;
+    color: #fff;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
     white-space: nowrap;
     overflow: hidden;
+    transition: all 0.2s ease;
+    height: 30px;
 }
 
-/* MODAL */
+button.list-item:hover, button.list-item:focus {
+    background: #30363d;
+    border-color: var(--accent);
+    outline: none;
+}
+
+button.list-item.active {
+    background: rgba(0, 255, 204, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* 7. Modal (Formulario de carga) - ARREGLADO */
 #overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 100; display: none;
+    backdrop-filter: blur(4px);
 }
 
 #form-container {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
+    width: 90%; max-width: 500px;
     background: var(--panel-bg);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+    z-index: 101;
     display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #30363d;
 }
 
-/* RESPONSIVE */
-@media (max-aspect-ratio: 1.20) {
+#m3u-url {
+    width: 100%; background: #010409; color: var(--accent);
+    border: 1px solid #30363d; padding: 10px; border-radius: 6px;
+    box-sizing: border-box; margin-bottom: 10px;
+}
 
-    #rl-bar {
-        flex-direction: column;
-    }
+#form-btn { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.form-btn { padding: 5px 0; border-radius: 6px; border: 1px solid #30363d; background: #21262d; color: #fff; cursor: pointer; font-size: 0.7rem; }
+#ok-button { background: var(--accent); color: #000; font-weight: bold; }
 
-    #player {
-        width: 100%;
-    }
+#preset-lists{
+    margin-top: 10px;
+    gap: 6px;
+    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 3px;
+}
 
-    #lists {
-        max-width: 100%;
-    }
+.preset {
+    font-size: 0.7rem;
+    background: lavender;
+    border-style: none;
+    border-radius: 3px;
+}
 
-    #playList {
+
+#m3u-history{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+    overflow-y: auto;
+    height: 115px;
+}
+
+.history-item{
+    font-size: small;
+    width: stretch;
+}
+
+
+/* 8. RESPONSIVE (Móvil) */
+/*@media (max-width: 8000px) {*/
+@media  (max-aspect-ratio: 1.20) {
+        #rl-bar {  flex-direction: column; }
+        #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 8px;
+        gap: calc(100vh / 50);
+        padding-top: 2px;
+        height: auto !important;
+        gap: 0.5rem;
+    }
+    #lists {
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y mandatory;
+        overflow: auto;
+        overflow-x: hidden;
+        height: 74vh;
+        width: -webkit-fill-available;
+        z-index: 2;
+        list-style: none;
+        max-width: 100%;
+    }
+    #player { flex: 0; width: 100vw;}
+
+    #m3u-history{
+        height: auto;
+        max-height: 20vh;
+    }
+
+
+}
+
+/* 9. Adaptación Android TV */
+@media (hover: none) {
+    button.list-item:focus {
+      /*  transform: scale(1.02);
+        background: var(--accent);
+        color: #000;*/
     }
 }
 
 </style>
+
 
 </head>
 
