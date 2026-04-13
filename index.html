@@ -453,23 +453,7 @@ button.list-item.active {
     📲 Instalar Easy TV
 </div>
 
-<script>
-function setVH() {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
 
-window.addEventListener('resize', setVH);
-window.addEventListener('orientationchange', setVH);
-
-setVH();
-
-window.addEventListener("orientationchange", () => {
-  setTimeout(() => {
-    window.dispatchEvent(new Event("resize"));
-  }, 300);
-});
-</script>
     
 <script>
     
