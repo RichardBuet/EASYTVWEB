@@ -1069,9 +1069,11 @@ $("#clear-history").click(function () {
     $("#clear-history").hide();
 }
 });
-function actualizarTitulo(nombre) {
-  const base = "EASY TV";
-  document.title = nombre ? `${base} - ${nombre}` : base;
+function actualizarTituloDesdeDOM() {
+  const el = document.getElementById("nombreCanal");
+  const nombre = el?.textContent?.trim();
+
+  document.title = nombre ? `EASY TV - ${nombre}` : "EASY TV";
 }
 </script>
 
