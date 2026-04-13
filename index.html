@@ -1069,11 +1069,17 @@ $("#clear-history").click(function () {
     $("#clear-history").hide();
 }
 });
-function actualizarTituloDesdeDOM() {
-  const el = document.getElementById("nombreCanal");
-  const nombre = el?.textContent?.trim();
+function actualizarTitulo(canal) {
+  const base = "EASY TV";
 
-  document.title = nombre ? `EASY TV - ${nombre}` : "EASY TV";
+  const nombre =
+    canal?.nombre ||
+    canal?.name ||
+    canal?.title ||
+    canal?.["tvg-name"] ||
+    document.getElementById("nombreCanal")?.textContent;
+
+  document.title = nombre ? `${base} - ${nombre}` : base;
 }
 </script>
 
