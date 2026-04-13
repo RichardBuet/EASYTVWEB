@@ -982,7 +982,23 @@ $("#paste-button").click(async function () {
         alert("No se pudo acceder al portapapeles");
     }
 });
+   // Función para actualizar el título
+    function actualizarTitulo() {
+      const canal = document.getElementById("nombreCanal");
+      if (canal) {
+        document.title = "EASYTV - " + canal.textContent;
+      }
+    }
 
+    // Actualiza el título al cargar la página
+    actualizarTitulo();
+
+    // Observa cambios en el contenido del elemento
+    const canal = document.getElementById("NombreCanal");
+    if (canal) {
+      const observer = new MutationObserver(actualizarTitulo);
+      observer.observe(canal, { childList: true, characterData: true, subtree: true });
+    };
 
 function saveM3U(url) {
 
