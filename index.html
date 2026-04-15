@@ -82,6 +82,7 @@
 /* 🖼 POSTER (ATRÁS) */
 .vjs-poster { 
     /*display: block !important; */
+    display: flex !important; 
     z-index: 1; 
     background-size: cover !important; 
     /*border-radius: 4px !important;*/
@@ -381,9 +382,12 @@ button.list-item.active {
         max-width: 100%;
     }
     #player {
-        flex: 0;
+     /*   flex: 0;
+        width: 99.5vw;
+        align-self: center; */
         width: 99.5vw;
         align-self: center;
+        height: calc(100vw * 9 / 16);
     }
 
     #m3u-history{
