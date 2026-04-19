@@ -944,7 +944,23 @@ var player = videojs('my-video');
                 return;
             }
 
-            let next = channelsGlobal[currentIndex];
+          // rrb  let next = channelsGlobal[currentIndex];
+
+            let buttons = $("#playList button.list-item");
+
+currentIndex++;
+
+if (currentIndex >= buttons.length) {
+    console.log("Fin de lista");
+    return;
+}
+
+let btn = buttons.eq(currentIndex);
+
+let next = {
+    name: btn.text(),
+    url: btn.data("url")
+};
 
             console.log("Probando:", next.name);
 
