@@ -950,17 +950,31 @@ var player = videojs('my-video');
 
 currentIndex++;
 
-if (currentIndex >= buttons.length) {
-    console.log("Fin de lista");
-    return;
+let next;
+
+if (buttons.length > 0) {
+    // 👉 usar UI (modo nuevo)
+    if (currentIndex >= buttons.length) {
+        console.log("Fin de lista UI");
+        return;
+    }
+
+    let btn = buttons.eq(currentIndex);
+
+    next = {
+        name: btn.text(),
+        url: btn.data("url")
+    };
+
+} else {
+    // 👉 fallback (modo viejo)
+    if (currentIndex >= channelsGlobal.length) {
+        console.log("Fin de lista GLOBAL");
+        return;
+    }
+
+    next = channelsGlobal[currentIndex];
 }
-
-let btn = buttons.eq(currentIndex);
-
-let next = {
-    name: btn.text(),
-    url: btn.data("url")
-};
 
             console.log("Probando:", next.name);
 
