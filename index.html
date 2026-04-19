@@ -1057,7 +1057,7 @@ function saveM3U(url) {
     history.unshift(item);
 
     // 🔥 limitar a 5 elementos
-    history = history.slice(0, 5);
+    history = history.slice(0, 15);
 
     // 🔥 guardar
     localStorage.setItem("m3uHistory", JSON.stringify(history));
