@@ -946,34 +946,28 @@ var player = videojs('my-video');
 
           // rrb  let next = channelsGlobal[currentIndex];
 
-            let buttons = $("#playList button.list-item");
+let buttons = $("#playList button.list-item");
 
-currentIndex++;
-
-let next;
+let nextIndex = currentIndex + 1;
 
 if (buttons.length > 0) {
-    // 👉 usar UI (modo nuevo)
-    if (currentIndex >= buttons.length) {
+
+    if (nextIndex >= buttons.length) {
         console.log("Fin de lista UI");
         return;
     }
 
-    let btn = buttons.eq(currentIndex);
+    let btn = buttons.eq(nextIndex);
 
-    next = {
+    let next = {
         name: btn.text(),
         url: btn.data("url")
     };
 
-} else {
-    // 👉 fallback (modo viejo)
-    if (currentIndex >= channelsGlobal.length) {
-        console.log("Fin de lista GLOBAL");
-        return;
-    }
+    currentIndex = nextIndex;
 
-    next = channelsGlobal[currentIndex];
+    playHLS(next.url);
+
 }
 
             console.log("Probando:", next.name);
