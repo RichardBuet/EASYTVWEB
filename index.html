@@ -576,7 +576,21 @@ function updateFavButton() {
     let exists = favorites.some(f => f.url === currentLink);
     $("#fav-btn").text(exists ? "✔" : "⭐");
 }
+function marcarCanalActivo() {
 
+    if (!currentLink) return;
+
+    $(".list-item").removeClass("active");
+
+    let btn = $(`.list-item[data-url="${currentLink}"]`);
+
+    if (btn.length) {
+        btn.addClass("active");
+
+        // opcional: centrar en scroll
+        btn[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}
 // ================== PLAYER ==================
 function playHLS(url) {
 
@@ -670,6 +684,9 @@ function loadChannels(url) {
         }
 
     });
+    setTimeout(() => {
+    marcarCanalActivo();
+}, 100);
 }
 
 // ================== FAVORITOS VIEW ==================
@@ -693,6 +710,9 @@ function renderFavorites() {
             </button>
         `);
     });
+    setTimeout(() => {
+    marcarCanalActivo();
+}, 100);
 }
 
 // ================== HISTORIAL ==================
@@ -741,7 +761,11 @@ function handlePlayerError() {
             let next = channelsGlobal[currentIndex];
 
             playHLS(next.url);
-            $("#nombreCanal").text(next.name);
+$("#nombreCanal").text(next.name);
+
+currentLink = next.url; // 🔥 clave
+
+marcarCanalActivo();
 
         } else {
 
@@ -866,17 +890,22 @@ $(document).ready(function () {
     $("#fav-btn").click(toggleFavoriteCurrent);
 
     // CLICK CANAL
-    $("#playList").on("click", ".list-item", function () {
+    $("#playList").on("click", ".list-item", function() {
 
-        let url = $(this).data("url");
+    let url = $(this).data("url");
+    let nombre = $(this).text();
 
-        currentIndex = channelsGlobal.findIndex(c => c.url === url);
+    currentLink = url; // 🔥 MUY IMPORTANTE
 
-        playHLS(url);
-        $("#nombreCanal").text($(this).text());
+    currentIndex = channelsGlobal.findIndex(c => c.url === url);
 
-        updateFavButton();
-    });
+    playHLS(url);
+    $("#nombreCanal").text(nombre);
+
+    updateFavButton();
+
+    marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
+});
 
     // AUTO NEXT BTN
     $("#auto-next-btn").click(function () {
