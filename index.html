@@ -778,7 +778,15 @@ $(document).ready(function () {
             alert("No se pudo copiar");
         });
 });
-    
+    $("#nombreCanal").click(function (e) {
+    e.stopPropagation();
+
+    if (!currentLink) return;
+
+    $("#link-info-container")
+        .html(currentLink)
+        .show();
+});
     // ABRIR MODAL
     $("#top-bar h2").click(function () {
         $("#overlay, #form-container").show();
