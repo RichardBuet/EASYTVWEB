@@ -739,6 +739,9 @@ function loadChannels(url) {
     if (window.showingFavorites) {
     window.showingFavorites = false;
 }
+
+$("#playList").removeClass("favorites-mode");
+    
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
             ⏳ Cargando lista...
@@ -824,6 +827,19 @@ function loadChannels(url) {
             }
         }
     });
+//$("#playList").removeClass("favorites-mode");
+}
+
+// 🔁 DEFAULT
+function cargarDefault() {
+    window.showingFavorites = false;
+    $("#m3u-url").val(defaultM3U);
+    loadChannels(defaultM3U);
+}
+
+// 🎛️ EVENTOS
+$(document).ready(function () {
+
 
 $("#favorites-button").click(function () {
 
@@ -837,18 +853,11 @@ $("#favorites-button").click(function () {
     $("#form-container").hide();
 });
     $("#playList").removeClass("favorites-mode");
-}
 
-// 🔁 DEFAULT
-function cargarDefault() {
-    window.showingFavorites = false;
-    $("#m3u-url").val(defaultM3U);
-    loadChannels(defaultM3U);
-}
 
-// 🎛️ EVENTOS
-$(document).ready(function () {
 
+
+    
     $("#link-info-container").hide();
 
     loadChannels(defaultM3U);
