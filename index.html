@@ -479,10 +479,10 @@ button.list-item.active {
     <textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U o cargar opciones de abajo"></textarea>
 
     <div id="form-btn">
-        <button class="form-btn" id="ok-button">Cargar</button>
-        <button class="form-btn" id="clear-button">Limpiar</button>
-        <button class="form-btn" id="exit-button">Cerrar</button>
-        <button class="form-btn" id="default-button">Default</button>
+        <button class="form-btn" id="ok-button">▶️ Cargar</button>
+        <button class="form-btn" id="clear-button">♻️ Limpiar</button>
+        <button class="form-btn" id="exit-button">❌ Cerrar</button>
+        <button class="form-btn" id="default-button">🔄 Default</button>
         <button class="form-btn" id="clear-history">🗑 Borrar historial</button>
         <button class="form-btn" id="paste-button">📋 Pegar</button>
         <button class="form-btn" id="favorites-button">⭐ Favoritos</button>
@@ -717,7 +717,7 @@ function renderHistory() {
     history.forEach(h => {
         $("#m3u-history").append(`
             <div class="history-item" data-url="${h.url}">
-                🔗 ${h.name}
+                📂 ${h.name}
             </div>
         `);
     });
@@ -770,7 +770,7 @@ $(document).ready(function () {
     $("#link-info-container")
         .html(currentLink)
         .show()
-        .fadeOut(2500);
+        .fadeOut(5000);
 });
     
 
