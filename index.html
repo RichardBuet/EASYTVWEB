@@ -617,7 +617,7 @@ function updateFavButton() {
     if (!currentLink) return;
 
     let exists = favorites.some(f => f.url === currentLink);
-    $("#fav-btn").text(exists ? " ✔ " : "⭐");
+    $("#fav-btn").text(exists ? "⭐✔" : "⭐");
 }
 
 $("#fav-btn").click(function () {
@@ -735,10 +735,8 @@ function getChannelData(line) {
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
 
-  //  if (window.showingFavorites) return; // 🔥 FIX CLAVE
-    if (window.showingFavorites) {
-    window.showingFavorites = false;
-}
+    if (window.showingFavorites) return; // 🔥 FIX CLAVE
+
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
             ⏳ Cargando lista...
@@ -824,19 +822,6 @@ function loadChannels(url) {
             }
         }
     });
-
-$("#favorites-button").click(function () {
-
-    window.showingFavorites = true;
-
-    $("#playList").addClass("favorites-mode"); // 🔥 clave
-
-    renderFavorites();
-
-    $("#overlay").hide();
-    $("#form-container").hide();
-});
-    $("#playList").removeClass("favorites-mode");
 }
 
 // 🔁 DEFAULT
@@ -883,22 +868,10 @@ $(document).ready(function () {
             return;
         }
 
-        // 🔥 IMPORTANTE: convertir a estructura compatible
-        channelsGlobal = data.map(ch => ({
-            name: ch.name,
-            url: ch.url,
-            group: "⭐ Favoritos"
-        }));
-
-        // 🔥 render tipo M3U
-        container.append(`
-            <div class="group-title">⭐ Favoritos</div>
-        `);
-
-        channelsGlobal.forEach(channel => {
+        data.forEach(ch => {
             container.append(`
-                <button class='list-item' data-url='${channel.url}'>
-                    ${channel.name}
+                <button class="list-item" data-url="${ch.url}">
+                    ⭐ ${ch.name}
                 </button>
             `);
         });
@@ -936,29 +909,6 @@ $(document).ready(function () {
             $("#form-container").hide();
         }
     });
-
-
-        // 🔄 DEFAULT
-    $("#default-button").click(function () {
-        cargarDefault();
-        $("#overlay").hide();
-        $("#form-container").hide();
-    });
-
-    // 🧹 LIMPIAR
-    $("#clear-button").click(function () {
-        $("#m3u-url").val("");
-    });
-
-    // ❌ CERRAR
-    $("#exit-button").click(function () {
-        $("#overlay").hide();
-        $("#form-container").hide();
-    });
-
-
-
-
 
     $(".preset").click(function () {
 
@@ -1005,7 +955,6 @@ $("#auto-next-btn").click(function () {
     autoNextEnabled = !autoNextEnabled;
     $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
 });
-
 
 // 🎨 ANIMACIÓN NOMBRE
 document.addEventListener('DOMContentLoaded', function () {
