@@ -735,8 +735,10 @@ function getChannelData(line) {
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
 
-    if (window.showingFavorites) return; // 🔥 FIX CLAVE
-
+  //  if (window.showingFavorites) return; // 🔥 FIX CLAVE
+    if (window.showingFavorites) {
+    window.showingFavorites = false;
+}
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
             ⏳ Cargando lista...
@@ -858,24 +860,36 @@ $(document).ready(function () {
     // ⭐ FAVORITOS
     function renderFavorites() {
 
-        let data = JSON.parse(localStorage.getItem("favorites")) || [];
+    let data = JSON.parse(localStorage.getItem("favorites")) || [];
 
-        let container = $("#playList");
-        container.empty();
+    let container = $("#playList");
+    container.empty();
 
-        if (data.length === 0) {
-            container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
-            return;
-        }
-
-        data.forEach(ch => {
-            container.append(`
-                <button class="list-item" data-url="${ch.url}">
-                    ⭐ ${ch.name}
-                </button>
-            `);
-        });
+    if (data.length === 0) {
+        container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
+        return;
     }
+
+    // 🔥 IMPORTANTE: convertir a estructura compatible
+    channelsGlobal = data.map(ch => ({
+        name: ch.name,
+        url: ch.url,
+        group: "⭐ Favoritos"
+    }));
+
+    // 🔥 render tipo M3U
+    container.append(`
+        <div class="group-title">⭐ Favoritos</div>
+    `);
+
+    channelsGlobal.forEach(channel => {
+        container.append(`
+            <button class='list-item' data-url='${channel.url}'>
+                ${channel.name}
+            </button>
+        `);
+    });
+}
 
     $("#favorites-button").click(function () {
 
