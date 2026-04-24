@@ -407,6 +407,37 @@ button.list-item.active {
     }
 }
 
+.is-fav {
+    border-color: gold !important;
+}
+
+.fav-item {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+#fav-btn {
+    position: fixed;
+    top: 7px;
+    width: 36px;
+    height: 37px;
+    right: 7px;
+
+    z-index: 9;
+
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+
+    border: 1px solid gold;
+    border-radius: 8px;
+
+    padding: 4px 6px;
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
 </style>
 
 
@@ -418,7 +449,7 @@ button.list-item.active {
     <h2> EASY TV WEB</h2>
     <div id="nombreCanal">Probá M3U y URL de Link</div>
 </div>
-
+<button id="fav-btn">⭐</button>
 <div id="overlay"></div>
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
 <div id="form-container">
@@ -433,6 +464,7 @@ button.list-item.active {
         <button class="form-btn" id="default-button">Default</button>
         <button class="form-btn" id="clear-history">🗑 Borrar historial</button>
         <button class="form-btn" id="paste-button">📋 Pegar</button>
+        <button class="form-btn" id="favorites-button">⭐ Favoritos</button>
     </div>
 
     <!-- presets -->
@@ -527,16 +559,51 @@ $("#install-banner").click(async function () {
 
 <script>
 // ================== VARIABLES ==================
+
+// ================== VARIABLES ==================
 let autoNextEnabled = false;
 let channelsGlobal = [];
 let currentIndex = 0;
-
-// let currentLink = "";
 let currentLink = null;
+
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
 
+// ⭐ FAVORITOS ==================
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-// 🔍 BUSCADOR COMPLETO
+function saveFavorites() {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+function toggleFavoriteCurrent() {
+    if (!currentLink) return;
+
+    let name = $("#nombreCanal").text();
+
+    let index = favorites.findIndex(f => f.url === currentLink);
+
+    if (index !== -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.unshift({ name, url: currentLink });
+    }
+
+    saveFavorites();
+    updateFavButton();
+}
+
+function updateFavButton() {
+    if (!currentLink) return;
+
+    let exists = favorites.some(f => f.url === currentLink);
+    $("#fav-btn").text(exists ? " ✔ " : "⭐");
+}
+
+$("#fav-btn").click(function () {
+    toggleFavoriteCurrent();
+});
+
+// 🔍 BUSCADOR
 $("#search")
 .on("focus", function() {
     this.select();
@@ -547,13 +614,11 @@ $("#search")
 
     $("#no-results").remove();
 
-    // 🔍 Filtrar botones
     $("#playList button").each(function() {
         let match = $(this).text().toLowerCase().includes(value);
         $(this).css("display", match ? "" : "none");
     });
 
-    // 🔥 Ocultar grupos
     $("#playList .group-title").each(function() {
 
         let group = $(this);
@@ -566,7 +631,6 @@ $("#search")
         group.css("display", hasVisible ? "" : "none");
     });
 
-    // ⚠️ sin resultados
     if ($("#playList button:visible").length === 0) {
 
         $(".group-title").hide();
@@ -578,80 +642,55 @@ $("#search")
         `);
     }
 
-    // 🔄 reset
     if (value === "") {
         $("#playList button").show();
         $("#playList .group-title").show();
         $("#no-results").remove();
     }
-
 });
-
 
 // 🎬 PLAYER
 function playHLS(url) {
 
     var player = videojs('my-video');
 
-    // 🔥 limpiar eventos duplicados
     player.off('playing');
     player.off('waiting');
 
-    // 🔥 pausar video actual
     player.pause();
 
-    // 🔥 cambiar fuente directamente (SIN limpiar de más)
     player.src({
         src: url,
         type: 'application/x-mpegURL'
     });
 
-    // 🔥 forzar play
     player.play();
 
     currentLink = url;
 
-    player.on('playing', function () {
-        $("#link-info-container").fadeOut();
-    });
+    let showingLoading = false;
 
     player.on('waiting', function () {
-        if (autoNextEnabled) {
+
+        if (!showingLoading) {
+
+            showingLoading = true;
+
             $("#link-info-container")
                 .html("🔄 Buscando señal...")
                 .show();
         }
     });
 
-// SIEMPRE APARECE "BUSCANDO CANAL EN ON Y OFF"
+    player.on('playing', function () {
+        showingLoading = false;
+        $("#link-info-container").fadeOut();
+    });
 
-let showingLoading = false;
-
-player.on('waiting', function () {
-
-    if (!showingLoading) {
-
-        showingLoading = true;
-
-        $("#link-info-container")
-            .html("🔄 Buscando señal...")
-            .show();
-    }
-});
-
-player.on('playing', function () {
-    showingLoading = false;
-    $("#link-info-container").fadeOut();
-});
-
-player.on('error', function () {
-    showingLoading = false;
-});
-
+    player.on('error', function () {
+        showingLoading = false;
+    });
 }
-
-
-
 
 // 🧠 PARSER
 function getChannelData(line) {
@@ -672,9 +711,10 @@ function getChannelData(line) {
     return { name, group };
 }
 
-
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
+
+    if (window.showingFavorites) return; // 🔥 FIX CLAVE
 
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
@@ -698,8 +738,7 @@ function loadChannels(url) {
 
                 if (line.startsWith("#EXTINF")) {
                     let data = getChannelData(line);
-                    // ... dentro del forEach ajuste de longitud
-                    currentChannel.name = data.name.substring(0, 30); ;
+                    currentChannel.name = data.name.substring(0, 30);
                     currentChannel.group = data.group;
 
                 } else if (line !== "" && !line.startsWith("#")) {
@@ -722,7 +761,6 @@ function loadChannels(url) {
                 }
             });
 
-            // 🔥 eliminar duplicados (FIX)
             let seen = new Set();
             channels = channels.filter(ch => {
                 let key = ch.name + ch.group;
@@ -731,7 +769,6 @@ function loadChannels(url) {
                 return true;
             });
 
-            // 🔥 GUARDAR LISTA GLOBAL (CLAVE)
             channelsGlobal = channels;
 
             if (channels.length === 0) {
@@ -739,7 +776,6 @@ function loadChannels(url) {
                 return;
             }
 
-            // 🔥 AGRUPAR
             let grouped = {};
 
             channels.forEach(ch => {
@@ -747,15 +783,12 @@ function loadChannels(url) {
                 grouped[ch.group].push(ch);
             });
 
-            // 🎛️ RENDER
             $("#playList").empty();
 
             for (let group in grouped) {
 
                 $("#playList").append(`
-                    <div class="group-title" style="color:#00ffcc; font-weight:bold; margin-top:0px;">
-                        ${group}
-                    </div>
+                    <div class="group-title">${group}</div>
                 `);
 
                 grouped[group].forEach(channel => {
@@ -766,77 +799,110 @@ function loadChannels(url) {
                     `);
                 });
             }
-        },
-
-        error: function (xhr, status, error) {
-
-            let mensaje = "❌ Error al cargar la lista";
-
-            if (status === "timeout") mensaje = "⏱️ La carga tardó demasiado";
-            if (xhr.status === 404) mensaje = "❌ Lista no encontrada";
-
-            $("#playList").html(`
-                <div style="text-align:center; padding:20px;">
-                    ${mensaje}<br>
-                    <button onclick="cargarDefault()">🔄 Lista original</button>
-                </div>
-            `);
         }
     });
-};
+}
 
-
-// 🔁 VOLVER A LISTA ORIGINAL
+// 🔁 DEFAULT
 function cargarDefault() {
+    window.showingFavorites = false;
     $("#m3u-url").val(defaultM3U);
     loadChannels(defaultM3U);
-};
-
+}
 
 // 🎛️ EVENTOS
 $(document).ready(function () {
 
-    $("#link-info-container").hide(); 
+    $("#link-info-container").hide();
+
     loadChannels(defaultM3U);
     renderHistory();
 
-    // ▶️ CLICK CANAL
     $("#playList").on('click', 'button', function() {
+
         let url = $(this).data('url');
         let nombre = $(this).text();
-        // 🔥 índice correcto
+
         currentIndex = channelsGlobal.findIndex(c => c.url === url);
+
         playHLS(url);
         $("#nombreCanal").text(nombre);
-        // 🔥 NUEVO: marcar activo
+
+        updateFavButton();
+
         $(".list-item").removeClass("active");
         $(this).addClass("active");
     });
 
+    // ⭐ FAVORITOS
+    function renderFavorites() {
 
+        let data = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    // 🪟 ABRIR MODAL
+        let container = $("#playList");
+        container.empty();
+
+        if (data.length === 0) {
+            container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
+            return;
+        }
+
+        // 🔥 IMPORTANTE: convertir a estructura compatible
+        channelsGlobal = data.map(ch => ({
+            name: ch.name,
+            url: ch.url,
+            group: "⭐ Favoritos"
+        }));
+
+        // 🔥 render tipo M3U
+        container.append(`
+            <div class="group-title">⭐ Favoritos</div>
+        `);
+
+        channelsGlobal.forEach(channel => {
+            container.append(`
+                <button class='list-item' data-url='${channel.url}'>
+                    ${channel.name}
+                </button>
+            `);
+        });
+    }
+
+    $("#favorites-button").click(function () {
+
+        window.showingFavorites = true;
+
+        renderFavorites();
+
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+    // 🪟 MODAL
     $("#top-bar h2").click(function () {
         $("#overlay").show();
         $("#form-container").show();
     });
 
-    // 📥 CARGAR URL
     $("#ok-button").click(function () {
-       // let url = $("#m3u-url").val("");
+
         let url = $("#m3u-url").val().trim();
+
         if (url !== "") {
-            saveM3U(url);  //opción nueva
+
+            window.showingFavorites = false;
+
+            saveM3U(url);
             loadChannels(url);
-            renderHistory();   //opción nueva
+            renderHistory();
+
             $("#overlay").hide();
             $("#form-container").hide();
-        } else {
-            alert("Ingresá una URL válida");
         }
     });
 
-    // 🔄 DEFAULT
+
+        // 🔄 DEFAULT
     $("#default-button").click(function () {
         cargarDefault();
         $("#overlay").hide();
@@ -854,9 +920,15 @@ $(document).ready(function () {
         $("#form-container").hide();
     });
 
-    // ⭐ LISTAS RÁPIDAS
+
+
+
+
     $(".preset").click(function () {
+
         let url = $(this).data("url");
+
+        window.showingFavorites = false;
 
         $("#m3u-url").val(url);
         loadChannels(url);
@@ -865,124 +937,36 @@ $(document).ready(function () {
         $("#form-container").hide();
     });
 
-
-
-
-    // 🔗 VER LINK
-//     $("#nombreCanal").click(function() {
-
-//     if (!currentLink) return; // 🔥 clave
-
-//     $("#link-info-container")
-//         .text(currentLink)
-//         .show();
-
-//     setTimeout(() => $("#link-info-container").hide(), 5000);
-// });
-
-    // 🔗 VER LINK OPCION GEMINIS
-    let clickTimer;
-
-    $("#nombreCanal").on("click", function() {
-        if (!currentLink) return;
-
-        // Cancelamos cualquier click previo para esperar el segundo (doble clic)
-        clearTimeout(clickTimer);
-
-        clickTimer = setTimeout(() => {
-            // --- LÓGICA DE 1 CLIC: MOSTRAR EN PANTALLA ---
-            $("#link-info-container")
-               // .text("Link: " + currentLink)
-                .html("<b>Link:</b><br><span>" + currentLink + "</span>")
-                .stop(true, true).fadeIn(200);
-
-            setTimeout(() => $("#link-info-container").fadeOut(500), 5000);
-            
-        }, 250); // 250ms es el tiempo estándar de espera para detectar un doble clic
-    });
-
-    $("#nombreCanal").on("dblclick", function() {
-        if (!currentLink) return;
-
-        // Cancelamos el temporizador del click simple para que no se ejecute
-        clearTimeout(clickTimer);
-
-        // --- LÓGICA DE 2 CLICS: COPIAR AL PORTAPAPELES ---
-        navigator.clipboard.writeText(currentLink).then(() => {
-            $("#link-info-container")
-                .text("✅ ¡Copiado al portapapeles!")
-                .stop(true, true).show().fadeOut(3000);
-        });
-    });
-
-
-
-
-    // 🎬 PLAYER
-// 🎬 PLAYER
-var player = videojs('my-video');
+    // 🎬 ERROR PLAYER
+    var player = videojs('my-video');
 
     player.on('error', function() {
 
-    console.log("Error de señal");
+        player.pause();
 
-    player.pause();
-
-    // 🖼 mostrar poster
-    player.poster("https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg");
-
-    if (autoNextEnabled) {
-
-        let attempts = 0;
-
-        function tryNext() {
+        if (autoNextEnabled) {
 
             currentIndex++;
 
-            if (currentIndex >= channelsGlobal.length || attempts > 10) {
-                console.log("No se encontró canal válido");
-                return;
-            }
+            if (currentIndex >= channelsGlobal.length) return;
 
             let next = channelsGlobal[currentIndex];
-
-            console.log("Probando:", next.name);
-
-            $("#link-info-container")
-            .html(`🔄 Probando: <br><b>${next.name}</b>`)
-            .show();
 
             playHLS(next.url);
             $("#nombreCanal").text(next.name);
 
-            $(".list-item").removeClass("active");
+        } else {
 
-            let btn = $("#playList button").eq(currentIndex);
-            btn.addClass("active");
-
-            attempts++;
+            $("#link-info-container")
+            .html("❌ Señal fuera de servicio")
+            .show();
         }
-
-        setTimeout(tryNext, 1500);
-
-    } else {
-
-        $("#link-info-container")
-        .html("❌ Señal fuera de servicio")
-        .show();
-        // $(".vjs-loading-spinner").fadeOut(100);
-
-    }
+    });
 });
 
-});
-
-
-// 🔘 BOTÓN AUTO NEXT
+// 🔘 AUTO
 $("#auto-next-btn").click(function () {
-
     autoNextEnabled = !autoNextEnabled;
-
     $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
 });
 
