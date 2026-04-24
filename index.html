@@ -288,6 +288,27 @@ button.list-item.active {
     font-weight: bold;
 }
 
+
+#playList.favorites-mode {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: flex-start;
+}
+
+#playList.favorites-mode .list-item {
+    width: calc(50% - 6px); /* 2 columnas */
+    font-size: 0.65rem;
+}
+
+@media (max-width: 480px) {
+    #playList.favorites-mode .list-item {
+        width: 100%;
+    }
+}
+    
+
+    
 /* 7. Modal (Formulario de carga) - ARREGLADO */
 #overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -714,8 +735,10 @@ function getChannelData(line) {
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
 
-    if (window.showingFavorites) return; // 🔥 FIX CLAVE
-
+  //  if (window.showingFavorites) return; // 🔥 FIX CLAVE
+    if (window.showingFavorites) {
+    window.showingFavorites = false;
+}
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
             ⏳ Cargando lista...
@@ -801,6 +824,19 @@ function loadChannels(url) {
             }
         }
     });
+
+$("#favorites-button").click(function () {
+
+    window.showingFavorites = true;
+
+    $("#playList").addClass("favorites-mode"); // 🔥 clave
+
+    renderFavorites();
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+});
+    $("#playList").removeClass("favorites-mode");
 }
 
 // 🔁 DEFAULT
