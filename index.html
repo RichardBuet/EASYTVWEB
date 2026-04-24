@@ -761,8 +761,26 @@ $(document).ready(function () {
 
     $("#link-info-container").hide();
 
+
+    $("#nombreCanal").dblclick(function (e) {
+    e.stopPropagation();
+
+    if (!currentLink) return;
+
+    navigator.clipboard.writeText(currentLink)
+        .then(() => {
+            $("#link-info-container")
+                .html("📋 Link copiado")
+                .show()
+                .fadeOut(1500);
+        })
+        .catch(() => {
+            alert("No se pudo copiar");
+        });
+});
+    
     // ABRIR MODAL
-    $("#top-bar").click(function () {
+    $("#top-bar h2").click(function () {
         $("#overlay, #form-container").show();
     });
 
