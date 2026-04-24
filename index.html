@@ -539,7 +539,361 @@ button.list-item.active {
     📲 Instalar Easy TV
 </div>
 
+<script>
+// ================== VARIABLES ==================
+let autoNextEnabled = false;
+let channelsGlobal = [];
+let currentIndex = 0;
+let currentLink = null;
+window.showingFavorites = false;
 
+const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
+
+// ================== FAVORITOS ==================
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+function saveFavorites() {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+function toggleFavoriteCurrent() {
+    if (!currentLink) return;
+
+    let name = $("#nombreCanal").text();
+    let index = favorites.findIndex(f => f.url === currentLink);
+
+    if (index !== -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.unshift({ name, url: currentLink });
+    }
+
+    saveFavorites();
+    updateFavButton();
+}
+
+function updateFavButton() {
+    let exists = favorites.some(f => f.url === currentLink);
+    $("#fav-btn").text(exists ? "✔" : "⭐");
+}
+
+// ================== PLAYER ==================
+function playHLS(url) {
+
+    var player = videojs('my-video');
+
+    player.pause();
+    player.src({ src: url, type: 'application/x-mpegURL' });
+    player.play();
+
+    currentLink = url;
+
+    $("#link-info-container")
+        .html("🔄 Buscando señal...")
+        .show();
+
+    player.one('playing', function () {
+        $("#link-info-container").fadeOut();
+    });
+
+    player.one('error', function () {
+        $("#link-info-container")
+            .html("❌ Señal fuera de servicio")
+            .show();
+    });
+}
+
+// ================== PARSER ==================
+function getChannelData(line) {
+    const nameMatch = line.match(/,(.*)/);
+    const groupMatch = line.match(/group-title="([^"]*)"/);
+
+    return {
+        name: nameMatch ? nameMatch[1].trim() : "Canal",
+        group: groupMatch ? groupMatch[1].trim() : "General"
+    };
+}
+
+// ================== CARGA LISTA ==================
+function loadChannels(url) {
+
+    window.showingFavorites = false;
+    $("#playList").removeClass("favorites-mode");
+
+    $("#playList").html("⏳ Cargando lista...");
+
+    $.get(url, function (data) {
+
+        let lines = data.split("\n");
+        let channels = [];
+        let current = {};
+
+        lines.forEach(line => {
+
+            if (line.startsWith("#EXTINF")) {
+                let d = getChannelData(line);
+                current.name = d.name;
+                current.group = d.group;
+
+            } else if (line && !line.startsWith("#")) {
+
+                current.url = line;
+
+                if (current.name) {
+                    channels.push({...current});
+                }
+
+                current = {};
+            }
+        });
+
+        channelsGlobal = channels;
+
+        let grouped = {};
+        channels.forEach(c => {
+            if (!grouped[c.group]) grouped[c.group] = [];
+            grouped[c.group].push(c);
+        });
+
+        $("#playList").empty();
+
+        for (let g in grouped) {
+            $("#playList").append(`<div class="group-title">${g}</div>`);
+
+            grouped[g].forEach(c => {
+                $("#playList").append(`
+                    <button class="list-item" data-url="${c.url}">
+                        ${c.name}
+                    </button>
+                `);
+            });
+        }
+
+    });
+}
+
+// ================== FAVORITOS VIEW ==================
+function renderFavorites() {
+
+    let data = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    $("#playList").empty().addClass("favorites-mode");
+
+    if (!data.length) {
+        $("#playList").html("⭐ Sin favoritos");
+        return;
+    }
+
+    channelsGlobal = data;
+
+    data.forEach(c => {
+        $("#playList").append(`
+            <button class="list-item" data-url="${c.url}">
+                ${c.name}
+            </button>
+        `);
+    });
+}
+
+// ================== HISTORIAL ==================
+function saveM3U(url) {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    history = history.filter(h => h.url !== url);
+    history.unshift({ name: url, url });
+
+    history = history.slice(0, 15);
+
+    localStorage.setItem("m3uHistory", JSON.stringify(history));
+}
+
+function renderHistory() {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    $("#m3u-history").empty();
+
+    history.forEach(h => {
+        $("#m3u-history").append(`
+            <div class="history-item" data-url="${h.url}">
+                🔗 ${h.name}
+            </div>
+        `);
+    });
+}
+
+// ================== AUTO NEXT ==================
+function handlePlayerError() {
+
+    var player = videojs('my-video');
+
+    player.on('error', function () {
+
+        player.pause();
+
+        if (autoNextEnabled) {
+
+            currentIndex++;
+
+            if (currentIndex >= channelsGlobal.length) return;
+
+            let next = channelsGlobal[currentIndex];
+
+            playHLS(next.url);
+            $("#nombreCanal").text(next.name);
+
+        } else {
+
+            $("#link-info-container")
+                .html("❌ Señal fuera de servicio")
+                .show();
+        }
+    });
+}
+
+// ================== READY ==================
+$(document).ready(function () {
+
+    loadChannels(defaultM3U);
+    renderHistory();
+    handlePlayerError();
+
+    $("#link-info-container").hide();
+
+    // ABRIR MODAL
+    $("#top-bar").click(function () {
+        $("#overlay, #form-container").show();
+    });
+
+    // CERRAR
+    $("#exit-button").click(function () {
+        $("#overlay, #form-container").hide();
+    });
+
+    // LIMPIAR
+    $("#clear-button").click(function () {
+        $("#m3u-url").val("");
+    });
+
+    // PEGAR
+    $("#paste-button").click(async function () {
+        try {
+            const text = await navigator.clipboard.readText();
+            $("#m3u-url").val(text);
+        } catch {
+            alert("No se pudo acceder al portapapeles");
+        }
+    });
+
+    // CARGAR
+    $("#ok-button").click(function () {
+
+        let url = $("#m3u-url").val().trim();
+
+        if (url) {
+            saveM3U(url);
+            loadChannels(url);
+            renderHistory();
+        }
+
+        $("#overlay, #form-container").hide();
+    });
+
+    // DEFAULT
+    $("#default-button").click(function () {
+        loadChannels(defaultM3U);
+        $("#overlay, #form-container").hide();
+    });
+
+    // PRESETS
+    $(".preset").click(function () {
+        loadChannels($(this).data("url"));
+        $("#overlay, #form-container").hide();
+    });
+
+    // HISTORIAL CLICK
+    $("#m3u-history").on("click", ".history-item", function () {
+        loadChannels($(this).data("url"));
+        $("#overlay, #form-container").hide();
+    });
+
+    // BORRAR HISTORIAL
+    $("#clear-history").click(function () {
+        if (confirm("¿Borrar historial?")) {
+            localStorage.removeItem("m3uHistory");
+            renderHistory();
+        }
+    });
+
+    // FAVORITOS
+    $("#favorites-button").click(function () {
+        window.showingFavorites = true;
+        renderFavorites();
+        $("#overlay, #form-container").hide();
+    });
+
+    $("#fav-btn").click(toggleFavoriteCurrent);
+
+    // CLICK CANAL
+    $("#playList").on("click", ".list-item", function () {
+
+        let url = $(this).data("url");
+
+        currentIndex = channelsGlobal.findIndex(c => c.url === url);
+
+        playHLS(url);
+        $("#nombreCanal").text($(this).text());
+
+        updateFavButton();
+    });
+
+    // AUTO NEXT BTN
+    $("#auto-next-btn").click(function () {
+        autoNextEnabled = !autoNextEnabled;
+        $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
+    });
+
+});
+
+// ================== ANIMACIÓN ==================
+document.addEventListener('DOMContentLoaded', function () {
+    let el = document.getElementById('nombreCanal');
+    let timer;
+
+    window.onmousemove = function () {
+        clearTimeout(timer);
+        el.style.opacity = "1";
+
+        timer = setTimeout(() => {
+            el.style.opacity = "0.3";
+        }, 8000);
+    };
+});
+
+// ================== TÍTULO DINÁMICO ==================
+function actualizarTitulo() {
+    let el = document.getElementById("nombreCanal");
+    let nombre = el?.textContent?.trim();
+    document.title = nombre ? `EASY TV - ${nombre}` : "EASY TV";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    actualizarTitulo();
+
+    const el = document.getElementById("nombreCanal");
+
+    if (el) {
+        const observer = new MutationObserver(actualizarTitulo);
+        observer.observe(el, {
+            childList: true,
+            subtree: true
+        });
+    }
+});
+
+</script>
     
 <script>
     
@@ -575,502 +929,6 @@ $("#install-banner").click(async function () {
     if (window.matchMedia('(display-mode: standalone)').matches) {
     $("#install-banner").hide();
 }
-</script>
-
-
-<script>
-
-// ================== VARIABLES ==================
-let autoNextEnabled = false;
-let channelsGlobal = [];
-let currentIndex = 0;
-let currentLink = null;
-
-const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO2506V0.m3u";
-
-// ⭐ FAVORITOS ==================
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-function saveFavorites() {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
-function toggleFavoriteCurrent() {
-    if (!currentLink) return;
-
-    let name = $("#nombreCanal").text();
-
-    let index = favorites.findIndex(f => f.url === currentLink);
-
-    if (index !== -1) {
-        favorites.splice(index, 1);
-    } else {
-        favorites.unshift({ name, url: currentLink });
-    }
-
-    saveFavorites();
-    updateFavButton();
-}
-
-function updateFavButton() {
-    if (!currentLink) return;
-
-    let exists = favorites.some(f => f.url === currentLink);
-    $("#fav-btn").text(exists ? "✔" : "⭐");
-}
-
-// 🔍 BUSCADOR
-$("#search").on("focus", function() {
-    this.select();
-}).on("input", function() {
-
-    let value = $(this).val().toLowerCase();
-
-    $("#no-results").remove();
-
-    $("#playList button").each(function() {
-        let match = $(this).text().toLowerCase().includes(value);
-        $(this).css("display", match ? "" : "none");
-    });
-
-    $("#playList .group-title").each(function() {
-
-        let group = $(this);
-
-        let hasVisible = group
-            .nextUntil(".group-title")
-            .filter("button:visible")
-            .length > 0;
-
-        group.css("display", hasVisible ? "" : "none");
-    });
-
-    if ($("#playList button:visible").length === 0) {
-        $(".group-title").hide();
-
-        $("#playList").append(`
-            <div id="no-results" style="text-align:center; padding:10px;">
-                ❌ Sin resultados
-            </div>
-        `);
-    }
-
-    if (value === "") {
-        $("#playList button").show();
-        $("#playList .group-title").show();
-        $("#no-results").remove();
-    }
-});
-
-// 🎬 PLAYER
-function playHLS(url) {
-
-    var player = videojs('my-video');
-
-    player.off('playing');
-    player.off('waiting');
-
-    player.pause();
-
-    player.src({
-        src: url,
-        type: 'application/x-mpegURL'
-    });
-
-    player.play();
-
-    currentLink = url;
-
-    let showingLoading = false;
-
-    player.on('waiting', function () {
-        if (!showingLoading) {
-            showingLoading = true;
-            $("#link-info-container")
-                .html("🔄 Buscando señal...")
-                .show();
-        }
-    });
-
-    player.on('playing', function () {
-        showingLoading = false;
-        $("#link-info-container").fadeOut();
-    });
-
-    player.on('error', function () {
-        showingLoading = false;
-    });
-}
-
-// 🧠 PARSER
-function getChannelData(line) {
-    const nameMatch = line.match(/,(.*)/);
-    const groupMatch = line.match(/group-title="([^"]*)"/);
-
-    let name = nameMatch ? nameMatch[1].trim() : "Unknown";
-    let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
-
-    if (!group || ["undefined","n/a","none"].includes(group.toLowerCase())) {
-        group = "Canales de TV";
-    }
-
-    return { name, group };
-}
-
-// 📡 CARGA DE LISTA
-function loadChannels(url) {
-
-    window.showingFavorites = false;
-    $("#playList").removeClass("favorites-mode");
-
-    $("#playList").html(`
-        <div style="text-align:center; padding:20px;">
-            ⏳ Cargando lista...
-        </div>
-    `);
-
-    $.ajax({
-        type: "GET",
-        url: url,
-        timeout: 20000,
-
-        success: function (message) {
-
-            let lines = message.split("\n");
-            let channels = [];
-            let currentChannel = { name: "", url: "", group: "General" };
-
-            lines.forEach(line => {
-                line = line.trim();
-
-                if (line.startsWith("#EXTINF")) {
-                    let data = getChannelData(line);
-                    currentChannel.name = data.name.substring(0, 30);
-                    currentChannel.group = data.group;
-
-                } else if (line !== "" && !line.startsWith("#")) {
-
-                    currentChannel.url = line;
-
-                    if (currentChannel.name && currentChannel.url) {
-                        let groups = currentChannel.group.split(";");
-
-                        groups.forEach(g => {
-                            channels.push({
-                                name: currentChannel.name,
-                                url: currentChannel.url,
-                                group: g.trim() || "General"
-                            });
-                        });
-                    }
-
-                    currentChannel = { name: "", url: "", group: "General" };
-                }
-            });
-
-            channelsGlobal = channels;
-
-            let grouped = {};
-            channels.forEach(ch => {
-                if (!grouped[ch.group]) grouped[ch.group] = [];
-                grouped[ch.group].push(ch);
-            });
-
-            $("#playList").empty();
-
-            for (let group in grouped) {
-
-                $("#playList").append(`<div class="group-title">${group}</div>`);
-
-                grouped[group].forEach(channel => {
-                    $("#playList").append(`
-                        <button class='list-item' data-url='${channel.url}'>
-                            ${channel.name}
-                        </button>
-                    `);
-                });
-            }
-        }
-    });
-}
-
-// ⭐ FAVORITOS
-function renderFavorites() {
-
-    let data = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    let container = $("#playList");
-    container.empty();
-
-    if (data.length === 0) {
-        container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
-        return;
-    }
-
-    $("#playList").addClass("favorites-mode");
-
-    channelsGlobal = data;
-
-    container.append(`<div class="group-title">⭐ Favoritos</div>`);
-
-    data.forEach(channel => {
-        container.append(`
-            <button class='list-item' data-url='${channel.url}'>
-                ${channel.name}
-            </button>
-        `);
-    });
-}
-
-// 🎛️ EVENTOS
-$(document).ready(function () {
-
-    $("#link-info-container").hide();
-
-    loadChannels(defaultM3U);
-    renderHistory();
-
-    // ⭐ BOTÓN FAVORITO
-    $("#fav-btn").click(function () {
-        toggleFavoriteCurrent();
-    });
-
-    // ⭐ VER FAVORITOS
-    $("#favorites-button").click(function () {
-        window.showingFavorites = true;
-        renderFavorites();
-
-        $("#overlay").hide();
-        $("#form-container").hide();
-    });
-
-    // ▶️ CLICK CANAL
-    $("#playList").on('click', 'button', function() {
-
-        let url = $(this).data('url');
-        let nombre = $(this).text();
-
-        currentIndex = channelsGlobal.findIndex(c => c.url === url);
-
-        playHLS(url);
-        $("#nombreCanal").text(nombre);
-
-        updateFavButton();
-
-        $(".list-item").removeClass("active");
-        $(this).addClass("active");
-    });
-
-    // 📡 CAMBIO DE LISTAS
-    $("#ok-button").click(function () {
-
-        let url = $("#m3u-url").val().trim();
-
-        if (url !== "") {
-            saveM3U(url);
-            loadChannels(url);
-            renderHistory();
-
-            $("#overlay").hide();
-            $("#form-container").hide();
-        }
-    });
-
-    $("#default-button").click(function () {
-        loadChannels(defaultM3U);
-        $("#overlay").hide();
-        $("#form-container").hide();
-    });
-
-    $(".preset").click(function () {
-        let url = $(this).data("url");
-        loadChannels(url);
-
-        $("#overlay").hide();
-        $("#form-container").hide();
-    });
-
-});
-
-//script>
-    // 🎬 ERROR PLAYER
-    var player = videojs('my-video');
-
-    player.on('error', function() {
-
-        player.pause();
-
-        if (autoNextEnabled) {
-
-            currentIndex++;
-
-            if (currentIndex >= channelsGlobal.length) return;
-
-            let next = channelsGlobal[currentIndex];
-
-            playHLS(next.url);
-            $("#nombreCanal").text(next.name);
-
-        } else {
-
-            $("#link-info-container")
-            .html("❌ Señal fuera de servicio")
-            .show();
-        }
-    });
-});
-
-// 🔘 AUTO
-$("#auto-next-btn").click(function () {
-    autoNextEnabled = !autoNextEnabled;
-    $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
-});
-
-// 🎨 ANIMACIÓN NOMBRE
-document.addEventListener('DOMContentLoaded', function () {
-    var nombreCanal = document.getElementById('nombreCanal');
-    var timer;
-
-    window.onmousemove = function () {
-        clearTimeout(timer);
-        nombreCanal.style.animation = 'fadeInOut 0.5s forwards';
-
-        timer = setTimeout(function () {
-            nombreCanal.style.animation = 'fadeOutIn 0.5s forwards';
-        }, 10000);
-    };
-});
-
-
-// 📏 SCROLLBAR
-window.onload = function() {
-    let h = document.getElementById('playList').scrollHeight;
-    let size = h * 0.05;
-    document.styleSheets[0].addRule('*::-webkit-scrollbar-thumb', 'height: ' + size + 'px');
-};
-
-$("#paste-button").click(async function () {
-    try {
-        const text = await navigator.clipboard.readText();
-        $("#m3u-url").val(text);
-    } catch (err) {
-        alert("No se pudo acceder al portapapeles");
-    }
-});
-   // Función para actualizar el título
-    function actualizarTitulo() {
-      const canal = document.getElementById("nombreCanal");
-      if (canal) {
-        document.title = "EASYTV - " + canal.textContent;
-      }
-    }
-
-    // Actualiza el título al cargar la página
-    actualizarTitulo();
-
-    // Observa cambios en el contenido del elemento
-    const canal = document.getElementById("NombreCanal");
-    if (canal) {
-      const observer = new MutationObserver(actualizarTitulo);
-      observer.observe(canal, { childList: true, characterData: true, subtree: true });
-    };
-
-function saveM3U(url) {
-
-    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
-
-    let u = new URL(url);
-
-    let file = u.pathname.split("/").pop() || "lista";
-    let shortName = u.hostname + " / " + file;
-
-    let item = {
-        name: shortName,
-        url: url
-    };
-
-    // 🔥 evitar duplicados por URL completa
-    history = history.filter(h => h.url !== url);
-
-    // 🔥 agregar al inicio
-    history.unshift(item);
-
-    // 🔥 limitar a 5 elementos
-    history = history.slice(0, 15);
-
-    // 🔥 guardar
-    localStorage.setItem("m3uHistory", JSON.stringify(history));
-}
-
-
-
-function renderHistory() {
-
-    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
-
-    $("#m3u-history").empty();
-
-    history.forEach(item => {
-        $("#m3u-history").append(`
-            <div class="history-item" data-url="${item.url}">
-                🔗 ${item.name}
-            </div>
-        `);
-    });
-}
-
-$("#m3u-history").on("click", ".history-item", function () {
-
-    let url = $(this).data("url");
-
-    $("#m3u-url").val(url);
-    loadChannels(url);
-
-    $("#overlay").hide();
-    $("#form-container").hide();
-});
-
-$("#clear-history").click(function () {
-
-    if (confirm("¿Borrar historial de listas?")) {
-
-        localStorage.removeItem("m3uHistory");
-
-        renderHistory(); // refresca UI
-
-        $("#m3u-url").val(""); // opcional limpiar input
-    }
-    if (!localStorage.getItem("m3uHistory")) {
-    $("#clear-history").hide();
-}
-});
-
-      // Actualiza el título usando el contenido visible del canal
-function actualizarTituloDesdeDOM() {
-  const el = document.getElementById("nombreCanal");
-  const nombre = el?.textContent?.trim();
-
-  document.title = nombre ? `EASY TV - ${nombre}` : "EASY TV";
-}
-
-// Ejecutar cuando carga la página
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarTituloDesdeDOM();
-
-  const el = document.getElementById("nombreCanal");
-
-  if (el) {
-    const observer = new MutationObserver(() => {
-      actualizarTituloDesdeDOM();
-    });
-
-    observer.observe(el, {
-      childList: true,
-      characterData: true,
-      subtree: true
-    });
-  }
-});
 </script>
 
 
