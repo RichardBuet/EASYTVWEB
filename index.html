@@ -576,7 +576,10 @@ $("#install-banner").click(async function () {
     $("#install-banner").hide();
 }
 </script>
+
+
 <script>
+// ================== VARIABLES ==================
 
 // ================== VARIABLES ==================
 let autoNextEnabled = false;
@@ -614,18 +617,19 @@ function updateFavButton() {
     if (!currentLink) return;
 
     let exists = favorites.some(f => f.url === currentLink);
-    $("#fav-btn").text(exists ? "✔" : "⭐");
+    $("#fav-btn").text(exists ? " ✔ " : "⭐");
 }
 
-// 👉 IMPORTANTE: evento delegado (más robusto)
-$(document).on("click", "#fav-btn", function () {
+$("#fav-btn").click(function () {
     toggleFavoriteCurrent();
 });
 
 // 🔍 BUSCADOR
-$("#search").on("focus", function() {
+$("#search")
+.on("focus", function() {
     this.select();
-}).on("input", function() {
+})
+.on("input", function() {
 
     let value = $(this).val().toLowerCase();
 
@@ -688,8 +692,11 @@ function playHLS(url) {
     let showingLoading = false;
 
     player.on('waiting', function () {
+
         if (!showingLoading) {
+
             showingLoading = true;
+
             $("#link-info-container")
                 .html("🔄 Buscando señal...")
                 .show();
@@ -714,7 +721,11 @@ function getChannelData(line) {
     let name = nameMatch ? nameMatch[1].trim() : "Unknown";
     let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
 
-    if (!group || ["undefined","n/a","none"].includes(group.toLowerCase())) {
+    if (!group ||
+        group.toLowerCase() === "undefined" ||
+        group.toLowerCase() === "n/a" ||
+        group.toLowerCase() === "none"
+    ) {
         group = "Canales de TV";
     }
 
@@ -724,12 +735,10 @@ function getChannelData(line) {
 // 📡 CARGA DE LISTA
 function loadChannels(url) {
 
+  //  if (window.showingFavorites) return; // 🔥 FIX CLAVE
     if (window.showingFavorites) {
-        window.showingFavorites = false;
-    }
-
-    $("#playList").removeClass("favorites-mode");
-
+    window.showingFavorites = false;
+}
     $("#playList").html(`
         <div style="text-align:center; padding:20px;">
             ⏳ Cargando lista...
@@ -785,7 +794,13 @@ function loadChannels(url) {
 
             channelsGlobal = channels;
 
+            if (channels.length === 0) {
+                $("#playList").html(`⚠️ Lista sin canales`);
+                return;
+            }
+
             let grouped = {};
+
             channels.forEach(ch => {
                 if (!grouped[ch.group]) grouped[ch.group] = [];
                 grouped[ch.group].push(ch);
@@ -794,7 +809,10 @@ function loadChannels(url) {
             $("#playList").empty();
 
             for (let group in grouped) {
-                $("#playList").append(`<div class="group-title">${group}</div>`);
+
+                $("#playList").append(`
+                    <div class="group-title">${group}</div>
+                `);
 
                 grouped[group].forEach(channel => {
                     $("#playList").append(`
@@ -806,38 +824,26 @@ function loadChannels(url) {
             }
         }
     });
+
+$("#favorites-button").click(function () {
+
+    window.showingFavorites = true;
+
+    $("#playList").addClass("favorites-mode"); // 🔥 clave
+
+    renderFavorites();
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+});
+    $("#playList").removeClass("favorites-mode");
 }
 
-// ⭐ RENDER FAVORITOS
-function renderFavorites() {
-
-    let data = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    let container = $("#playList");
-    container.empty();
-
-    if (data.length === 0) {
-        container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
-        return;
-    }
-
-    $("#playList").addClass("favorites-mode");
-
-    channelsGlobal = data.map(ch => ({
-        name: ch.name,
-        url: ch.url,
-        group: "Favoritos"
-    }));
-
-    container.append(`<div class="group-title">⭐ Favoritos</div>`);
-
-    channelsGlobal.forEach(channel => {
-        container.append(`
-            <button class='list-item' data-url='${channel.url}'>
-                ${channel.name}
-            </button>
-        `);
-    });
+// 🔁 DEFAULT
+function cargarDefault() {
+    window.showingFavorites = false;
+    $("#m3u-url").val(defaultM3U);
+    loadChannels(defaultM3U);
 }
 
 // 🎛️ EVENTOS
@@ -846,8 +852,8 @@ $(document).ready(function () {
     $("#link-info-container").hide();
 
     loadChannels(defaultM3U);
+    renderHistory();
 
-    // ▶️ CLICK CANAL
     $("#playList").on('click', 'button', function() {
 
         let url = $(this).data('url');
@@ -864,7 +870,40 @@ $(document).ready(function () {
         $(this).addClass("active");
     });
 
-    // ⭐ BOTÓN FAVORITOS (UNA SOLA VEZ)
+    // ⭐ FAVORITOS
+    function renderFavorites() {
+
+        let data = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        let container = $("#playList");
+        container.empty();
+
+        if (data.length === 0) {
+            container.html("<div style='padding:10px'>⭐ Sin favoritos</div>");
+            return;
+        }
+
+        // 🔥 IMPORTANTE: convertir a estructura compatible
+        channelsGlobal = data.map(ch => ({
+            name: ch.name,
+            url: ch.url,
+            group: "⭐ Favoritos"
+        }));
+
+        // 🔥 render tipo M3U
+        container.append(`
+            <div class="group-title">⭐ Favoritos</div>
+        `);
+
+        channelsGlobal.forEach(channel => {
+            container.append(`
+                <button class='list-item' data-url='${channel.url}'>
+                    ${channel.name}
+                </button>
+            `);
+        });
+    }
+
     $("#favorites-button").click(function () {
 
         window.showingFavorites = true;
@@ -875,16 +914,93 @@ $(document).ready(function () {
         $("#form-container").hide();
     });
 
-    // 📡 CAMBIOS DE LISTA
-    $("#ok-button, .preset, #default-button").click(function () {
-        window.showingFavorites = false;
+    // 🪟 MODAL
+    $("#top-bar h2").click(function () {
+        $("#overlay").show();
+        $("#form-container").show();
     });
 
+    $("#ok-button").click(function () {
+
+        let url = $("#m3u-url").val().trim();
+
+        if (url !== "") {
+
+            window.showingFavorites = false;
+
+            saveM3U(url);
+            loadChannels(url);
+            renderHistory();
+
+            $("#overlay").hide();
+            $("#form-container").hide();
+        }
+    });
+
+
+        // 🔄 DEFAULT
+    $("#default-button").click(function () {
+        cargarDefault();
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+    // 🧹 LIMPIAR
+    $("#clear-button").click(function () {
+        $("#m3u-url").val("");
+    });
+
+    // ❌ CERRAR
+    $("#exit-button").click(function () {
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+
+
+
+
+    $(".preset").click(function () {
+
+        let url = $(this).data("url");
+
+        window.showingFavorites = false;
+
+        $("#m3u-url").val(url);
+        loadChannels(url);
+
+        $("#overlay").hide();
+        $("#form-container").hide();
+    });
+
+    // 🎬 ERROR PLAYER
+    var player = videojs('my-video');
+
+    player.on('error', function() {
+
+        player.pause();
+
+        if (autoNextEnabled) {
+
+            currentIndex++;
+
+            if (currentIndex >= channelsGlobal.length) return;
+
+            let next = channelsGlobal[currentIndex];
+
+            playHLS(next.url);
+            $("#nombreCanal").text(next.name);
+
+        } else {
+
+            $("#link-info-container")
+            .html("❌ Señal fuera de servicio")
+            .show();
+        }
+    });
 });
 
-
-
-    
+// 🔘 AUTO
 $("#auto-next-btn").click(function () {
     autoNextEnabled = !autoNextEnabled;
     $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
