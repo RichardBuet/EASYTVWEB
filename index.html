@@ -297,13 +297,13 @@ button.list-item.active {
 }
 
 #playList.favorites-mode .list-item {
-    width: calc(50% - 6px); /* 2 columnas */
+    width: 100%;
     font-size: 0.65rem;
 }
 
 @media (max-width: 480px) {
-    #playList.favorites-mode .list-item {
-        width: 100%;
+    #playList.favorites-mode .list-item { 
+        width: calc(50% - 6px); /* 2 columnas */
     }
 }
     
@@ -580,15 +580,15 @@ function marcarCanalActivo() {
 
     if (!currentLink) return;
 
-    $(".list-item").removeClass("active");
+    // 🔥 LIMPIEZA GLOBAL REAL
+    document.querySelectorAll(".list-item.active")
+        .forEach(el => el.classList.remove("active"));
 
-    let btn = $(`.list-item[data-url="${currentLink}"]`);
+    let btn = document.querySelector(`.list-item[data-url="${currentLink}"]`);
 
-    if (btn.length) {
-        btn.addClass("active");
-
-        // opcional: centrar en scroll
-        btn[0]?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (btn) {
+        btn.classList.add("active");
+        btn.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 }
 // ================== PLAYER ==================
@@ -748,31 +748,46 @@ function handlePlayerError() {
 
     var player = videojs('my-video');
 
+    // 🔥 evitar múltiples listeners duplicados
+    player.off('error');
+
     player.on('error', function () {
 
         player.pause();
 
-        if (autoNextEnabled) {
-
-            currentIndex++;
-
-            if (currentIndex >= channelsGlobal.length) return;
-
-            let next = channelsGlobal[currentIndex];
-
-            playHLS(next.url);
-$("#nombreCanal").text(next.name);
-
-currentLink = next.url; // 🔥 clave
-
-marcarCanalActivo();
-
-        } else {
+        if (!autoNextEnabled) {
 
             $("#link-info-container")
                 .html("❌ Señal fuera de servicio")
                 .show();
+
+            return;
         }
+
+        // 🔥 buscar posición real del canal actual
+        let currentPos = channelsGlobal.findIndex(c => c.url === currentLink);
+
+        if (currentPos === -1) return;
+
+        let nextIndex = currentPos + 1;
+
+        if (nextIndex >= channelsGlobal.length) {
+            console.log("Fin de lista");
+            return;
+        }
+
+        let next = channelsGlobal[nextIndex];
+
+        console.log("Auto ▶ siguiente:", next.name);
+
+        // 🔥 actualizar estado ANTES
+        currentLink = next.url;
+        currentIndex = nextIndex;
+
+        playHLS(next.url);
+        $("#nombreCanal").text(next.name);
+
+        marcarCanalActivo(); // 🔥 marca SOLO uno
     });
 }
 
