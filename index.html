@@ -491,6 +491,7 @@ button.list-item.active {
         <button class="form-btn" id="clear-history">🗑 Borrar historial</button>
         <button class="form-btn" id="paste-button">📋 Pegar</button>
         <button class="form-btn" id="favorites-button">⭐ Favoritos</button>
+        <button class="form-btn" id="export-fav">📤 Exportar Fav</button>
     </div>
 
     <!-- presets -->
@@ -1146,7 +1147,11 @@ $(document).ready(function () {
 
     $("#link-info-container").hide();
 
+    $("#export-fav").click(function () {
+    exportFavoritesM3U();
+});
 
+    
     $("#nombreCanal").click(function (e) {
     e.stopPropagation();
 
@@ -1229,7 +1234,10 @@ $(document).ready(function () {
 
     // HISTORIAL CLICK
     $("#m3u-history").on("click", ".history-item", function () {
-        loadChannels($(this).data("url"));
+       // loadChannels($(this).data("url"));
+        let url = $(this).data("url");
+    $("#m3u-url").val(url); // 🔥 NUEVO
+    loadChannels(url);
         $("#overlay, #form-container").hide();
     });
 
@@ -1313,6 +1321,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// ================== EXPO M3U ==================
+    
+function exportFavoritesM3U() {
+
+    let data = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (!data.length) {
+        alert("No hay favoritos para exportar");
+        return;
+    }
+
+    let m3u = "#EXTM3U\n";
+
+    data.forEach(ch => {
+        //m3u += `#EXTINF:-1,${ch.name}\n${ch.url}\n`;
+        m3u += `#EXTINF:-1 group-title="FavEasyTV",${ch.name}\n${ch.url}\n`;
+    });
+
+    // 🔥 crear archivo
+    let blob = new Blob([m3u], { type: "text/plain" });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "favoritos.m3u";
+    a.click();
+
+    URL.revokeObjectURL(url);
+};
+
+    
 </script>
     
 <script>
