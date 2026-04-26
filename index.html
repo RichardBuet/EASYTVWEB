@@ -277,7 +277,9 @@ button.list-item {
     white-space: nowrap;
     overflow: hidden;
     transition: all 0.2s ease;
-    height: 30px;
+    /*height: 30px;*/
+    min-height: 30px;
+height: auto;
 }
 
 button.list-item:hover, button.list-item:focus {
@@ -1336,6 +1338,7 @@ function exportFavoritesM3U() {
 
     data.forEach(ch => {
         //m3u += `#EXTINF:-1,${ch.name}\n${ch.url}\n`;
+        //m3u += `#EXTINF:-1 group-title="FavEasyTV",${ch.name}\n${ch.url}\n`;
         m3u += `#EXTINF:-1 group-title="FavEasyTV",${ch.name}\n${ch.url}\n`;
     });
 
