@@ -1403,7 +1403,25 @@ function parseLocalM3U(message) {
 
 
 // ================== SAVE LOCAL ==================
+function saveLocalFile(fileName, content) {
 
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    let item = {
+        name: fileName,
+        url: "local-file-" + fileName,
+        local: true,
+        content: content // 🔥 CLAVE
+    };
+
+    history = history.filter(h => h.url !== item.url);
+    history.unshift(item);
+    history = history.slice(0, 10);
+
+    localStorage.setItem("m3uHistory", JSON.stringify(history));
+}
+</script>
+    <!--
 function saveLocalFile(fileName) {
 
     let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
@@ -1423,7 +1441,7 @@ function saveLocalFile(fileName) {
 
 </script>
 
-
+-->
     
 <!--
 <script>
