@@ -1,0 +1,82 @@
+#EXTM3U
+
+#EXTINF:-1,La 1 Canarias
+https://ztnr.rtve.es/ztnr/5190066.m3u8
+
+#EXTINF:-1,La 1 Catalunya
+https://ztnr.rtve.es/ztnr/3293681.m3u8
+
+#EXTINF:-1,La 2
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=568963&extension=ts
+
+#EXTINF:-1,TVE Internacional Europa
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/tvei_eu_main_dvr_1080.m3u8
+
+#EXTINF:-1,TVE Internacional Europe-Asia
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/tvei_eu_main_576.m3u8
+
+#EXTINF:-1,TVE Internacional Europe-Asia (#)
+https://viamotionhsi.netplus.ch/live/eds/tveinternacional/browser-HLS8/tveinternacional.m3u8
+
+#EXTINF:-1,TVE Internacional Europe-Asia (#)
+https://siarlive.psce.pw/channel5
+
+#EXTINF:-1,TVE Star
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/star_main_1080.m3u8
+
+#EXTINF:-1,TVE Star (#)
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/star_main_576.m3u8
+
+#EXTINF:-1,TVE Star (#)
+https://rtvelivestream-rtveplayplus.rtve.es/rtvesec/int/star_main_dvr_1080.m3u8
+
+#EXTINF:-1,24 Horas
+https://ztnr.rtve.es/ztnr/1694255.m3u8
+
+#EXTINF:-1,RNE Para Todos
+https://rtvelivestream.rtve.es/rtvesec/rne/rne_para_todos_main.m3u8
+
+#EXTINF:-1,RNE Ràdio 1
+https://ztnr.rtve.es/ztnr/1938076.m3u8
+
+#EXTINF:-1,RNE Radio 3
+https://rtvelivestream.rtve.es/rtvesec/rne/rne3_main.m3u8
+
+#EXTINF:-1,RNE Ràdio 4
+https://ztnr.rtve.es/ztnr/6782425.m3u8
+
+#EXTINF:-1,Antena 3
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=568961&extension=ts
+
+#EXTINF:-1,Antena 3 Internacional
+http://177.10.184.193:8000/play/a06a/index.m3u8
+
+#EXTINF:-1,A3 Cine
+http://181.114.57.246:4000/play/KgkA9tT2SpLYm86J/index.m3u8
+
+#EXTINF:-1,A3 Series
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=895916&extension=ts
+
+#EXTINF:-1,Cuatro
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=568959&extension=ts
+
+#EXTINF:-1,Telecinco
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=568957&extension=ts
+
+#EXTINF:-1,La Sexta
+http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:01:FC&stream=568955&extension=ts
+
+#EXTINF:-1,Canal Extremadura Satelite
+https://canalextremadura-live.flumotion.cloud/canalextremadura/live_all/playlist.m3u8
+
+#EXTINF:-1,Canal Parlamento
+https://congresodirecto.akamaized.net/hls/live/2037973/canalparlamento/bitrate_1.m3u8
+
+#EXTINF:-1,CNN en Español
+https://amg00803-amg00803c3-rakuten-us-5347.playouts.now.amagi.tv/playlist/amg00803-cnnfastinternational-cnnesponal-rakutenus/playlist.m3u8
+
+#EXTINF:-1,EWTN España
+https://cdn3.wowza.com/1/SmVrQmZCUXZhVDgz/b3J3MFJv/hls/q6xkg9py/480/chunklist.m3u8
+
+#EXTINF:-1,RT en Español
+https://rt-esp.rttv.com/dvr/rtesp/playlist.m3u8
