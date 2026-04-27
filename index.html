@@ -1107,11 +1107,18 @@ $(document).ready(function () {
     });
 
     // CARGAR M3U o M3U8 👍🏼
-    $("#ok-button").click(function () {
+$("#ok-button").click(function () {
 
     let url = $("#m3u-url").val().trim();
 
     if (!url) return;
+
+    // 🔥 DETECTAR ARCHIVO LOCAL
+    if (url.startsWith("📂")) {
+        console.log("Archivo local ya cargado");
+        $("#overlay, #form-container").hide();
+        return;
+    }
 
     saveM3U(url);
     renderHistory();
@@ -1122,8 +1129,9 @@ $(document).ready(function () {
         currentLink = url;
 
         playHLS(url);
-        $("#nombreCanal").text("Stream directo");
-
+        //$("#nombreCanal").text("Stream directo");
+        let name = url.split("/").pop();
+        $("#nombreCanal").text(name);
         updateFavButton();
 
     } else {
@@ -1276,6 +1284,14 @@ function exportFavoritesM3U() {
 
 $(document).ready(function () {
 
+    $("#file-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $("#file-input").click();
+});
+
+    
     // 📂 abrir selector
     $("#file-button").click(function () {
         $("#file-input").click();
@@ -1289,32 +1305,36 @@ $(document).ready(function () {
 
         let reader = new FileReader();
 
-        reader.onload = function (event) {
+reader.onload = function (event) {
 
-            let content = event.target.result;
+    let content = event.target.result;
 
-            // 🔥 detectar si es playlist
-            if (content.includes("#EXTM3U") || content.includes("#EXTINF")) {
+    if (content.includes("#EXTM3U") || content.includes("#EXTINF")) {
 
-                parseLocalM3U(content);
+        window.showingFavorites = false;
 
-                $("#nombreCanal").text(file.name);
-                $("#m3u-url").val(file.name);
+        parseLocalM3U(content);
 
-            } else {
+        $("#nombreCanal").text(file.name);
+        $("#m3u-url").val("📂 " + file.name);
 
-                // 🔥 fallback: stream directo
-                let url = content.trim();
+    } else {
 
-                currentLink = url;
-                playHLS(url);
+        let url = content.trim();
 
-                $("#nombreCanal").text(file.name);
-                updateFavButton();
-            }
-            saveLocalFile(file.name);
-            renderHistory();
-        };
+        currentLink = url;
+        playHLS(url);
+
+        $("#nombreCanal").text(file.name);
+        updateFavButton();
+    }
+
+    saveLocalFile(file.name, content); // 🔥 mejor guardar contenido
+    renderHistory();
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+};
 
         reader.readAsText(file);
     });
