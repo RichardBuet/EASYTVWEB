@@ -1104,19 +1104,33 @@ $(document).ready(function () {
         }
     });
 
-    // CARGAR
+    // CARGAR M3U o M3U8 👍🏼
     $("#ok-button").click(function () {
 
-        let url = $("#m3u-url").val().trim();
+    let url = $("#m3u-url").val().trim();
 
-        if (url) {
-            saveM3U(url);
-            loadChannels(url);
-            renderHistory();
-        }
+    if (!url) return;
 
-        $("#overlay, #form-container").hide();
-    });
+    saveM3U(url);
+    renderHistory();
+
+    // 🔥 DETECTAR STREAM DIRECTO
+    if (url.includes(".m3u8")) {
+
+        currentLink = url;
+
+        playHLS(url);
+        $("#nombreCanal").text("Stream directo");
+
+        updateFavButton();
+
+    } else {
+
+        loadChannels(url);
+    }
+
+    $("#overlay, #form-container").hide();
+});
 
     // DEFAULT
     $("#default-button").click(function () {
