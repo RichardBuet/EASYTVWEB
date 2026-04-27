@@ -1165,7 +1165,8 @@ $("#ok-button").click(function () {
 //        $("#overlay, #form-container").hide();
 //    });
 
-$("#m3u-history").on("click", ".history-item", function () {
+
+        $("#m3u-history").on("click", ".history-item", function () {
 
     let url = $(this).data("url");
 
@@ -1174,8 +1175,8 @@ $("#m3u-history").on("click", ".history-item", function () {
 
     if (!item) return;
 
-    // 🔥 SI ES LOCAL → usar contenido
-    if (item.local && item.content) {
+    // 🔥 CLAVE: detectar local
+    if (item.url.startsWith("local-file-") && item.content) {
 
         parseLocalM3U(item.content);
         $("#nombreCanal").text(item.name);
