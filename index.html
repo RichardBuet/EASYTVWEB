@@ -1407,7 +1407,7 @@ function saveLocalFile(fileName) {
     let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
 
     let item = {
-        name: "📂 " + fileName,
+        name: "📄 " + fileName,
         url: "local-file-" + fileName,
         local: true
     };
