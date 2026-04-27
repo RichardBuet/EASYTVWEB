@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.0</title>
+    <title>Easy Web TV RB - BTN v4.1.260426</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/IMG_3506-modified.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -277,9 +278,8 @@ button.list-item {
     white-space: nowrap;
     overflow: hidden;
     transition: all 0.2s ease;
-    /*height: 30px;*/
+    height: auto;
     min-height: 30px;
-height: auto;
 }
 
 button.list-item:hover, button.list-item:focus {
@@ -388,7 +388,7 @@ button.list-item.active {
 /*@media (max-width: 8000px) {*/
 @media  (max-aspect-ratio: 1.20) {
 /*@media(orientation: landscape){*/
-        #rl-bar {height: auto; flex-direction: column; }
+        #rl-bar {height: 95dvh;; flex-direction: column; }
         #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -428,11 +428,7 @@ button.list-item.active {
 
 /* 9. Adaptación Android TV */
 @media (hover: none) {
-    button.list-item:focus {
-      /*  transform: scale(1.02);
-        background: var(--accent);
-        color: #000;*/
-    }
+    button.list-item:focus { }
 }
 
 .is-fav {
@@ -570,6 +566,23 @@ function saveFavorites() {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
+// function toggleFavoriteCurrent() {
+//     if (!currentLink) return;
+
+//     let name = $("#nombreCanal").text();
+//     let index = favorites.findIndex(f => f.url === currentLink);
+
+//     if (index !== -1) {
+//         favorites.splice(index, 1);
+//     } else {
+//         //favorites.unshift({ name, url: currentLink });
+//         favorites.push({ name, url: currentLink });
+//     }
+
+//     saveFavorites();
+//     updateFavButton();
+// }
+
 function toggleFavoriteCurrent() {
     if (!currentLink) return;
 
@@ -579,12 +592,16 @@ function toggleFavoriteCurrent() {
     if (index !== -1) {
         favorites.splice(index, 1);
     } else {
-        //favorites.unshift({ name, url: currentLink });
-        favorites.push({ name, url });
+        favorites.push({ name, url: currentLink });
     }
 
     saveFavorites();
     updateFavButton();
+
+    // 🔥 REFRESCAR SI ESTÁS EN FAVORITOS
+    if (window.showingFavorites) {
+        renderFavorites();
+    }
 }
 
 function updateFavButton() {
@@ -667,9 +684,6 @@ function playHLS(url) {
 
     currentLink = url;
 
-    // $("#link-info-container")
-    //     .html("🔄 Buscando señal...")
-    //     .show();
     if (!isAutoSearching) {
         $("#link-info-container")
             .html("🔄 Buscando señal...")
@@ -693,15 +707,7 @@ function playHLS(url) {
 }
 
 // ================== PARSER ==================
-// function getChannelData(line) {
-//     const nameMatch = line.match(/,(.*)/);
-//     const groupMatch = line.match(/group-title="([^"]*)"/);
 
-//     return {
-//         name: nameMatch ? nameMatch[1].trim() : "Canal",
-//         group: groupMatch ? groupMatch[1].trim() : "General"
-//     };
-// }
     function getChannelData(line) {
     const nameMatch = line.match(/,(.*)/);
     const groupMatch = line.match(/group-title="([^"]*)"/);
@@ -827,18 +833,10 @@ function loadChannels(url) {
             setTimeout(() => {
                 marcarCanalActivo();
             }, 100);
+            // 🔥 restaurar ventana
+            $("#playList").scrollTop(0);
         },
 
-        // ❌ error real (timeout / link roto)
-        // error: function () {
-
-        //     $("#playList").html(`
-        //         <div class="loading-list">
-        //             ❌ Error al cargar<br>
-        //             <small>⚠️Link inválido o sin conexión</small>
-        //         </div>
-        //     `);
-        // }
 
         error: function (xhr, status, error) {
 
@@ -1011,8 +1009,6 @@ function handlePlayerError() {
                 //.html(`🔄 Probando:<br><b>${next.name}</b>`)
                 .html(`<div style="display:block;">🔄 Probando:<br><b>${next.name}</b></div>`)
                 .show()
-                    // .delay(10000)
-                    //  .fadeOut();
 
             // 🔥 actualizar estado
             currentLink = next.url;
@@ -1020,14 +1016,8 @@ function handlePlayerError() {
 
             playHLS(next.url);
             $("#nombreCanal").text(next.name);
-
             marcarCanalActivo();
-
             attempts++;
-
-            // setTimeout(() => {
-            //     if (player.error()) {tryNext(); }
-            //     }, 3000);
             setTimeout(() => {
             isAutoSearching = false;
             $("#link-info-container").fadeOut();
@@ -1045,133 +1035,6 @@ function handlePlayerError() {
         .fadeOut();
     });
 }
-
-
-
-// function handlePlayerError() {
-
-//     var player = videojs('my-video');
-
-//     player.off('error'); // 🔥 evitar duplicados
-
-//     player.on('error', function () {
-
-//         player.pause();
-
-//         if (!autoNextEnabled) {
-
-//             $("#link-info-container")
-//                 .html("🔥 Señal fuera de servicio")
-//                 .show();
-
-//             return;
-//         }
-
-//         let attempts = 0;
-//         const MAX_ATTEMPTS = 10;
-
-//         function tryNext() {
-
-//             let currentPos = channelsGlobal.findIndex(c => c.url === currentLink);
-
-//             if (currentPos === -1) return;
-
-//             let nextIndex = currentPos + 1;
-
-//             if (nextIndex >= channelsGlobal.length || attempts >= MAX_ATTEMPTS) {
-
-//                 console.log("No se encontró canal válido");
-
-//                 $("#link-info-container")
-//                     .html("❌ No se encontró señal disponible")
-//                     .show();
-
-//                 return;
-//             }
-
-//             let next = channelsGlobal[nextIndex];
-
-//             console.log("🔄 Probando:", next.name);
-
-//             // 🔥 mensaje visual (RECUPERADO)
-//             $("#link-info-container")
-//                 .html(`🔄 Probando:<br><b>${next.name}</b>`)
-//                 .show();
-
-//             // 🔥 actualizar estado
-//             currentLink = next.url;
-//             currentIndex = nextIndex;
-
-//             playHLS(next.url);
-//             $("#nombreCanal").text(next.name);
-
-//             marcarCanalActivo();
-
-//             attempts++;
-
-//             // 🔥 esperar antes de volver a intentar
-//             setTimeout(() => {
-
-//                 // si sigue en error, vuelve a intentar
-//                 if (player.error()) {
-//                     tryNext();
-//                 }
-
-//             }, 2000); // ⏱️ tiempo de prueba (ajustable)
-//         }
-
-//         tryNext();
-//     });
-// }
-
-
-
-// function handlePlayerError() {
-
-//     var player = videojs('my-video');
-
-//     // 🔥 evitar múltiples listeners duplicados
-//     player.off('error');
-
-//     player.on('error', function () {
-
-//         player.pause();
-
-//         if (!autoNextEnabled) {
-
-//             $("#link-info-container")
-//                 .html("❌ Señal fuera de servicio")
-//                 .show();
-
-//             return;
-//         }
-
-//         // 🔥 buscar posición real del canal actual
-//         let currentPos = channelsGlobal.findIndex(c => c.url === currentLink);
-
-//         if (currentPos === -1) return;
-
-//         let nextIndex = currentPos + 1;
-
-//         if (nextIndex >= channelsGlobal.length) {
-//             console.log("Fin de lista");
-//             return;
-//         }
-
-//         let next = channelsGlobal[nextIndex];
-
-//         console.log("Auto ▶ siguiente:", next.name);
-
-//         // 🔥 actualizar estado ANTES
-//         currentLink = next.url;
-//         currentIndex = nextIndex;
-
-//         playHLS(next.url);
-//         $("#nombreCanal").text(next.name);
-
-//         marcarCanalActivo(); // 🔥 marca SOLO uno
-//     });
-// }
 
 // ================== READY ==================
 $(document).ready(function () {
