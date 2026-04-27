@@ -1157,14 +1157,41 @@ $("#ok-button").click(function () {
     });
 
     // HISTORIAL CLICK
-    $("#m3u-history").on("click", ".history-item", function () {
-       // loadChannels($(this).data("url"));
-        let url = $(this).data("url");
-    $("#m3u-url").val(url); // 🔥 NUEVO
-    loadChannels(url);
-        $("#overlay, #form-container").hide();
-    });
+ //   $("#m3u-history").on("click", ".history-item", function () {
+       // loadChannels($(this).data("url")); viejo!!!
+   //     let url = $(this).data("url");
+ //   $("#m3u-url").val(url); // 🔥 NUEVO
+  //  loadChannels(url);
+//        $("#overlay, #form-container").hide();
+//    });
 
+$("#m3u-history").on("click", ".history-item", function () {
+
+    let url = $(this).data("url");
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+    let item = history.find(h => h.url === url);
+
+    if (!item) return;
+
+    // 🔥 SI ES LOCAL → usar contenido
+    if (item.local && item.content) {
+
+        parseLocalM3U(item.content);
+        $("#nombreCanal").text(item.name);
+
+    } else {
+
+        $("#m3u-url").val(item.url);
+        loadChannels(item.url);
+    }
+
+    $("#overlay").hide();
+    $("#form-container").hide();
+});
+
+
+    
     // BORRAR HISTORIAL
     $("#clear-history").click(function () {
         if (confirm("¿Borrar historial?")) {
