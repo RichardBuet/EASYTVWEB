@@ -490,6 +490,8 @@ button.list-item.active {
         <button class="form-btn" id="paste-button">📋 Pegar</button>
         <button class="form-btn" id="favorites-button">⭐ Favoritos</button>
         <button class="form-btn" id="export-fav">📤 Exportar Fav</button>
+        <button class="form-btn" id="file-button">📂 Archivo</button>
+<input type="file" id="file-input" accept=".m3u,.m3u8" style="display:none;">
     </div>
 
     <!-- presets -->
@@ -1266,6 +1268,139 @@ function exportFavoritesM3U() {
 
     
 </script>
+
+
+<script>
+
+// ================== FILE LOCAL ==================
+
+$(document).ready(function () {
+
+    // 📂 abrir selector
+    $("#file-button").click(function () {
+        $("#file-input").click();
+    });
+
+    // 📂 leer archivo
+    $("#file-input").on("change", function (e) {
+
+        let file = e.target.files[0];
+        if (!file) return;
+
+        let reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            let content = event.target.result;
+
+            // 🔥 detectar si es playlist
+            if (content.includes("#EXTM3U") || content.includes("#EXTINF")) {
+
+                parseLocalM3U(content);
+
+                $("#nombreCanal").text(file.name);
+                $("#m3u-url").val(file.name);
+
+            } else {
+
+                // 🔥 fallback: stream directo
+                let url = content.trim();
+
+                currentLink = url;
+                playHLS(url);
+
+                $("#nombreCanal").text(file.name);
+                updateFavButton();
+            }
+            saveLocalFile(file.name);
+            renderHistory();
+        };
+
+        reader.readAsText(file);
+    });
+
+});
+
+
+// ================== PARSER LOCAL ==================
+
+function parseLocalM3U(message) {
+
+    let lines = message.split("\n");
+    let channels = [];
+    let currentChannel = { name: "", url: "", group: "General" };
+
+    lines.forEach(line => {
+        line = line.trim();
+
+        if (line.startsWith("#EXTINF")) {
+
+            let data = getChannelData(line);
+
+            currentChannel.name = data.name.substring(0, 30);
+            currentChannel.group = data.group;
+
+        } else if (line !== "" && !line.startsWith("#")) {
+
+            currentChannel.url = line;
+
+            if (currentChannel.name && currentChannel.url) {
+                channels.push({
+                    name: currentChannel.name,
+                    url: currentChannel.url,
+                    group: currentChannel.group
+                });
+            }
+
+            currentChannel = { name: "", url: "", group: "General" };
+        }
+    });
+
+    channelsGlobal = channels;
+
+    $("#playList")
+        .removeClass("favorites-mode")
+        .empty();
+
+    if (!channels.length) {
+        $("#playList").html("⚠️ Archivo sin canales");
+        return;
+    }
+
+    channels.forEach(channel => {
+        $("#playList").append(`
+            <button class='list-item' data-url='${channel.url}'>
+                ${channel.name}
+            </button>
+        `);
+    });
+
+    // 🔥 reset scroll
+    $("#playList").scrollTop(0);
+}
+
+// ================== SAVE LOCAL ==================
+
+function saveLocalFile(fileName) {
+
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+
+    let item = {
+        name: "📂 " + fileName,
+        url: "local-file-" + fileName,
+        local: true
+    };
+
+    history = history.filter(h => h.name !== item.name);
+    history.unshift(item);
+    history = history.slice(0, 15);
+
+    localStorage.setItem("m3uHistory", JSON.stringify(history));
+}
+    
+</script>
+
+
     
 <script>
 
