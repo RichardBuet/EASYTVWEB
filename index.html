@@ -939,27 +939,80 @@ function handlePlayerError() {
     });
 }
 
+
+
+// ================== UTIL ==================
 function getIconByUrl(url) {
-    if (url.startsWith("local-file-")) return "📂"; // 🔥 local
+    if (url.startsWith("local-file-")) return "📂";
     if (url.includes(".m3u8")) return "📺";
     if (url.includes(".mp4")) return "🎬";
     if (url.includes(".mp3")) return "🎧";
     if (url.includes(".ts")) return "📡";
-    return "🌐"; // 🔥 fallback internet
-    return "🔗";
+    return "🌐";
+}
+
+// ================== PLAY DIRECT ==================
+function playDirectStream(url) {
+
+    currentLink = url;
+
+    let player = videojs('my-video');
+
+    player.pause();
+
+    player.src({
+        src: url,
+        type: url.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4"
+    });
+
+    // 🔥 AUTOPLAY
+    player.ready(function () {
+        player.muted(true);
+        player.play().catch(() => {});
+    });
+
+    let name = url.split("/").pop() || "Stream";
+    let icon = getIconByUrl(url);
+
+    let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0]
+        .replace(".", "")
+        .toUpperCase();
+
+    $("#nombreCanal").html(`
+        ${icon} ${name}<br>
+        <small style="color:#aaa;">${type}</small>
+    `);
+
+    // 🔥 PLAYLIST UI
+    $("#playList")
+        .removeClass("favorites-mode")
+        .empty()
+        .append(`
+            <button class="list-item active" data-url="${url}">
+                ${icon} ${name}
+            </button>
+        `);
+
+    updateFavButton();
+    marcarCanalActivo();
 }
 
 // ================== READY ==================
 $(document).ready(function () {
+
     $("#auto-next-btn").text("Auto ▶ ON");
+
     loadChannels(defaultM3U);
     renderHistory();
     handlePlayerError();
+
     $("#link-info-container").hide();
+
     $("#export-fav").click(function () {
-    exportCurrentList();
+        exportCurrentList();
     });
 
+    // ================== INFO ==================
     $("#nombreCanal").click(function (e) {
         e.stopPropagation();
         if (!currentLink) return;
@@ -983,23 +1036,20 @@ $(document).ready(function () {
             alert("No se pudo copiar");
         });
     });
- 
-    // ABRIR MODAL
+
+    // ================== MODAL ==================
     $("#top-bar h2").click(function () {
         $("#overlay, #form-container").show();
     });
 
-    // CERRAR
     $("#exit-button").click(function () {
         $("#overlay, #form-container").hide();
     });
 
-    // LIMPIAR
     $("#clear-button").click(function () {
         $("#m3u-url").val("");
     });
 
-    // PEGAR
     $("#paste-button").click(async function () {
         try {
             const text = await navigator.clipboard.readText();
@@ -1009,53 +1059,265 @@ $(document).ready(function () {
         }
     });
 
-    // CARGAR M3U o M3U8 👍🏼
+    // ================== CARGAR ==================
     $("#ok-button").click(function () {
+
         let url = $("#m3u-url").val().trim();
         if (!url) return;
 
-        // 🔥 DETECTAR ARCHIVO LOCAL
         if (url.startsWith("📂")) {
-            console.log("Archivo local ya cargado");
             $("#overlay, #form-container").hide();
             return;
         }
+
+        if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
+
+            playDirectStream(url);
+
+        } else {
+
+            loadChannels(url);
+        }
+
         saveM3U(url);
         renderHistory();
 
-        // 🔥 DETECTAR STREAM DIRECTO
-        //if (url.includes(".m3u8")) {
-        if (url.match(/\.(m3u8|mp4|mp3|ts)$/i)) {
-            currentLink = url;
-            playHLS(url);
-            //$("#nombreCanal").text("Stream directo");
-            let name = url.split("/").pop() || "Stream";
-            //let icon = getIconByUrl(url);
-            // $("#nombreCanal").text(`${icon} ${name}`);
-            // 🔥 NOMBRE + METADATA
-            let icon = getIconSmart(url);
-            $("#nombreCanal").html(`
-                ${icon} ${name}<br>
-                <small style="color:#aaa;">${type}</small>
-            `);
-
-            // 🔥 LIMPIAR PLAYLIST
-            $("#playList")
-                .removeClass("favorites-mode")
-                .empty()
-                .append(`
-                    <button class="list-item active" data-url="${url}">
-                        ${icon} ${name}
-                    </button>
-                `);
-
-            updateFavButton();
-            marcarCanalActivo();
-        } else {
-            loadChannels(url);
-        }
         $("#overlay, #form-container").hide();
     });
+
+    // ================== HISTORIAL ==================
+    $("#m3u-history").on("click", ".history-item", function () {
+
+        let url = $(this).data("url");
+
+        let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+        let item = history.find(h => h.url === url);
+
+        if (!item) return;
+
+        if (url.startsWith("local-file-") && item.content) {
+
+            parseLocalM3U(item.content);
+            $("#nombreCanal").text(item.name);
+
+        } else if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
+
+            playDirectStream(url);
+
+        } else {
+
+            loadChannels(url);
+        }
+
+        $("#overlay, #form-container").hide();
+    });
+
+
+
+
+
+
+// function getIconByUrl(url) {
+//     if (url.startsWith("local-file-")) return "📂"; // 🔥 local
+//     if (url.includes(".m3u8")) return "📺";
+//     if (url.includes(".mp4")) return "🎬";
+//     if (url.includes(".mp3")) return "🎧";
+//     if (url.includes(".ts")) return "📡";
+//     return "🌐"; // 🔥 fallback internet
+//   //  return "🔗";
+// }
+
+// // ================== READY ==================
+// $(document).ready(function () {
+//     $("#auto-next-btn").text("Auto ▶ ON");
+//     loadChannels(defaultM3U);
+//     renderHistory();
+//     handlePlayerError();
+//     $("#link-info-container").hide();
+//     $("#export-fav").click(function () {
+//     exportCurrentList();
+//     });
+
+//     $("#nombreCanal").click(function (e) {
+//         e.stopPropagation();
+//         if (!currentLink) return;
+//         $("#link-info-container")
+//             .html(currentLink)
+//             .show()
+//             .fadeOut(7500);
+//     });
+
+//     $("#nombreCanal").dblclick(function (e) {
+//         e.stopPropagation();
+//         if (!currentLink) return;
+//         navigator.clipboard.writeText(currentLink)
+//         .then(() => {
+//             $("#link-info-container")
+//                 .html("📋 Link copiado")
+//                 .show()
+//                 .fadeOut(2500);
+//         })
+//         .catch(() => {
+//             alert("No se pudo copiar");
+//         });
+//     });
+ 
+//     // ABRIR MODAL
+//     $("#top-bar h2").click(function () {
+//         $("#overlay, #form-container").show();
+//     });
+
+//     // CERRAR
+//     $("#exit-button").click(function () {
+//         $("#overlay, #form-container").hide();
+//     });
+
+//     // LIMPIAR
+//     $("#clear-button").click(function () {
+//         $("#m3u-url").val("");
+//     });
+
+//     // PEGAR
+//     $("#paste-button").click(async function () {
+//         try {
+//             const text = await navigator.clipboard.readText();
+//             $("#m3u-url").val(text);
+//         } catch {
+//             alert("No se pudo acceder al portapapeles");
+//         }
+//     });
+
+//     // CARGAR M3U o M3U8 👍🏼
+//     // $("#ok-button").click(function () {
+//     //     let url = $("#m3u-url").val().trim();
+//     //     if (!url) return;
+
+//     //     // 🔥 DETECTAR ARCHIVO LOCAL
+//     //     if (url.startsWith("📂")) {
+//     //         console.log("Archivo local ya cargado");
+//     //         $("#overlay, #form-container").hide();
+//     //         return;
+//     //     }
+
+//     //     // 🔥 DETECTAR STREAM DIRECTO
+//     //     if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
+//     //         currentLink = url;
+//     //         playHLS(url);
+//     //         setTimeout(() => {
+//     //             videojs('my-video').play().catch(() => {});
+//     //         }, 300);            
+//     //         let name = url.split("/").pop() || "Stream"; // 🔥 NOMBRE + METADATA   
+//     //         let icon = getIconSmart(url);
+//     //        // let type = url.split(".").pop().toUpperCase(); // 🔥 FIX
+//     //         let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0].replace(".", "").toUpperCase();
+//     //         $("#nombreCanal").html(`
+//     //             ${icon} ${name}<br>
+//     //             <small style="color:#aaa;">${type}</small>
+//     //         `);
+
+//     //         // 🔥 LIMPIAR PLAYLIST
+//     //         $("#playList")
+//     //             .removeClass("favorites-mode")
+//     //             .empty()
+//     //             .append(`
+//     //                 <button class="list-item active" data-url="${url}">
+//     //                     ${icon} ${name}
+//     //                 </button>
+//     //             `);
+//     //         updateFavButton();
+//     //         marcarCanalActivo();
+//     //     } else {
+//     //         loadChannels(url);
+//     //     }
+//     //     saveM3U(url);
+//     //     renderHistory();
+//     //     $("#overlay, #form-container").hide();
+//     // });
+
+
+//     $("#ok-button").click(function () {
+
+//     let url = $("#m3u-url").val().trim();
+//     if (!url) return;
+
+//     if (url.startsWith("📂")) {
+//         $("#overlay, #form-container").hide();
+//         return;
+//     }
+
+//     // if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
+
+//     //     currentLink = url;
+
+//     //     playHLS(url);
+
+//     //     setTimeout(() => {
+//     //         videojs('my-video').play().catch(() => {});
+//     //     }, 300);
+
+//     //     let name = url.split("/").pop() || "Stream";
+//     //     let icon = getIconSmart(url);
+
+//     //     let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0]
+//     //         .replace(".", "")
+//     //         .toUpperCase();
+
+//     //     $("#nombreCanal").html(`
+//     //         ${icon} ${name}<br>
+//     //         <small style="color:#aaa;">${type}</small>
+//     //     `);
+
+//     //     $("#playList")
+//     //         .removeClass("favorites-mode")
+//     //         .empty()
+//     //         .append(`
+//     //             <button class="list-item active" data-url="${url}">
+//     //                 ${icon} ${name}
+//     //             </button>
+//     //         `);
+
+//     //     updateFavButton();
+//     //     marcarCanalActivo();
+
+// if (url.includes(".m3u8")) {
+
+//     console.log("▶ Detectado M3U8");
+
+//     currentLink = url;
+
+//     let player = videojs('my-video');
+//     player.pause();
+//     player.src({ src: url, type: 'application/x-mpegURL' });
+//     player.load();
+//     player.play().catch(e => console.log("Play error:", e));
+
+//     let name = url.split("/").pop() || "Stream";
+
+//     $("#nombreCanal").text(name);
+
+//     $("#playList")
+//         .empty()
+//         .append(`
+//             <button class="list-item active" data-url="${url}">
+//                 ${name}
+//             </button>
+//         `);
+
+//     marcarCanalActivo();
+
+//     } else {
+
+//         loadChannels(url);
+//     }
+
+//     // 🔥 GUARDAR AL FINAL
+//     saveM3U(url);
+//     renderHistory();
+
+//     $("#overlay, #form-container").hide();
+// });
+
+
 
     // DEFAULT
     $("#default-button").click(function () {
