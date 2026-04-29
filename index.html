@@ -941,44 +941,35 @@ function handlePlayerError() {
 
 function loadSmartURL(url) {
 
-    let proxies = [
-        url,
-        "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
-        "https://corsproxy.io/?" + encodeURIComponent(url)
-    ];
+    let proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
 
-    function tryFetch(index) {
+    $.ajax({
+        type: "GET",
+        url: proxy,
+        timeout: 15000, // 🔥 más tiempo (clave)
 
-        if (index >= proxies.length) {
-            $("#playList").html("⚠️ Lista no accesible");
-            return;
-        }
+        success: function (response) {
 
-        $.ajax({
-            type: "GET",
-            url: proxies[index],
-            timeout: 8000,
+            if (response && (response.includes("#EXTM3U") || response.includes("#EXTINF"))) {
 
-            success: function (response) {
+                console.log("📂 Lista cargada correctamente");
 
-                if (response && (response.includes("#EXTM3U") || response.includes("#EXTINF"))) {
+                parseLocalM3U(response);
+                $("#nombreCanal").text("🌐 Lista remota");
 
-                    parseLocalM3U(response);
-                    $("#nombreCanal").text("🌐 Lista remota");
+            } else {
 
-                } else {
-
-                    tryFetch(index + 1);
-                }
-            },
-
-            error: function () {
-                tryFetch(index + 1);
+                console.log("⚠️ No es playlist, intento como stream");
+                playDirectStream(url);
             }
-        });
-    }
+        },
 
-    tryFetch(0);
+        error: function () {
+
+            console.log("⚠️ Proxy falló → intento directo como stream");
+            playDirectStream(url);
+        }
+    });
 }
 
 // ================== UTIL ==================
