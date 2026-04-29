@@ -941,32 +941,44 @@ function handlePlayerError() {
 
 function loadSmartURL(url) {
 
-    let proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
+    let proxies = [
+        url,
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
+        "https://corsproxy.io/?" + encodeURIComponent(url)
+    ];
 
-    $.ajax({
-        type: "GET",
-        url: proxyUrl,
-        timeout: 10000,
+    function tryFetch(index) {
 
-        success: function (response) {
-
-            if (response.includes("#EXTM3U") || response.includes("#EXTINF")) {
-
-                parseLocalM3U(response);
-                $("#nombreCanal").text("Lista remota");
-
-            } else {
-
-                playDirectStream(url);
-            }
-        },
-
-        error: function () {
-
-            console.log("⚠️ fallback stream");
-            playDirectStream(url);
+        if (index >= proxies.length) {
+            $("#playList").html("⚠️ Lista no accesible");
+            return;
         }
-    });
+
+        $.ajax({
+            type: "GET",
+            url: proxies[index],
+            timeout: 8000,
+
+            success: function (response) {
+
+                if (response && (response.includes("#EXTM3U") || response.includes("#EXTINF"))) {
+
+                    parseLocalM3U(response);
+                    $("#nombreCanal").text("🌐 Lista remota");
+
+                } else {
+
+                    tryFetch(index + 1);
+                }
+            },
+
+            error: function () {
+                tryFetch(index + 1);
+            }
+        });
+    }
+
+    tryFetch(0);
 }
 
 // ================== UTIL ==================
