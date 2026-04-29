@@ -939,7 +939,42 @@ function handlePlayerError() {
     });
 }
 
+function loadSmartURL(url) {
 
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 10000,
+
+        success: function (response) {
+
+            // 🔥 detectar si es playlist
+            if (response.includes("#EXTM3U") || response.includes("#EXTINF")) {
+
+                console.log("📂 Detectado como lista M3U");
+
+                window.showingFavorites = false;
+
+                parseLocalM3U(response);
+
+                $("#nombreCanal").text("Lista remota");
+
+            } else {
+
+                console.log("📺 Detectado como stream");
+
+                playDirectStream(url);
+            }
+        },
+
+        error: function () {
+
+            console.log("⚠️ No se pudo leer, intentando como stream");
+
+            playDirectStream(url);
+        }
+    });
+}
 
 // ================== UTIL ==================
 function getIconByUrl(url) {
@@ -1060,57 +1095,56 @@ $(document).ready(function () {
     });
 
     // ================== CARGAR ==================
-    $("#ok-button").click(function () {
+ $("#ok-button").click(function () {
 
-        let url = $("#m3u-url").val().trim();
-        if (!url) return;
+    let url = $("#m3u-url").val().trim();
+    if (!url) return;
 
-        if (url.startsWith("📂")) {
-            $("#overlay, #form-container").hide();
-            return;
-        }
-
-        if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-
-            playDirectStream(url);
-
-        } else {
-
-            loadChannels(url);
-        }
-
-        saveM3U(url);
-        renderHistory();
-
+    if (url.startsWith("📂")) {
         $("#overlay, #form-container").hide();
-    });
+        return;
+    }
+
+    // 🔥 NUEVA LÓGICA INTELIGENTE
+    loadSmartURL(url);
+
+    saveM3U(url);
+    renderHistory();
+
+    $("#overlay, #form-container").hide();
+});
 
     // ================== HISTORIAL ==================
-    $("#m3u-history").on("click", ".history-item", function () {
+$("#m3u-history").on("click", ".history-item", function () {
 
-        let url = $(this).data("url");
+    let url = $(this).data("url");
 
-        let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
-        let item = history.find(h => h.url === url);
+    let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+    let item = history.find(h => h.url === url);
 
-        if (!item) return;
+    if (!item) return;
 
-        if (url.startsWith("local-file-") && item.content) {
+    // 🔥 LOCAL
+    if (url.startsWith("local-file-")) {
+
+        if (item.content) {
 
             parseLocalM3U(item.content);
             $("#nombreCanal").text(item.name);
 
-        } else if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-
-            playDirectStream(url);
-
         } else {
 
-            loadChannels(url);
+            alert("⚠️ Archivo local no disponible. Volvé a cargarlo.");
         }
 
-        $("#overlay, #form-container").hide();
-    });
+    } else {
+
+        // 🔥 REMOTO (SMART)
+        loadSmartURL(url);
+    }
+
+    $("#overlay, #form-container").hide();
+});
 
 
 
