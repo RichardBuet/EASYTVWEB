@@ -1497,7 +1497,26 @@ function exportCurrentList() {
     a.click();
     URL.revokeObjectURL(url);
 }
+
+
+setTimeout(() => {
+
+    let player = videojs('my-video');
+
+    player.ready(function () {
+    player.muted(true);
+    player.play().catch(() => {});
+});
+
+// 🔊 activar sonido después
+setTimeout(() => {
+    player.muted(false);
+}, 1500);
+}
+
     
+
+
 </script>
 
 <script>
