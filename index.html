@@ -943,35 +943,34 @@ function loadSmartURL(url) {
 
     let proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
 
+    $("#playList").html("⏳ Cargando lista...");
+
     $.ajax({
         type: "GET",
-        url: proxy,
-        timeout: 15000, // 🔥 más tiempo (clave)
+        url: proxy + "&t=" + Date.now(), // 🔥 evita cache
+        timeout: 20000,
 
         success: function (response) {
 
             if (response && (response.includes("#EXTM3U") || response.includes("#EXTINF"))) {
-
-                console.log("📂 Lista cargada correctamente");
 
                 parseLocalM3U(response);
                 $("#nombreCanal").text("🌐 Lista remota");
 
             } else {
 
-                console.log("⚠️ No es playlist, intento como stream");
                 playDirectStream(url);
             }
         },
 
         error: function () {
 
-            console.log("⚠️ Proxy falló → intento directo como stream");
-            playDirectStream(url);
+            $("#playList").html("❌ Lista no accesible");
         }
     });
 }
 
+    
 // ================== UTIL ==================
 function getIconByUrl(url) {
     if (url.startsWith("local-file-")) return "📂";
