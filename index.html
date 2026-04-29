@@ -982,6 +982,8 @@ function getIconByUrl(url) {
 }
 
 // ================== PLAY DIRECT ==================
+let unmuteTimeout;
+
 function playDirectStream(url) {
 
     currentLink = url;
@@ -995,11 +997,19 @@ function playDirectStream(url) {
         type: url.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4"
     });
 
-    // 🔥 AUTOPLAY
-    player.ready(function () {
-        player.muted(true);
-        player.play().catch(() => {});
-    });
+    // 🔥 AUTOPLAY limpio (sin acumular ready)
+    player.muted(true);
+
+    player.play().catch(() => {});
+
+    // 🔊 controlar unmute
+    clearTimeout(unmuteTimeout);
+
+    unmuteTimeout = setTimeout(() => {
+        if (!player.paused()) {
+            player.muted(false);
+        }
+    }, 1500);
 
     let name = url.split("/").pop() || "Stream";
     let icon = getIconByUrl(url);
@@ -1013,7 +1023,6 @@ function playDirectStream(url) {
         <small style="color:#aaa;">${type}</small>
     `);
 
-    // 🔥 PLAYLIST UI
     $("#playList")
         .removeClass("favorites-mode")
         .empty()
@@ -1026,7 +1035,7 @@ function playDirectStream(url) {
     updateFavButton();
     marcarCanalActivo();
 }
-
+    
 // ================== READY ==================
 $(document).ready(function () {
 
@@ -1498,21 +1507,6 @@ function exportCurrentList() {
     URL.revokeObjectURL(url);
 }
 
-
-setTimeout(() => {
-
-    let player = videojs('my-video');
-
-    player.ready(function () {
-    player.muted(true);
-    player.play().catch(() => {});
-});
-
-// 🔊 activar sonido después
-setTimeout(() => {
-    player.muted(false);
-}, 1500);
-}
 
     
 
