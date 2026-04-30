@@ -265,12 +265,20 @@ button.list-item {
     min-height: 30px;
 }
 
-button.list-item:hover, button.list-item:focus {
+/* button.list-item:hover, button.list-item:focus {
     background: #30363d;
     border-color: var(--accent);
     outline: none;
+} */
+@media (hover: hover) and (pointer: fine) {
+    button.list-item:hover, 
+    button.list-item:focus {
+        background: #30363d;
+        border-color: var(--accent);
+        outline: none;
+    }
 }
-
+    
 button.list-item.active {
     background: rgba(0, 255, 204, 0.1);
     border-color: var(--accent);
@@ -767,13 +775,32 @@ function loadChannels(url) {
 
 
         error: function (xhr, status, error) {
-            let mensaje = "❌ Error al cargar la lista";
-            if (status === "timeout") mensaje = "⏱️ La carga tardó demasiado";
-            if (xhr.status === 404) mensaje = "❌ Lista no encontrada";
 
+            let mensaje = "❌ Error al cargar la lista";
+        
+            // 🔥 CORS (el caso que te está pasando)
+            if (xhr.status === 0) {
+                mensaje = `
+                    🚫 Lista bloqueada por el servidor (CORS)<br><br>
+                    👉 Descargala y cargala como archivo<br>
+                    📂 o usá otra fuente
+                `;
+            }
+        
+            // ⏱️ timeout
+            else if (status === "timeout") {
+                mensaje = "⏱️ La carga tardó demasiado";
+            }
+        
+            // ❌ 404
+            else if (xhr.status === 404) {
+                mensaje = "❌ Lista no encontrada";
+            }
+        
             $("#playList").html(`
                 <div style="text-align:center; padding:20px;">
-                    ${mensaje}<br>
+                    ${mensaje}
+                    <br><br>
                     <button onclick="cargarDefault()">🔄 Lista original</button>
                 </div>
             `);
@@ -1112,214 +1139,7 @@ $(document).ready(function () {
         $("#overlay, #form-container").hide();
     });
 
-
-
-
-
-
-// function getIconByUrl(url) {
-//     if (url.startsWith("local-file-")) return "📂"; // 🔥 local
-//     if (url.includes(".m3u8")) return "📺";
-//     if (url.includes(".mp4")) return "🎬";
-//     if (url.includes(".mp3")) return "🎧";
-//     if (url.includes(".ts")) return "📡";
-//     return "🌐"; // 🔥 fallback internet
-//   //  return "🔗";
-// }
-
-// // ================== READY ==================
-// $(document).ready(function () {
-//     $("#auto-next-btn").text("Auto ▶ ON");
-//     loadChannels(defaultM3U);
-//     renderHistory();
-//     handlePlayerError();
-//     $("#link-info-container").hide();
-//     $("#export-fav").click(function () {
-//     exportCurrentList();
-//     });
-
-//     $("#nombreCanal").click(function (e) {
-//         e.stopPropagation();
-//         if (!currentLink) return;
-//         $("#link-info-container")
-//             .html(currentLink)
-//             .show()
-//             .fadeOut(7500);
-//     });
-
-//     $("#nombreCanal").dblclick(function (e) {
-//         e.stopPropagation();
-//         if (!currentLink) return;
-//         navigator.clipboard.writeText(currentLink)
-//         .then(() => {
-//             $("#link-info-container")
-//                 .html("📋 Link copiado")
-//                 .show()
-//                 .fadeOut(2500);
-//         })
-//         .catch(() => {
-//             alert("No se pudo copiar");
-//         });
-//     });
- 
-//     // ABRIR MODAL
-//     $("#top-bar h2").click(function () {
-//         $("#overlay, #form-container").show();
-//     });
-
-//     // CERRAR
-//     $("#exit-button").click(function () {
-//         $("#overlay, #form-container").hide();
-//     });
-
-//     // LIMPIAR
-//     $("#clear-button").click(function () {
-//         $("#m3u-url").val("");
-//     });
-
-//     // PEGAR
-//     $("#paste-button").click(async function () {
-//         try {
-//             const text = await navigator.clipboard.readText();
-//             $("#m3u-url").val(text);
-//         } catch {
-//             alert("No se pudo acceder al portapapeles");
-//         }
-//     });
-
-//     // CARGAR M3U o M3U8 👍🏼
-//     // $("#ok-button").click(function () {
-//     //     let url = $("#m3u-url").val().trim();
-//     //     if (!url) return;
-
-//     //     // 🔥 DETECTAR ARCHIVO LOCAL
-//     //     if (url.startsWith("📂")) {
-//     //         console.log("Archivo local ya cargado");
-//     //         $("#overlay, #form-container").hide();
-//     //         return;
-//     //     }
-
-//     //     // 🔥 DETECTAR STREAM DIRECTO
-//     //     if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-//     //         currentLink = url;
-//     //         playHLS(url);
-//     //         setTimeout(() => {
-//     //             videojs('my-video').play().catch(() => {});
-//     //         }, 300);            
-//     //         let name = url.split("/").pop() || "Stream"; // 🔥 NOMBRE + METADATA   
-//     //         let icon = getIconSmart(url);
-//     //        // let type = url.split(".").pop().toUpperCase(); // 🔥 FIX
-//     //         let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0].replace(".", "").toUpperCase();
-//     //         $("#nombreCanal").html(`
-//     //             ${icon} ${name}<br>
-//     //             <small style="color:#aaa;">${type}</small>
-//     //         `);
-
-//     //         // 🔥 LIMPIAR PLAYLIST
-//     //         $("#playList")
-//     //             .removeClass("favorites-mode")
-//     //             .empty()
-//     //             .append(`
-//     //                 <button class="list-item active" data-url="${url}">
-//     //                     ${icon} ${name}
-//     //                 </button>
-//     //             `);
-//     //         updateFavButton();
-//     //         marcarCanalActivo();
-//     //     } else {
-//     //         loadChannels(url);
-//     //     }
-//     //     saveM3U(url);
-//     //     renderHistory();
-//     //     $("#overlay, #form-container").hide();
-//     // });
-
-
-//     $("#ok-button").click(function () {
-
-//     let url = $("#m3u-url").val().trim();
-//     if (!url) return;
-
-//     if (url.startsWith("📂")) {
-//         $("#overlay, #form-container").hide();
-//         return;
-//     }
-
-//     // if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-
-//     //     currentLink = url;
-
-//     //     playHLS(url);
-
-//     //     setTimeout(() => {
-//     //         videojs('my-video').play().catch(() => {});
-//     //     }, 300);
-
-//     //     let name = url.split("/").pop() || "Stream";
-//     //     let icon = getIconSmart(url);
-
-//     //     let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0]
-//     //         .replace(".", "")
-//     //         .toUpperCase();
-
-//     //     $("#nombreCanal").html(`
-//     //         ${icon} ${name}<br>
-//     //         <small style="color:#aaa;">${type}</small>
-//     //     `);
-
-//     //     $("#playList")
-//     //         .removeClass("favorites-mode")
-//     //         .empty()
-//     //         .append(`
-//     //             <button class="list-item active" data-url="${url}">
-//     //                 ${icon} ${name}
-//     //             </button>
-//     //         `);
-
-//     //     updateFavButton();
-//     //     marcarCanalActivo();
-
-// if (url.includes(".m3u8")) {
-
-//     console.log("▶ Detectado M3U8");
-
-//     currentLink = url;
-
-//     let player = videojs('my-video');
-//     player.pause();
-//     player.src({ src: url, type: 'application/x-mpegURL' });
-//     player.load();
-//     player.play().catch(e => console.log("Play error:", e));
-
-//     let name = url.split("/").pop() || "Stream";
-
-//     $("#nombreCanal").text(name);
-
-//     $("#playList")
-//         .empty()
-//         .append(`
-//             <button class="list-item active" data-url="${url}">
-//                 ${name}
-//             </button>
-//         `);
-
-//     marcarCanalActivo();
-
-//     } else {
-
-//         loadChannels(url);
-//     }
-
-//     // 🔥 GUARDAR AL FINAL
-//     saveM3U(url);
-//     renderHistory();
-
-//     $("#overlay, #form-container").hide();
-// });
-
-
-
-    // DEFAULT
+    // ---------- DEFAULT ------------
     $("#default-button").click(function () {
         loadChannels(defaultM3U);
         $("#overlay, #form-container").hide();
