@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260428</title>
+    <title>Easy Web TV RB - BTN v4.1.260428.3</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/IMG_3506-modified.png">
     <meta name="description" content="Prueba de lista M3U">
@@ -154,6 +154,12 @@ body, html {
     border-left: 3px solid var(--accent);
     cursor: pointer;
     user-select: none; /* Evita que se seleccione el texto azul al hacer doble clic */
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 43px;
 }
 
 /* 4. Layout Principal (Flexbox) */
@@ -735,14 +741,49 @@ function loadChannels(url) {
             channelsGlobal = channels;
 
             // ❌ lista vacía
+
+            // if (channels.length === 0) {
+            //     $("#playList").html(`
+            //         <div class="loading-list">
+            //             ⚠️ Lista sin canales
+            //         </div>
+            //     `);
+            //     return;
+            // }
+
             if (channels.length === 0) {
+
+                let name = url.split("/").pop() || "Stream";
+
+                // 🔥 limpiar query (opcional pero recomendado)
+                name = name.split("?")[0];
+
+                // 🔥 limitar a 30 caracteres
+                if (name.length > 30) {
+                    name = name.substring(0, 30) + "...";
+                }
+
+                let icon = getIconByUrl(url);
+
                 $("#playList").html(`
                     <div class="loading-list">
-                        ⚠️ Lista sin canales
+                        ⚠️ Lista sin canales<br><br>
+                        👉 Probando como stream
                     </div>
+
+                    <button class="list-item active" data-url="${url}">
+                        ${icon} ${name}
+                    </button>
                 `);
+
+                // 🔥 reproducir directo
+                currentLink = url;
+                playHLS(url);
+                updateFavButton();
+
                 return;
             }
+
 
             // 🔥 agrupar
             let grouped = {};
