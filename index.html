@@ -530,6 +530,15 @@ button.list-item.active {
         </video>
     </div>
 
+
+    <!-- 
+        <div id="player">
+        <div id="link-info-container" > Enlace actual:</div>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
+        </video>
+    </div>
+    
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
@@ -641,40 +650,69 @@ $("#search")
 
 // ================== PLAYER ==================
 function playHLS(url) {
-
     var player = videojs('my-video');
-        player.pause();
-      //  player.src({ src: url, type: 'application/x-mpegURL' });
-        let type = "application/x-mpegURL";
-        if (url.endsWith(".mp4")) {
-            type = "video/mp4";
-        } else if (url.endsWith(".mp3")) {
-            type = "audio/mpeg";
-        } else if (url.endsWith(".ts")) {
-            type = "video/mp2t";
-        } else if (url.endsWith(".m3u8")) {
-            type = "application/x-mpegURL";
-        }
-        player.src({ src: url, type: type });
-        player.play();
-        currentLink = url;
+
+    // 1. Limpiar errores previos y detener el reproductor
+    player.error(null); 
+    player.pause();
+
+    // 2. Determinar el tipo de contenido (Tu lógica actual mantenida)
+    let type = "application/x-mpegURL";
+    if (url.endsWith(".mp4")) {
+        type = "video/mp4";
+    } else if (url.endsWith(".mp3")) {
+        type = "audio/mpeg";
+    } else if (url.endsWith(".ts")) {
+        type = "video/mp2t";
+    } else if (url.endsWith(".m3u8")) {
+        type = "application/x-mpegURL";
+    }
+
+    // 3. Configuración para máxima compatibilidad móvil
+    // Esto fuerza al motor de Video.js a ser más flexible con los links
+    player.src({ 
+        src: url, 
+        type: type,
+        withCredentials: false // Importante para evitar problemas de CORS básicos
+    });
+
+    // 4. Iniciar carga y reproducción
+    player.load();
+    
+    // Intentar reproducir (el navegador puede bloquear el autoplay si no está muteado)
+    var playPromise = player.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("Autoplay bloqueado por el navegador, esperando interacción.");
+        });
+    }
+
+    currentLink = url;
+
+    // --- Lógica de Interfaz (Tus opciones originales) ---
     if (!isAutoSearching) {
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
     }
-    player.one('playing', function () {
+
+    // Usar 'loadedmetadata' en vez de 'playing' a veces es más rápido en móviles
+    player.one('loadedmetadata', function () {
         $("#link-info-container").fadeOut();
     });
 
     player.one('error', function () {
-    if (!isAutoSearching) {
-        $("#link-info-container")
-        .html("🔥 Señal fuera de servicio")
-        .show();
+        if (!isAutoSearching) {
+            $("#link-info-container")
+                .html("🔥 Señal fuera de servicio")
+                .show();
         }
     });
 }
+
+
+    
 
 // ================== PARSER ==================
 function getChannelData(line) {
