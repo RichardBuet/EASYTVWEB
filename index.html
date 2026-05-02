@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260428.3</title>
+    <title>Easy Web TV RB - BTN v4.1.2605001.v3</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG">
+    <!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG"> -->
     <meta name="description" content="Prueba de lista M3U">
 
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -379,7 +380,7 @@ button.list-item.active {
     display: flex;
     flex-wrap: nowrap;
     align-content: flex-start;
-    gap: 7px;
+    gap: 4px;
     margin-top: 8px;
     overflow-y: auto;
     height: 100px;
@@ -389,8 +390,16 @@ button.list-item.active {
 }
 .history-item{
     font-size: small;
+    border: 1px solid #30363d;
+    border-radius: 6px;
     width: stretch;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 2px 0;
 }
 
 
@@ -526,19 +535,17 @@ button.list-item.active {
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
-        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
+        <source src="https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" type="application/x-mpegURL">
         </video>
     </div>
 
+<!-- 
+https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8
+http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playlist.m3u8
+https://cors-anywhere.herokuapp.com/
+https://api.allorigins.win/raw?url=
+-->
 
-    <!-- 
-        <div id="player">
-        <div id="link-info-container" > Enlace actual:</div>
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
-        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
-        </video>
-    </div>
-    
     <!-- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
@@ -650,55 +657,26 @@ $("#search")
 
 // ================== PLAYER ==================
 function playHLS(url) {
-    var player = videojs('my-video');
-
-    // 1. Limpiar errores previos y detener el reproductor
-    player.error(null); 
+    var player = videojs('my-video'); 
     player.pause();
 
-    // 2. Determinar el tipo de contenido (Tu lógica actual mantenida)
     let type = "application/x-mpegURL";
-    if (url.endsWith(".mp4")) {
-        type = "video/mp4";
-    } else if (url.endsWith(".mp3")) {
-        type = "audio/mpeg";
-    } else if (url.endsWith(".ts")) {
-        type = "video/mp2t";
-    } else if (url.endsWith(".m3u8")) {
-        type = "application/x-mpegURL";
-    }
+    if (url.endsWith(".mp4")) { type = "video/mp4";}
+    else if (url.endsWith(".mp3")) {type = "audio/mpeg";} 
+    else if (url.endsWith(".ts")) {type = "video/mp2t";} 
+    else if (url.endsWith(".m3u8")) {type = "application/x-mpegURL";}
 
-    // 3. Configuración para máxima compatibilidad móvil
-    // Esto fuerza al motor de Video.js a ser más flexible con los links
-    player.src({ 
-        src: url, 
-        type: type,
-        withCredentials: false // Importante para evitar problemas de CORS básicos
-    });
-
-    // 4. Iniciar carga y reproducción
-    player.load();
-    
-    // Intentar reproducir (el navegador puede bloquear el autoplay si no está muteado)
-    var playPromise = player.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            console.log("Autoplay bloqueado por el navegador, esperando interacción.");
-        });
-    }
-
+    player.src({ src: url, type: type,});
+    player.play();
     currentLink = url;
 
-    // --- Lógica de Interfaz (Tus opciones originales) ---
     if (!isAutoSearching) {
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
     }
 
-    // Usar 'loadedmetadata' en vez de 'playing' a veces es más rápido en móviles
-    player.one('loadedmetadata', function () {
+    player.one('playing', function () {
         $("#link-info-container").fadeOut();
     });
 
@@ -711,8 +689,6 @@ function playHLS(url) {
     });
 }
 
-
-    
 
 // ================== PARSER ==================
 function getChannelData(line) {
@@ -742,7 +718,8 @@ function loadChannels(url) {
 
     $.ajax({
         type: "GET",
-        url: url,
+        // url: url,
+        url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
         timeout: 15000,
         success: function (message) {
             let lines = message.split("\n");
@@ -781,17 +758,6 @@ function loadChannels(url) {
 
             channelsGlobal = channels;
 
-            // ❌ lista vacía
-
-            // if (channels.length === 0) {
-            //     $("#playList").html(`
-            //         <div class="loading-list">
-            //             ⚠️ Lista sin canales
-            //         </div>
-            //     `);
-            //     return;
-            // }
-
             if (channels.length === 0) {
 
                 let name = url.split("/").pop() || "Stream";
@@ -824,7 +790,6 @@ function loadChannels(url) {
 
                 return;
             }
-
 
             // 🔥 agrupar
             let grouped = {};
@@ -961,7 +926,7 @@ function renderHistory() {
         }
         let icon = h.url.startsWith("local-file-") ? "📂" : "🌐";
         $("#m3u-history").append(`
-            <div class="history-item" data-url="${h.url}" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="history-item" data-url="${h.url}" >
                 <span style="flex:1; overflow:hidden; text-overflow:ellipsis;">
                     ${icon} ${displayName}
                 </span>
