@@ -81,8 +81,8 @@
 }
 
 /* 🖼 POSTER (ATRÁS) */
-.vjs-poster { 
-    display: flex !important; 
+.vjs-poster { display: none !important; }
+    /* display: flex !important; 
     z-index: 1; 
     background-size: cover !important; 
     border-radius: 7px !important;
@@ -91,7 +91,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-}
+} */
 
 /* 🚫 OCULTAR overlay de error */
 .vjs-error-display {display: none !important;}
@@ -533,12 +533,13 @@ button.list-item.active {
 
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG" data-setup='{}'>
         <source src="https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" type="application/x-mpegURL">
         </video>
     </div>
 
 <!-- 
+    poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg"
 https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8
 http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playlist.m3u8
 https://cors-anywhere.herokuapp.com/
