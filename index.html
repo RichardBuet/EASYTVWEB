@@ -720,8 +720,8 @@ function loadChannels(url) {
 
     $.ajax({
         type: "GET",
-        // url: url,
-        url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+        url: url,
+      //  url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
         timeout: 15000,
         success: function (message) {
             let lines = message.split("\n");
