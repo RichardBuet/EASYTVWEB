@@ -533,12 +533,15 @@ button.list-item.active {
 
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG" data-setup='{}'>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
+            preload="metadata" controlsList="noplaybackrate" width="900" 
+            poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
         <source src="https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" type="application/x-mpegURL">
         </video>
     </div>
 
 <!-- 
+    poster="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG"
     poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg"
 https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8
 http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playlist.m3u8
@@ -831,9 +834,9 @@ function loadChannels(url) {
             // 🔥 CORS (el caso que te está pasando)
             if (xhr.status === 0) {
                 mensaje = `
-                    🚫 Lista bloqueada por el servidor (CORS)<br><br>
-                    👉 Descargala y cargala como archivo<br>
-                    📂 o usá otra fuente
+                    🚫 Lista bloqueada por el servidor<br><br>
+                    👉 Descargala y cargar como archivo<br>
+                    📂 o usá otra fuente<br><br>
                 `;
             }
         
