@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260428.3</title>
+    <title>Easy Web TV RB - BTN v4.1.260502.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG">
     <!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG"> -->
@@ -81,8 +81,8 @@
 }
 
 /* 🖼 POSTER (ATRÁS) */
-.vjs-poster { display: none !important; }
-    /* display: flex !important; 
+/*.vjs-poster { display: none !important; }
+     display: flex !important; 
     z-index: 1; 
     background-size: cover !important; 
     border-radius: 7px !important;
@@ -92,6 +92,15 @@
     width: 100%;
     height: 100%;
 } */
+
+#video-poster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+
 
 /* 🚫 OCULTAR overlay de error */
 .vjs-error-display {display: none !important;}
@@ -681,16 +690,33 @@ function playHLS(url) {
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
+            // 🔥 mostrar poster al cargar
+            $("#video-poster").show();
     }
     player.one('playing', function () {
         $("#link-info-container").fadeOut();
+        // 🔥 ocultar cuando realmente arranca el video
+        $("#video-poster").fadeOut(300);
     });
+
+    player.one('waiting', function () {
+    if (!isAutoSearching) {
+        $("#link-info-container")
+        .html("🔄 Cargando...")
+        .show();
+        // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
+        $("#video-poster").fadeIn(200);
+    }
+    });
+
 
     player.one('error', function () {
     if (!isAutoSearching) {
         $("#link-info-container")
         .html("🔥 Señal fuera de servicio")
         .show();
+            // 🔥 si falla, mostrar poster
+        $("#video-poster").fadeIn(200);
         }
     });
 }
