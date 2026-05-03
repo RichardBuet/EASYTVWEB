@@ -93,14 +93,28 @@
     height: 100%;
 } */
 
-#video-poster {
+/*#video-poster {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 2;
-}
+}*/
 
+.vjs-poster { 
+    display: flex;
+    /*!important;*/
+    background-size: cover;
+    border-radius: 6px;
+}
+.video-js .vjs-tech {
+/*    height: min-content;
+    height: min-content;*/
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    object-fit: fill;
+}
 
 /* 🚫 OCULTAR overlay de error */
 .vjs-error-display {display: none !important;}
@@ -230,6 +244,7 @@ body, html {
     width: min-content;
     max-width: 34%;
     font-size: 0.7em;
+    user-select: none;
 }
 #search-bar { 
     padding: 10px; 
@@ -690,13 +705,15 @@ function playHLS(url) {
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
-            // 🔥 mostrar poster al cargar
-            $("#video-poster").show();
+            // 🔥 mostrar poster al cargar .vjs-poster
+            // $("#video-poster").show();
+            $(".vjs-poster").css("display", "flex !important;");
     }
     player.one('playing', function () {
         $("#link-info-container").fadeOut();
         // 🔥 ocultar cuando realmente arranca el video
-        $("#video-poster").fadeOut(300);
+        // $("#video-poster").fadeOut(300);
+        $(".vjs-poster").css("display", "none !important;");
     });
 
     player.one('waiting', function () {
@@ -705,7 +722,8 @@ function playHLS(url) {
         .html("🔄 Cargando...")
         .show();
         // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
-        $("#video-poster").fadeIn(200);
+        // $("#video-poster").fadeIn(200);
+        $(".vjs-poster").css("display", "flex !important;");
     }
     });
 
@@ -716,7 +734,8 @@ function playHLS(url) {
         .html("🔥 Señal fuera de servicio")
         .show();
             // 🔥 si falla, mostrar poster
-        $("#video-poster").fadeIn(200);
+        // $("#video-poster").fadeIn(200);
+        $(".vjs-poster").css("display", "flex !important;");
         }
     });
 }
@@ -1031,6 +1050,9 @@ function handlePlayerError() {
             setTimeout(() => {
             isAutoSearching = false;
             $("#link-info-container").fadeOut();
+            // 🔥 ocultar cuando realmente arranca el video
+            // $("#video-poster").fadeOut(300);
+            $(".vjs-poster").css("display", "none !important;");
             }, 2500);
         }
         tryNext();
