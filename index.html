@@ -81,26 +81,6 @@
 }
 
 /* 🖼 POSTER (ATRÁS) */
-/*.vjs-poster { display: none !important; }
-     display: flex !important; 
-    z-index: 1; 
-    background-size: cover !important; 
-    border-radius: 7px !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-} */
-
-/*#video-poster {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 2;
-}*/
-
 .vjs-poster { 
     display: flex;
     /*!important;*/
@@ -109,8 +89,7 @@
     border-radius: 6px;
 }
 .video-js .vjs-tech {
-/*    height: min-content;
-    height: min-content;*/
+/*  height: min-content;*/
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 16 / 9;
@@ -122,7 +101,6 @@
 
 .vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
-
 
 .video-js .vjs-big-play-button { font-size: 0!important;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
@@ -227,10 +205,11 @@ body, html {
     transform: translateX(-50%);
     text-align: center;
     background: rgba(0,0,0,0.85);
-    padding: 8px 15px;
+    /*padding: 8px 15px;*/
+        padding: 5px 10px;
     border-radius: 8px;
     border: 1px solid var(--accent);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     max-width: 80%;
     z-index: 6;
     word-break: break-all;
@@ -238,7 +217,7 @@ body, html {
 
 /* 6. Lista de Canales */
 #lists {
-    min-width: 150px;
+    min-width: 142px;
     background: var(--panel-bg);
     display: flex;
     flex-direction: column;
@@ -247,6 +226,7 @@ body, html {
     max-width: 34%;
     font-size: 0.7em;
     user-select: none;
+    width: auto;
 }
 #search-bar { 
     padding: 10px; 
@@ -276,33 +256,34 @@ body, html {
 
 /* Botones de la lista (Mejorados para TV/Móvil) */
 button.list-item {
+    font-size: 0.55rem;
     width: 100%;
+    min-height: 30px;
+    height: calc(91% * 0.08);
     padding: 10px;
     margin: 3px 0;
     background: #21262d;
     border: 1px solid #30363d;
-    color: #c9d1d9;
     border-radius: 6px;
-    text-align: left;
-    cursor: pointer;
-    font-size: 0.55rem;
     align-self: anchor-center;
-    cursor: pointer;
-    color: #fff;
+    text-align: left;
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
-    overflow: hidden;
+   /* color: #c9d1d9;
+    color: #fff; */
+    color: var(--tex);
     transition: all 0.2s ease;
-    height: auto;
-    min-height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Safari, Chrome, Opera, Android */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Estándar moderno */
 }
 
-/* button.list-item:hover, button.list-item:focus {
-    background: #30363d;
-    border-color: var(--accent);
-    outline: none;
-} */
 @media (hover: hover) and (pointer: fine) {
     button.list-item:hover, 
     button.list-item:focus {
@@ -317,8 +298,8 @@ button.list-item.active {
     border-color: var(--accent);
     color: var(--accent);
     font-weight: bold;
+    font-size: 0.59rem;
 }
-
 
 #playList.favorites-mode {
     display: flex;
@@ -337,7 +318,6 @@ button.list-item.active {
         width: calc(50% - 6px); /* 2 columnas */
     }
 }
-    
     
 /* 7. Modal (Formulario de carga) - ARREGLADO */
 #overlay {
@@ -461,7 +441,7 @@ button.list-item.active {
     }
 
     #link-info-container {
-        bottom: 46%;
+        bottom: 50%;
     }
 
     #m3u-history{
@@ -510,7 +490,7 @@ button.list-item.active {
 
 <div id="top-bar">
     <h2> EASY TV WEB</h2>
-    <div id="nombreCanal">Probá: M3U y URL de Link</div>
+    <div id="nombreCanal">Probá M3U y URL de Link</div>
 </div>
     
     <button id="fav-btn">⭐</button>
@@ -697,10 +677,9 @@ function playHLS(url) {
     player.off('waiting');
     player.off('playing');
     player.off('loadeddata');
-    player.off('error');
-  // player.off('error');
+   // player.off('error');
     handlePlayerError();
-    
+
     player.pause();
 
     let type = "application/x-mpegURL";
@@ -1088,9 +1067,6 @@ function handlePlayerError() {
             setTimeout(() => {
             isAutoSearching = false;
             $("#link-info-container").fadeOut();
-            // 🔥 ocultar cuando realmente arranca el video
-            // $("#video-poster").fadeOut(300);
-          //  $(".vjs-poster").css("display", "none !important;");
             }, 2500);
         }
         tryNext();
