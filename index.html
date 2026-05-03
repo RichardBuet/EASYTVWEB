@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260502.1</title>
+    <title>Easy Web TV RB - BTN v4.1.260502.2</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG">
     <!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG"> -->
@@ -460,6 +460,10 @@ button.list-item.active {
         height: calc(100vw * 9 / 16);
     }
 
+    #link-info-container {
+        bottom: 46%;
+    }
+
     #m3u-history{
         height: auto;
         max-height: 20vh;
@@ -703,6 +707,7 @@ function playHLS(url) {
         player.src({ src: url, type: type });
         player.play();
         currentLink = url;
+
         if (!isAutoSearching) {
             $(".vjs-poster").css("display", "flex !important;");
             $("#link-info-container")
@@ -711,12 +716,6 @@ function playHLS(url) {
                 // 🔥 mostrar poster al cargar .vjs-poster
                 // $("#video-poster").show();
         }
-    player.one('playing', function () {
-        $("#link-info-container").fadeOut();
-        // 🔥 ocultar cuando realmente arranca el video
-        // $("#video-poster").fadeOut(300);
-        $(".vjs-poster").css("display", "none !important;");
-    });
 
     player.one('waiting', function () {
         if (!isAutoSearching) {
@@ -728,6 +727,14 @@ function playHLS(url) {
             // $("#video-poster").fadeIn(200);    
         }
     });
+
+    player.one('playing', function () {
+        $("#link-info-container").fadeOut();
+        // 🔥 ocultar cuando realmente arranca el video
+        // $("#video-poster").fadeOut(300);
+        $(".vjs-poster").css("display", "none !important;");
+    });
+
 
     player.one('error', function () {
     if (!isAutoSearching) {
@@ -1010,6 +1017,7 @@ function handlePlayerError() {
         if (!autoNextEnabled) {
             // 🔥 SOLO mostrar error si NO está buscando
             if (!isAutoSearching) {
+                $(".vjs-poster").css("display", "flex !important;");
                 $("#link-info-container")
                     .html("🔥 Señal fuera de servicio")
                     .show();
