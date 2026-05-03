@@ -717,16 +717,16 @@ function playHLS(url) {
                 // $("#video-poster").show();
         }
 
-    player.one('waiting', function () {
-        if (!isAutoSearching) {
-            $(".vjs-poster").css("display", "flex !important;");
-            $("#link-info-container")
-            .html("🔄 Cargando...")
-            .show();
+    //player.one('waiting', function () {
+      //  if (!isAutoSearching) {
+         //   $(".vjs-poster").css("display", "flex !important;");
+         //   $("#link-info-container")
+         //   .html("🔄 Cargando...")
+        //    .show();
             // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
             // $("#video-poster").fadeIn(200);    
-        }
-    });
+  //      }
+ //   });
 
     player.one('playing', function () {
         $("#link-info-container").fadeOut();
