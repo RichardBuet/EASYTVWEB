@@ -510,7 +510,7 @@ button.list-item.active {
 
 <div id="top-bar">
     <h2> EASY TV WEB</h2>
-    <div id="nombreCanal">Probá M3U y URL de Link</div>
+    <div id="nombreCanal">Probá: M3U y URL de Link</div>
 </div>
     
     <button id="fav-btn">⭐</button>
@@ -698,7 +698,9 @@ function playHLS(url) {
     player.off('playing');
     player.off('loadeddata');
     player.off('error');
-
+  // player.off('error');
+    handlePlayerError();
+    
     player.pause();
 
     let type = "application/x-mpegURL";
