@@ -732,7 +732,7 @@ function playHLS(url) {
         $("#link-info-container").fadeOut();
         // 🔥 ocultar cuando realmente arranca el video
         // $("#video-poster").fadeOut(300);
-        $(".vjs-poster").css("display", "none !important;");
+     //   $(".vjs-poster").css("display", "none !important;");
     });
 
 
@@ -1040,11 +1040,14 @@ function handlePlayerError() {
                 $("#link-info-container")
                     .html("❌ No se encontró señal disponible")
                     .show();
+                $(".vjs-poster").css("display", "flex !important;");
+                
                 return;
             }
             let next = visibleList[nextIndex];
             console.log("🔄 Probando:", next.name);
-            // 🔥 mensaje visual
+            $(".vjs-poster").css("display", "flex !important;");
+                // 🔥 mensaje visual
             $("#link-info-container")
                 .stop(true, true)
                 .html(`<div style="display:block;">🔄 Probando:<br><b>${next.name}</b></div>`)
