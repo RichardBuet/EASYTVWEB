@@ -232,6 +232,12 @@ body, html {
     flex: 1; background: #010409; border: 1px solid #30363d; 
     color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
+/*#channel-count {
+    font-size: 12px;
+    color: #00ffcc;
+    margin: 0 8px;
+    white-space: nowrap;
+}*/
 #auto-next-btn {
     border-radius: 8px;
     background: #14395b;
@@ -562,6 +568,7 @@ button.list-item.active {
         <!-- Buscador -->
         <div id="search-bar">
             <input type="text" id="search" placeholder="Buscador de canal...">
+            <!-- <span id="channel-count">[CH:0/0]</span> -->
             <button id="auto-next-btn">Auto ▶ OFF</button>
         </div>
         <div id="playList"></div> 
@@ -625,6 +632,14 @@ function marcarCanalActivo() {
     }
 }
 
+// ================== NRO CANAL ==================
+function updateChannelCount() {
+    let visible = $("#playList .list-item:visible").length;
+    let total = $("#playList .list-item").length;
+
+    $("#channel-count").text(`[CH:${visible}/${total}]`);
+}
+
 // 🔍 BUSCADOR
 $("#search")
 
@@ -664,6 +679,7 @@ $("#search")
         $("#playList .group-title").show();
         $("#no-results").remove();
     }
+    //updateChannelCount();
 });
 
 // ================== PLAYER ==================
@@ -769,6 +785,8 @@ function getChannelData(line) {
         group = "Canales de TV";
     }
     return { name, group };
+
+    //updateChannelCount();
 }
 
 // ================== CARGA LISTA ==================
@@ -948,6 +966,8 @@ function renderFavorites() {
     setTimeout(() => {
     marcarCanalActivo();
     }, 100);
+
+    //updateChannelCount();
 }
 
 // ================== HISTORIAL ==================
