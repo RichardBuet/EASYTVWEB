@@ -104,6 +104,7 @@
 .vjs-poster { 
     display: flex;
     /*!important;*/
+    z-index: 1;
     background-size: cover;
     border-radius: 6px;
 }
@@ -220,7 +221,8 @@ body, html {
 }
 #link-info-container {
     position: absolute;
-    bottom: 60px; /* Arriba de los controles */
+  /*  bottom: 60px;  Arriba de los controles */
+    bottom: 50%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -686,7 +688,7 @@ $("#search")
 function playHLS(url) {
 
     var player = videojs('my-video');
-        player.pause();
+    player.pause();
       //  player.src({ src: url, type: 'application/x-mpegURL' });
         let type = "application/x-mpegURL";
         if (url.endsWith(".mp4")) {
@@ -701,14 +703,14 @@ function playHLS(url) {
         player.src({ src: url, type: type });
         player.play();
         currentLink = url;
-    if (!isAutoSearching) {
-        $("#link-info-container")
-            .html("🔄 Buscando señal...")
-            .show();
-            // 🔥 mostrar poster al cargar .vjs-poster
-            // $("#video-poster").show();
+        if (!isAutoSearching) {
             $(".vjs-poster").css("display", "flex !important;");
-    }
+            $("#link-info-container")
+                .html("🔄 Buscando señal...")
+                .show();
+                // 🔥 mostrar poster al cargar .vjs-poster
+                // $("#video-poster").show();
+        }
     player.one('playing', function () {
         $("#link-info-container").fadeOut();
         // 🔥 ocultar cuando realmente arranca el video
@@ -717,16 +719,15 @@ function playHLS(url) {
     });
 
     player.one('waiting', function () {
-    if (!isAutoSearching) {
-        $("#link-info-container")
-        .html("🔄 Cargando...")
-        .show();
-        // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
-        // $("#video-poster").fadeIn(200);
-        $(".vjs-poster").css("display", "flex !important;");
-    }
+        if (!isAutoSearching) {
+            $(".vjs-poster").css("display", "flex !important;");
+            $("#link-info-container")
+            .html("🔄 Cargando...")
+            .show();
+            // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
+            // $("#video-poster").fadeIn(200);    
+        }
     });
-
 
     player.one('error', function () {
     if (!isAutoSearching) {
