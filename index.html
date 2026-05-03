@@ -102,9 +102,10 @@
 }*/
 
 .vjs-poster { 
-    /* display: flex !important; */
+    display: flex;
+    /*!important;*/
     z-index: 1;
-    background-size: cover !important;
+    background-size: cover;
     border-radius: 6px;
 }
 .video-js .vjs-tech {
@@ -509,7 +510,7 @@ button.list-item.active {
 
 <div id="top-bar">
     <h2> EASY TV WEB</h2>
-    <div id="nombreCanal">Probá:: M3U y URL de Link</div>
+    <div id="nombreCanal">Probá M3U y URL de Link</div>
 </div>
     
     <button id="fav-btn">⭐</button>
@@ -691,56 +692,85 @@ $("#search")
 function playHLS(url) {
 
     var player = videojs('my-video');
+
+    // 🔥 limpiar eventos anteriores (MUY IMPORTANTE)
+    player.off('waiting');
+    player.off('playing');
+    player.off('loadeddata');
+    player.off('error');
+
     player.pause();
-      //  player.src({ src: url, type: 'application/x-mpegURL' });
-        let type = "application/x-mpegURL";
-        if (url.endsWith(".mp4")) {
-            type = "video/mp4";
-        } else if (url.endsWith(".mp3")) {
-            type = "audio/mpeg";
-        } else if (url.endsWith(".ts")) {
-            type = "video/mp2t";
-        } else if (url.endsWith(".m3u8")) {
-            type = "application/x-mpegURL";
-        }
-        player.src({ src: url, type: type });
-        player.play();
-        currentLink = url;
 
-        if (!isAutoSearching) {
-            $("#link-info-container")
-                .html("🔄 Buscando señal...")
-                .show();
-                // 🔥 mostrar poster al cargar .vjs-poster
-            $(".vjs-poster").css("display", "flex !important;");
-        }
-        player.one('playing', function () {
-            $("#link-info-container").fadeOut();
-            // 🔥 ocultar cuando realmente arranca el video
-            $(".vjs-poster").css("display", "none !important;");
-        });
-    //player.one('waiting', function () {
-      //  if (!isAutoSearching) {
-         //   $(".vjs-poster").css("display", "flex !important;");
-         //   $("#link-info-container")
-         //   .html("🔄 Cargando...")
-        //    .show();
-            // 🔥 si entra en buffering, podés mostrarlo de nuevo (opcional)
-            // $("#video-poster").fadeIn(200);    
-  //      }
- //   });
+    let type = "application/x-mpegURL";
 
+    if (url.endsWith(".mp4")) {
+        type = "video/mp4";
+    } else if (url.endsWith(".mp3")) {
+        type = "audio/mpeg";
+    } else if (url.endsWith(".ts")) {
+        type = "video/mp2t";
+    } else if (url.endsWith(".m3u8")) {
+        type = "application/x-mpegURL";
+    }
 
+    player.src({ src: url, type: type });
+    player.play();
 
+    currentLink = url;
 
-    player.one('error', function () {
+    // ================== POSTER HELPER ==================
+    function setPoster(show) {
+        let el = document.querySelector(".vjs-poster");
+        if (!el) return;
+
+        el.style.setProperty(
+            "display",
+            show ? "flex" : "none",
+            "important"
+        );
+    }
+
+    // 🔥 mostrar poster al iniciar
     if (!isAutoSearching) {
+        setPoster(true);
+
         $("#link-info-container")
-        .html("🔥 Señal fuera de servicio")
-        .show();
-            // 🔥 si falla, mostrar poster
-        // $("#video-poster").fadeIn(200);
-       //-- $(".vjs-poster").css("display", "flex !important;");
+            .html("🔄 Buscando señal...")
+            .show();
+    }
+
+    // ================== EVENTOS ==================
+
+    // 🔥 iPhone FIX (más confiable que playing)
+    player.on('loadeddata', function () {
+        setPoster(false);
+    });
+
+    // 🔥 cuando empieza a reproducir
+    player.on('playing', function () {
+        $("#link-info-container").fadeOut();
+        setPoster(false);
+    });
+
+    // 🔥 buffering
+    player.on('waiting', function () {
+        if (!isAutoSearching) {
+            setPoster(true);
+
+            $("#link-info-container")
+                .html("🔄 Cargando...")
+                .show();
+        }
+    });
+
+    // 🔥 error
+    player.on('error', function () {
+        if (!isAutoSearching) {
+            setPoster(true);
+
+            $("#link-info-container")
+                .html("🔥 Señal fuera de servicio")
+                .show();
         }
     });
 }
@@ -1014,7 +1044,7 @@ function handlePlayerError() {
         if (!autoNextEnabled) {
             // 🔥 SOLO mostrar error si NO está buscando
             if (!isAutoSearching) {
-               //-- $(".vjs-poster").css("display", "flex !important;");
+              //  $(".vjs-poster").css("display", "flex !important;");
                 $("#link-info-container")
                     .html("🔥 Señal fuera de servicio")
                     .show();
@@ -1037,14 +1067,11 @@ function handlePlayerError() {
                 $("#link-info-container")
                     .html("❌ No se encontró señal disponible")
                     .show();
-              //--  $(".vjs-poster").css("display", "flex !important;");
-                
                 return;
             }
             let next = visibleList[nextIndex];
             console.log("🔄 Probando:", next.name);
-         //--   $(".vjs-poster").css("display", "flex !important;");
-                // 🔥 mensaje visual
+            // 🔥 mensaje visual
             $("#link-info-container")
                 .stop(true, true)
                 .html(`<div style="display:block;">🔄 Probando:<br><b>${next.name}</b></div>`)
@@ -1061,7 +1088,7 @@ function handlePlayerError() {
             $("#link-info-container").fadeOut();
             // 🔥 ocultar cuando realmente arranca el video
             // $("#video-poster").fadeOut(300);
-          //--  $(".vjs-poster").css("display", "none !important;");
+          //  $(".vjs-poster").css("display", "none !important;");
             }, 2500);
         }
         tryNext();
