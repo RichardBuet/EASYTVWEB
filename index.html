@@ -122,6 +122,10 @@ body, html {
     overflow: hidden; /* Evita el scroll global molesto */
 }
 
+.container {
+  height: calc(var(--vh) * 100);
+}
+    
 /* 2. Barra Superior */
 #top-bar {
     height: 50px;
@@ -583,7 +587,17 @@ button.list-item.active {
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
 
-
+    <script>
+function setViewportHeight() {
+  document.documentElement.style.setProperty(
+    '--vh',
+    `${window.innerHeight * 0.01}px`
+  );
+}
+window.addEventListener('resize', setViewportHeight);
+setViewportHeight();
+</script>
+    
 <script>
 // ================== VARIABLES ==================
 let autoNextEnabled = true;
