@@ -3,16 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260502.2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Prueba de lista M3U">
+    <title>Easy Web TV RB - BTN v4.1.260504.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG">
-    <!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG"> -->
-    <meta name="description" content="Prueba de lista M3U">
-
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js" defer></script>
 
 <style>
 
@@ -188,6 +186,7 @@ body, html {
     justify-content: center;
     width: calc((100vh - 81px) * 16 / 9);
     aspect-ratio: 16 / 9;
+    max-width: 80vw;
 }
 
 /* Forzar Proporción 16:9 */
@@ -254,12 +253,16 @@ body, html {
 }
 
 #playList {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 3px;
+    -webkit-overflow-scrolling: touch;
     overflow-y: auto;
     padding: 10px;
     flex: 1;
 }
 
 #playList div {
+    scroll-snap-align: start;
     grid-column: 1 / -1;
     color: #00ffcc;
     font-weight: bold;
@@ -275,9 +278,10 @@ body, html {
 
 /* Botones de la lista (Mejorados para TV/Móvil) */
 button.list-item {
+    scroll-snap-align: start;
     font-size: 0.55rem;
     width: 100%;
-    min-height: 30px;
+    min-height: 31px;
     height: calc(91% * 0.08);
     padding: 10px;
     margin: 3px 0;
@@ -340,8 +344,13 @@ button.list-item.active {
     
 /* 7. Modal (Formulario de carga) - ARREGLADO */
 #overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); z-index: 100; display: none;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.8); 
+    z-index: 100; display: none;
     backdrop-filter: blur(4px);
 }
 #form-container {
@@ -429,7 +438,7 @@ button.list-item.active {
 
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
-@media  (max-aspect-ratio: 1.20) {
+@media  (max-aspect-ratio: 1.40) {
         #rl-bar {height: 95dvh;; flex-direction: column; }
         #playList {
         display: grid;
@@ -440,6 +449,7 @@ button.list-item.active {
         gap: 0.5rem;
         align-content: flex-start;   /* 🔥 clave */
         grid-auto-rows: max-content;
+        max-width: auto;
     }
     #lists {
         display: flex;
@@ -457,6 +467,7 @@ button.list-item.active {
         width: 99.5vw;
         align-self: center;
         height: calc(100vw * 9 / 16);
+        max-width: none;
     }
 
     #link-info-container {
@@ -587,7 +598,8 @@ button.list-item.active {
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
 
-    <script>
+<script>
+// ================== RESET VISTA SUPERIOR ==================
 function setViewportHeight() {
   document.documentElement.style.setProperty(
     '--vh',
@@ -596,8 +608,17 @@ function setViewportHeight() {
 }
 window.addEventListener('resize', setViewportHeight);
 setViewportHeight();
+
 </script>
     
+
+
+<script>
+//libre...
+</script>
+    
+
+
 <script>
 // ================== VARIABLES ==================
 let autoNextEnabled = true;
@@ -1225,10 +1246,37 @@ $(document).ready(function () {
         $("#overlay, #form-container").hide();
     });
 
+
+
+// $("#form-container").click(function (e) {
+//     e.stopPropagation();
+// });
+
+// $(document).on("keydown", function (e) {
+//     if ((e.key === "Escape" || e.keyCode === 27) && $("#form-container").is(":visible")) {
+//         $("#overlay, #form-container").hide();
+//     }
+// });
+
+    // ================== close windows V2 ==================
+    function closeForm() {
+        $("#overlay, #form-container").hide();
+    }
+
+    $(document).on("keydown", function (e) {
+        if ((e.key === "Escape" || e.keyCode === 27) && $("#form-container").is(":visible")) {
+            closeForm();
+        }
+    });
+
+    $("#exit-button, #overlay").click(closeForm);
+
+
     $("#clear-button").click(function () {
         $("#m3u-url").val("");
     });
 
+    // ================== PEGAR ==================
     $("#paste-button").click(async function () {
         try {
             const text = await navigator.clipboard.readText();
@@ -1262,6 +1310,14 @@ $(document).ready(function () {
         renderHistory();
 
         $("#overlay, #form-container").hide();
+    });
+
+    // ================== ENTER = CARGAR ==================
+    $("#m3u-url").on("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            $("#ok-button").click();
+        }
     });
 
     // ================== HISTORIAL ==================
