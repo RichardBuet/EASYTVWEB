@@ -491,6 +491,33 @@ https://amg00861-amg00861c10-rakuten-uk-3152.playouts.now.amagi.tv/playlist.m3u8
 https://aegis-cloudfront-1.tubi.video/6d6d0f24-8445-4b4c-bdf6-44f9e38beaa4/playlist.m3u8
 
 
+
+# ------- Nuevo canales --------
+
+#EXTINF:-1 group-title="New Channel",Telemundo
+https://d4whmvwm0rdvi.cloudfront.net/10007/99993000/hls/master.m3u8?ads.xumo_channelId=99993039
+#EXTINF:-1 group-title="New Channel",Caso Cerrado
+https://d4whmvwm0rdvi.cloudfront.net/10007/99993000/hls/master.m3u8?ads.xumo_channelId=99993041
+#EXTINF:-1 group-title="New Channel",NINJA Warriors
+https://d4whmvwm0rdvi.cloudfront.net/10007/99993000/hls/master.m3u8?ads.xumo_channelId=99993042
+#EXTINF:-1 group-title="New Channel",At Home with Family Handyman
+https://dbrb49pjoymg4.cloudfront.net/10001/99951156/hls/playlist.m3u8?ads.xumo_channelId=99951156
+#EXTINF:-1 group-title="New Channel",Property & Reno
+https://dbrb49pjoymg4.cloudfront.net/10001/99951221/hls/playlist.m3u8?ads.xumo_channelId=99951221
+#EXTINF:-1 group-title="New Channel",Million Dollar Listing Vault
+https://d4whmvwm0rdvi.cloudfront.net/10007/99951237/hls/master.m3u8?ads.xumo_channelId=99951237
+#EXTINF:-1 group-title="New Channel",Property Brothers
+https://dbrb49pjoymg4.cloudfront.net/10001/99951537/hls/playlist.m3u8?ads.xumo_channelId=99951537
+#EXTINF:-1 group-title="New Channel",Homeful
+https://dbrb49pjoymg4.cloudfront.net/10001/99991693/hls/playlist.m3u8?ads.xumo_channelId=99991693
+#EXTINF:-1 group-title="New Channel",Home. Made. Nation
+https://dbrb49pjoymg4.cloudfront.net/10001/99951470/hls/playlist.m3u8?ads.xumo_channelId=99951470
+#EXTINF:-1 group-title="New Channel",eScapes
+https://dbrb49pjoymg4.cloudfront.net/10001/99991280/hls/playlist.m3u8?ads.xumo_channelId=99991280
+#EXTINF:-1 group-title="New Channel",Estrella News
+https://dbrb49pjoymg4.cloudfront.net/10001/99991776/hls/playlist.m3u8?ads.xumo_channelId=99991776
+
+
 # --- SOLO PARA WINDOWS, NO ANDROID O IOS ---
 
 #EXTINF:-1 tvg-logo="" group-title="Solo PC",El Nueve (720p) win
@@ -507,7 +534,7 @@ http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-91.playl
 #EXTINF:-1 tvg-id="TelemundoInternacional.us@South" tvg-logo="" group-title="Solo PC",Telemundo Internacional (720p)
 http://201.217.246.42:44310/Live/3fcb6e26785fd8d415571b26dc3cf5d3/local-26_720.m3u8
 
-#EXTM3U
+
 #EXTINF:-1 tvg-logo="" group-title="Solo PC",TV Publica
 http://201.217.246.42:44310/Live/b10474c9b1ba4a0986b574d1211c065b/local-11.playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Solo PC",ITS
