@@ -322,7 +322,9 @@ body, html {
     transition: transform 0.2s ease;
 }
 
-#player.swipe-blur video {
+    /*
+#player.swipe-blur video */
+#player.swipe-blur .vjs-tech  {
 filter: blur(10px) brightness(0.6);
     transform: scale(0.985);
     transition:
@@ -733,7 +735,7 @@ button.list-item.active {
 
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
+        <video class="vjs-tech"> id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
             preload="metadata" controlsList="noplaybackrate" width="900" 
             poster="https://richardbuet.github.io/EASYTVWEB/BasePost.jpeg" data-setup='{}'>
         <source src="https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" type="application/x-mpegURL">
@@ -1632,7 +1634,7 @@ setTimeout(() => {
     // 👉 siguiente canal
     if (distance < 0) {
 
-        let visibleChannels = $("#playList .list-item:visible");
+   //     let visibleChannels = $("#playList .list-item:visible");
  //   $("#player").addClass("swiping-left");
  //   setTimeout(() => {
    //     $("#player").removeClass("swiping-left");
