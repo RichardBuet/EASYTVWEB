@@ -763,124 +763,6 @@ window.addEventListener("load", () => {
     }, 1500);
 });
 </script>
-    
-<script>
-// ==============================
-// SWIPE ENTRE CANALES
-// ==============================
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-let currentChannelIndex = 0;
-
-
-// CONTENEDOR DEL VIDEO
-const videoContainer = document.querySelector("#Player");
-
-
-// OBTENER TODOS LOS CANALES
-function getChannelButtons() {
-    return Array.from(document.querySelectorAll(".list-item"));
-}
-
-
-// DETECTAR CANAL ACTIVO
-function updateCurrentChannelIndex() {
-
-    const channels = getChannelButtons();
-
-    currentChannelIndex = channels.findIndex(btn =>
-        btn.classList.contains("active")
-    );
-
-    if (currentChannelIndex < 0) {
-        currentChannelIndex = 0;
-    }
-}
-
-
-// CANAL SIGUIENTE
-function nextChannel() {
-
-    const channels = getChannelButtons();
-
-    if (!channels.length) return;
-
-    updateCurrentChannelIndex();
-
-    currentChannelIndex++;
-
-    if (currentChannelIndex >= channels.length) {
-        currentChannelIndex = 0;
-    }
-
-    channels[currentChannelIndex].click();
-}
-
-
-// CANAL ANTERIOR
-function previousChannel() {
-
-    const channels = getChannelButtons();
-
-    if (!channels.length) return;
-
-    updateCurrentChannelIndex();
-
-    currentChannelIndex--;
-
-    if (currentChannelIndex < 0) {
-        currentChannelIndex = channels.length - 1;
-    }
-
-    channels[currentChannelIndex].click();
-}
-
-
-// TOUCH START
-videoContainer.addEventListener("touchstart", (e) => {
-
-    touchStartX = e.changedTouches[0].screenX;
-
-});
-
-
-// TOUCH END
-videoContainer.addEventListener("touchend", (e) => {
-
-    touchEndX = e.changedTouches[0].screenX;
-
-    handleSwipe();
-
-});
-
-
-// DETECTAR DIRECCIÓN
-function handleSwipe() {
-
-    const distance = touchEndX - touchStartX;
-
-    // evita movimientos accidentales
-    if (Math.abs(distance) < 50) return;
-
-
-    // IZQUIERDA = SIGUIENTE
-    if (distance < 0) {
-
-        nextChannel();
-
-    }
-
-    // DERECHA = ANTERIOR
-    else {
-
-        previousChannel();
-
-    }
-
-}
-</script>
 
     
 <script>
@@ -1688,6 +1570,80 @@ $(document).ready(function () {
         renderHistory();
     });
 
+
+// ==============================
+// SWIPE ENTRE CANALES
+// ==============================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const videoContainer = document.querySelector("#player");
+
+
+// TOUCH START
+videoContainer.addEventListener("touchstart", (e) => {
+
+    touchStartX = e.changedTouches[0].screenX;
+
+}, { passive: true });
+
+
+// TOUCH END
+videoContainer.addEventListener("touchend", (e) => {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    handleSwipe();
+
+}, { passive: true });
+
+
+// DETECTAR SWIPE
+function handleSwipe() {
+
+    const distance = touchEndX - touchStartX;
+
+    // evitar movimientos accidentales
+    if (Math.abs(distance) < 60) return;
+
+
+    // 👉 siguiente canal
+    if (distance < 0) {
+
+        let visibleChannels = $("#playList .list-item:visible");
+
+        if (!visibleChannels.length) return;
+
+        currentIndex++;
+
+        if (currentIndex >= visibleChannels.length) {
+            currentIndex = 0;
+        }
+
+        visibleChannels.eq(currentIndex).click();
+
+    }
+
+    // 👉 canal anterior
+    else {
+
+        let visibleChannels = $("#playList .list-item:visible");
+
+        if (!visibleChannels.length) return;
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = visibleChannels.length - 1;
+        }
+
+        visibleChannels.eq(currentIndex).click();
+
+    }
+
+}
+    
 });
 
 // ================== ANIMACIÓN ==================
