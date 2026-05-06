@@ -322,6 +322,15 @@ body, html {
     transition: transform 0.2s ease;
 }
 
+
+#player.swiping-left {
+    transform: translateX(-20px);
+}
+
+#player.swiping-right {
+    transform: translateX(20px);
+}
+    
 /* Forzar Proporción 16:9 */
 .video-js {
     width: 100% !important;
@@ -1611,7 +1620,16 @@ function handleSwipe() {
     // 👉 siguiente canal
     if (distance < 0) {
 
-        let visibleChannels = $("#playList .list-item:visible");
+        //let visibleChannels = $("#playList .list-item:visible");
+    $("#player").addClass("swiping-left");
+
+    setTimeout(() => {
+
+        $("#player").removeClass("swiping-left");
+
+    }, 150);
+
+    let visibleChannels = $("#playList .list-item:visible");
 
         if (!visibleChannels.length) return;
 
