@@ -323,13 +323,23 @@ body, html {
 }
 
     /*
-#player.swipe-blur video */
+#player.swipe-blur video 
 #player.swipe-blur .vjs-tech  {
 filter: blur(10px) brightness(0.6);
     transform: scale(0.985);
     transition:
         filter 0.18s ease,
         transform 0.18s ease;
+}
+
+
+    */
+.vjs-tech {
+    transition: filter 0.20s ease;
+}
+
+#player.swipe-blur .vjs-tech {
+    filter: blur(6px) brightness(0.75);
 }
     
 /* efecto anterior
