@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Easy Web TV RB - BTN v4.1.260502.2</title>
+    <title>Easy Web TV RB - BTN v4.1.260428.3</title>
     <link rel="manifest" href="manifest.json">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG">
-    <!-- <link rel="shortcut icon" href="https://raw.githubusercontent.com/RichardBuet/EASYTVWEB/refs/heads/main/Icon-ETV.PNG"> -->
     <meta name="description" content="Prueba de lista M3U">
 
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -46,7 +45,6 @@
 
 #install-banner {
     display: none;
-    cursor: pointer;
 }
 
 /* 🎬 VIDEO (SIEMPRE ARRIBA) */
@@ -83,18 +81,15 @@
 
 /* 🖼 POSTER (ATRÁS) */
 .vjs-poster { 
-    display: flex;
-    /*!important;*/
-    z-index: 1;
-    background-size: cover;
-    border-radius: 6px;
-}
-.video-js .vjs-tech {
-/*  height: min-content;*/
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-    object-fit: fill;
+    display: flex !important; 
+    z-index: 1; 
+    background-size: cover !important; 
+    border-radius: 7px !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* 🚫 OCULTAR overlay de error */
@@ -102,6 +97,7 @@
 
 .vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
+
 
 .video-js .vjs-big-play-button { font-size: 0!important;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
@@ -122,10 +118,6 @@ body, html {
     overflow: hidden; /* Evita el scroll global molesto */
 }
 
-/* .container {
-  height: calc(var(--vh) * 100);
-} */
-    
 /* 2. Barra Superior */
 #top-bar {
     height: 50px;
@@ -173,7 +165,7 @@ body, html {
 /* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
-    height: calc(100vh - 80.9px);
+    height: calc(100vh - 81px);
     flex-direction: row;
     justify-content: center;/* Por defecto para PC/TV */
     justify-content: space-around;
@@ -189,7 +181,13 @@ body, html {
     width: calc((100vh - 81px) * 16 / 9);
     aspect-ratio: 16 / 9;
 }
-
+#playList div {
+    grid-column: 1 / -1;
+    color: #00ffcc;
+    font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 1px solid #00ffcc33;
+}
 /* Forzar Proporción 16:9 */
 .video-js {
     width: 100% !important;
@@ -198,17 +196,15 @@ body, html {
 }
 #link-info-container {
     position: absolute;
-  /*  bottom: 60px;  Arriba de los controles */
-    bottom: 50%;
+    bottom: 60px; /* Arriba de los controles */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     background: rgba(0,0,0,0.85);
-    /*padding: 8px 15px;*/
-        padding: 5px 10px;
+    padding: 8px 15px;
     border-radius: 8px;
     border: 1px solid var(--accent);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     max-width: 80%;
     z-index: 6;
     word-break: break-all;
@@ -216,16 +212,14 @@ body, html {
 
 /* 6. Lista de Canales */
 #lists {
-    min-width: 142px;
+    min-width: 150px;
     background: var(--panel-bg);
     display: flex;
     flex-direction: column;
     border-left: 1px solid #30363d;
     width: min-content;
-    max-width: 30%;
+    max-width: 34%;
     font-size: 0.7em;
-    user-select: none;
-    width: auto;
 }
 #search-bar { 
     padding: 10px; 
@@ -237,12 +231,6 @@ body, html {
     flex: 1; background: #010409; border: 1px solid #30363d; 
     color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
-/*#channel-count {
-    font-size: 12px;
-    color: #00ffcc;
-    margin: 0 8px;
-    white-space: nowrap;
-}*/
 #auto-next-btn {
     border-radius: 8px;
     background: #14395b;
@@ -259,50 +247,35 @@ body, html {
     flex: 1;
 }
 
-#playList div {
-    grid-column: 1 / -1;
-    color: #00ffcc;
-    font-weight: bold;
-    padding: 5px 0;
-    border-bottom: 1px solid #00ffcc33;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Safari, Chrome, Opera, Android */
-    -khtml-user-select: none;    /* Konqueror HTML */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Estándar moderno */
-}
-
 /* Botones de la lista (Mejorados para TV/Móvil) */
 button.list-item {
-    font-size: 0.55rem;
     width: 100%;
-    min-height: 30px;
-    height: calc(91% * 0.08);
     padding: 10px;
     margin: 3px 0;
     background: #21262d;
     border: 1px solid #30363d;
+    color: #c9d1d9;
     border-radius: 6px;
-    align-self: anchor-center;
     text-align: left;
+    cursor: pointer;
+    font-size: 0.55rem;
+    align-self: anchor-center;
+    cursor: pointer;
+    color: #fff;
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
-   /* color: #c9d1d9;
-    color: #fff; */
-    color: var(--tex);
-    transition: all 0.2s ease;
     overflow: hidden;
-    cursor: pointer;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Safari, Chrome, Opera, Android */
-    -khtml-user-select: none;    /* Konqueror HTML */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Estándar moderno */
+    transition: all 0.2s ease;
+    height: auto;
+    min-height: 30px;
 }
 
+/* button.list-item:hover, button.list-item:focus {
+    background: #30363d;
+    border-color: var(--accent);
+    outline: none;
+} */
 @media (hover: hover) and (pointer: fine) {
     button.list-item:hover, 
     button.list-item:focus {
@@ -317,8 +290,8 @@ button.list-item.active {
     border-color: var(--accent);
     color: var(--accent);
     font-weight: bold;
-    font-size: 0.59rem;
 }
+
 
 #playList.favorites-mode {
     display: flex;
@@ -337,6 +310,7 @@ button.list-item.active {
         width: calc(50% - 6px); /* 2 columnas */
     }
 }
+    
     
 /* 7. Modal (Formulario de carga) - ARREGLADO */
 #overlay {
@@ -405,7 +379,7 @@ button.list-item.active {
     display: flex;
     flex-wrap: nowrap;
     align-content: flex-start;
-    gap: 4px;
+    gap: 7px;
     margin-top: 8px;
     overflow-y: auto;
     height: 100px;
@@ -415,16 +389,8 @@ button.list-item.active {
 }
 .history-item{
     font-size: small;
-    border: 1px solid #30363d;
-    border-radius: 6px;
     width: stretch;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 2px 0;
 }
 
 
@@ -457,10 +423,6 @@ button.list-item.active {
         width: 99.5vw;
         align-self: center;
         height: calc(100vw * 9 / 16);
-    }
-
-    #link-info-container {
-        bottom: 50%;
     }
 
     #m3u-history{
@@ -508,13 +470,14 @@ button.list-item.active {
 <body>
 
 <div id="top-bar">
-    <h2> EASY TV WEB</h2>
+    <h2> EASY TV WEBa</h2>
     <div id="nombreCanal">Probá M3U y URL de Link</div>
 </div>
     
     <button id="fav-btn">⭐</button>
 
 <div id="overlay"></div>
+
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
 <div id="form-container">
     <!-- 🔥 textarea en vez de input -->
@@ -543,14 +506,10 @@ button.list-item.active {
         <!--button class="preset" data-url="https://www.apsattv.com/xumo.m3u">📺 Xumo USA</button-->
         <button class="preset" data-url="https://raw.githubusercontent.com/maximmur/iptvlist/refs/heads/cur/music.m3u8">🎧 Música</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u">📺 Tubi TV</button>
-        <button class="preset" data-url="https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u">📺 XUMO USA</button>
-         <!--
         <button class="preset" data-url="https://www.apsattv.com/sportstv.m3u">📺 Sports</button>
-        <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio TV</button> 
+        <!-- <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio TV</button> 
         https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u https://www.apsattv.com/xumo.m3u
-       <button class="preset" data-url="">Name</button>
-
-       
+       https://raw.githubusercontent.com/maximmur/iptvlist/refs/heads/cur/music.m3u8
         -->
     </div>
 
@@ -561,23 +520,30 @@ button.list-item.active {
 
 <!-- Contenedor flotante para mostrar el enlace -->
 
+
 <div id="rl-bar">
 
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
-        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
-            preload="metadata" controlsList="noplaybackrate" width="900" 
-            poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
-        <source src="https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8" type="application/x-mpegURL">
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
         </video>
     </div>
 
-    <!-- Elemento de formación de Lista -->
+
+    <!-- 
+        <div id="player">
+        <div id="link-info-container" > Enlace actual:</div>
+        <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls preload="metadata" controlsList="noplaybackrate" width="900" poster="https://img.freepik.com/free-photo/modern-home-interior-with-comfortable-sofa-window-generative-ai_188544-19459.jpg" data-setup='{}'>
+        <source src="https://live-01-01-tn.vodgc.net/TN24/index_TN24_720.m3u8" type="application/x-mpegURL">
+        </video>
+    </div>
+    
+    < -- Elemento de formación de Lista -->
     <div id="lists"> 
         <!-- Buscador -->
         <div id="search-bar">
             <input type="text" id="search" placeholder="Buscador de canal...">
-            <!-- <span id="channel-count">[CH:0/0]</span> -->
             <button id="auto-next-btn">Auto ▶ OFF</button>
         </div>
         <div id="playList"></div> 
@@ -587,17 +553,7 @@ button.list-item.active {
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
 
-    <!-- <script>
-function setViewportHeight() {
-  document.documentElement.style.setProperty(
-    '--vh',
-    `${window.innerHeight * 0.01}px`
-  );
-}
-window.addEventListener('resize', setViewportHeight);
-setViewportHeight();
-</script> -->
-    
+
 <script>
 // ================== VARIABLES ==================
 let autoNextEnabled = true;
@@ -651,14 +607,6 @@ function marcarCanalActivo() {
     }
 }
 
-// ================== NRO CANAL ==================
-function updateChannelCount() {
-    let visible = $("#playList .list-item:visible").length;
-    let total = $("#playList .list-item").length;
-
-    $("#channel-count").text(`[CH:${visible}/${total}]`);
-}
-
 // 🔍 BUSCADOR
 $("#search")
 
@@ -698,25 +646,18 @@ $("#search")
         $("#playList .group-title").show();
         $("#no-results").remove();
     }
-    //updateChannelCount();
 });
 
 // ================== PLAYER ==================
 function playHLS(url) {
-
     var player = videojs('my-video');
 
-    // 🔥 limpiar eventos anteriores (MUY IMPORTANTE)
-    player.off('waiting');
-    player.off('playing');
-    player.off('loadeddata');
-   // player.off('error');
-    handlePlayerError();
-
+    // 1. Limpiar errores previos y detener el reproductor
+    player.error(null); 
     player.pause();
 
+    // 2. Determinar el tipo de contenido (Tu lógica actual mantenida)
     let type = "application/x-mpegURL";
-
     if (url.endsWith(".mp4")) {
         type = "video/mp4";
     } else if (url.endsWith(".mp3")) {
@@ -727,61 +668,42 @@ function playHLS(url) {
         type = "application/x-mpegURL";
     }
 
-    player.src({ src: url, type: type });
-    player.play();
+    // 3. Configuración para máxima compatibilidad móvil
+    // Esto fuerza al motor de Video.js a ser más flexible con los links
+    player.src({ 
+        src: url, 
+        type: type,
+        withCredentials: false // Importante para evitar problemas de CORS básicos
+    });
+
+    // 4. Iniciar carga y reproducción
+    player.load();
+    
+    // Intentar reproducir (el navegador puede bloquear el autoplay si no está muteado)
+    var playPromise = player.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("Autoplay bloqueado por el navegador, esperando interacción.");
+        });
+    }
 
     currentLink = url;
 
-    // ================== POSTER HELPER ==================
-    function setPoster(show) {
-        let el = document.querySelector(".vjs-poster");
-        if (!el) return;
-
-        el.style.setProperty(
-            "display",
-            show ? "flex" : "none",
-            "important"
-        );
-    }
-
-    // 🔥 mostrar poster al iniciar
+    // --- Lógica de Interfaz (Tus opciones originales) ---
     if (!isAutoSearching) {
-        setPoster(true);
-
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
     }
 
-    // ================== EVENTOS ==================
-
-    // 🔥 iPhone FIX (más confiable que playing)
-    player.on('loadeddata', function () {
-        setPoster(false);
-    });
-
-    // 🔥 cuando empieza a reproducir
-    player.on('playing', function () {
+    // Usar 'loadedmetadata' en vez de 'playing' a veces es más rápido en móviles
+    player.one('loadedmetadata', function () {
         $("#link-info-container").fadeOut();
-        setPoster(false);
     });
 
-    // 🔥 buffering
-    player.on('waiting', function () {
+    player.one('error', function () {
         if (!isAutoSearching) {
-            setPoster(true);
-
-            $("#link-info-container")
-                .html("🔄 Cargando...")
-                .show();
-        }
-    });
-
-    // 🔥 error
-    player.on('error', function () {
-        if (!isAutoSearching) {
-            setPoster(true);
-
             $("#link-info-container")
                 .html("🔥 Señal fuera de servicio")
                 .show();
@@ -789,6 +711,8 @@ function playHLS(url) {
     });
 }
 
+
+    
 
 // ================== PARSER ==================
 function getChannelData(line) {
@@ -804,8 +728,6 @@ function getChannelData(line) {
         group = "Canales de TV";
     }
     return { name, group };
-
-    //updateChannelCount();
 }
 
 // ================== CARGA LISTA ==================
@@ -821,7 +743,6 @@ function loadChannels(url) {
     $.ajax({
         type: "GET",
         url: url,
-      //  url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
         timeout: 15000,
         success: function (message) {
             let lines = message.split("\n");
@@ -860,6 +781,17 @@ function loadChannels(url) {
 
             channelsGlobal = channels;
 
+            // ❌ lista vacía
+
+            // if (channels.length === 0) {
+            //     $("#playList").html(`
+            //         <div class="loading-list">
+            //             ⚠️ Lista sin canales
+            //         </div>
+            //     `);
+            //     return;
+            // }
+
             if (channels.length === 0) {
 
                 let name = url.split("/").pop() || "Stream";
@@ -892,6 +824,7 @@ function loadChannels(url) {
 
                 return;
             }
+
 
             // 🔥 agrupar
             let grouped = {};
@@ -930,9 +863,9 @@ function loadChannels(url) {
             // 🔥 CORS (el caso que te está pasando)
             if (xhr.status === 0) {
                 mensaje = `
-                    🚫 Lista bloqueada por el servidor<br><br>
-                    👉 Descargala y cargar como archivo<br>
-                     o usá otra fuente<br>
+                    🚫 Lista bloqueada por el servidor (CORS)<br><br>
+                    👉 Descargala y cargala como archivo<br>
+                    📂 o usá otra fuente
                 `;
             }
         
@@ -985,8 +918,6 @@ function renderFavorites() {
     setTimeout(() => {
     marcarCanalActivo();
     }, 100);
-
-    //updateChannelCount();
 }
 
 // ================== HISTORIAL ==================
@@ -1030,7 +961,7 @@ function renderHistory() {
         }
         let icon = h.url.startsWith("local-file-") ? "📂" : "🌐";
         $("#m3u-history").append(`
-            <div class="history-item" data-url="${h.url}" >
+            <div class="history-item" data-url="${h.url}" style="display:flex; justify-content:space-between; align-items:center;">
                 <span style="flex:1; overflow:hidden; text-overflow:ellipsis;">
                     ${icon} ${displayName}
                 </span>
@@ -1062,7 +993,6 @@ function handlePlayerError() {
         if (!autoNextEnabled) {
             // 🔥 SOLO mostrar error si NO está buscando
             if (!isAutoSearching) {
-              //  $(".vjs-poster").css("display", "flex !important;");
                 $("#link-info-container")
                     .html("🔥 Señal fuera de servicio")
                     .show();
