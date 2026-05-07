@@ -644,12 +644,6 @@ button.list-item.active {
 
 <button id="fav-btn">⭐</button>
 
-<div id="splash-screen">
-    <img src="Icon-ETV.PNG" alt="Splash">
-    <!-- Opcional -->
-    <!-- <img id="splash-logo" src="logo.png" alt="Logo"> -->
-    <div class="loader"></div>
-</div>
     
 <div id="overlay"></div>
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
@@ -739,16 +733,6 @@ setViewportHeight();
     
 
 
-<script>
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        $("#splash-screen").addClass("hide");
-        setTimeout(() => {
-            $("#splash-screen").remove();
-        }, 800);
-    }, 1500);
-});
-</script>
 
     
 <script>
