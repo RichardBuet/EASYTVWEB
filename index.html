@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB - BTN v4.1.260504.1</title>
+    <title>Easy Web TV RB - BTN v4.1.260506.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
 
     transform: scale(1.04);
 }
-*
+*/
 
 .vjs-poster {
     transition:
@@ -46,12 +46,12 @@
         brightness(0.82)
         saturate(1.08);
 
-  /  transform: scale(1.015);*
+    transform: scale(1.015);
 
     opacity: 0.96;
 }
 
-  */  
+    
 :root {
     --accent: #00ffcc;
     --bg-dark: #0a0b10;
@@ -78,6 +78,133 @@
     outline-style: groove;
 }
 
+/* =========================
+   SPLASH SCREEN EASYTVWEB
+========================= */
+
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at center,
+        #07111f 0%,
+        #000814 45%,
+        #000000 100%);
+
+    opacity: 1;
+    transition: opacity 0.5s ease;
+
+    overflow: hidden;
+
+    /* Suaviza iOS */
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+/* Imagen de fondo */
+/* =========================
+   SPLASH LOGO
+========================= */
+
+#splash-screen img {
+    backdrop-filter: blur(8px);
+    width: 320px;
+    max-width: 70vw;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    animation: pulse 2.2s infinite ease-in-out;
+    box-shadow:
+        0 0 25px rgba(0, 180, 255, 0.25),
+        0 0 60px rgba(0, 100, 255, 0.12);
+}
+
+/* Animación suave */
+@keyframes pulse {
+
+    0% {
+        transform: scale(0.8);
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: scale(1.0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+}
+
+    
+/* Overlay oscuro para mejor estética */
+#splash-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.45)
+        );
+}
+
+/* Logo opcional */
+#splash-logo {
+    position: absolute;
+    z-index: 2;
+
+    width: 140px;
+    max-width: 40vw;
+
+    opacity: 0.95;
+
+    filter:
+        drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+
+/* Loader opcional */
+.loader {
+    position: absolute;
+    bottom: 60px; /* 50px;*/
+    z-index: 2;
+
+    width: 42px;
+    height: 42px;
+
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top-color: #00ffd0;
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+/* Fade out */
+#splash-screen.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animación loader */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
     
@@ -163,9 +290,6 @@ body, html {
 
 .container {
   height: calc(var(--vh) * 100);
-    
-
-    
 }
     
 /* 2. Barra Superior */
@@ -177,7 +301,6 @@ body, html {
     justify-content: flex-start;
     border-bottom: 1px solid #30363d;
     cursor: pointer;
-    
 }
 #top-bar h2 {    
     letter-spacing: 1px;
@@ -223,8 +346,6 @@ body, html {
 }
 
 /* 5. Contenedor del Reproductor */
-
-
 #player {
     position: relative;
     background: #000;
@@ -234,10 +355,29 @@ body, html {
     width: calc((100vh - 81px) * 16 / 9);
     aspect-ratio: 16 / 9;
     max-width: 80vw;
-   /* transition: transform 0.2s ease;*/
+    transition: transform 0.2s ease;
+}
+
+    /*
+#player.swipe-blur video 
+#player.swipe-blur .vjs-tech  {
+filter: blur(10px) brightness(0.6);
+    transform: scale(0.985);
+    transition:
+        filter 0.18s ease,
+        transform 0.18s ease;
 }
 
 
+    
+.vjs-tech {
+    transition: filter 0.20s ease;
+}
+
+#player.swipe-blur .vjs-tech {
+    filter: blur(6px) brightness(0.75);
+}
+  */  
 /* efecto anterior
 #player.swiping-left {
     transform: translateX(-20px);
@@ -497,7 +637,7 @@ button.list-item.active {
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
-        #rl-bar {height: 95dvh; flex-direction: column; }
+        #rl-bar {height: 95dvh;; flex-direction: column; }
         #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -583,6 +723,12 @@ button.list-item.active {
 
 <button id="fav-btn">⭐</button>
 
+<div id="splash-screen">
+    <img src="Icon-ETV.PNG" alt="Splash">
+    <!-- Opcional -->
+    <!-- <img id="splash-logo" src="logo.png" alt="Logo"> -->
+    <div class="loader"></div>
+</div>
     
 <div id="overlay"></div>
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
@@ -672,6 +818,16 @@ setViewportHeight();
     
 
 
+<script>
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        $("#splash-screen").addClass("hide");
+        setTimeout(() => {
+            $("#splash-screen").remove();
+        }, 800);
+    }, 1500);
+});
+</script>
 
     
 <script>
@@ -1484,6 +1640,84 @@ $(document).ready(function () {
 // SWIPE ENTRE CANALES
 // ==============================
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+const videoContainer = document.querySelector("#player");
+
+
+// TOUCH START
+videoContainer.addEventListener("touchstart", (e) => {
+
+    touchStartX = e.changedTouches[0].screenX;
+
+}, { passive: true });
+
+
+// TOUCH END
+videoContainer.addEventListener("touchend", (e) => {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    handleSwipe();
+
+}, { passive: true });
+
+
+// DETECTAR SWIPE
+function handleSwipe() {
+
+    const distance = touchEndX - touchStartX;
+
+    // evitar movimientos accidentales
+    if (Math.abs(distance) < 60) return;
+
+    $("#player").addClass("swipe-blur");
+setTimeout(() => {
+    $("#player").removeClass("swipe-blur");
+}, 280);
+// era 180 milisegundos jaja
+    // 👉 siguiente canal
+    if (distance < 0) {
+
+   //     let visibleChannels = $("#playList .list-item:visible");
+ //   $("#player").addClass("swiping-left");
+ //   setTimeout(() => {
+   //     $("#player").removeClass("swiping-left");
+   // }, 150);
+
+    let visibleChannels = $("#playList .list-item:visible");
+
+        if (!visibleChannels.length) return;
+
+        currentIndex++;
+
+        if (currentIndex >= visibleChannels.length) {
+            currentIndex = 0;
+        }
+
+        visibleChannels.eq(currentIndex).click();
+
+    }
+
+    // 👉 canal anterior
+    else {
+
+        let visibleChannels = $("#playList .list-item:visible");
+
+        if (!visibleChannels.length) return;
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = visibleChannels.length - 1;
+        }
+
+        visibleChannels.eq(currentIndex).click();
+
+    }
+
+}
     
 });
 
