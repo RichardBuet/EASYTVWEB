@@ -16,6 +16,23 @@
 
 <style>
 
+.vjs-poster {
+    transition:
+        filter 0.22s ease,
+        opacity 0.22s ease;
+}
+    
+#player.swipe-blur .vjs-poster {
+    filter:
+        blur(12px)
+        brightness(0.6)
+        saturate(1.2);
+
+    transform: scale(1.04);
+}
+
+
+    
 :root {
     --accent: #00ffcc;
     --bg-dark: #0a0b10;
