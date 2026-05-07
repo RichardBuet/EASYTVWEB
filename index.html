@@ -350,6 +350,83 @@ body, html {
 }
 
 /* 5. Contenedor del Reproductor */
+
+
+    /* =========================
+   PLAYER
+========================= */
+
+#player {
+    position: relative;
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc((100vh - 81px) * 16 / 9);
+
+    aspect-ratio: 16 / 9;
+
+    max-width: 80vw;
+
+    /* 🔥 FIX iOS/PWA */
+    transform: translateZ(0);
+
+    will-change: auto;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* =========================
+   VIDEO LAYERS
+========================= */
+
+.video-js,
+.vjs-tech,
+.vjs-poster {
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transform: translateZ(0);
+}
+
+
+/* =========================
+   POSTER FX
+========================= */
+
+.vjs-poster {
+
+    transition:
+        filter 0.65s cubic-bezier(.22,.61,.36,1),
+        transform 0.65s cubic-bezier(.22,.61,.36,1),
+        opacity 0.65s ease;
+}
+
+
+/* =========================
+   SWIPE EFFECT
+========================= */
+
+#player.swipe-blur .vjs-poster {
+
+    filter:
+        blur(2.5px)
+        brightness(0.88)
+        saturate(1.04);
+
+    transform: scale(1.008);
+
+    opacity: 0.985;
+}
+
+
+    
+    /*
 #player {
     position: relative;
     background: #000;
@@ -362,7 +439,6 @@ body, html {
     transition: transform 0.2s ease;
 }
 
-    /*
 #player.swipe-blur video 
 #player.swipe-blur .vjs-tech  {
 filter: blur(10px) brightness(0.6);
