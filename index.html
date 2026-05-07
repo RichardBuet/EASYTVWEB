@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB - BTN v4.1.260506.0</title>
+    <title>Easy Web TV RB - BTN v4.1.260507.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -284,7 +284,8 @@ body, html {
     margin: 0; padding: 0;
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--text);
-    height: 100vh;
+    /*height: 100vh; viejo*/
+    height: calc(var(--vh) * 100);
     overflow: hidden; /* Evita el scroll global molesto */
 }
 
@@ -339,7 +340,8 @@ body, html {
 /* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
-    height: calc(100vh - 80.9px);
+    /*height: calc(100vh - 80.9px); viejo*/
+     height: calc((var(--vh) * 100) - 80.9px);
     flex-direction: row;
     justify-content: center;/* Por defecto para PC/TV */
     justify-content: space-around;
@@ -637,8 +639,12 @@ button.list-item.active {
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
-        #rl-bar {height: 95dvh;; flex-direction: column; }
-        #playList {
+    #rl-bar {
+        /*height: 95dvh; viejo */
+        height: calc((var(--vh) * 95);
+        flex-direction: column; 
+        }
+    #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
         gap: calc(100vh / 50);
