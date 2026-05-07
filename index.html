@@ -160,10 +160,10 @@ body, html {
     height: 100vh;
     overflow: hidden; /* Evita el scroll global molesto */
 }
-/*
+
 .container {
   height: calc(var(--vh) * 100);
-    */
+    
 
     
 }
@@ -225,49 +225,6 @@ body, html {
 /* 5. Contenedor del Reproductor */
 
 
-    /* =========================
-   PLAYER
-========================= */
-
-#player {
-    position: relative;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc((100vh - 81px) * 16 / 9);
-    aspect-ratio: 16 / 9;
-    max-width: 80vw;
-}
-
-/* =========================
-   POSTER FX
-========================= */
-
-.vjs-poster {
-    transition:
-        filter 0.65s cubic-bezier(.22,.61,.36,1),
-        transform 0.65s cubic-bezier(.22,.61,.36,1),
-        opacity 0.65s ease;
-}
-
-
-/* =========================
-   SWIPE EFFECT
-========================= */
-
-#player.swipe-blur .vjs-poster {
-    filter:
-        blur(2.5px)
-        brightness(0.88)
-        saturate(1.04);
-    transform: scale(1.00);
-    opacity: 0.985;
-}
-
-
-    
-    /*
 #player {
     position: relative;
     background: #000;
@@ -280,25 +237,7 @@ body, html {
     transition: transform 0.2s ease;
 }
 
-#player.swipe-blur video 
-#player.swipe-blur .vjs-tech  {
-filter: blur(10px) brightness(0.6);
-    transform: scale(0.985);
-    transition:
-        filter 0.18s ease,
-        transform 0.18s ease;
-}
 
-
-    
-.vjs-tech {
-    transition: filter 0.20s ease;
-}
-
-#player.swipe-blur .vjs-tech {
-    filter: blur(6px) brightness(0.75);
-}
-  */  
 /* efecto anterior
 #player.swiping-left {
     transform: translateX(-20px);
