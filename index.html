@@ -53,7 +53,7 @@ interactive-widget=resizes-content">
         brightness(0.82)
         saturate(1.08);
 
-    transform: scale(1.015);
+    transform: scale(1.00);
 
     opacity: 0.96;
 }
@@ -299,7 +299,8 @@ body, html {
     color: var(--text);
     height: 100vh;
     overflow: hidden; /* Evita el scroll global molesto */
-
+}
+    /*
 padding:
 
         env(safe-area-inset-top)
@@ -313,12 +314,12 @@ padding:
     box-sizing: border-box;
 
     overflow-x: hidden;
-/*
+
     position: fixed;
     width: 100%;
-    height: 100%; */
+    height: 100%;
 }
-
+ */
 /* .container {
   height: calc(var(--vh) * 100);
 }
@@ -389,7 +390,7 @@ padding:
     justify-content: center;
     width: calc((100vh - 81px) * 16 / 9);
     aspect-ratio: 16 / 9;
-    max-width: 80vw;
+    max-width: 85vw;
     /*transition: transform 0.2s ease; por las dudas */
 }
 
@@ -779,14 +780,6 @@ button.list-item.active {
 </div>
 
 
-
-<div id="splash-screen">
-    <img src="Icon-ETV.PNG" alt="Splash">
-    <!-- Opcional -->
-    <!-- <img id="splash-logo" src="logo.png" alt="Logo"> -->
-    <div class="loader"></div>
-</div>
-    
 <div id="overlay"></div>
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
 <div id="form-container">
@@ -860,6 +853,14 @@ button.list-item.active {
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
 
+
+<div id="splash-screen">
+    <img src="Icon-ETV.PNG" alt="Splash">
+    <!-- Opcional -->
+    <!-- <img id="splash-logo" src="logo.png" alt="Logo"> -->
+    <div class="loader"></div>
+</div>
+        
 <!--script>
 // ================== RESET VISTA SUPERIOR ==================
 function setViewportHeight() {
@@ -871,7 +872,7 @@ function setViewportHeight() {
 window.addEventListener('resize', setViewportHeight);
 setViewportHeight();
 
-</script-->
+</script-. ->
 
 
 <script>
@@ -884,7 +885,7 @@ window.addEventListener("orientationchange", () => {
     }, 50);
 
 });
-</script>
+</script-->
 
     
 <script>
