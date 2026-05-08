@@ -345,12 +345,10 @@ body, html {
 /* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
-    /* Cambiamos el cálculo fijo por flex-1 o 100% */
-    flex: 1;
-    height: calc(100% - 50px); /* 50px es la altura de tu top-bar */
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    /* flex: 1; */
+    height: calc(100% - 50px);
+    align-items: stretch;
+    justify-content: space-evenly;
 }
     
     
