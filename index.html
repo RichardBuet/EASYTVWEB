@@ -17,22 +17,6 @@
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
 <style>
-/*
-.vjs-poster {
-    transition:
-        filter 0.22s ease,
-        opacity 0.22s ease;
-}
-    
-#player.swipe-blur .vjs-poster {
-    filter:
-        blur(12px)
-        brightness(0.6)
-        saturate(1.2);
-
-    transform: scale(1.04);
-}
-*/
 
 .vjs-poster {
     transition:
@@ -42,29 +26,22 @@
 }
 
 #player.swipe-blur .vjs-poster {
-
     filter:
         blur(4px)
         brightness(0.82)
         saturate(1.08);
-
     transform: scale(1.00);
-
     opacity: 0.96;
 }
 
-    
 :root {
     --accent: #00ffcc;
     --bg-dark: #0a0b10;
     --panel-bg: #161b22;
     --text: #e6edf3;
 }
-
-
 *::-webkit-scrollbar {
     width: 10px;
-
     margin: 0 4px;
     background: #5f9ea01c;
     border-radius: 15px;
@@ -83,7 +60,6 @@
 /* =========================
    SPLASH SCREEN EASYTVWEB
 ========================= */
-
 #splash-screen {
     position: fixed;
     inset: 0;
@@ -93,7 +69,6 @@
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, #07111f 0%, #000814 45%, #000000 100%);
-    
     /* Agregá esto para que respete el notch desde el inicio */
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
@@ -103,7 +78,6 @@
 /* =========================
    SPLASH LOGO
 ========================= */
-
 #splash-screen img {
     backdrop-filter: blur(8px);
     width: 320px;
@@ -122,22 +96,18 @@
 
 /* Animación suave */
 @keyframes pulse {
-
     0% {
         transform: scale(0.8);
         opacity: 0.75;
     }
-
     50% {
         transform: scale(1.0);
         opacity: 1;
     }
-
     100% {
         transform: scale(0.8);
         opacity: 0.7;
     }
-
 }
 
     
@@ -146,7 +116,6 @@
     content: "";
     position: absolute;
     inset: 0;
-
     background:
         linear-gradient(
             to bottom,
@@ -159,12 +128,9 @@
 #splash-logo {
     position: absolute;
     z-index: 2;
-
     width: 140px;
     max-width: 40vw;
-
     opacity: 0.95;
-
     filter:
         drop-shadow(0 0 10px rgba(0,0,0,0.5));
 }
@@ -174,14 +140,11 @@
     position: absolute;
     bottom: 60px; /* 50px;*/
     z-index: 2;
-
     width: 42px;
     height: 42px;
-
     border: 3px solid rgba(255,255,255,0.2);
     border-top-color: #00ffd0;
     border-radius: 50%;
-
     animation: spin 1s linear infinite;
 }
 
@@ -201,12 +164,10 @@
 
     
 /*0. Configuración del reproductor de video*/
-
 #install-banner {
     display: none;
     cursor: pointer;
 }
-
 /* 🎬 VIDEO (SIEMPRE ARRIBA) */
 .video-js .vjs-tech {
     border-radius: 6px !important;
@@ -215,7 +176,6 @@
 .video-js .vjs-control-bar {
     z-index: 2;
 }
-
 :not(:root):fullscreen { user-select: text; height: 100%;}
 .vjs-big-play-button { 
     position: absolute;
@@ -257,10 +217,8 @@
 
 /* 🚫 OCULTAR overlay de error */
 .vjs-error-display {display: none !important;}
-
 .vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
-
 .video-js .vjs-big-play-button { font-size: 0!important;}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
     content: url(https://cdn.icon-icons.com/icons2/1582/PNG/128/youtube_108041.png) / " EASYTV: ";
@@ -268,15 +226,14 @@
     margin: -25px 0px 0px -25px;
     opacity: 0.85 !important;
 }
-
-    /*
-body {
-    overflow: hidden;
-    position: fixed;
-    inset: 0;
+/* Forzar Proporción 16:9 */
+.video-js {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
 }
-
-/ * 1. Base y Reset */
+    
+/* 1. Base y Reset */
 body, html {
     background: var(--bg-dark);
     margin: 0;
@@ -295,6 +252,8 @@ body, html {
     padding-bottom: env(safe-area-inset-bottom);
     box-sizing: border-box;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
     
 /* 2. Barra Superior */
@@ -339,7 +298,6 @@ body, html {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 43px;
-
     flex: 1;
 }
 
@@ -351,8 +309,6 @@ body, html {
     align-items: stretch;
     justify-content: space-evenly;
 }
-    
-    
 
 /* 5. Contenedor del Reproductor */
 #player {
@@ -366,13 +322,6 @@ body, html {
     max-width: 80vw; 
     aspect-ratio: 16 / 9;
 }
-
-/* Forzar Proporción 16:9 */
-.video-js {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-}
 #link-info-container {
     position: absolute;
   /*  bottom: 60px;  Arriba de los controles */
@@ -382,7 +331,7 @@ body, html {
     text-align: center;
     background: rgba(0,0,0,0.85);
     /*padding: 8px 15px;*/
-        padding: 5px 10px;
+    padding: 5px 10px;
     border-radius: 8px;
     border: 1px solid var(--accent);
     font-size: 0.6rem;
@@ -414,12 +363,7 @@ body, html {
     flex: 1; background: #010409; border: 1px solid #30363d; 
     color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
-/*#channel-count {
-    font-size: 12px;
-    color: #00ffcc;
-    margin: 0 8px;
-    white-space: nowrap;
-}*/
+
 #auto-next-btn {
     border-radius: 8px;
     background: #14395b;
@@ -471,8 +415,6 @@ button.list-item {
     text-overflow: ellipsis;
     text-transform: uppercase;
     white-space: nowrap;
-   /* color: #c9d1d9;
-    color: #fff; */
     color: var(--tex);
     transition: all 0.2s ease;
     overflow: hidden;
@@ -614,7 +556,6 @@ button.list-item.active {
     padding: 2px 0;
 }
 
-
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
         #rl-bar {height: 95dvh;; flex-direction: column; }
@@ -673,23 +614,17 @@ button.list-item.active {
     align-items: center;
 }
 
-
 #fav-btn {
     position: relative;
     top: auto;
     right: auto;
-
     width: 38px;
     height: 38px;
-
     flex-shrink: 0;
-
     background: rgba(0,0,0,0.7);
     color: #fff;
-
     border: 1px solid gold;
     border-radius: 8px;
-
     font-size: 18px;
 }
 
@@ -723,12 +658,11 @@ button.list-item.active {
     <button id="fav-btn">⭐</button>
 </div>
 
-
 <div id="overlay"></div>
 <!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
 <div id="form-container">
-    <!-- 🔥 textarea en vez de input -->
-    <textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U o cargar opciones de abajo"></textarea>
+<!-- 🔥 textarea en vez de input -->
+<textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U o cargar opciones de abajo"></textarea>
 
     <div id="form-btn">
         <button class="form-btn" id="ok-button">▶️ Cargar</button>
@@ -758,9 +692,7 @@ button.list-item.active {
         <button class="preset" data-url="https://www.apsattv.com/sportstv.m3u">📺 Sports</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio TV</button> 
         https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u https://www.apsattv.com/xumo.m3u
-       <button class="preset" data-url="">Name</button>
-
-       
+       <button class="preset" data-url="">Name</button>     
         -->
     </div>
 
@@ -770,9 +702,7 @@ button.list-item.active {
 </div>
 
 <!-- Contenedor flotante para mostrar el enlace -->
-
 <div id="rl-bar">
-
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
@@ -792,11 +722,9 @@ button.list-item.active {
         </div>
         <div id="playList"></div> 
     </div>
-
 </div>
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
-
 
 <div id="splash-screen">
     <img src="Icon-ETV.PNG" alt="Splash">
@@ -805,33 +733,6 @@ button.list-item.active {
     <div class="loader"></div>
 </div>
         
-<!--script>
-// ================== RESET VISTA SUPERIOR ==================
-function setViewportHeight() {
-  document.documentElement.style.setProperty(
-    '--vh',
-    `${window.innerHeight * 0.01}px`
-  );
-}
-window.addEventListener('resize', setViewportHeight);
-setViewportHeight();
-
-</script-. ->
-
-
-<script>
-window.addEventListener("orientationchange", () => {
-
-    document.documentElement.style.zoom = "0.99";
-
-    setTimeout(() => {
-        document.documentElement.style.zoom = "1";
-    }, 50);
-
-});
-</script-->
-
-    
 <script>
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -853,13 +754,9 @@ let currentLink = null;
 let isAutoSearching = false;
 window.showingFavorites = false;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260501V1.m3u";
-
-// AIO260501V0.m3u
-    // AIO2506V0
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     
 // ================== FAVORITOS ==================
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
 function saveFavorites() {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
@@ -907,20 +804,16 @@ function updateChannelCount() {
 
 // 🔍 BUSCADOR
 $("#search")
-
 .on("focus", function() {
     this.select();
 })
-
 .on("input", function() {
     let value = $(this).val().toLowerCase();
     $("#no-results").remove();
-
     $("#playList button").each(function() {
         let match = $(this).text().toLowerCase().includes(value);
         $(this).css("display", match ? "" : "none");
     });
-
     $("#playList .group-title").each(function() {
         let group = $(this);
         let hasVisible = group
@@ -938,31 +831,23 @@ $("#search")
             </div>
         `);
     }
-
     if (value === "") {
         $("#playList button").show();
         $("#playList .group-title").show();
         $("#no-results").remove();
     }
-    //updateChannelCount();
 });
 
 // ================== PLAYER ==================
 function playHLS(url) {
-
     var player = videojs('my-video');
-
     // 🔥 limpiar eventos anteriores (MUY IMPORTANTE)
     player.off('waiting');
     player.off('playing');
     player.off('loadeddata');
-   // player.off('error');
     handlePlayerError();
-
     player.pause();
-
     let type = "application/x-mpegURL";
-
     if (url.endsWith(".mp4")) {
         type = "video/mp4";
     } else if (url.endsWith(".mp3")) {
@@ -975,25 +860,21 @@ function playHLS(url) {
 
     player.src({ src: url, type: type });
     player.play();
-
     currentLink = url;
 
     // ================== POSTER HELPER ==================
     function setPoster(show) {
         let el = document.querySelector(".vjs-poster");
         if (!el) return;
-
         el.style.setProperty(
             "display",
             show ? "flex" : "none",
             "important"
         );
     }
-
     // 🔥 mostrar poster al iniciar
     if (!isAutoSearching) {
         setPoster(true);
-
         $("#link-info-container")
             .html("🔄 Buscando señal...")
             .show();
@@ -1005,13 +886,11 @@ function playHLS(url) {
     player.on('loadeddata', function () {
         setPoster(false);
     });
-
     // 🔥 cuando empieza a reproducir
     player.on('playing', function () {
         $("#link-info-container").fadeOut();
         setPoster(false);
     });
-
     // 🔥 buffering
     player.on('waiting', function () {
         if (!isAutoSearching) {
@@ -1027,14 +906,12 @@ function playHLS(url) {
     player.on('error', function () {
         if (!isAutoSearching) {
             setPoster(true);
-
             $("#link-info-container")
                 .html("🔥 Señal fuera de servicio")
                 .show();
         }
     });
 }
-
 
 // ================== PARSER ==================
 function getChannelData(line) {
@@ -1050,8 +927,6 @@ function getChannelData(line) {
         group = "Canales de TV";
     }
     return { name, group };
-
-    //updateChannelCount();
 }
 
 // ================== CARGA LISTA ==================
@@ -1063,7 +938,6 @@ function loadChannels(url) {
     $("#playList").html(`
         <div class="loading-list">⏳ Cargando lista...</div>
     `);
-
     $.ajax({
         type: "GET",
         url: url,
@@ -1105,21 +979,15 @@ function loadChannels(url) {
             });
 
             channelsGlobal = channels;
-
             if (channels.length === 0) {
-
                 let name = url.split("/").pop() || "Stream";
-
                 // 🔥 limpiar query (opcional pero recomendado)
                 name = name.split("?")[0];
-
                 // 🔥 limitar a 30 caracteres
                 if (name.length > 30) {
                     name = name.substring(0, 30) + "...";
                 }
-
                 let icon = getIconByUrl(url);
-
                 $("#playList").html(`
                     <div class="loading-list">
                         ⚠️ Lista sin canales<br><br>
@@ -1130,12 +998,10 @@ function loadChannels(url) {
                         ${icon} ${name}
                     </button>
                 `);
-
                 // 🔥 reproducir directo
                 currentLink = url;
                 playHLS(url);
                 updateFavButton();
-
                 return;
             }
 
@@ -1145,7 +1011,6 @@ function loadChannels(url) {
                 if (!grouped[ch.group]) grouped[ch.group] = [];
                 grouped[ch.group].push(ch);
             });
-
             $("#playList").empty();
             for (let group in grouped) {
                 $("#playList").append(`
@@ -1170,9 +1035,7 @@ function loadChannels(url) {
 
 
         error: function (xhr, status, error) {
-
             let mensaje = "❌ Error al cargar la lista";
-        
             // 🔥 CORS (el caso que te está pasando)
             if (xhr.status === 0) {
                 mensaje = `
@@ -1181,17 +1044,14 @@ function loadChannels(url) {
                      o usá otra fuente<br>
                 `;
             }
-        
             // ⏱️ timeout
             else if (status === "timeout") {
                 mensaje = "⏱️ La carga tardó demasiado";
             }
-        
             // ❌ 404
             else if (xhr.status === 404) {
                 mensaje = "❌ Lista no encontrada";
             }
-        
             $("#playList").html(`
                 <div style="text-align:center; padding:20px;">
                     ${mensaje}
@@ -1218,9 +1078,7 @@ function renderFavorites() {
         $("#playList").html("⭐ Sin favoritos");
         return;
     }
-
     channelsGlobal = data;
-
     data.forEach(c => {
         $("#playList").append(`
             <button class="list-item" data-url="${c.url}">
@@ -1231,8 +1089,6 @@ function renderFavorites() {
     setTimeout(() => {
     marcarCanalActivo();
     }, 100);
-
-    //updateChannelCount();
 }
 
 // ================== HISTORIAL ==================
@@ -1246,7 +1102,6 @@ function saveM3U(url) {
     } catch {
         shortName = url; // fallback si no es URL válida
     }
-
     history = history.filter(h => h.url !== url);
     history.unshift({
         name: shortName,
@@ -1263,7 +1118,6 @@ function renderHistory() {
         let displayName;
         // 🔥 SI ES LOCAL
         if (h.url.startsWith("local-file-")) {
-
             displayName = h.name;
         } else {
             try {
@@ -1318,7 +1172,6 @@ function handlePlayerError() {
         let attempts = 0;
         const MAX_ATTEMPTS = 10;
         isAutoSearching = true; // 🔥 ACTIVAR MODO BÚSQUEDA
-
         function tryNext() {
             let visibleList = getVisibleChannels();
             let currentPos = visibleList.findIndex(c => c.url === currentLink);
@@ -1327,7 +1180,6 @@ function handlePlayerError() {
             if (nextIndex >= visibleList.length || attempts >= MAX_ATTEMPTS) {
                 console.log("No se encontró canal válido");
                 isAutoSearching = false; // 🔥 DESACTIVAR
-
                 $("#link-info-container")
                     .html("❌ No se encontró señal disponible")
                     .show();
@@ -1354,7 +1206,6 @@ function handlePlayerError() {
         }
         tryNext();
     });
-
     // 🔥 cuando el video arranca correctamente
     player.on('playing', function () {
         isAutoSearching = false;
@@ -1363,8 +1214,6 @@ function handlePlayerError() {
         .fadeOut();
     });
 }
-
-
 
 // ================== UTIL ==================
 function getIconByUrl(url) {
@@ -1378,36 +1227,27 @@ function getIconByUrl(url) {
 
 // ================== PLAY DIRECT ==================
 function playDirectStream(url) {
-
     currentLink = url;
-
     let player = videojs('my-video');
-
     player.pause();
-
     player.src({
         src: url,
         type: url.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4"
     });
-
     // 🔥 AUTOPLAY
     player.ready(function () {
         player.muted(true);
         player.play().catch(() => {});
     });
-
     let name = url.split("/").pop() || "Stream";
     let icon = getIconByUrl(url);
-
     let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0]
         .replace(".", "")
         .toUpperCase();
-
     $("#nombreCanal").html(`
         ${icon} ${name}<br>
         <small style="color:#aaa;">${type}</small>
     `);
-
     // 🔥 PLAYLIST UI
     $("#playList")
         .removeClass("favorites-mode")
@@ -1417,22 +1257,17 @@ function playDirectStream(url) {
                 ${icon} ${name}
             </button>
         `);
-
     updateFavButton();
     marcarCanalActivo();
 }
 
 // ================== READY ==================
 $(document).ready(function () {
-
     $("#auto-next-btn").text("Auto ▶ ON");
-
     loadChannels(defaultM3U);
     renderHistory();
     handlePlayerError();
-
     $("#link-info-container").hide();
-
     $("#export-fav").click(function () {
         exportCurrentList();
     });
@@ -1466,22 +1301,9 @@ $(document).ready(function () {
     $("#top-bar h2").click(function () {
         $("#overlay, #form-container").show();
     });
-
     $("#exit-button").click(function () {
         $("#overlay, #form-container").hide();
     });
-
-
-
-// $("#form-container").click(function (e) {
-//     e.stopPropagation();
-// });
-
-// $(document).on("keydown", function (e) {
-//     if ((e.key === "Escape" || e.keyCode === 27) && $("#form-container").is(":visible")) {
-//         $("#overlay, #form-container").hide();
-//     }
-// });
 
     // ================== close windows V2 ==================
     function closeForm() {
@@ -1493,10 +1315,7 @@ $(document).ready(function () {
             closeForm();
         }
     });
-
     $("#exit-button, #overlay").click(closeForm);
-
-
     $("#clear-button").click(function () {
         $("#m3u-url").val("");
     });
@@ -1513,27 +1332,19 @@ $(document).ready(function () {
 
     // ================== CARGAR ==================
     $("#ok-button").click(function () {
-
         let url = $("#m3u-url").val().trim();
         if (!url) return;
-
         if (url.startsWith("📂")) {
             $("#overlay, #form-container").hide();
             return;
         }
-
         if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-
             playDirectStream(url);
-
         } else {
-
             loadChannels(url);
         }
-
         saveM3U(url);
         renderHistory();
-
         $("#overlay, #form-container").hide();
     });
 
@@ -1547,28 +1358,18 @@ $(document).ready(function () {
 
     // ================== HISTORIAL ==================
     $("#m3u-history").on("click", ".history-item", function () {
-
         let url = $(this).data("url");
-
         let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
         let item = history.find(h => h.url === url);
-
         if (!item) return;
-
         if (url.startsWith("local-file-") && item.content) {
-
             parseLocalM3U(item.content);
             $("#nombreCanal").text(item.name);
-
         } else if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
-
             playDirectStream(url);
-
         } else {
-
             loadChannels(url);
         }
-
         $("#overlay, #form-container").hide();
     });
 
@@ -1656,81 +1457,49 @@ $(document).ready(function () {
 
 let touchStartX = 0;
 let touchEndX = 0;
-
 const videoContainer = document.querySelector("#player");
-
 
 // TOUCH START
 videoContainer.addEventListener("touchstart", (e) => {
-
     touchStartX = e.changedTouches[0].screenX;
-
 }, { passive: true });
-
 
 // TOUCH END
 videoContainer.addEventListener("touchend", (e) => {
-
     touchEndX = e.changedTouches[0].screenX;
-
     handleSwipe();
-
 }, { passive: true });
-
 
 // DETECTAR SWIPE
 function handleSwipe() {
-
     const distance = touchEndX - touchStartX;
-
     // evitar movimientos accidentales
     if (Math.abs(distance) < 60) return;
-
     $("#player").addClass("swipe-blur");
 setTimeout(() => {
     $("#player").removeClass("swipe-blur");
 }, 280);
-// era 180 milisegundos jaja
     // 👉 siguiente canal
     if (distance < 0) {
-
-   //     let visibleChannels = $("#playList .list-item:visible");
- //   $("#player").addClass("swiping-left");
- //   setTimeout(() => {
-   //     $("#player").removeClass("swiping-left");
-   // }, 150);
-
     let visibleChannels = $("#playList .list-item:visible");
-
         if (!visibleChannels.length) return;
-
         currentIndex++;
-
         if (currentIndex >= visibleChannels.length) {
             currentIndex = 0;
         }
-
         visibleChannels.eq(currentIndex).click();
-
     }
 
     // 👉 canal anterior
     else {
-
         let visibleChannels = $("#playList .list-item:visible");
-
         if (!visibleChannels.length) return;
-
         currentIndex--;
-
         if (currentIndex < 0) {
             currentIndex = visibleChannels.length - 1;
         }
-
         visibleChannels.eq(currentIndex).click();
-
     }
-
 }
     
 });
@@ -1891,18 +1660,14 @@ function parseLocalM3U(message) {
 
     // 🔥 AGRUPAR IGUAL QUE loadChannels
     let grouped = {};
-
     channels.forEach(ch => {
         if (!grouped[ch.group]) grouped[ch.group] = [];
         grouped[ch.group].push(ch);
     });
-
     for (let group in grouped) {
-
         $("#playList").append(`
             <div class="group-title">${group}</div>
         `);
-
         grouped[group].forEach(channel => {
             $("#playList").append(`
                 <button class='list-item' data-url='${channel.url}'>
@@ -1911,7 +1676,6 @@ function parseLocalM3U(message) {
             `);
         });
     }
-
     // 🔥 reset scroll
     $("#playList").scrollTop(0);
 }
@@ -1938,7 +1702,6 @@ function saveLocalFile(fileName, content) {
 function esDesktop() {
     return !/Android|iPhone|iPad|iPod|SmartTV|TV|WebOS|Tizen/i.test(navigator.userAgent);
 }
-
 let deferredPrompt;
 
 // 🔥 evento PWA
