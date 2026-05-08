@@ -279,21 +279,22 @@ body {
 / * 1. Base y Reset */
 body, html {
     background: var(--bg-dark);
-    margin: 0; 
+    margin: 0;
     padding: 0;
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--text);
-    /* Usamos dvh para evitar saltos en móvil */
-    height: 100dvh; 
-    width: 100vw;
+    height: 100dvh;
+    margin: 0 auto;
+    width: min-content;
+    max-width: calc(100dvh * 2);
+    display: flex;
     overflow: hidden;
-    
-    /* Esto asegura que el fondo ocupe TODO, pero el contenido respete los bordes */
     padding-top: env(safe-area-inset-top);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
     box-sizing: border-box;
+    flex-direction: column;
 }
     
 /* 2. Barra Superior */
