@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB - BTN v4.1.260506.1</title>
+    <title>Easy Web TV RB - BTN v4.2.260507.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -334,6 +334,8 @@ body, html {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 43px;
+
+    flex: 1;
 }
 
 /* 4. Layout Principal (Flexbox) */
@@ -693,6 +695,27 @@ button.list-item.active {
     align-items: center;
 }
 
+
+#fav-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+
+    border: 1px solid gold;
+    border-radius: 8px;
+
+    font-size: 18px;
+}
+
+    /*
 #fav-btn {
     position: fixed;
     top: 7px;
@@ -708,7 +731,7 @@ button.list-item.active {
     font-size: 18px;
     cursor: pointer;
 }
-
+*/
 </style>
 
 
@@ -719,9 +742,10 @@ button.list-item.active {
 <div id="top-bar">
     <h2> EASY TV WEB</h2>
     <div id="nombreCanal">Probá M3U y URL de Link</div>
+    <button id="fav-btn">⭐</button>
 </div>
 
-<button id="fav-btn">⭐</button>
+
 
 <div id="splash-screen">
     <img src="Icon-ETV.PNG" alt="Splash">
