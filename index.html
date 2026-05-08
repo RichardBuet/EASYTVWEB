@@ -88,26 +88,16 @@
     position: fixed;
     inset: 0;
     z-index: 99999;
-
     display: flex;
+    flex-direction: column; /* Para poner el loader debajo del logo */
     align-items: center;
     justify-content: center;
-
-    background:
-        radial-gradient(circle at center,
-        #07111f 0%,
-        #000814 45%,
-        #000000 100%);
-
-    opacity: 1;
-    transition: opacity 0.5s ease;
-
-    overflow: hidden;
-
-    /* Suaviza iOS */
-    will-change: opacity;
-    transform: translateZ(0);
+    background: radial-gradient(circle at center, #07111f 0%, #000814 45%, #000000 100%);
+    
+    /* Agregá esto para que respete el notch desde el inicio */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
+
 
 /* Imagen de fondo */
 /* =========================
@@ -372,41 +362,12 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc((100vh - 81px) * 16 / 9);
+    /* Usamos 100dvh para que sea el alto real disponible */
+    width: calc((100dvh - 81px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 16 / 9);
+    max-width: 80vw; 
     aspect-ratio: 16 / 9;
-    max-width: 85vw;
-    /*transition: transform 0.2s ease; por las dudas */
 }
 
-    /*
-#player.swipe-blur video 
-#player.swipe-blur .vjs-tech  {
-filter: blur(10px) brightness(0.6);
-    transform: scale(0.985);
-    transition:
-        filter 0.18s ease,
-        transform 0.18s ease;
-}
-
-
-    
-.vjs-tech {
-    transition: filter 0.20s ease;
-}
-
-#player.swipe-blur .vjs-tech {
-    filter: blur(6px) brightness(0.75);
-}
-  */  
-/* efecto anterior
-#player.swiping-left {
-    transform: translateX(-20px);
-}
-
-#player.swiping-right {
-    transform: translateX(20px);
-}
- */   
 /* Forzar Proporción 16:9 */
 .video-js {
     width: 100% !important;
