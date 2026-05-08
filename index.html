@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no,
+viewport-fit=cover">    
     <meta name="description" content="Prueba de lista M3U">
     <title>Easy Web TV RB - BTN v4.2.260507.1</title>
     <link rel="manifest" href="manifest.json">
@@ -286,6 +291,11 @@ body, html {
     color: var(--text);
     height: 100vh;
     overflow: hidden; /* Evita el scroll global molesto */
+
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
