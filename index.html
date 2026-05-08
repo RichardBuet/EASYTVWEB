@@ -7,7 +7,8 @@
 content="width=device-width,
 initial-scale=1,
 maximum-scale=1,
-user-scalable=no">
+user-scalable=no",
+viewport-fit=cover">
 
     <meta name="description" content="Prueba de lista M3U">
     <title>Easy Web TV RB - BTN v4.2.260507.1</title>
@@ -376,6 +377,14 @@ padding:
     flex-direction: row;
     justify-content: center;/* Por defecto para PC/TV */
     justify-content: space-around;
+
+
+    width: 100%;
+    padding-left: env(safe-area-inset-left);
+
+    padding-right: env(safe-area-inset-right);
+
+    box-sizing: border-box;
 }
 
 /* 5. Contenedor del Reproductor */
