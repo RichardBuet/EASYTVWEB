@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
 
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB - BTN v4.2.260507.1</title>
+    <title>Easy Web TV RB - BTN v4.2.260508.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -234,7 +234,32 @@
 }
     
 /* 1. Base y Reset */
-body, html {
+html,
+body {
+    background: var(--bg-dark);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100dvh;
+
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--text);
+
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+    
+/* body, html {
     background: var(--bg-dark);
     margin: 0;
     padding: 0;
@@ -254,7 +279,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-}
+} */
     
 /* 2. Barra Superior */
 #top-bar {
@@ -304,24 +329,50 @@ body, html {
 /* 4. Layout Principal (Flexbox) */
 #rl-bar {
     display: flex;
-    /* flex: 1; */
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    height: calc(100dvh - 50px);
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 1800px;
+}
+    
+/* 
+#rl-bar {
+    display: flex;
     height: calc(100% - 50px);
     align-items: stretch;
     justify-content: space-evenly;
-}
+} */
 
 /* 5. Contenedor del Reproductor */
+#player {
+    flex: 1;
+
+    max-width: calc(100% - 320px);
+
+    aspect-ratio: 16 / 9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000;
+}
+/* 
 #player {
     position: relative;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Usamos 100dvh para que sea el alto real disponible */
+    / * Usamos 100dvh para que sea el alto real disponible * /
     width: calc((100dvh - 81px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 16 / 9);
     max-width: 80vw; 
     aspect-ratio: 16 / 9;
-}
+} */
+    
 #link-info-container {
     position: absolute;
   /*  bottom: 60px;  Arriba de los controles */
@@ -342,16 +393,20 @@ body, html {
 
 /* 6. Lista de Canales */
 #lists {
-    min-width: 142px;
+    #lists {
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+    /* min-width: 142px; */
     background: var(--panel-bg);
     display: flex;
     flex-direction: column;
     border-left: 1px solid #30363d;
-    width: min-content;
-    max-width: 30%;
+    /* width: min-content; */
+    /* max-width: 30%; */
     font-size: 0.7em;
     user-select: none;
-    width: auto;
+    /* width: auto; */
 }
 #search-bar { 
     padding: 10px; 
