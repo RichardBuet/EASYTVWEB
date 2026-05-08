@@ -827,7 +827,7 @@ button.list-item.active {
 
 <div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
 
-<script>
+<!--script>
 // ================== RESET VISTA SUPERIOR ==================
 function setViewportHeight() {
   document.documentElement.style.setProperty(
@@ -838,10 +838,22 @@ function setViewportHeight() {
 window.addEventListener('resize', setViewportHeight);
 setViewportHeight();
 
+</script-->
+
+
+<script>
+window.addEventListener("orientationchange", () => {
+
+    document.documentElement.style.zoom = "0.99";
+
+    setTimeout(() => {
+        document.documentElement.style.zoom = "1";
+    }, 50);
+
+});
 </script>
+
     
-
-
 <script>
 window.addEventListener("load", () => {
     setTimeout(() => {
