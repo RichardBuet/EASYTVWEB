@@ -607,7 +607,14 @@ button.list-item.active {
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
-        #rl-bar {height: 95dvh;; flex-direction: column; }
+      /*  #rl-bar {height: 95dvh;; flex-direction: column; }*/
+        #rl-bar {
+        height: calc(100dvh - 50px);
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+ 
         #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -625,7 +632,7 @@ button.list-item.active {
         scroll-snap-type: y mandatory;
         overflow: auto;
         overflow-x: hidden;
-        height: 74vh;
+        /*height: 74vh;*/
         width: -webkit-fill-available;
         z-index: 2;
         list-style: none;
@@ -637,6 +644,11 @@ button.list-item.active {
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
+        
+        flex: 1;
+        height: auto;
+        min-height: 0;
+        
     }
 
     html, body {
