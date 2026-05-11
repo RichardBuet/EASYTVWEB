@@ -17,20 +17,26 @@
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
 <style>
-.ui-dim {
-    opacity: 0.18;
-    transition: opacity 0.45s ease;
-}
-
-.ui-awake {
-    opacity: 1;
-}
+.ui-dim #top-bar { opacity: 0.48;}
+.ui-dim #lists { opacity: 0.62;}
+.ui-awake { opacity: 1;}
 
 #top-bar,
 #lists {
     transition: opacity 0.45s ease;
 }
-    
+
+#lists:hover,
+#lists:focus-within,
+#top-bar:hover {
+    opacity: 1 !important;
+}
+
+.list-item.active {
+    opacity: 1 !important;
+    filter: brightness(1.15);
+}
+	
 .vjs-poster {
     transition:
         filter 0.45s ease,
