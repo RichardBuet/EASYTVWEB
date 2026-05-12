@@ -3,11 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
- <!-- Busca esta línea en tu código y reemplázala -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB - BTN v4.2.260508.2254</title>
+    <title>Easy Web TV RB M3U - V5.260510.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -28,18 +26,9 @@
 #lists {
     transition: opacity 0.45s ease;
 }
-/*
 
-
-	
-#lists:hover,
-#lists:focus-within,
-#top-bar:hover {
-    opacity: 1 !important;
-}
-*/
 .list-item.active { filter: brightness(1.15);}
-	
+    
 .vjs-poster {
     transition:
         filter 0.45s ease,
@@ -79,9 +68,7 @@
     outline-style: groove;
 }
 
-/* =========================
-   SPLASH SCREEN EASYTVWEB
-========================= */
+/* ========= SPLASH SCREEN EASYTVWEB ======== */
 #splash-screen {
     position: fixed;
     inset: 0;
@@ -96,9 +83,7 @@
 }
 
 /* Imagen de fondo */
-/* =========================
-   SPLASH LOGO
-========================= */
+/* ======= SPLASH LOGO ============ */
 #splash-screen img {
     backdrop-filter: blur(8px);
     width: 320px;
@@ -278,28 +263,7 @@ body {
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
 }
-    
-/* body, html {
-    background: var(--bg-dark);
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    color: var(--text);
-    height: 100dvh;
-    margin: 0 auto;
-    width: min-content;
-    max-width: calc(100dvh * 2);
-    display: flex;
-    overflow: hidden;
-    padding-top: env(safe-area-inset-top);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: env(safe-area-inset-bottom);
-    box-sizing: border-box;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-} */
+
     
 /* 2. Barra Superior */
 #top-bar {
@@ -358,18 +322,10 @@ body {
     margin: 0 auto;
     max-width: 1800px;
 }
-    
-/* 
-#rl-bar {
-    display: flex;
-    height: calc(100% - 50px);
-    align-items: stretch;
-    justify-content: space-evenly;
-} */
+
 
 /* 5. Contenedor del Reproductor */
 #player {
-    /* max-width: calc(100% - 320px); */
     max-width:  calc((100vh - 81px) * 16 / 9);
     position: relative;
     aspect-ratio: 16 / 9;
@@ -378,28 +334,14 @@ body {
     justify-content: center;
     background: #000;
 }
-/* 
-#player {
-    position: relative;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    / * Usamos 100dvh para que sea el alto real disponible * /
-    width: calc((100dvh - 81px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 16 / 9);
-    max-width: 80vw; 
-    aspect-ratio: 16 / 9;
-} */
     
 #link-info-container {
     position: absolute;
-  /*  bottom: 60px;  Arriba de los controles */
     bottom: 50%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     background: rgba(0,0,0,0.85);
-    /*padding: 8px 15px;*/
     padding: 5px 10px;
     border-radius: 8px;
     border: 1px solid var(--accent);
@@ -411,9 +353,6 @@ body {
 
 /* 6. Lista de Canales */
 #lists {
-    /* width: 320px;
-    min-width: 320px;
-    max-width: 320px; */
     width: auto;
     min-width: 140px;
     max-width: 30%;
@@ -629,14 +568,11 @@ button.list-item.active {
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
-      /*  #rl-bar {height: 95dvh;; flex-direction: column; }*/
         #rl-bar {
         height: calc(100dvh - 50px);
         flex-direction: column;
         overflow: hidden;
     }
-
- 
         #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -654,44 +590,30 @@ button.list-item.active {
         scroll-snap-type: y mandatory;
         overflow: auto;
         overflow-x: hidden;
-        /*height: 74vh;*/
         width: -webkit-fill-available;
         z-index: 2;
         list-style: none;
         max-width: 100%;
-
-
-
-        
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
-        
         flex: 1;
         height: auto;
-        min-height: 0;
-        
+        min-height: 0; 
     }
-
     html, body {
         overflow: hidden;
         height: 100dvh;
     }
-
-
-
-    
     #player {
         width: 99.5vw;
         align-self: center;
         height: calc(100vw * 9 / 16);
         max-width: none;
     }
-
     #link-info-container {
         bottom: 50%;
     }
-
     #m3u-history{
         height: auto;
         max-height: 20vh;
@@ -727,23 +649,7 @@ button.list-item.active {
     font-size: 18px;
 }
 
-    /*
-#fav-btn {
-    position: fixed;
-    top: 7px;
-    width: 36px;
-    height: 37px;
-    right: 7px;
-    z-index: 9;
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    border: 1px solid gold;
-    border-radius: 8px;
-    padding: 4px 6px;
-    font-size: 18px;
-    cursor: pointer;
-}
-*/
+
 </style>
 
 
@@ -783,15 +689,15 @@ button.list-item.active {
         <button class="preset" data-url="https://iptv-org.github.io/iptv/index.category.m3u">📂 Grupos</button>
         <button class="preset" data-url="https://iptv-org.github.io/iptv/categories/news.m3u">📰 Noticias</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/es_pluto.m3u">📺 Pluto TV</button>
-        <!--button class="preset" data-url="https://www.apsattv.com/xumo.m3u">📺 Xumo USA</button-->
         <button class="preset" data-url="https://raw.githubusercontent.com/maximmur/iptvlist/refs/heads/cur/music.m3u8">🎧 Música</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u">📺 Tubi TV</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u">📺 XUMO USA</button>
          <!--
+        button class="preset" data-url="https://www.apsattv.com/xumo.m3u">📺 Xumo USA</button-
         <button class="preset" data-url="https://www.apsattv.com/sportstv.m3u">📺 Sports</button>
         <button class="preset" data-url="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/refs/heads/main/top_40.m3u">📡 Radio TV</button> 
         https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u https://www.apsattv.com/xumo.m3u
-       <button class="preset" data-url="">Name</button>     
+        <button class="preset" data-url="">Name</button>     
         -->
     </div>
 
@@ -846,29 +752,22 @@ window.addEventListener("load", () => {
 
     
 <script>
+// ============== EFECTO OPACIDAD ===============
 let uiTimer;
-
 function wakeUI() {
-
     clearTimeout(uiTimer);
-
     $("#top-bar, #lists")
         .removeClass("ui-dim")
         .addClass("ui-awake");
-
     uiTimer = setTimeout(() => {
-
         $("#top-bar, #lists")
             .removeClass("ui-awake")
             .addClass("ui-dim");
-
-    }, 5000);
+    }, 10000);
 }
-
 document.addEventListener("mousemove", wakeUI);
 document.addEventListener("touchstart", wakeUI);
 document.addEventListener("click", wakeUI);
-
 wakeUI();
 </script>
 
@@ -1579,10 +1478,7 @@ $(document).ready(function () {
     });
 
 
-// ==============================
-// SWIPE ENTRE CANALES
-// ==============================
-
+// ============ SWIPE ENTRE CANALES =================
 let touchStartX = 0;
 let touchEndX = 0;
 const videoContainer = document.querySelector("#player");
