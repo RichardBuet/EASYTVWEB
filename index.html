@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB M3U - V5.260511.1</title>
+    <title>Easy Web TV RB M3U - V5.260511.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -778,7 +778,7 @@ let autoNextEnabled = true;
 let channelsGlobal = [];
 //let currentIndex = 0;
 let currentLink = null;
-let autoSearchRunning = false;
+let isAutoSearching = false;
 window.showingFavorites = false;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260501V1.m3u";
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -1194,7 +1194,6 @@ function handlePlayerError() {
     var player = videojs('my-video');
     player.off('error'); // 🔥 evitar duplicados
     player.on('error', function () {
-        if (autoSearchRunning) return;
         player.pause();
         if (!autoNextEnabled) {
             // 🔥 SOLO mostrar error si NO está buscando
@@ -1208,7 +1207,7 @@ function handlePlayerError() {
         }
         let attempts = 0;
         const MAX_ATTEMPTS = 10;
-        autoSearchRunning = true; // 🔥 ACTIVAR MODO BÚSQUEDA
+        isAutoSearching = true; // 🔥 ACTIVAR MODO BÚSQUEDA
         function tryNext() {
             let visibleList = getVisibleChannels();
             let currentPos = visibleList.findIndex(c => c.url === currentLink);
@@ -1216,7 +1215,7 @@ function handlePlayerError() {
             let nextIndex = currentPos + 1;
             if (nextIndex >= visibleList.length || attempts >= MAX_ATTEMPTS) {
                 console.log("No se encontró canal válido");
-                autoSearchRunning = false; // 🔥 DESACTIVAR
+                isAutoSearching = false; // 🔥 DESACTIVAR
                 $("#link-info-container")
                     .html("❌ No se encontró señal disponible")
                     .show();
@@ -1237,7 +1236,7 @@ function handlePlayerError() {
             marcarCanalActivo();
             attempts++;
             setTimeout(() => {
-            autoSearchRunning = false;
+            isAutoSearching = false;
             $("#link-info-container").fadeOut();
             }, 2500);
         }
@@ -1245,7 +1244,7 @@ function handlePlayerError() {
     });
     // 🔥 cuando el video arranca correctamente
     player.on('playing', function () {
-        autoSearchRunning = false;
+        isAutoSearching = false;
             $("#link-info-container")
         .stop(true, true)
         .fadeOut();
