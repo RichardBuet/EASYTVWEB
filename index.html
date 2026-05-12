@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
-    <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB M3U - V5.260511.0</title>
+    <meta name="description" content="Prueba de listas M3U">
+    <title>Easy Web TV RB M3U - V5.260511.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -815,7 +815,10 @@ function marcarCanalActivo() {
     // 🔥 LIMPIEZA GLOBAL REAL
     document.querySelectorAll(".list-item.active")
         .forEach(el => el.classList.remove("active"));
-    let btn = document.querySelector(`.list-item[data-url="${currentLink}"]`);
+    //let btn = document.querySelector(`.list-item[data-url="${currentLink}"]`);
+    let btn = [...document.querySelectorAll(".list-item")]
+    .find(el => el.dataset.url === currentLink);
+    // arriba, corrige errores de enter entre extensión y #EXT Siguiente
     if (btn) {
         btn.classList.add("active");
     }
