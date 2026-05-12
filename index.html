@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de lista M3U">
-    <title>Easy Web TV RB M3U - V5.260510.0</title>
+    <title>Easy Web TV RB M3U - V5.260511.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -776,7 +776,7 @@ wakeUI();
 // ================== VARIABLES ==================
 let autoNextEnabled = true;
 let channelsGlobal = [];
-let currentIndex = 0;
+//let currentIndex = 0;
 let currentLink = null;
 let isAutoSearching = false;
 window.showingFavorites = false;
@@ -983,14 +983,23 @@ function loadChannels(url) {
                 } else if (line !== "" && !line.startsWith("#")) {
                     currentChannel.url = line;
                     if (currentChannel.name && currentChannel.url) {
-                        let groups = currentChannel.group.split(";");
-                        groups.forEach(g => {
-                            channels.push({
-                                name: currentChannel.name,
-                                url: currentChannel.url,
-                                group: g.trim() || "General"
-                            });
+                        let firstGroup = currentChannel.group
+                            .split(";")[0]
+                            .trim() || "General";
+                        
+                        channels.push({
+                            name: currentChannel.name,
+                            url: currentChannel.url,
+                            group: firstGroup
                         });
+                        // let groups = currentChannel.group.split(";");
+                        // groups.forEach(g => {
+                        //     channels.push({
+                        //         name: currentChannel.name,
+                        //         url: currentChannel.url,
+                        //         group: g.trim() || "General"
+                        //     });
+                        // });
                     }
                     currentChannel = { name: "", url: "", group: "General" };
                 }
@@ -1221,7 +1230,7 @@ function handlePlayerError() {
                 .show()
             // 🔥 actualizar estado
             currentLink = next.url;
-            currentIndex = nextIndex;
+           // currentIndex = nextIndex;
             playHLS(next.url);
             $("#nombreCanal").text(next.name);
             marcarCanalActivo();
@@ -1453,7 +1462,7 @@ $(document).ready(function () {
         let url = $(this).data("url");
         let nombre = $(this).text();
         currentLink = url; // 🔥 MUY IMPORTANTE
-        currentIndex = channelsGlobal.findIndex(c => c.url === url);
+       // currentIndex = channelsGlobal.findIndex(c => c.url === url);
         playHLS(url);
         $("#nombreCanal").text(nombre);
         updateFavButton();
@@ -1495,36 +1504,70 @@ videoContainer.addEventListener("touchend", (e) => {
 }, { passive: true });
 
 // DETECTAR SWIPE
-function handleSwipe() {
+    function handleSwipe() {
     const distance = touchEndX - touchStartX;
     // evitar movimientos accidentales
     if (Math.abs(distance) < 60) return;
     $("#player").addClass("swipe-blur");
-setTimeout(() => {
-    $("#player").removeClass("swipe-blur");
-}, 280);
+    setTimeout(() => {
+        $("#player").removeClass("swipe-blur");
+    }, 280);
+    // lista REAL visible
+    let visibleChannels = $("#playList .list-item:visible");
+    if (!visibleChannels.length) return;
+    // canal actual REAL visible
+    let currentPos = visibleChannels.index(
+        $(`.list-item[data-url="${currentLink}"]`)
+    );
+    // fallback
+    if (currentPos < 0) currentPos = 0;
     // 👉 siguiente canal
     if (distance < 0) {
-    let visibleChannels = $("#playList .list-item:visible");
-        if (!visibleChannels.length) return;
-        currentIndex++;
-        if (currentIndex >= visibleChannels.length) {
-            currentIndex = 0;
+        let nextIndex = currentPos + 1;
+        if (nextIndex >= visibleChannels.length) {
+            nextIndex = 0;
         }
-        visibleChannels.eq(currentIndex).click();
+        visibleChannels.eq(nextIndex).click();
     }
-
     // 👉 canal anterior
     else {
-        let visibleChannels = $("#playList .list-item:visible");
-        if (!visibleChannels.length) return;
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = visibleChannels.length - 1;
+        let prevIndex = currentPos - 1;
+        if (prevIndex < 0) {
+            prevIndex = visibleChannels.length - 1;
+            }
+            visibleChannels.eq(prevIndex).click();
         }
-        visibleChannels.eq(currentIndex).click();
     }
-}
+// function handleSwipe() {
+//     const distance = touchEndX - touchStartX;
+//     // evitar movimientos accidentales
+//     if (Math.abs(distance) < 60) return;
+//     $("#player").addClass("swipe-blur");
+// setTimeout(() => {
+//     $("#player").removeClass("swipe-blur");
+// }, 280);
+//     // 👉 siguiente canal
+//     if (distance < 0) {
+//     let visibleChannels = $("#playList .list-item:visible");
+//         if (!visibleChannels.length) return;
+//         currentIndex++;
+//         if (currentIndex >= visibleChannels.length) {
+//             currentIndex = 0;
+//         }
+//         visibleChannels.eq(currentIndex).click();
+//     }
+
+//     // 👉 canal anterior
+//     else {
+//         let visibleChannels = $("#playList .list-item:visible");
+//         if (!visibleChannels.length) return;
+//         currentIndex--;
+//         if (currentIndex < 0) {
+//             currentIndex = visibleChannels.length - 1;
+//         }
+//         visibleChannels.eq(currentIndex).click();
+//     }
+// }
     
 });
 
