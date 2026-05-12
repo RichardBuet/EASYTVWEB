@@ -1215,9 +1215,10 @@ function handlePlayerError() {
             let nextIndex = currentPos + 1;
             if (nextIndex >= visibleList.length || attempts >= MAX_ATTEMPTS) {
                 console.log("No se encontró canal válido");
+                autoNextEnabled = false;
                 isAutoSearching = false; // 🔥 DESACTIVAR
                 $("#link-info-container")
-                    .html("❌ No se encontró señal disponible")
+                    .html("❌ No se encontró señal disponible 📡")
                     .show();
                 return;
             }
