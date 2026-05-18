@@ -15,6 +15,41 @@
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
 <style>
+
+#voice-btn {
+    border-radius: 8px;
+    background: #21262d;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    cursor: pointer;
+    min-width: 40px;
+}
+
+#voice-btn.listening {
+
+    background: red;
+    color: white;
+
+    animation: pulseMic 1s infinite;
+}
+
+@keyframes pulseMic {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+    
 .ui-dim #top-bar { opacity: 0.48;}
 .ui-dim #lists { opacity: 0.62;}
 .ui-dim {
@@ -723,6 +758,7 @@ button.list-item.active {
         <div id="search-bar">
             <input type="text" id="search" placeholder="Buscador de canal...">
             <!-- <span id="channel-count">[CH:0/0]</span> -->
+            <button id="voice-btn">🎤</button>
             <button id="auto-next-btn">Auto ▶ OFF</button>
         </div>
         <div id="playList"></div> 
@@ -1300,7 +1336,52 @@ function playDirectStream(url) {
     updateFavButton();
     marcarCanalActivo();
 }
+// ============= COMANDO DE VOZ =============
+function nextChannel() {
+triggerChannelTransition();
+    let visibleChannels =
+        $("#playList .list-item:visible");
 
+    if (!visibleChannels.length) return;
+
+    let currentPos = visibleChannels.index(
+        $(`.list-item[data-url="${currentLink}"]`)
+    );
+
+    if (currentPos < 0) currentPos = 0;
+
+    let nextIndex = currentPos + 1;
+
+    if (nextIndex >= visibleChannels.length) {
+        nextIndex = 0;
+    }
+
+    visibleChannels.eq(nextIndex).click();
+
+}
+
+function prevChannel() {
+triggerChannelTransition();
+    let visibleChannels =
+        $("#playList .list-item:visible");
+
+    if (!visibleChannels.length) return;
+
+    let currentPos = visibleChannels.index(
+        $(`.list-item[data-url="${currentLink}"]`)
+    );
+
+    if (currentPos < 0) currentPos = 0;
+
+    let prevIndex = currentPos - 1;
+
+    if (prevIndex < 0) {
+        prevIndex = visibleChannels.length - 1;
+    }
+
+    visibleChannels.eq(prevIndex).click();
+
+}
 // ================== READY ==================
 $(document).ready(function () {
     $("#auto-next-btn").text("Auto ▶ ON");
@@ -1463,6 +1544,7 @@ $(document).ready(function () {
 
     // CLICK CANAL
     $("#playList").on("click", ".list-item", function() {
+        triggerChannelTransition();
         let url = $(this).data("url");
         let nombre = $(this).text();
         currentLink = url; // 🔥 MUY IMPORTANTE
@@ -1508,14 +1590,27 @@ videoContainer.addEventListener("touchend", (e) => {
 }, { passive: true });
 
 // DETECTAR SWIPE
+    function triggerChannelTransition() {
+
+    $("#player").addClass("swipe-blur");
+
+    setTimeout(() => {
+
+        $("#player").removeClass("swipe-blur");
+
+    }, 280);
+
+}
+    
     function handleSwipe() {
     const distance = touchEndX - touchStartX;
     // evitar movimientos accidentales
     if (Math.abs(distance) < 60) return;
-    $("#player").addClass("swipe-blur");
-    setTimeout(() => {
-        $("#player").removeClass("swipe-blur");
-    }, 280);
+ //  $("#player").addClass("swipe-blur");
+ //   setTimeout(() => {
+ //       $("#player").removeClass("swipe-blur");
+ //   }, 280);
+        triggerChannelTransition();
     // lista REAL visible
     let visibleChannels = $("#playList .list-item:visible");
     if (!visibleChannels.length) return;
@@ -1587,7 +1682,143 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 8000);
     };
 });
+// ============ AI DE VOZ =============
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
 
+if (SpeechRecognition) {
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "es-AR";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    $("#voice-btn").on("click", function () {
+
+        recognition.start();
+
+        $(this).addClass("listening");
+
+    });
+
+    recognition.onresult = (event) => {
+
+        const text =
+            event.results[0][0].transcript
+            .toLowerCase();
+
+        console.log("🎤", text);
+
+        // SIGUIENTE
+        if (
+            text.includes("siguiente") ||
+            text.includes("próximo")
+        ) {
+
+            nextChannel();
+
+        }
+
+        // ANTERIOR
+        else if (
+            text.includes("anterior")
+        ) {
+
+            prevChannel();
+
+        }
+
+        // VOLUMEN ARRIBA
+        else if (
+            text.includes("subir volumen")
+        ) {
+
+            let player = videojs('my-video');
+
+            player.volume(
+                Math.min(
+                    player.volume() + 0.1,
+                    1
+                )
+            );
+
+        }
+
+        // VOLUMEN ABAJO
+        else if (
+            text.includes("bajar volumen")
+        ) {
+
+            let player = videojs('my-video');
+
+            player.volume(
+                Math.max(
+                    player.volume() - 0.1,
+                    0
+                )
+            );
+
+        }
+
+        // PLAY
+        else if (
+            text.includes("play")
+        ) {
+
+            videojs('my-video').play();
+
+        }
+
+        // PAUSA
+        else if (
+            text.includes("pausa")
+        ) {
+
+            videojs('my-video').pause();
+
+        }
+
+        // FULLSCREEN
+        else if (
+            text.includes("pantalla completa")
+        ) {
+
+            let player = videojs('my-video');
+
+            if (player.isFullscreen()) {
+
+                player.exitFullscreen();
+
+            } else {
+
+                player.requestFullscreen();
+
+            }
+
+        }
+
+    };
+
+    recognition.onend = () => {
+
+        $("#voice-btn")
+            .removeClass("listening");
+
+    };
+
+    recognition.onerror = () => {
+
+        $("#voice-btn")
+            .removeClass("listening");
+
+    };
+
+}
+    
 // ================== TÍTULO DINÁMICO ==================
 function actualizarTitulo() {
     let el = document.getElementById("nombreCanal");
