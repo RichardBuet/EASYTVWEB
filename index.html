@@ -802,7 +802,7 @@ let autoNextEnabled = true;
 let channelsGlobal = [];
 //let currentIndex = 0;
 let currentLink = null;
-let preloadController = null;
+// let preloadController = null;
 let isAutoSearching = false;
 window.showingFavorites = false;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260501V1.m3u";
@@ -1220,50 +1220,9 @@ function getVisibleChannels() {
 
 
 // =========== PRECARGA NEXT ===========
-function preloadNextChannel() {
+//function preloadNextChannel() {
 
-    let visibleChannels =
-        $("#playList .list-item:visible");
-
-    if (!visibleChannels.length) return;
-
-    let currentPos = visibleChannels.index(
-        $(`.list-item[data-url="${currentLink}"]`)
-    );
-
-    if (currentPos < 0) return;
-
-    let nextIndex = currentPos + 1;
-
-    if (nextIndex >= visibleChannels.length) {
-        nextIndex = 0;
-    }
-
-    let nextUrl =
-        visibleChannels.eq(nextIndex).data("url");
-
-    if (!nextUrl) return;
-
-    // cancelar preload anterior
-    if (preloadController) {
-        preloadController.abort();
-    }
-
-    preloadController = new AbortController();
-
-    // solo HLS
-    if (!nextUrl.includes(".m3u8")) return;
-
-    console.log("⚡ Precargando:", nextUrl);
-
-    fetch(nextUrl, {
-        method: "GET",
-        cache: "force-cache",
-        signal: preloadController.signal
-    })
-    .catch(() => {});
-
-}
+    
 
 // ================== ERRORES ==================
 function handlePlayerError() {
@@ -1587,7 +1546,7 @@ $(document).ready(function () {
         currentLink = url; // 🔥 MUY IMPORTANTE
        // currentIndex = channelsGlobal.findIndex(c => c.url === url);
         playHLS(url);
-        preloadNextChannel();
+        // preloadNextChannel(); viejo 😒
         $("#nombreCanal").text(nombre);
         updateFavButton();
         marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
