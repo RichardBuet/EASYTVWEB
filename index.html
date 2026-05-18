@@ -1672,12 +1672,16 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // ============ AI DE VOZ =============
 let voiceActive = false;
+const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isIOS) {
+    $("#voice-btn").hide();
+}
     const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
-if (SpeechRecognition) {
-
+//if (SpeechRecognition) {
+if (SpeechRecognition && !isIOS) {
     const recognition = new SpeechRecognition();
 
     recognition.lang = "es-AR";
