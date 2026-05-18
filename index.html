@@ -802,6 +802,7 @@ let autoNextEnabled = true;
 let channelsGlobal = [];
 //let currentIndex = 0;
 let currentLink = null;
+let preloadController = null;
 let isAutoSearching = false;
 window.showingFavorites = false;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260501V1.m3u";
@@ -1217,6 +1218,54 @@ function getVisibleChannels() {
     return list;
 }
 
+
+// =========== PRECARGA NEXT ===========
+function preloadNextChannel() {
+
+    let visibleChannels =
+        $("#playList .list-item:visible");
+
+    if (!visibleChannels.length) return;
+
+    let currentPos = visibleChannels.index(
+        $(`.list-item[data-url="${currentLink}"]`)
+    );
+
+    if (currentPos < 0) return;
+
+    let nextIndex = currentPos + 1;
+
+    if (nextIndex >= visibleChannels.length) {
+        nextIndex = 0;
+    }
+
+    let nextUrl =
+        visibleChannels.eq(nextIndex).data("url");
+
+    if (!nextUrl) return;
+
+    // cancelar preload anterior
+    if (preloadController) {
+        preloadController.abort();
+    }
+
+    preloadController = new AbortController();
+
+    // solo HLS
+    if (!nextUrl.includes(".m3u8")) return;
+
+    console.log("⚡ Precargando:", nextUrl);
+
+    fetch(nextUrl, {
+        method: "GET",
+        cache: "force-cache",
+        signal: preloadController.signal
+    })
+    .catch(() => {});
+
+}
+
+// ================== ERRORES ==================
 function handlePlayerError() {
     var player = videojs('my-video');
     player.off('error'); // 🔥 evitar duplicados
@@ -1538,6 +1587,7 @@ $(document).ready(function () {
         currentLink = url; // 🔥 MUY IMPORTANTE
        // currentIndex = channelsGlobal.findIndex(c => c.url === url);
         playHLS(url);
+        preloadNextChannel();
         $("#nombreCanal").text(nombre);
         updateFavButton();
         marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
@@ -1579,25 +1629,16 @@ videoContainer.addEventListener("touchend", (e) => {
 
 // DETECTAR SWIPE
     function triggerChannelTransition() {
-
     $("#player").addClass("swipe-blur");
-
     setTimeout(() => {
-
         $("#player").removeClass("swipe-blur");
-
     }, 280);
-
 }
     
     function handleSwipe() {
     const distance = touchEndX - touchStartX;
     // evitar movimientos accidentales
     if (Math.abs(distance) < 60) return;
- //  $("#player").addClass("swipe-blur");
- //   setTimeout(() => {
- //       $("#player").removeClass("swipe-blur");
- //   }, 280);
         triggerChannelTransition();
     // lista REAL visible
     let visibleChannels = $("#playList .list-item:visible");
@@ -1625,39 +1666,13 @@ videoContainer.addEventListener("touchend", (e) => {
             visibleChannels.eq(prevIndex).click();
         }
     }
-// function handleSwipe() {
-//     const distance = touchEndX - touchStartX;
-//     // evitar movimientos accidentales
-//     if (Math.abs(distance) < 60) return;
-//     $("#player").addClass("swipe-blur");
-// setTimeout(() => {
-//     $("#player").removeClass("swipe-blur");
-// }, 280);
-//     // 👉 siguiente canal
-//     if (distance < 0) {
-//     let visibleChannels = $("#playList .list-item:visible");
-//         if (!visibleChannels.length) return;
-//         currentIndex++;
-//         if (currentIndex >= visibleChannels.length) {
-//             currentIndex = 0;
-//         }
-//         visibleChannels.eq(currentIndex).click();
-//     }
-
-//     // 👉 canal anterior
-//     else {
-//         let visibleChannels = $("#playList .list-item:visible");
-//         if (!visibleChannels.length) return;
-//         currentIndex--;
-//         if (currentIndex < 0) {
-//             currentIndex = visibleChannels.length - 1;
-//         }
-//         visibleChannels.eq(currentIndex).click();
-//     }
-// }
     
 });
 
+// ============= 👊🏼 FIN DEL READY 👊🏼 ============
+
+
+    
 // ================== ANIMACIÓN ==================
 document.addEventListener('DOMContentLoaded', function () {
     let el = document.getElementById('nombreCanal');
@@ -1683,40 +1698,25 @@ const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 //if (SpeechRecognition) {
 if (SpeechRecognition && !isIOS) {
     const recognition = new SpeechRecognition();
-
     recognition.lang = "es-AR";
-
     recognition.continuous = false;
-
     recognition.interimResults = false;
-
     $("#voice-btn").on("click", function () {
-
     if (voiceActive) {
-
         recognition.stop();
-
         voiceActive = false;
-
         $(this).removeClass("listening");
-
         return;
-
     }
 
     recognition.start();
-
     voiceActive = true;
-
     $(this).addClass("listening");
-
 }); 
     recognition.onresult = (event) => {
-
         const text =
             event.results[0][0].transcript
             .toLowerCase();
-
         console.log("🎤", text);
 
         // SIGUIENTE
@@ -1724,18 +1724,14 @@ if (SpeechRecognition && !isIOS) {
             text.includes("siguiente") ||
             text.includes("próximo")
         ) {
-
             nextChannel();
-
         }
 
         // ANTERIOR
         else if (
             text.includes("anterior")
         ) {
-
             prevChannel();
-
         }
 
         // VOLUMEN ARRIBA
@@ -1744,85 +1740,66 @@ if (SpeechRecognition && !isIOS) {
         ) {
 
             let player = videojs('my-video');
-
             player.volume(
                 Math.min(
                     player.volume() + 0.1,
                     1
                 )
             );
-
         }
 
         // VOLUMEN ABAJO
         else if (
             text.includes("bajar volumen")
         ) {
-
             let player = videojs('my-video');
-
             player.volume(
                 Math.max(
                     player.volume() - 0.1,
                     0
                 )
             );
-
         }
 
         // PLAY
         else if (
             text.includes("play")
         ) {
-
             videojs('my-video').play();
-
         }
 
         // PAUSA
         else if (
             text.includes("pausa")
         ) {
-
             videojs('my-video').pause();
-
         }
 
         // FULLSCREEN
         else if (
             text.includes("pantalla completa")
         ) {
-
             let player = videojs('my-video');
-
             if (player.isFullscreen()) {
-
                 player.exitFullscreen();
-
             } else {
-
                 player.requestFullscreen();
-
             }
 
         }
-
     };
 
     recognition.onend = () => {
      voiceActive = false;
         $("#voice-btn")
             .removeClass("listening");
-
     };
 
     recognition.onerror = () => {
      voiceActive = false;
         $("#voice-btn")
             .removeClass("listening");
-
     };
-
 }
     
 // ================== TÍTULO DINÁMICO ==================
