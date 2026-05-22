@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy Web TV RB M3U - V5.260517.7</title>
+    <title>Easy TV Web - M3U - V6.260521.0D</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -44,14 +45,10 @@
     opacity: 0.68;
     transition: opacity 0.45s ease;}
 .ui-awake { opacity: 1;}
-
 #top-bar,
-#lists {
-    transition: opacity 0.45s ease;
-}
-
+#lists { transition: opacity 0.45s ease;}
 .list-item.active { filter: brightness(1.15);}
-    
+
 .vjs-poster {
     transition:
         filter 0.45s ease,
@@ -76,6 +73,7 @@
 }
 *::-webkit-scrollbar {
     width: 10px;
+    height: 8px;
     margin: 0 4px;
     background: #5f9ea01c;
     border-radius: 15px;
@@ -90,6 +88,7 @@
     outline: #00FF00;
     outline-style: groove;
 }
+
 
 /* ========= SPLASH SCREEN EASYTVWEB ======== */
 #splash-screen {
@@ -397,12 +396,54 @@ body {
     color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
 
+#controls-bar {
+    display: flex;
+    gap: 3px;
+    padding: 3px;
+    background: #11161d;
+    border-top: 1px solid #30363d;
+    border-bottom: 1px solid #30363d;
+    justify-content: space-around;
+    scroll-snap-type: x mandatory;
+    scroll-padding-top: 1px;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1em;
+/*    display: flex;
+    gap: 5px;
+    padding: 6px;
+    background: #11161d;
+    border-top: 1px solid #30363d;
+    border-bottom: 1px solid #30363d;
+    justify-content: center;
+    flex-wrap: wrap;*/
+}
+
+.control-btn {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #00ffcc;
+    border-radius: 8px;
+    min-width: 38px;
+    width: -webkit-fill-available;;
+    height: 38px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.control-btn:hover {
+    background: #30363d;
+    border-color: #00ffcc;
+}
+
 #auto-next-btn {
     border-radius: 8px;
     background: #14395b;
     color: #00ffcc;
     border: 1px solid #00ffcc;
-    font-size: 0.7em;
+    font-size: 0.8em;
     padding: 3px;
     cursor: pointer;
 }
@@ -746,8 +787,19 @@ button.list-item.active {
         <div id="search-bar">
             <input type="text" id="search" placeholder="Buscador de canal...">
             <!-- <span id="channel-count">[CH:0/0]</span> -->
-            <button id="voice-btn">🎤</button>
-            <button id="auto-next-btn">Auto ▶ OFF</button>
+            
+            
+        </div>
+        <div id="controls-bar">
+            <button class="control-btn" id="mute-btn">🔇</button>
+            <button class="control-btn" id="vol-down-btn">➖ Vol</button>
+            <button class="control-btn" id="vol-up-btn">➕ Vol</button>
+            <button class="control-btn" id="prev-btn">⏮</button>
+            <button class="control-btn" id="playpause-btn">⏯</button>
+            <button class="control-btn" id="next-btn">⏭</button>
+            <button class="control-btn" id="voice-btn">🎤</button>
+            <button class="control-btn" id="auto-next-btn">Auto ▶ OFF</button>
+            <button class="control-btn" id="fullscreen-btn">⛶</button>
         </div>
         <div id="playList"></div> 
     </div>
@@ -1332,6 +1384,15 @@ function playDirectStream(url) {
     updateFavButton();
     marcarCanalActivo();
 }
+
+    // DETECTAR SWIPE
+        function triggerChannelTransition() {
+        $("#player").addClass("swipe-blur");
+        setTimeout(() => {
+            $("#player").removeClass("swipe-blur");
+        }, 280);
+    }
+
 // ============= COMANDO DE VOZ =============
 function nextChannel() {
 triggerChannelTransition();
@@ -1378,6 +1439,61 @@ triggerChannelTransition();
     visibleChannels.eq(prevIndex).click();
 
 }
+
+function togglePlayPause() {
+
+    let player = videojs('my-video');
+
+    if (player.paused()) {
+        player.play();
+    } else {
+        player.pause();
+    }
+}
+
+function toggleMute() {
+
+    let player = videojs('my-video');
+
+    const muted = !player.muted();
+
+    player.muted(muted);
+
+    $("#mute-btn").text(
+        muted ? "🔇" : "🔊"
+    );
+
+}
+
+function volumeUp() {
+
+    let player = videojs('my-video');
+
+    player.volume(
+        Math.min(player.volume() + 0.1, 1)
+    );
+}
+
+function volumeDown() {
+
+    let player = videojs('my-video');
+
+    player.volume(
+        Math.max(player.volume() - 0.1, 0)
+    );
+}
+
+function toggleFullscreen() {
+
+    let player = videojs('my-video');
+
+    if (player.isFullscreen()) {
+        player.exitFullscreen();
+    } else {
+        player.requestFullscreen();
+    }
+}
+
 // ================== READY ==================
 $(document).ready(function () {
     $("#auto-next-btn").text("Auto ▶ ON");
@@ -1569,30 +1685,34 @@ $(document).ready(function () {
         renderHistory();
     });
 
+    // ================== CONTROLES ==================
+    $("#next-btn").click(nextChannel);
+    $("#prev-btn").click(prevChannel);
+    $("#playpause-btn").click(togglePlayPause);
+    $("#mute-btn").click(toggleMute);
+    $("#vol-up-btn").click(volumeUp);
+    $("#vol-down-btn").click(volumeDown);
+    $("#fullscreen-btn").click(toggleFullscreen);
 
-// ============ SWIPE ENTRE CANALES =================
-let touchStartX = 0;
-let touchEndX = 0;
-const videoContainer = document.querySelector("#player");
 
-// TOUCH START
-videoContainer.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
 
-// TOUCH END
-videoContainer.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-}, { passive: true });
+    // ============ SWIPE ENTRE CANALES =================
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const videoContainer = document.querySelector("#player");
 
-// DETECTAR SWIPE
-    function triggerChannelTransition() {
-    $("#player").addClass("swipe-blur");
-    setTimeout(() => {
-        $("#player").removeClass("swipe-blur");
-    }, 280);
-}
+    // TOUCH START
+    videoContainer.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    // TOUCH END
+    videoContainer.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+
     
     function handleSwipe() {
     const distance = touchEndX - touchStartX;
