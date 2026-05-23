@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V6.260521.1D</title>
+    <title>Easy TV Web - M3U - V6.260521.3</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -66,7 +66,6 @@
     outline-style: groove;
 }
 
-
 /* ========= SPLASH SCREEN EASYTVWEB ======== */
 #splash-screen {
     position: fixed;
@@ -85,9 +84,6 @@
 /* ======= SPLASH LOGO ============ */
 #splash-screen img {
     backdrop-filter: blur(8px);
- /*   width: 320px;
-    max-width: 70vw;
-    height: auto;*/
     width: 320px;
     height: 320px;
     max-width: 70vw;
@@ -119,7 +115,6 @@
     }
 }
 
-    
 /* Overlay oscuro para mejor estética */
 #splash-screen::after {
     content: "";
@@ -140,14 +135,13 @@
     width: 140px;
     max-width: 40vw;
     opacity: 0.95;
-    filter:
-        drop-shadow(0 0 10px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
 }
 
 /* Loader opcional */
 .loader {
     position: absolute;
-    bottom: 60px; /* 50px;*/
+    bottom: 60px;
     z-index: 2;
     width: 42px;
     height: 42px;
@@ -165,9 +159,7 @@
 
 /* Animación loader */
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg);}
 }
     
 /*0. Configuración del reproductor de video*/
@@ -175,15 +167,15 @@
     display: none;
     cursor: pointer;
 }
+
 /* 🎬 VIDEO (SIEMPRE ARRIBA) */
 .video-js .vjs-tech {
     border-radius: 6px !important;
     z-index: 2; /* 🔥 más alto rrb */
 }
-.video-js .vjs-control-bar {
-    z-index: 2;
-}
+.video-js .vjs-control-bar { z-index: 2;}
 :not(:root):fullscreen { user-select: text; height: 100%;}
+
 .vjs-big-play-button { 
     position: absolute;
     top: 34%!important;
@@ -209,20 +201,16 @@
 /* 🖼 POSTER (ATRÁS) */
 .vjs-poster { 
     display: flex;
-    /*!important;*/
     z-index: 1;
     background-size: cover;
     border-radius: 6px;
 }
 .video-js .vjs-tech {
-/*  height: min-content;*/
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 16 / 9;
     object-fit: fill;
 }
-
-/* 🚫 OCULTAR overlay de error */
 .vjs-error-display {display: none !important;}
 .vjs-error .vjs-error-display .vjs-modal-dialog-content {  font-size: 1.0em !important;}
 .vjs-error .vjs-error-display:before { content: url(https://cdn-icons-png.flaticon.com/64/5940/5940284.png) / "OUT"; top: 31% !important; }
@@ -239,6 +227,7 @@
     height: auto !important;
     aspect-ratio: 16 / 9;
 }
+
     
 /* 1. Base y Reset */
 html,
@@ -253,14 +242,12 @@ body {
     overflow: hidden;
     box-sizing: border-box;
     max-width: calc(100dvh * 2.28); 
-    /* 2); 1.8 */
     margin: 0 auto;
 }
 
 body {
     display: flex;
     flex-direction: column;
-
     padding-top: env(safe-area-inset-top);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
@@ -314,12 +301,11 @@ body {
 }
 
 /* 4. Layout Principal (Flexbox) */
-#rl-bar {
+#contenedor {
     display: flex;
     justify-content: center;
     align-items: stretch;
     width: 100%;
-    /* height: calc(100dvh - 50px); */
     height: calc(100vh - 80.9px);
     gap: 10px;
     margin: 0 auto;
@@ -377,41 +363,31 @@ body {
     color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
 }
 
-#controls-bar {
-    display: flex;
-    gap: 3px;
-    padding: 3px;
-    background: #11161d;
-    border-top: 1px solid #30363d;
-    border-bottom: 1px solid #30363d;
-    justify-content: space-around;
-    scroll-snap-type: x mandatory;
-    scroll-padding-top: 1px;
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1em;
-/*    display: flex;
-    gap: 5px;
-    padding: 6px;
-    background: #11161d;
-    border-top: 1px solid #30363d;
-    border-bottom: 1px solid #30363d;
-    justify-content: center;
-    flex-wrap: wrap;*/
+#controls-bar{
+    display:flex;
+    gap:3px;
+    padding:3px;
+    margin: 0 10px;
+    background:#11161d;
+    border-top:1px solid #30363d;
+    border-bottom:1px solid #30363d;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
 }
 
-.control-btn {
-    background: #21262d;
-    border: 1px solid #30363d;
-    color: #00ffcc;
-    border-radius: 8px;
-    min-width: 38px;
-    width: -webkit-fill-available;;
-    height: 38px;
-    cursor: pointer;
-    transition: 0.2s;
+.control-btn{
+    background:#21262d;
+    border:1px solid #30363d;
+    color:#00ffcc;
+    border-radius:8px;
+    min-width:38px;
+    width: -webkit-fill-available;
+    height:38px;
+    cursor:pointer;
+    transition:0.2s;
+    scroll-snap-align:start;
 }
 
 .control-btn:hover {
@@ -421,9 +397,7 @@ body {
 
 #auto-next-btn {
     border-radius: 8px;
-    /*background: #14395b;*/
     color: #00ffcc;
-    /*border: 1px solid #00ffcc;*/
     font-size: 0.8em;
     padding: 3px;
     cursor: pointer;
@@ -433,7 +407,6 @@ body {
     border-radius: 8px;
     background: #21262d;
     color: #00ffcc;
-    /*border: 1px solid #00ffcc;*/
     cursor: pointer;
     min-width: 40px;
 }
@@ -550,20 +523,8 @@ button.list-item.active {
     z-index: 100; display: none;
     backdrop-filter: blur(4px);
 }
-/*#form-container {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%; max-width: 500px;
-    background: var(--panel-bg);
-    padding: 20px;
-    border-radius: 12px;
-    z-index: 101;
-    display: none; flex
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid #30363d;
-}*/
-#form-container {
+
+#menu-flotante {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -654,7 +615,7 @@ button.list-item.active {
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
 @media  (max-aspect-ratio: 1.40) {
-        #rl-bar {
+        #contenedor {
         height: calc(100dvh - 50px);
         flex-direction: column;
         overflow: hidden;
@@ -751,10 +712,9 @@ button.list-item.active {
 </div>
 
 <div id="overlay"></div>
-<!-- 🔽 SOLO TE MUESTRO LA PARTE  -->
-<div id="form-container" style="display: none;">
-<!-- 🔥 textarea en vez de input -->
-<textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U o cargar opciones de abajo"></textarea>
+<!-- 🔽 MENU FLOTANTE PRINCIPAL  -->
+<div id="menu-flotante" style="display: none;">
+    <textarea id="m3u-url" rows="2" placeholder="Introducir dirección M3U o cargar opciones de abajo"></textarea>
 
     <div id="form-btn">
         <button class="form-btn" id="ok-button">▶️ Cargar</button>
@@ -769,7 +729,7 @@ button.list-item.active {
         <input type="file" id="file-input" accept=".m3u,.m3u8" style="display:none;">
     </div>
 
-    <!-- presets -->
+    <!-- presets [LISTAS PREDETERMINADAS] -->
     <div id="preset-lists">
         <button class="preset" data-url="https://iptv-org.github.io/iptv/countries/ar.m3u">🇦🇷 Arg</button>
         <button class="preset" data-url="https://iptv-org.github.io/iptv/index.m3u">🌍 Global</button>
@@ -788,13 +748,14 @@ button.list-item.active {
         -->
     </div>
 
-    <!-- 🔥 HISTORIAL -->
+    <!-- 🔥 HISTORIAL DE LISTAS O LINK -->
     <div id="m3u-history"></div>
 
 </div>
 
-<!-- Contenedor flotante para mostrar el enlace -->
-<div id="rl-bar">
+<!-- Pantalla principal -->
+<div id="contenedor">
+
     <div id="player">
         <div id="link-info-container" > Enlace actual:</div>
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
@@ -804,14 +765,10 @@ button.list-item.active {
         </video>
     </div>
 
-    <!-- Elemento de formación de Lista -->
     <div id="lists"> 
-        <!-- Buscador -->
         <div id="search-bar">
             <input type="text" id="search" placeholder="Buscador de canal...">
             <!-- <span id="channel-count">[CH:0/0]</span> -->
-            
-            
         </div>
         <div id="controls-bar">
             <button class="control-btn" id="mute-btn">🔇</button>
@@ -828,25 +785,23 @@ button.list-item.active {
     </div>
 </div>
 
-<div id="install-banner"  style="height: 20px;">  📲 Instalar Easy TV</div>
+<div id="install-banner" style="height: 20px;">  📲 Instalar Easy TV</div>
 
-<div id="splash-screen">
+<div id="splash-screen"> 
     <img src="Icon-ETV.PNG" alt="Splash">
-    <!-- Opcional -->
-    <!-- <img id="splash-logo" src="logo.png" alt="Logo"> -->
     <div class="loader"></div>
 </div>
         
 <script>
+// ============== EFECTO INICIO ===============
 window.addEventListener("load", () => {
     setTimeout(() => {
         $("#splash-screen").addClass("hide");
         setTimeout(() => {
             $("#splash-screen").remove();
         }, 800);
-    }, 150000);
+    }, 1500);
 });
-
 </script>
 
     
@@ -868,6 +823,19 @@ document.addEventListener("mousemove", wakeUI);
 document.addEventListener("touchstart", wakeUI);
 document.addEventListener("click", wakeUI);
 wakeUI();
+
+// ============== RUEDA DE MOUSE Y CONTROLES ===============
+const controlsBar =
+document.getElementById("controls-bar");
+
+controlsBar.addEventListener("wheel", (e) => {
+
+    e.preventDefault();
+
+    controlsBar.scrollLeft += e.deltaY;
+
+}, { passive:false });
+
 </script>
 
     
@@ -932,7 +900,7 @@ function updateChannelCount() {
     $("#channel-count").text(`[CH:${visible}/${total}]`);
 }
 
-// 🔍 BUSCADOR
+// =============== 🔍 BUSCADOR ===============
 $("#search")
 .on("focus", function() {
     this.select();
@@ -992,7 +960,7 @@ function playHLS(url) {
     player.play();
     currentLink = url;
 
-    // ================== POSTER HELPER ==================
+    //  POSTER HELPER 
     function setPoster(show) {
         let el = document.querySelector(".vjs-poster");
         if (!el) return;
@@ -1010,8 +978,7 @@ function playHLS(url) {
             .show();
     }
 
-    // ================== EVENTOS ==================
-
+    //  EVENTOS 
     // 🔥 iPhone FIX (más confiable que playing)
     player.on('loadeddata', function () {
         setPoster(false);
@@ -1031,7 +998,6 @@ function playHLS(url) {
                 .show();
         }
     });
-
     // 🔥 error
     player.on('error', function () {
         if (!isAutoSearching) {
@@ -1065,9 +1031,7 @@ function loadChannels(url) {
     window.showingFavorites = false;
     $("#playList").removeClass("favorites-mode");
     // 🔄 loading con estilo
-    $("#playList").html(`
-        <div class="loading-list">⏳ Cargando lista...</div>
-    `);
+    $("#playList").html(`<div class="loading-list">⏳ Cargando lista...</div>`);
     $.ajax({
         type: "GET",
         url: url,
@@ -1089,20 +1053,11 @@ function loadChannels(url) {
                         let firstGroup = currentChannel.group
                             .split(";")[0]
                             .trim() || "General";
-                        
                         channels.push({
                             name: currentChannel.name,
                             url: currentChannel.url,
                             group: firstGroup
                         });
-                        // let groups = currentChannel.group.split(";");
-                        // groups.forEach(g => {
-                        //     channels.push({
-                        //         name: currentChannel.name,
-                        //         url: currentChannel.url,
-                        //         group: g.trim() || "General"
-                        //     });
-                        // });
                     }
                     currentChannel = { name: "", url: "", group: "General" };
                 }
@@ -1116,7 +1071,6 @@ function loadChannels(url) {
                 seen.add(key);
                 return true;
             });
-
             channelsGlobal = channels;
             if (channels.length === 0) {
                 let name = url.split("/").pop() || "Stream";
@@ -1132,7 +1086,6 @@ function loadChannels(url) {
                         ⚠️ Lista sin canales<br><br>
                         👉 Probando como stream
                     </div>
-
                     <button class="list-item active" data-url="${url}">
                         ${icon} ${name}
                     </button>
@@ -1152,9 +1105,7 @@ function loadChannels(url) {
             });
             $("#playList").empty();
             for (let group in grouped) {
-                $("#playList").append(`
-                    <div class="group-title">${group}</div>
-                `);
+                $("#playList").append(`<div class="group-title">${group}</div>`);
                 grouped[group].forEach(channel => {
                     $("#playList").append(`
                         <button class='list-item' data-url='${channel.url}'>
@@ -1203,7 +1154,7 @@ function loadChannels(url) {
     });
 }
 
-// 🔁 VOLVER A LISTA ORIGINAL
+// ============= 🔁 VOLVER A LISTA ORIGINAL ==========
 function cargarDefault() {
     $("#m3u-url").val(defaultM3U);
     loadChannels(defaultM3U);
@@ -1293,12 +1244,6 @@ function getVisibleChannels() {
     return list;
 }
 
-
-// =========== PRECARGA NEXT ===========
-//function preloadNextChannel() {
-
-    
-
 // ================== ERRORES ==================
 function handlePlayerError() {
     var player = videojs('my-video');
@@ -1308,7 +1253,6 @@ function handlePlayerError() {
         if (!autoNextEnabled) {
             // 🔥 SOLO mostrar error si NO está buscando
             if (!isAutoSearching) {
-              //  $(".vjs-poster").css("display", "flex !important;");
                 $("#link-info-container")
                     .html("🔥 Señal fuera de servicio")
                     .show();
@@ -1341,7 +1285,6 @@ function handlePlayerError() {
                 .show()
             // 🔥 actualizar estado
             currentLink = next.url;
-           // currentIndex = nextIndex;
             playHLS(next.url);
             $("#nombreCanal").text(next.name);
             marcarCanalActivo();
@@ -1362,7 +1305,7 @@ function handlePlayerError() {
     });
 }
 
-// ================== UTIL ==================
+// ============== FORMATOS ==================
 function getIconByUrl(url) {
     if (url.startsWith("local-file-")) return "📂";
     if (url.includes(".m3u8")) return "📺";
@@ -1372,7 +1315,7 @@ function getIconByUrl(url) {
     return "🌐";
 }
 
-// ================== PLAY DIRECT ==================
+// ================ PLAY DIRECT ===============
 function playDirectStream(url) {
     currentLink = url;
     let player = videojs('my-video');
@@ -1407,66 +1350,49 @@ function playDirectStream(url) {
     updateFavButton();
     marcarCanalActivo();
 }
-
-    // DETECTAR SWIPE
-        function triggerChannelTransition() {
-        $("#player").addClass("swipe-blur");
-        setTimeout(() => {
-            $("#player").removeClass("swipe-blur");
-        }, 280);
-    }
+// ============= DETECTAR SWIPE =============
+function triggerChannelTransition() {
+    $("#player").addClass("swipe-blur");
+    setTimeout(() => {
+        $("#player").removeClass("swipe-blur");
+    }, 280);
+}
 
 // ============= COMANDO DE VOZ =============
 function nextChannel() {
 triggerChannelTransition();
     let visibleChannels =
         $("#playList .list-item:visible");
-
     if (!visibleChannels.length) return;
-
     let currentPos = visibleChannels.index(
         $(`.list-item[data-url="${currentLink}"]`)
     );
-
     if (currentPos < 0) currentPos = 0;
-
     let nextIndex = currentPos + 1;
-
     if (nextIndex >= visibleChannels.length) {
         nextIndex = 0;
     }
-
     visibleChannels.eq(nextIndex).click();
-
 }
 
 function prevChannel() {
 triggerChannelTransition();
     let visibleChannels =
         $("#playList .list-item:visible");
-
     if (!visibleChannels.length) return;
-
     let currentPos = visibleChannels.index(
         $(`.list-item[data-url="${currentLink}"]`)
     );
-
     if (currentPos < 0) currentPos = 0;
-
     let prevIndex = currentPos - 1;
-
     if (prevIndex < 0) {
         prevIndex = visibleChannels.length - 1;
     }
-
     visibleChannels.eq(prevIndex).click();
-
 }
 
 function togglePlayPause() {
-
     let player = videojs('my-video');
-
     if (player.paused()) {
         player.play();
     } else {
@@ -1475,41 +1401,30 @@ function togglePlayPause() {
 }
 
 function toggleMute() {
-
     let player = videojs('my-video');
-
     const muted = !player.muted();
-
     player.muted(muted);
-
     $("#mute-btn").text(
         muted ? "🔇" : "🔊"
     );
-
 }
 
 function volumeUp() {
-
     let player = videojs('my-video');
-
     player.volume(
         Math.min(player.volume() + 0.1, 1)
     );
 }
 
 function volumeDown() {
-
     let player = videojs('my-video');
-
     player.volume(
         Math.max(player.volume() - 0.1, 0)
     );
 }
 
 function toggleFullscreen() {
-
     let player = videojs('my-video');
-
     if (player.isFullscreen()) {
         player.exitFullscreen();
     } else {
@@ -1553,21 +1468,21 @@ $(document).ready(function () {
         });
     });
 
-    // ================== MODAL ==================
+    // ================== MODAL =================
     $("#top-bar h2").click(function () {
-        $("#overlay, #form-container").show();
+        $("#overlay, #menu-flotante").show();
     });
     $("#exit-button").click(function () {
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
-    // ================== close windows V2 ==================
+    // ============= close windows V2 ============
     function closeForm() {
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     }
 
     $(document).on("keydown", function (e) {
-        if ((e.key === "Escape" || e.keyCode === 27) && $("#form-container").is(":visible")) {
+        if ((e.key === "Escape" || e.keyCode === 27) && $("#menu-flotante").is(":visible")) {
             closeForm();
         }
     });
@@ -1576,7 +1491,7 @@ $(document).ready(function () {
         $("#m3u-url").val("");
     });
 
-    // ================== PEGAR ==================
+    // ================= PEGAR =================
     $("#paste-button").click(async function () {
         try {
             const text = await navigator.clipboard.readText();
@@ -1586,12 +1501,12 @@ $(document).ready(function () {
         }
     });
 
-    // ================== CARGAR ==================
+    // ================== CARGAR =================
     $("#ok-button").click(function () {
         let url = $("#m3u-url").val().trim();
         if (!url) return;
         if (url.startsWith("📂")) {
-            $("#overlay, #form-container").hide();
+            $("#overlay, #menu-flotante").hide();
             return;
         }
         if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
@@ -1601,10 +1516,10 @@ $(document).ready(function () {
         }
         saveM3U(url);
         renderHistory();
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
-    // ================== ENTER = CARGAR ==================
+    // =============== ENTER = CARGAR ==============
     $("#m3u-url").on("keydown", function (e) {
         if (e.key === "Enter") {
             e.preventDefault();
@@ -1612,7 +1527,7 @@ $(document).ready(function () {
         }
     });
 
-    // ================== HISTORIAL ==================
+    // ================= HISTORIAL =================
     $("#m3u-history").on("click", ".history-item", function () {
         let url = $(this).data("url");
         let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
@@ -1626,22 +1541,22 @@ $(document).ready(function () {
         } else {
             loadChannels(url);
         }
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
-    // ---------- DEFAULT ------------
+    // ================= DEFAULT ================
     $("#default-button").click(function () {
         loadChannels(defaultM3U);
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
-    // PRESETS
+    // ================= PRESETS =================
     $(".preset").click(function () {
         loadChannels($(this).data("url"));
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
-    // HISTORIAL CLICK
+    // ============= HISTORIAL CLICK =============
     $("#m3u-history").on("click", ".history-item", function () {
         let url = $(this).data("url");
         let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
@@ -1657,10 +1572,10 @@ $(document).ready(function () {
             loadChannels(item.url);
         }
         $("#overlay").hide();
-        $("#form-container").hide();
+        $("#menu-flotante").hide();
     });
 
-    // BORRAR HISTORIAL
+    // ============= BORRAR HISTORIAL =============
     $("#clear-history").click(function () {
         if (confirm("¿Borrar historial?")) {
             localStorage.removeItem("m3uHistory");
@@ -1668,36 +1583,34 @@ $(document).ready(function () {
         }
     });
 
-    // FAVORITOS
+    // ================ FAVORITOS =================
     $("#favorites-button").click(function () {
         window.showingFavorites = true;
         renderFavorites();
-        $("#overlay, #form-container").hide();
+        $("#overlay, #menu-flotante").hide();
     });
 
     $("#fav-btn").click(toggleFavoriteCurrent);
 
-    // CLICK CANAL
+    // ================ CLICK CANAL ================ 
     $("#playList").on("click", ".list-item", function() {
         triggerChannelTransition();
         let url = $(this).data("url");
         let nombre = $(this).text();
         currentLink = url; // 🔥 MUY IMPORTANTE
-       // currentIndex = channelsGlobal.findIndex(c => c.url === url);
         playHLS(url);
-        // preloadNextChannel(); viejo 😒
         $("#nombreCanal").text(nombre);
         updateFavButton();
         marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
     });
 
-    // AUTO NEXT BTN
+    // ================ AUTO NEXT BTN ================ 
     $("#auto-next-btn").click(function () {
         autoNextEnabled = !autoNextEnabled;
         $(this).text(autoNextEnabled ? "Auto ▶ ON" : "Auto ▶ OFF");
     });
 
-    //ELIMINAR DEL HOSTORIAL
+    // ============ ELIMINAR DEL HOSTORIAL ============ 
     $("#m3u-history").on("click", ".delete-history", function (e) {
         e.stopPropagation(); // 🔥 evita que cargue la lista
         if (!confirm("¿Eliminar del historial?")) return;
@@ -1735,46 +1648,42 @@ $(document).ready(function () {
         handleSwipe();
     }, { passive: true });
 
-
     
     function handleSwipe() {
-    const distance = touchEndX - touchStartX;
-    // evitar movimientos accidentales
-    if (Math.abs(distance) < 60) return;
-        triggerChannelTransition();
-    // lista REAL visible
-    let visibleChannels = $("#playList .list-item:visible");
-    if (!visibleChannels.length) return;
-    // canal actual REAL visible
-    let currentPos = visibleChannels.index(
-        $(`.list-item[data-url="${currentLink}"]`)
-    );
-    // fallback
-    if (currentPos < 0) currentPos = 0;
-    // 👉 siguiente canal
-    if (distance < 0) {
-        let nextIndex = currentPos + 1;
-        if (nextIndex >= visibleChannels.length) {
-            nextIndex = 0;
-        }
-        visibleChannels.eq(nextIndex).click();
-    }
-    // 👉 canal anterior
-    else {
-        let prevIndex = currentPos - 1;
-        if (prevIndex < 0) {
-            prevIndex = visibleChannels.length - 1;
+        const distance = touchEndX - touchStartX;
+        // evitar movimientos accidentales
+        if (Math.abs(distance) < 60) return;
+            triggerChannelTransition();
+        // lista REAL visible
+        let visibleChannels = $("#playList .list-item:visible");
+        if (!visibleChannels.length) return;
+        // canal actual REAL visible
+        let currentPos = visibleChannels.index(
+            $(`.list-item[data-url="${currentLink}"]`)
+        );
+        // fallback
+        if (currentPos < 0) currentPos = 0;
+        // 👉 siguiente canal
+        if (distance < 0) {
+            let nextIndex = currentPos + 1;
+            if (nextIndex >= visibleChannels.length) {
+                nextIndex = 0;
             }
-            visibleChannels.eq(prevIndex).click();
+            visibleChannels.eq(nextIndex).click();
         }
-    }
-    
+        // 👉 canal anterior
+        else {
+            let prevIndex = currentPos - 1;
+            if (prevIndex < 0) {
+                prevIndex = visibleChannels.length - 1;
+                }
+                visibleChannels.eq(prevIndex).click();
+            }
+    }   
 });
-
 // ============= 👊🏼 FIN DEL READY 👊🏼 ============
 
 
-    
 // ================== ANIMACIÓN ==================
 document.addEventListener('DOMContentLoaded', function () {
     let el = document.getElementById('nombreCanal');
@@ -1787,17 +1696,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 8000);
     };
 });
+
 // ============ AI DE VOZ =============
 let voiceActive = false;
 const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isIOS) {
-    $("#voice-btn").hide();
-}
+
+if (isIOS) { $("#voice-btn").hide(); }
     const SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
-//if (SpeechRecognition) {
 if (SpeechRecognition && !isIOS) {
     const recognition = new SpeechRecognition();
     recognition.lang = "es-AR";
@@ -1805,22 +1713,21 @@ if (SpeechRecognition && !isIOS) {
     recognition.interimResults = false;
     $("#voice-btn").on("click", function () {
     if (voiceActive) {
-        recognition.stop();
-        voiceActive = false;
-        $(this).removeClass("listening");
-        return;
-    }
+            recognition.stop();
+            voiceActive = false;
+            $(this).removeClass("listening");
+            return;
+        }
+        recognition.start();
+        voiceActive = true;
+        $(this).addClass("listening");
+    }); 
 
-    recognition.start();
-    voiceActive = true;
-    $(this).addClass("listening");
-}); 
     recognition.onresult = (event) => {
         const text =
             event.results[0][0].transcript
             .toLowerCase();
         console.log("🎤", text);
-
         // SIGUIENTE
         if (
             text.includes("siguiente") ||
@@ -1828,28 +1735,21 @@ if (SpeechRecognition && !isIOS) {
         ) {
             nextChannel();
         }
-
         // ANTERIOR
         else if (
             text.includes("anterior")
         ) {
             prevChannel();
         }
-
         // VOLUMEN ARRIBA
         else if (
             text.includes("subir volumen")
         ) {
-
             let player = videojs('my-video');
             player.volume(
-                Math.min(
-                    player.volume() + 0.1,
-                    1
-                )
+                Math.min( player.volume() + 0.1, 1 )
             );
         }
-
         // VOLUMEN ABAJO
         else if (
             text.includes("bajar volumen")
@@ -1857,26 +1757,21 @@ if (SpeechRecognition && !isIOS) {
             let player = videojs('my-video');
             player.volume(
                 Math.max(
-                    player.volume() - 0.1,
-                    0
-                )
+                    player.volume() - 0.1, 0 )
             );
         }
-
         // PLAY
         else if (
             text.includes("play")
         ) {
             videojs('my-video').play();
         }
-
         // PAUSA
         else if (
             text.includes("pausa")
         ) {
             videojs('my-video').pause();
         }
-
         // FULLSCREEN
         else if (
             text.includes("pantalla completa")
@@ -2002,7 +1897,7 @@ $(document).ready(function () {
             renderHistory();
             // 🔥 cerrar modal
             $("#overlay").hide();
-            $("#form-container").hide();
+            $("#menu-flotante").hide();
             // 🔥 reset input (CLAVE para que vuelva a funcionar)
             $("#file-input").val("");
         };
@@ -2113,7 +2008,7 @@ $(document).ready(function () {
 });
 
 if (window.matchMedia('(display-mode: standalone)').matches) {
-$("#install-banner").hide();
+    $("#install-banner").hide();
 }
 </script>
 
