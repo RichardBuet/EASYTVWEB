@@ -240,6 +240,7 @@ body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--text);
     overflow: hidden;
+    touch-action:manipulation;
     box-sizing: border-box;
     max-width: calc(100dvh * 2.28); 
     margin: 0 auto;
@@ -803,10 +804,10 @@ window.addEventListener("load", () => {
         }, 800);
     }, 1500);
 });
-</script>
+<!-- </script>
 
     
-<script>
+<script> -->
 // ============== EFECTO OPACIDAD ===============
 let uiTimer;
 function wakeUI() {
@@ -837,10 +838,10 @@ controlsBar.addEventListener("wheel", (e) => {
 
 }, { passive:false });
 
-</script>
+<!-- </script>
 
     
-<script>
+<script> -->
 // ================== VARIABLES ==================
 let autoNextEnabled = true;
 let channelsGlobal = [];
@@ -1198,7 +1199,7 @@ function saveM3U(url) {
         name: shortName,
         url: url
     });
-    history = history.slice(0, 15);
+    history = history.slice(0, 20);
     localStorage.setItem("m3uHistory", JSON.stringify(history));
 }
 
@@ -1578,7 +1579,7 @@ $(document).ready(function () {
 
     // ============= BORRAR HISTORIAL =============
     $("#clear-history").click(function () {
-        if (confirm("¿Borrar historial?")) {
+        if (confirm("¿Borrar Todo el historial?")) {
             localStorage.removeItem("m3uHistory");
             renderHistory();
         }
@@ -1613,12 +1614,25 @@ $(document).ready(function () {
 
     // ============ ELIMINAR DEL HOSTORIAL ============ 
     $("#m3u-history").on("click", ".delete-history", function (e) {
-        e.stopPropagation(); // 🔥 evita que cargue la lista
-        if (!confirm("¿Eliminar del historial?")) return;
-        let url = $(this).data("url");
-        let history = JSON.parse(localStorage.getItem("m3uHistory")) || [];
+        e.stopPropagation();
+        let history =
+        JSON.parse(localStorage.getItem("m3uHistory")) || [];
+        let item = history.find(
+            h => h.url === $(this).data("url")
+            );
+        let nombre =
+        item?.name || item?.url || "Elemento";
+        if (
+            !confirm(
+        `¿Eliminar del historial?\n\n${nombre}`
+        )
+            ) return;
+            let url = $(this).data("url");
         history = history.filter(h => h.url !== url);
-        localStorage.setItem("m3uHistory", JSON.stringify(history));
+        localStorage.setItem(
+            "m3uHistory",
+            JSON.stringify(history)
+            );
         renderHistory();
     });
 
@@ -1978,10 +1992,70 @@ function saveLocalFile(fileName, content) {
     localStorage.setItem("m3uHistory", JSON.stringify(history));
 }
 
-</script>
+document.addEventListener("keydown", (e) => {
+    // evitar repetir si se mantiene apretada
+    if (e.repeat) return;
+    // evitar escribir dentro del buscador/input
+    const tag =
+        document.activeElement.tagName;
+    if (
+        tag === "INPUT" ||
+        tag === "TEXTAREA"
+    ) return;
+    switch (e.key) {
+        // PLAY / PAUSE
+        case " ":
+            e.preventDefault();
+            togglePlayPause();
+        break;
+        // SIGUIENTE CANAL
+        case "ArrowRight":
+            e.preventDefault();
+            nextChannel();
+        break;
+        // CANAL ANTERIOR
+        case "ArrowLeft":
+            e.preventDefault();
+            prevChannel();
+        break;
+        // VOLUMEN +
+        case "ArrowUp":
+            e.preventDefault();
+            volumeUp();
+        break;
+        // VOLUMEN -
+        case "ArrowDown":
+            e.preventDefault();
+            volumeDown();
+        break;
+        // MUTE
+        case "m":
+        case "M":
+            toggleMute();
+        break;
+        // FULLSCREEN
+        case "f":
+        case "F":
+            toggleFullscreen();
+        break;
+        // CAMBIO AUTOMATICO DE CANAL
+        case "a":
+        case "A":
+            $("#auto-next-btn").click();
+        break;
+        // COMANDO POR VOZ
+        case "v":
+        case "V":
+            $("#voice-btn").click();
+        break;
+    }
+
+});
+
+<!-- </script>
  
     
-<script>
+<script> -->
 function esDesktop() {
     return !/Android|iPhone|iPad|iPod|SmartTV|TV|WebOS|Tizen/i.test(navigator.userAgent);
 }
@@ -2011,6 +2085,14 @@ $(document).ready(function () {
 if (window.matchMedia('(display-mode: standalone)').matches) {
     $("#install-banner").hide();
 }
+
+document.addEventListener("gesturestart",function(e){ e.preventDefault();});
+document.addEventListener("gesturechange",function(e){ e.preventDefault();});
+document.addEventListener("gestureend",function(e){ e.preventDefault();});
+document.addEventListener("wheel",function(e){ if(e.ctrlKey){ e.preventDefault();}},{passive:false});
+
+
+
 </script>
 
 <script id="sw-register">
