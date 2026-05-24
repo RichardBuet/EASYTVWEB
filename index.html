@@ -1307,6 +1307,16 @@ function handlePlayerError() {
     });
 }
 
+document.addEventListener("fullscreenchange", () => {
+    let player = videojs('my-video');
+    if (
+        !document.fullscreenElement &&
+        player.isFullscreen()
+    ) {
+        player.exitFullscreen();
+    }
+});
+
 // ============== FORMATOS ==================
 function getIconByUrl(url) {
     if (url.startsWith("local-file-")) return "📂";
@@ -1427,13 +1437,23 @@ function volumeDown() {
 
 function toggleFullscreen() {
     let player = videojs('my-video');
-    if (player.isFullscreen()) {
-        player.exitFullscreen();
-    } else {
+    const isFs =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement;
+    if (isFs) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+    else {
         player.requestFullscreen();
     }
 }
 
+    
 // ================== READY ==================
 $(document).ready(function () {
     $("#auto-next-btn").text("Auto ▶ ON");
