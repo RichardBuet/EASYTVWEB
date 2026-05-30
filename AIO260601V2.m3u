@@ -1,12 +1,12 @@
 #EXTM3U
 # --- ARGENTINA: AIRE Y NOTICIAS ---
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8c/Canal_26_logo.png" group-title="ARGENTINA: NOTICIAS",Canal 26
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Canal_26_logo_%282022%29.svg/500px-Canal_26_logo_%282022%29.svg.png" group-title="ARGENTINA: NOTICIAS",Canal 26
 https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8
 # #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/87/Logo_de_Todo_Noticias_%282016%29.png" group-title="ARGENTINA: NOTICIAS",Todo Noticias
 # https://live-01-01-tn.vodgc.net/TN24/index.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/45/Perfil_E_logo.png" group-title="ARGENTINA: NOTICIAS",Canal E
 https://unlimited1-us.dps.live/perfiltv/perfiltv.smil/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/57/A24_%28Argentina%29_logo.png" group-title="ARGENTINA: NOTICIAS",A24
+#EXTINF:-1 tvg-logo="https://i.imgur.com/LnXQkIU.png" group-title="ARGENTINA: NOTICIAS",A24
 https://g1.vxral-hor.transport.edge-access.net/a15/ngrp:a24-100056_all/a24-100056.m3u8
 # #EXTINF:-1 tvg-logo="" group-title="ARGENTINA: NOTICIAS",24/7 Canal de Noticias
 # https://panel.host-live.com:19360/cn247tv/cn247tv.m3u8
@@ -17,7 +17,7 @@ https://rt-esp.rttv.com/dvr/rtesp/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/1d/Televisi%C3%B3n_P%C3%BAblica_Argentina_-_Logo_2021.png" group-title="ARGENTINA: AIRE",TV Publica
 https://g1.vxral-hor.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/c7_vivo01_dai_source-20001.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/85/Am%C3%A9rica_TV_logo_%282021%29.png" group-title="ARGENTINA: AIRE",América TV
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Am%C3%A9rica_TV_%28Nuevo_logo_Junio_2020%29.png/500px-Am%C3%A9rica_TV_%28Nuevo_logo_Junio_2020%29.png" group-title="ARGENTINA: AIRE",América TV
 https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/30/El_Trece_logo.png" group-title="ARGENTINA: AIRE",El Trece (1080p)
 https://livetrx01.vodgc.net/eltrecetv/index.m3u8
@@ -85,7 +85,7 @@ https://dazn-combat-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-dazn-combat-ra
 
 # --- ARGENTINA: REGIONALES ---
 
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Canal_3_Pinamar.png" group-title="ARGENTINA: REGIONALES",CN 3 pinamar
+#EXTINF:-1 tvg-logo="https://i.imgur.com/IABFaH1.png" group-title="ARGENTINA: REGIONALES",CN 3 pinamar
 https://wowza.telpin.com.ar:1935/canal3/canal3.stream/playlist.m3u8
 
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/a/af/Canal_3_Las_Heras.png" group-title="ARGENTINA: REGIONALES",Canal 3 Las Heras (720p)
