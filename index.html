@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V6.260521.3</title>
+    <title>Easy TV Web - M3U - V7.260529.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -437,8 +437,8 @@ body {
 #playList div {
     scroll-snap-align: start;
     grid-column: 1 / -1;
-    color: #00ffcc;
-    font-weight: bold;
+    /*color: #00ffcc;*/
+
     padding: 5px 0;
     border-bottom: 1px solid #00ffcc33;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -449,15 +449,24 @@ body {
     user-select: none;           /* Estándar moderno */
 }
 
+.group-title{
+color: #00ffcc;
+    font-weight: bold;
+}
+
 /* Botones de la lista (Mejorados para TV/Móvil) */
 button.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     scroll-snap-align: start;
     font-size: 0.55rem;
     width: 100%;
     min-height: 31px;
     height: calc(91% * 0.08);
-    padding: 10px;
-    margin: 3px 0;
+/*    padding: 10px;
+    margin: 3px 0;*/
     background: #21262d;
     border: 1px solid #30363d;
     border-radius: 6px;
@@ -477,6 +486,22 @@ button.list-item {
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Estándar moderno */
 }
+
+.channel-logo{
+    width:35px;
+    height:22px;
+    object-fit:contain;
+    margin-right:6px;
+    border-radius:4px;
+    background:#000;
+    flex-shrink:0;
+}
+
+.channel-item{
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    }
 
 @media (hover: hover) and (pointer: fine) {
     button.list-item:hover, 
@@ -790,7 +815,7 @@ button.list-item.active {
 <div id="install-banner" style="height: 20px;">  📲 Instalar Easy TV</div>
 
 <div id="splash-screen"> 
-    <img src="Icon-ETV.PNG" alt="Splash">
+    <img src="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG" alt="Splash">
     <div class="loader"></div>
 </div>
         
@@ -1015,8 +1040,10 @@ function playHLS(url) {
 function getChannelData(line) {
     const nameMatch = line.match(/,(.*)/);
     const groupMatch = line.match(/group-title="([^"]*)"/);
+    const logoMatch = line.match(/tvg-logo="([^"]*)"/);
     let name = nameMatch ? nameMatch[1].trim() : "Unknown";
     let group = groupMatch ? groupMatch[1].trim() : "Canales Generales";
+    let logo = logoMatch ? logoMatch[1].trim() : "";
     if (!group ||
         group.toLowerCase() === "undefined" ||
         group.toLowerCase() === "n/a" ||
@@ -1024,7 +1051,7 @@ function getChannelData(line) {
     ) {
         group = "Canales de TV";
     }
-    return { name, group };
+    return { name, group, logo };
 }
 
 // ================== CARGA LISTA ==================
@@ -1049,6 +1076,7 @@ function loadChannels(url) {
                     let data = getChannelData(line);
                     currentChannel.name = data.name.substring(0, 30);
                     currentChannel.group = data.group;
+                    currentChannel.logo = data.logo;
                 } else if (line !== "" && !line.startsWith("#")) {
                     currentChannel.url = line;
                     if (currentChannel.name && currentChannel.url) {
@@ -1058,7 +1086,8 @@ function loadChannels(url) {
                         channels.push({
                             name: currentChannel.name,
                             url: currentChannel.url,
-                            group: firstGroup
+                            group: firstGroup,
+                            logo: currentChannel.logo || ""
                         });
                     }
                     currentChannel = { name: "", url: "", group: "General" };
@@ -1100,6 +1129,9 @@ function loadChannels(url) {
             }
 
             // 🔥 agrupar
+                                    //<button class='list-item' data-url='${channel.url}'>
+                        //     ${channel.name}
+                        // </button>
             let grouped = {};
             channels.forEach(ch => {
                 if (!grouped[ch.group]) grouped[ch.group] = [];
@@ -1111,7 +1143,13 @@ function loadChannels(url) {
                 grouped[group].forEach(channel => {
                     $("#playList").append(`
                         <button class='list-item' data-url='${channel.url}'>
-                            ${channel.name}
+                        <div class="channel-item">
+                            <img
+                            class="channel-logo"
+                            src="${channel.logo || 'Icon-ETV.PNG'}"
+                            onerror="this.src='https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG';">
+                            <span> ${channel.name} </span>
+                        </div>
                         </button>
                     `);
                 });
