@@ -150,6 +150,38 @@ https://live20.bozztv.com/giatv/giatv-teleposadaso01/teleposadaso01/playlist.m3u
 #EXTINF:-1 tvg-logo="" group-title="ARGENTINA: REGIONALES",Cable Imagen Armstrong (540p)
 https://stream.arcast.com.ar/casse/casse/playlist.m3u8
 
+#EXTINF:-1 tvg-logo="https://i.imgur.com/V1xZV72.png" group-title="ARGENTINA: REGIONALES", Ciudad Magazine [Not 24/7] (Buenos Aires)
+https://livetrx01.vodgc.net/live-01-07-ciudad.vodgc.net/index.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/IhJ0BjF.png" group-title="ARGENTINA: REGIONALES", Net TV (Buenos Aires)
+https://unlimited1-us.dps.live/nettv/nettv.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/xFgJawa.png" group-title="ARGENTINA: REGIONALES", Argentinisima Satelital (Nacional)
+https://stream1.sersat.com/hls/argentinisima.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/87WCHtd.png" group-title="ARGENTINA: REGIONALES", Canal 10 Córdoba (Córdoba)
+https://stream.arcast.net:4443/canal10/ngrp:canal10_all/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.ibb.co/BrvQsWm/C7neuquenlogo2023.png" group-title="ARGENTINA: REGIONALES", Canal 7 Neuquén (Neuquén)
+https://stream.arcast.com.ar/c7nq/ngrp:c7nq_all/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/iJMH0UK.png" group-title="ARGENTINA: REGIONALES", Canal 7 Santiago del Estero (Santiago del Estero)
+https://stream.arcast.com.ar/envivo/castv/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/PmFBL7x.png" group-title="ARGENTINA: REGIONALES", Lapacho Canal 11 Formosa (Formosa)
+https://stmvideo6.livecastv.com/oncestream/oncestream/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/qB6I274.png" group-title="ARGENTINA: REGIONALES", Canal 4 Jujuy [Not 24/7] (Jujuy)
+https://5cd577a3dd8ec.streamlock.net/CANAL4/smil:CANAL4.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/YqTNXDf.png" group-title="ARGENTINA: REGIONALES", Canal 2 Misiones (Misiones)
+https://nd106.republicaservers.com:4433/hls/canal2misioness/index.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/HXRpRlK.png" group-title="ARGENTINA: REGIONALES", Misiones Cuatro (Misiones)
+https://iptv.ixfo.com.ar:30443/live-HD/MISIONES4/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/JUtAzg4.png" group-title="ARGENTINA: REGIONALES",Canal 9 Tele Vida Mendoza
+https://unlimited1-saopaulo.dps.live/televidaar/televidaar.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/agVTEeO.png" group-title="ARGENTINA: REGIONALES",Canal 12 Misiones
+https://g4.mc-hor.transport.edge-access.net/a14/ngrp:c12_live01-100129_all/Playlist.m3u8?sense=true
+#EXTINF:-1 tvg-logo="https://i.imgur.com/jX0lqy3.png" group-title="ARGENTINA: REGIONALES",Canal 9 Multivision Federal
+https://videostream.shockmedia.com.ar:19360/multivisionfederal/multivisionfederal.m3u8
+#EXTINF:-1 tvg-logo="https://i.imgur.com/88MVgwX.png" group-title="ARGENTINA: REGIONALES",Tele Posadas
+https://live20.bozztv.com/giatv/giatv-teleposadaso01/teleposadaso01/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.imgur.com/PjlAB6x.jpg" group-title="ARGENTINA: REGIONALES",Telecreativa Lanus
+https://panel.host-live.com:19360/8012/8012.m3u8
+
 
 # --- CINE Y SERIES ---
 
@@ -206,8 +238,46 @@ https://stream.ads.ottera.tv/playlist.m3u8?network_id=3064
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=3053
 
 
-# --- INFANTILES Y ANIME ---
 
+# ----- CANDELA TV ------
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA872/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="# --- MUSICA Y RADIO ---",Canela TV Latinoamérica
+https://amg00658-amg00658c108-canelatv-international-7664.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-canelatvlatamapp-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA872/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela TV 2
+https://amg00658-amg00658c12-canelatv-international-7977.playouts.now.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA874/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Cinema LT
+https://amg00658-amg00658c8-canelatv-international-7227.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-cinemalt-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA880/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Cine Picante
+https://amg00658-amg00658c106-canelatv-international-7979.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-cinepicanteltus-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA938/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Cine Romántico
+https://amg00658-amg00658c66-canelatv-international-5554.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-cineromanticoappta-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA881/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Acción Mexicana
+https://amg00658-amg00658c104-canelatv-international-7980.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-accionmexicana-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA948/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Peli Mex
+https://amg00658-amg00658c95-canelatv-international-6696.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-pelimexta-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA962/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Seasonal
+https://amg00658-amg00658c49-canelatv-international-7982.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-seasonal-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA876/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Canela Narco Drama
+https://amg00658-amg00658c13-canelatv-international-7229.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-narcodramaltus-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/whRrKDwH/0-16x9.png" group-title="Canela TV",Canela Clásicos
+https://amg00658-amg00658c9-canelatv-international-7219.playouts.now.amagi.tv/playlist/amg00658-canelamediafast-clasicosuslt-canelatvinternational/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://image-resizer-cloud-cdn.cms.api.canela.tv/image/3052A289-026D-43E2-A4E5-577140AAA913/0-16x9.jpg?width=160&updatedTime=0&dt=Web" group-title="Canela TV",Thema Vive Kanal Drama
+https://amg01602-amg01602c2-canelatv-international-5561.playouts.now.amagi.tv/playlist/amg01602-themahqfrancefast-themavivekanalddrama-canelatvinternational/playlist.m3u8
+
+
+# --- INFANTILES Y ANIME ---
+#EXTINF:-1 tvg-logo="" group-title="INFANTILES Y ANIME",El Chavo del 8
+https://live20.bozztv.com/giatvplayout7/giatv-211465/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="INFANTILES Y ANIME",90's Kids
 https://jmp2.uk/plu-6452c814939a590008567a3b.m3u8
 #EXTINF:-1 tvg-logo="" group-title="INFANTILES Y ANIME",Las Tortugas Ninja (720p)
