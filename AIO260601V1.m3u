@@ -4,6 +4,10 @@
 https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8
 # #EXTINF:-1 tvg-logo="https://i.imgur.com/vFwPhPS.png" group-title="ARGENTINA: NOTICIAS",Todo Noticias
 # https://live-01-01-tn.vodgc.net/TN24/index.m3u8
+#EXTINF:-1 tvg-id="0905" tvg-name="TN" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/TN_todo_noticias_logo.svg/3840px-TN_todo_noticias_logo.svg.png" group-title="ARGENTINA: NOTICIAS", TN
+#EXTVLCOPT:http-referrer=https://tn.com.ar/envivo/24hs
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+https://live-01-01-tn.vodgc.net/TN_DAI_Beta/index.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/y4pkxH3/Qtc8-M2-PG-400x400.jpg" group-title="ARGENTINA: NOTICIAS",Canal E
 https://unlimited1-us.dps.live/perfiltv/perfiltv.smil/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://i.ibb.co/TxJWSBds/A24-2025-svg.png" group-title="ARGENTINA: NOTICIAS",A24
@@ -228,6 +232,10 @@ https://jmp2.uk/plu-68e8fd7c3ede4398bc69af93.m3u8
 #EXTINF:-1 tvg-logo="" group-title="INFANTILES Y ANIME", Toon Goggles en Español
 https://stream.ads.ottera.tv/playlist.m3u8?network_id=771
 
+##EXTINF:-1 tvg-id="0932" tvg-name="Los Simpsons 24/7 (PROXIMO OTRO CANAL)" group-title="Remodelación", tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/The_Simpsons_yellow_logo.svg/1920px-The_Simpsons_yellow_logo.svg.png", C5N
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/The_Simpsons_yellow_logo.svg/1920px-The_Simpsons_yellow_logo.svg.png" group-title="INFANTILES Y ANIME", The Simpsons
+http://45.225.40.206:12080/Live/76b678bf3a8a411cb7b2f415a567034d/online-24-7_480.m3u8
+
 # --- MUSICA Y RADIO ---
 
 #EXTINF:-1 tvg-logo="" group-title="MUSICA",Best of Dance TV
@@ -272,6 +280,14 @@ https://cloud.tvomix.com/URBANMIX/index.m3u8
 https://cloud.tvomix.com/CUMBIAMIX/index.m3u8
 #EXTINF:-1 tvg-logo="" group-title="MUSICA",Que Buena Atlanta
 https://streamyes.alsolnet.com/quebuenaatlanta/live/chunklist_w1655504172.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Radio La 100" group-title="MUSICA" tvg-logo="https://i.ibb.co/yFqTXRTC/CZJMM4-BJVRFANO4-VGMMYWSTEVE.webp", Radio La 100
+https://mdstrm.com/live-stream-playlist/68b74fd1d6512526f1f7c75a.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Latina TV" group-title="MUSICA" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Canal_Latina.png/800px-Canal_Latina.png", Latina TV
+https://stream-gtlc.telecentro.net.ar/hls/latinatvhls/0/playlist.m3u8
+#EXTINF:-1 tvg-id="0937" tvg-name="Telemax" group-title="MUSICA" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/13/Telemax_Argentina_%282018%29.png" , Telemax
+https://stream-gtlc.telecentro.net.ar/hls/telemaxhls/main.m3u8
+#EXTINF:-1 tvg-id="0912" tvg-name="Argentinisima Satelital" group-title="MUSICA" tvg-logo="https://files.catbox.moe/lk049e.png" , Argentinisima Satelital 
+https://stream1.sersat.com/hls/argentinisima.m3u8
 
 # --- STINGRAY: MUSICA Y CANALES ---
 
@@ -517,7 +533,11 @@ https://d4whmvwm0rdvi.cloudfront.net/10007/99993000/hls/master.m3u8?ads.xumo_cha
 
 
 # ------- Nuevo canales USA --------
+#EXTINF:-1 tvg-logo="" group-title="USA Channel",Discovery Channel
+https://cors-proxy.cooks.fyi/http://23.237.104.106:8080/USA_DISCOVERY/index.m3u8
 
+#EXTINF:-1 tvg-logo="https://static.wikia.nocookie.net/logopedia/images/b/bb/5_Star_2016_%28Green%29.svg/revision/latest/scale-to-width-down/250?cb=20221109163247" group-title="USA Channel",5 StarMax
+http://23.237.104.106:8080/USA_5STARMAX/index.m3u8
 
 #EXTINF:-1 tvg-logo="" group-title="USA Channel",NINJA Warriors
 https://d4whmvwm0rdvi.cloudfront.net/10007/99993000/hls/master.m3u8?ads.xumo_channelId=99993042
