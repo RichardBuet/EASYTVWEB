@@ -1514,18 +1514,19 @@ $(document).ready(function () {
         $("#link-info-container")
             .html(currentLink)
             .show()
-            .fadeOut(7500);
+            .fadeOut(6000);
     });
 
-    $("#nombreCanal").dblclick(function (e) {
+ //   $("#nombreCanal").dblclick(function (e) {
+    $("#link-info-container").click(function (e) {
         e.stopPropagation();
         if (!currentLink) return;
         navigator.clipboard.writeText(currentLink)
         .then(() => {
             $("#link-info-container")
-                .html("📋 Link copiado")
+                .html("📋 Link copiado 👍🏼")
                 .show()
-                .fadeOut(2500);
+                .fadeOut(2000);
         })
         .catch(() => {
             alert("No se pudo copiar");
