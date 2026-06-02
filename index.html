@@ -325,7 +325,7 @@ body {
     background: #000;
 }
     
-#link-info-container {
+#link-info-container, #link-info {
     position: absolute;
     bottom: 50%;
     left: 50%;
@@ -341,6 +341,9 @@ body {
     word-break: break-all;
 }
 
+#link-info {
+    botton: 70%:
+}
 /* 6. Lista de Canales */
 #lists {
     width: auto;
@@ -786,7 +789,9 @@ button.list-item.active {
 <div id="contenedor">
 
     <div id="player">
-        <div id="link-info-container" > Enlace actual:</div>
+        <div id="link-info-container" > Información:</div>
+        <div id="link-info" > Link:</div>
+        
         <video id="my-video" playsinline webkit-playsinline muted class="video-js" autoplay controls 
             preload="metadata" controlsList="noplaybackrate" width="900" 
             poster="https://richardbuet.github.io/EASYTVWEB/BasePost.jpeg" data-setup='{}'>
@@ -1511,14 +1516,14 @@ $(document).ready(function () {
     $("#nombreCanal").click(function (e) {
         e.stopPropagation();
         if (!currentLink) return;
-        $("#link-info-container")
+        $("#link-info")
             .html(currentLink)
             .show()
             .fadeOut(6000);
     });
 
  //   $("#nombreCanal").dblclick(function (e) {
-    $("#link-info-container").click(function (e) {
+    $("#link-info").click(function (e) {
         e.stopPropagation();
         if (!currentLink) return;
         navigator.clipboard.writeText(currentLink)
