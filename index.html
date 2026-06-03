@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V7.260601.0</title>
+    <title>Easy TV Web - M3U - V7.260603.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -975,6 +975,7 @@ $("#search")
         $("#playList .group-title").show();
         $("#no-results").remove();
     }
+    updateChannelCount();
 });
 
 // ================== PLAYER ==================
@@ -1175,6 +1176,7 @@ function loadChannels(url) {
             }, 100);
             // 🔥 restaurar ventana
             $("#playList").scrollTop(0);
+            updateChannelCount();
         },
 
 
@@ -1233,6 +1235,7 @@ function renderFavorites() {
     setTimeout(() => {
     marcarCanalActivo();
     }, 100);
+    updateChannelCount();
 }
 
 // ================== HISTORIAL ==================
@@ -1536,7 +1539,8 @@ $(document).ready(function () {
             $("#link-info-container")
                 .html("📋 Link copiado 👍🏼")
                 .show()
-                .fadeOut(2000);
+                .delay(2000)
+                .fadeOut(200);
         })
         .catch(() => {
             alert("No se pudo copiar");
@@ -2076,6 +2080,7 @@ function parseLocalM3U(message) {
     }
     // 🔥 reset scroll
     $("#playList").scrollTop(0);
+    updateChannelCount();
 }
 
 // ================== SAVE LOCAL ==================
