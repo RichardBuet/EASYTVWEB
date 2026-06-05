@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V7.260603.0</title>
+    <title>Easy TV Web - M3U - V7.260603.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -25,6 +25,8 @@
 #top-bar,
 #lists { transition: opacity 0.45s ease;}
 .list-item.active { filter: brightness(1.15);}
+
+#channel-count{ align-content: center;}
 
 .vjs-poster {
     transition:
@@ -84,10 +86,10 @@
 /* ======= SPLASH LOGO ============ */
 #splash-screen img {
     backdrop-filter: blur(8px);
-    width: 320px;
-    height: 320px;
-    max-width: 70vw;
-    max-height: 70vh;
+    width: 200px;
+    height: 200px;
+    max-width: 60vw;
+    max-height: 60vh;
     border-radius: 50%;
     object-fit: cover;
     user-select: none;
@@ -103,15 +105,15 @@
 @keyframes pulse {
     0% {
         transform: scale(0.8);
-        opacity: 0.75;
+        opacity: 0.4;
     }
     50% {
-        transform: scale(1.0);
-        opacity: 1;
+        transform: scale(0.9);
+        opacity: 0.9;
     }
     100% {
         transform: scale(0.8);
-        opacity: 0.7;
+        opacity: 0.4;
     }
 }
 
@@ -362,14 +364,16 @@ body {
     user-select: none;
 }
 #search-bar { 
-    padding: 10px; 
+    padding: 0 8px 8px 10px;
     display: flex; 
     gap: 5px; 
     background: #0d1117; 
+
 }
 #search { 
     flex: 1; background: #010409; border: 1px solid #30363d; 
-    color: #fff; padding: 8px; border-radius: 4px; min-width: 55%;
+    color: #fff; padding: 8px; border-radius: 4px; min-width: 35%;
+    width: auto;
 }
 
 #controls-bar{
@@ -935,10 +939,31 @@ function marcarCanalActivo() {
 
 // ================== NRO CANAL ==================
 function updateChannelCount() {
-    let visible = $("#playList .list-item:visible").length;
-    let total = $("#playList .list-item").length;
 
-    $("#channel-count").text(`[CH:${visible}/${total}]`);
+    let visibleChannels =
+        $("#playList .list-item:visible");
+
+    let visibleTotal =
+        visibleChannels.length;
+
+    let totalChannels =
+        $("#playList .list-item").length;
+
+    let currentPos =
+        visibleChannels.index(
+            $(`.list-item[data-url="${currentLink}"]`)
+        );
+
+    if (currentPos < 0) {
+        $("#channel-count").text(
+            `[CH:1/${totalChannels}]`
+        );
+        return;
+    }
+
+    $("#channel-count").text(
+        `[CH:${currentPos + 1}/${visibleTotal}]`
+    );
 }
 
 // =============== 🔍 BUSCADOR ===============
@@ -1345,6 +1370,7 @@ function handlePlayerError() {
             playHLS(next.url);
             $("#nombreCanal").text(next.name);
             marcarCanalActivo();
+            updateChannelCount();
             attempts++;
             setTimeout(() => {
             isAutoSearching = false;
@@ -1527,10 +1553,10 @@ $(document).ready(function () {
         $("#link-info")
             .html(currentLink)
             .show()
-            .fadeOut(6000);
+            .delay(7500)
+            .fadeOut(500);
     });
 
- //   $("#nombreCanal").dblclick(function (e) {
     $("#link-info").click(function (e) {
         e.stopPropagation();
         if (!currentLink) return;
@@ -1548,31 +1574,24 @@ $(document).ready(function () {
     });
 
 
-let pressTimer;
-
-$("#nombreCanal")
-.on("touchstart", function(e) {
-
-    if (!currentLink) return;
-
-    pressTimer = setTimeout(() => {
-
-        navigator.clipboard.writeText(currentLink)
-        .then(() => {
-            $("#link-info-container")
-                .html("📋 Link copiado")
-                .show()
-                .fadeOut(2500);
-        });
-
-    }, 700); // tiempo de pulsación
-
-})
-.on("touchend touchcancel", function() {
-
-    clearTimeout(pressTimer);
-
-});
+    let pressTimer;
+    $("#nombreCanal")
+    .on("touchstart", function(e) {
+        if (!currentLink) return;
+        pressTimer = setTimeout(() => {
+            navigator.clipboard.writeText(currentLink)
+            .then(() => {
+                $("#link-info-container")
+                    .html("📋 Link copiado")
+                    .show()
+                    .delay(2000)
+                    .fadeOut(200);
+            });
+        }, 700); // tiempo de pulsación
+    })
+    .on("touchend touchcancel", function() {
+        clearTimeout(pressTimer);
+    });
 
 
     // ================== MODAL =================
@@ -1709,6 +1728,7 @@ $("#nombreCanal")
         $("#nombreCanal").text(nombre);
         updateFavButton();
         marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
+        updateChannelCount();
     });
 
     // ================ AUTO NEXT BTN ================ 
