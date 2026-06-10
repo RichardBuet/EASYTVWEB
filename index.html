@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V7.260603.1</title>
+    <title>Easy TV Web - M3U - V8.260610.0</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -64,7 +64,8 @@
     height: 10%;
 }
 *:focus-visible {
-    outline: #00FF00;
+    outline: 2px solid #00FF00; 
+    /*#00FF00;*/
     outline-style: groove;
 }
 
@@ -738,6 +739,11 @@ button.list-item.active {
     font-size: 18px;
 }
 
+/*.tv-focus {
+    outline: 2px solid #00ffcc !important;
+    transform: scale(0.95);
+    z-index: 5;
+}*/
 
 </style>
 
@@ -748,8 +754,24 @@ button.list-item.active {
 
 <div id="top-bar">
     <h2> EASY TV WEB</h2>
-    <div id="nombreCanal">Probá M3U y URL de Link</div>
-    <button id="fav-btn">⭐</button>
+    <!-- <div id="nombreCanal">Probá M3U y URL de Link</div> 
+         <button id="fav-btn">⭐</button> -->
+    <div id="nombreCanal">
+        <img id="channel-header-logo"
+            src="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG"
+            style="width:28px; height:28px; object-fit:contain; vertical-align:middle; margin-right:8px; ">
+            <!-- style="
+                width:24px;
+                height:24px;
+                object-fit:contain;
+                vertical-align:middle;
+                margin-right:8px;
+                display:none;
+            "> -->
+        <span id="channel-header-name">
+            Probá M3U y URL de Link
+        </span>
+    </div>
 </div>
 
 <div id="overlay"></div>
@@ -815,14 +837,16 @@ button.list-item.active {
         </div>
         <div id="controls-bar">
             <button class="control-btn" id="mute-btn">🔇</button>
-            <!--button class="control-btn" id="vol-down-btn" style="font-size: small;">➖ Vol</button>
-            <button class="control-btn" id="vol-up-btn" style="font-size: small;">➕ Vol</button-->
+
             <button class="control-btn" id="prev-btn" style="font-size: large;">⏮</button>
             <button class="control-btn" id="playpause-btn" style="font-size: large;">⏯</button>
             <button class="control-btn" id="next-btn" style="font-size: large;">⏭</button>
-            <button class="control-btn" id="voice-btn">🎤</button>
+            <button class="control-btn" id="fav-control-btn">⭐</button>
             <button class="control-btn" id="auto-next-btn">Auto ▶ OFF</button>
             <button class="control-btn" id="fullscreen-btn" style="font-size: large;">⛶</button>
+            <!--button class="control-btn" id="vol-down-btn" style="font-size: small;">➖ Vol</button>
+            <button class="control-btn" id="vol-up-btn" style="font-size: small;">➕ Vol</button-->
+            <!-- <button class="control-btn" id="voice-btn">🎤</button> -->            
         </div>
         <div id="playList"></div> 
     </div>
@@ -895,6 +919,11 @@ window.showingFavorites = false;
 const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260601V1.m3u";
 //const defaultM3U = "https://richardbuet.github.io/EASYTVWEB/AIO260501V1.m3u";
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+//Controles de TV
+let tvMode = true;
+let focusArea = "controls";
+let controlIndex = 0;
+let playlistIndex = 0;
     
 // ================== FAVORITOS ==================
 function saveFavorites() {
@@ -903,7 +932,7 @@ function saveFavorites() {
 
 function toggleFavoriteCurrent() {
     if (!currentLink) return;
-    let name = $("#nombreCanal").text();
+    let name = $("#channel-header-name").text();
     let index = favorites.findIndex(f => f.url === currentLink);
     if (index !== -1) {
         favorites.splice(index, 1);
@@ -920,7 +949,24 @@ function toggleFavoriteCurrent() {
 
 function updateFavButton() {
     let exists = favorites.some(f => f.url === currentLink);
-    $("#fav-btn").text(exists ? "✔" : "⭐");
+    //$("#fav-btn").text(exists ? "✔" : "⭐");}
+    let icon =
+        exists ? "✔" : "⭐";
+    $("#fav-btn").text(icon);
+    $("#fav-control-btn").text(icon);
+}
+
+function updateChannelHeader(name, logo = "") {
+
+    $("#channel-header-name").text(name);
+
+    if (logo) {
+        $("#channel-header-logo")
+            .attr("src", logo)
+            .show();
+    } else {
+        $("#channel-header-logo").hide();
+    }
 }
 
 function marcarCanalActivo() {
@@ -934,33 +980,33 @@ function marcarCanalActivo() {
     // arriba, corrige errores de enter entre extensión y #EXT Siguiente
     if (btn) {
         btn.classList.add("active");
+        btn.scrollIntoView({
+            behavior: "smooth",
+         //   block: "nearest"
+            block: "center"
+        });
     }
+    updateChannelCount();
 }
 
 // ================== NRO CANAL ==================
 function updateChannelCount() {
-
     let visibleChannels =
         $("#playList .list-item:visible");
-
     let visibleTotal =
         visibleChannels.length;
-
     let totalChannels =
         $("#playList .list-item").length;
-
     let currentPos =
         visibleChannels.index(
             $(`.list-item[data-url="${currentLink}"]`)
         );
-
     if (currentPos < 0) {
         $("#channel-count").text(
             `[CH:1/${totalChannels}]`
         );
         return;
     }
-
     $("#channel-count").text(
         `[CH:${currentPos + 1}/${visibleTotal}]`
     );
@@ -1169,9 +1215,6 @@ function loadChannels(url) {
             }
 
             // 🔥 agrupar
-                                    //<button class='list-item' data-url='${channel.url}'>
-                        //     ${channel.name}
-                        // </button>
             let grouped = {};
             channels.forEach(ch => {
                 if (!grouped[ch.group]) grouped[ch.group] = [];
@@ -1182,11 +1225,11 @@ function loadChannels(url) {
                 $("#playList").append(`<div class="group-title">${group}</div>`);
                 grouped[group].forEach(channel => {
                     $("#playList").append(`
-                        <button class='list-item' data-url='${channel.url}'>
+                        <button class='list-item' data-url='${channel.url}' data-logo='${channel.logo}'>
                         <div class="channel-item">
                             <img
                             class="channel-logo"
-                            src="${channel.logo || 'Icon-ETV.PNG'}"
+                            src="${channel.logo || 'https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG'}"
                             onerror="this.src='https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG';">
                             <span> ${channel.name} </span>
                         </div>
@@ -1368,7 +1411,7 @@ function handlePlayerError() {
             // 🔥 actualizar estado
             currentLink = next.url;
             playHLS(next.url);
-            $("#nombreCanal").text(next.name);
+            $("#channel-header-name").text(next.name);
             marcarCanalActivo();
             updateChannelCount();
             attempts++;
@@ -1427,10 +1470,12 @@ function playDirectStream(url) {
     let type = (url.match(/\.(m3u8|mp4|mp3|ts)/i) || [""])[0]
         .replace(".", "")
         .toUpperCase();
-    $("#nombreCanal").html(`
-        ${icon} ${name}<br>
-        <small style="color:#aaa;">${type}</small>
-    `);
+    // $("#nombreCanal").html(`
+    //     ${icon} ${name}<br>
+    //     <small style="color:#aaa;">${type}</small>
+    // `);
+        $("#channel-header-name").text(name);
+        $("#channel-header-logo").hide();
     // 🔥 PLAYLIST UI
     $("#playList")
         .removeClass("favorites-mode")
@@ -1534,7 +1579,23 @@ function toggleFullscreen() {
     }
 }
 
-    
+function updateTVFocus() {
+    $(".tv-focus").removeClass("tv-focus");
+    if (focusArea === "controls") {
+        $(".control-btn")
+            .eq(controlIndex)
+            .addClass("tv-focus");
+    } else {
+        $("#playList .list-item:visible")
+            .eq(playlistIndex)
+            .addClass("tv-focus");
+    }
+}
+
+
+
+
+
 // ================== READY ==================
 $(document).ready(function () {
     $("#auto-next-btn").text("Auto ▶ ON");
@@ -1661,7 +1722,7 @@ $(document).ready(function () {
         if (!item) return;
         if (url.startsWith("local-file-") && item.content) {
             parseLocalM3U(item.content);
-            $("#nombreCanal").text(item.name);
+            $("#channel-header-name").text(item.name);
         } else if (url.match(/\.(m3u8|mp4|mp3|ts)(\?|$)/i)) {
             playDirectStream(url);
         } else {
@@ -1692,7 +1753,7 @@ $(document).ready(function () {
         // 🔥 CLAVE: detectar local
         if (item.url.startsWith("local-file-") && item.content) {
             parseLocalM3U(item.content);
-            $("#nombreCanal").text(item.name);
+            $("#channel-header-name").text(item.name);
         } else {
             $("#m3u-url").val(item.url);
             loadChannels(item.url);
@@ -1715,19 +1776,37 @@ $(document).ready(function () {
         renderFavorites();
         $("#overlay, #menu-flotante").hide();
     });
-
-    $("#fav-btn").click(toggleFavoriteCurrent);
+    $("#fav-control-btn").click(toggleFavoriteCurrent);
 
     // ================ CLICK CANAL ================ 
     $("#playList").on("click", ".list-item", function() {
+
         triggerChannelTransition();
+
         let url = $(this).data("url");
-        let nombre = $(this).text();
-        currentLink = url; // 🔥 MUY IMPORTANTE
+        let nombre = $(this).text().trim();
+
+        currentLink = url;
         playHLS(url);
-        $("#nombreCanal").text(nombre);
+
+        $("#channel-header-name").text(nombre);
+
+        let logo = $(this).data("logo");
+
+        $("#channel-header-logo")
+            .attr(
+                "src",
+                logo || "https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG"
+            )
+            .show()
+            .off("error")
+            .on("error", function() {
+                this.src =
+                "https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG";
+            });
+
         updateFavButton();
-        marcarCanalActivo(); // 🔥 ESTA ES LA LÍNEA CLAVE
+        marcarCanalActivo();
         updateChannelCount();
     });
 
@@ -1820,9 +1899,11 @@ $(document).ready(function () {
                 visibleChannels.eq(prevIndex).click();
             }
     }   
+
+    updateTVFocus();
+
 });
 // ============= 👊🏼 FIN DEL READY 👊🏼 ============
-
 
 // ================== ANIMACIÓN ==================
 document.addEventListener('DOMContentLoaded', function () {
@@ -1838,106 +1919,106 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============ AI DE VOZ =============
-let voiceActive = false;
-const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+// let voiceActive = false;
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-if (isIOS) { $("#voice-btn").hide(); }
-    const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
+// if (isIOS) { $("#voice-btn").hide(); }
+//     const SpeechRecognition =
+//     window.SpeechRecognition ||
+//     window.webkitSpeechRecognition;
 
-if (SpeechRecognition && !isIOS) {
-    const recognition = new SpeechRecognition();
-    recognition.lang = "es-AR";
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    $("#voice-btn").on("click", function () {
-    if (voiceActive) {
-            recognition.stop();
-            voiceActive = false;
-            $(this).removeClass("listening");
-            return;
-        }
-        recognition.start();
-        voiceActive = true;
-        $(this).addClass("listening");
-    }); 
+// if (SpeechRecognition && !isIOS) {
+//     const recognition = new SpeechRecognition();
+//     recognition.lang = "es-AR";
+//     recognition.continuous = false;
+//     recognition.interimResults = false;
+//     $("#voice-btn").on("click", function () {
+//     if (voiceActive) {
+//             recognition.stop();
+//             voiceActive = false;
+//             $(this).removeClass("listening");
+//             return;
+//         }
+//         recognition.start();
+//         voiceActive = true;
+//         $(this).addClass("listening");
+//     }); 
 
-    recognition.onresult = (event) => {
-        const text =
-            event.results[0][0].transcript
-            .toLowerCase();
-        console.log("🎤", text);
-        // SIGUIENTE
-        if (
-            text.includes("siguiente") ||
-            text.includes("próximo")
-        ) {
-            nextChannel();
-        }
-        // ANTERIOR
-        else if (
-            text.includes("anterior")
-        ) {
-            prevChannel();
-        }
-        // VOLUMEN ARRIBA
-        else if (
-            text.includes("subir volumen")
-        ) {
-            let player = videojs('my-video');
-            player.volume(
-                Math.min( player.volume() + 0.1, 1 )
-            );
-        }
-        // VOLUMEN ABAJO
-        else if (
-            text.includes("bajar volumen")
-        ) {
-            let player = videojs('my-video');
-            player.volume(
-                Math.max(
-                    player.volume() - 0.1, 0 )
-            );
-        }
-        // PLAY
-        else if (
-            text.includes("play")
-        ) {
-            videojs('my-video').play();
-        }
-        // PAUSA
-        else if (
-            text.includes("pausa")
-        ) {
-            videojs('my-video').pause();
-        }
-        // FULLSCREEN
-        else if (
-            text.includes("pantalla completa")
-        ) {
-            let player = videojs('my-video');
-            if (player.isFullscreen()) {
-                player.exitFullscreen();
-            } else {
-                player.requestFullscreen();
-            }
+//     recognition.onresult = (event) => {
+//         const text =
+//             event.results[0][0].transcript
+//             .toLowerCase();
+//         console.log("🎤", text);
+//         // SIGUIENTE
+//         if (
+//             text.includes("siguiente") ||
+//             text.includes("próximo")
+//         ) {
+//             nextChannel();
+//         }
+//         // ANTERIOR
+//         else if (
+//             text.includes("anterior")
+//         ) {
+//             prevChannel();
+//         }
+//         // VOLUMEN ARRIBA
+//         else if (
+//             text.includes("subir volumen")
+//         ) {
+//             let player = videojs('my-video');
+//             player.volume(
+//                 Math.min( player.volume() + 0.1, 1 )
+//             );
+//         }
+//         // VOLUMEN ABAJO
+//         else if (
+//             text.includes("bajar volumen")
+//         ) {
+//             let player = videojs('my-video');
+//             player.volume(
+//                 Math.max(
+//                     player.volume() - 0.1, 0 )
+//             );
+//         }
+//         // PLAY
+//         else if (
+//             text.includes("play")
+//         ) {
+//             videojs('my-video').play();
+//         }
+//         // PAUSA
+//         else if (
+//             text.includes("pausa")
+//         ) {
+//             videojs('my-video').pause();
+//         }
+//         // FULLSCREEN
+//         else if (
+//             text.includes("pantalla completa")
+//         ) {
+//             let player = videojs('my-video');
+//             if (player.isFullscreen()) {
+//                 player.exitFullscreen();
+//             } else {
+//                 player.requestFullscreen();
+//             }
 
-        }
-    };
+//         }
+//     };
 
-    recognition.onend = () => {
-     voiceActive = false;
-        $("#voice-btn")
-            .removeClass("listening");
-    };
+//     recognition.onend = () => {
+//      voiceActive = false;
+//         $("#voice-btn")
+//             .removeClass("listening");
+//     };
 
-    recognition.onerror = () => {
-     voiceActive = false;
-        $("#voice-btn")
-            .removeClass("listening");
-    };
-}
+//     recognition.onerror = () => {
+//      voiceActive = false;
+//         $("#voice-btn")
+//             .removeClass("listening");
+//     };
+// }
     
 // ================== TÍTULO DINÁMICO ==================
 function actualizarTitulo() {
@@ -2022,14 +2103,18 @@ $(document).ready(function () {
             if (content.includes("#EXTM3U") || content.includes("#EXTINF")) {
                 window.showingFavorites = false;
                 parseLocalM3U(content);
-                $("#nombreCanal").text(file.name);
+                //$("#nombreCanal").text(file.name);
+                $("#channel-header-name").text(file.name);
+                $("#channel-header-logo").hide();
                 $("#m3u-url").val("📄 " + file.name);
             } else {
                 // 🔥 fallback → stream directo
                 let url = content.trim();
                 currentLink = url;
                 playHLS(url);
-                $("#nombreCanal").text(file.name);
+               //$("#nombreCanal").text(file.name);
+                $("#channel-header-name").text(file.name);
+                $("#channel-header-logo").hide();
                 updateFavButton();
             }
             // 🔥 guardar en historial (solo referencia)
@@ -2050,21 +2135,23 @@ $(document).ready(function () {
 function parseLocalM3U(message) {
     let lines = message.split("\n");
     let channels = [];
-    let currentChannel = { name: "", url: "", group: "General" };
-
+    let currentChannel = { name: "", url: "", group: "General", logo: ""};
+// ojo aca con group rrb
     lines.forEach(line => {
         line = line.trim();
         if (line.startsWith("#EXTINF")) {
             let data = getChannelData(line);
             currentChannel.name = data.name.substring(0, 30);
             currentChannel.group = data.group;
+            currentChannel.logo = data.logo;
         } else if (line !== "" && !line.startsWith("#")) {
             currentChannel.url = line;
             if (currentChannel.name && currentChannel.url) {
                 channels.push({
                     name: currentChannel.name,
                     url: currentChannel.url,
-                    group: currentChannel.group
+                    group: currentChannel.group,
+                    logo: currentChannel.logo || ""
                 });
             }
             currentChannel = { name: "", url: "", group: "General" };
@@ -2092,7 +2179,7 @@ function parseLocalM3U(message) {
         `);
         grouped[group].forEach(channel => {
             $("#playList").append(`
-                <button class='list-item' data-url='${channel.url}'>
+                <button class='list-item' data-url='${channel.url}' data-logo='${channel.logo || ""}'>
                     ${channel.name}
                 </button>
             `);
