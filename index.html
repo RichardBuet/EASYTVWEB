@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V8.260613.0</title>
+    <title>Easy TV Web - M3U - V8.260613.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -26,7 +26,6 @@
 #lists { transition: opacity 0.45s ease;}
 .list-item.active { filter: brightness(1.15);}
 
-#channel-count{ align-content: center;}
 
 .vjs-poster {
     transition:
@@ -396,7 +395,7 @@ body {
 }
 #search { 
     flex: 1; background: #010409; border: 1px solid #30363d; 
-    color: #fff; padding: 8px; border-radius: 4px; min-width: 35%;
+    color: #fff; padding: 8px; border-radius: 4px; min-width: 0; /*35%;*/
     width: auto;
 }
 
@@ -435,7 +434,7 @@ body {
 #auto-next-btn {
     border-radius: 8px;
     color: #00ffcc;
-    font-size: 0.8em;
+    font-size: 0.6em;
     padding: 3px;
     cursor: pointer;
 }
@@ -460,6 +459,11 @@ body {
     100% { transform: scale(1);    }
 }
 
+#channel-count{
+    font-size:0.9rem;
+    min-width:70px;
+    text-align:center;
+}
 
 #playList {
     flex: 1;
@@ -744,6 +748,66 @@ button.list-item.active {
 
 }
 
+/*10 exclusivo para móviles horizontales*/
+@media (max-aspect-ratio: 1.40) {
+
+    #contenedor {
+        height: calc(100dvh - 50px);
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    #playList {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.5rem;
+        padding-top: 2px;
+        height: auto !important;
+        align-content: flex-start;
+        grid-auto-rows: max-content;
+    }
+
+    #lists {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        width: -webkit-fill-available;
+        max-width: 100%;
+        flex: 1;
+        min-height: 0;
+    }
+
+    #player {
+        width: 99.5vw;
+        height: calc(100vw * 9 / 16);
+        max-width: none;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+
+    #contenedor {
+        flex-direction: row;
+    }
+
+    #player {
+        flex: 1;
+        min-width: 0;
+    }
+
+    #lists {
+        width: calc(100vh * 0.5);
+ 
+        /*width: 340px;
+        min-width: 340px;
+        max-width: 340px;*/
+    }
+
+    #playList {
+        display: block;
+    }
+
+}
 
 @media (hover: none) {
     button.list-item:focus { }
@@ -1071,7 +1135,7 @@ $("#search")
     if ($("#playList button:visible").length === 0) {
         $(".group-title").hide();
         $("#playList").append(`
-            <div id="no-results" style="text-align:center; padding:10px;">
+            <div id="no-results" style="text-align:center; padding:4px;">
                 ❌ Sin resultados
             </div>
         `);
