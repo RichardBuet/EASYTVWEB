@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="description" content="Prueba de listas M3U">
-    <title>Easy TV Web - M3U - V8.260613.1</title>
+    <title>Easy TV Web - M3U - V8.260610.1</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="https://richardbuet.github.io/EASYTVWEB/Icon-ETV.PNG">
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
@@ -26,6 +26,7 @@
 #lists { transition: opacity 0.45s ease;}
 .list-item.active { filter: brightness(1.15);}
 
+#channel-count{ align-content: center;}
 
 .vjs-poster {
     transition:
@@ -224,20 +225,12 @@
     opacity: 0.85 !important;
 }
 /* Forzar Proporción 16:9 */
-/*.video-js {
+.video-js {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 16 / 9;
 }
-*/
-.video-js {
-    width: 100% !important;
-    height: 100% !important;
 
-    max-height: 100%;
-
-    aspect-ratio: 16/9;
-}
     
 /* 1. Base y Reset */
 html,
@@ -314,35 +307,25 @@ body {
 /* 4. Layout Principal (Flexbox) */
 #contenedor {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-
+    justify-content: center;
+    align-items: stretch;
     width: 100%;
-    height: calc(100dvh - 60px);
-
-    padding: 8px;
-    box-sizing: border-box;
-
-    overflow: hidden;
+    height: calc(100vh - 80.9px);
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 1800px;
 }
 
 
 /* 5. Contenedor del Reproductor */
 #player {
-    flex: 1;
-
+    max-width:  calc((100vh - 81px) * 16 / 9);
     position: relative;
-
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #000;
-
-    min-width: 0;
-    overflow: hidden;
-
-    border-radius: 8px;
 }
     
 #link-info-container, #link-info {
@@ -371,21 +354,16 @@ body {
     
 /* 6. Lista de Canales */
 #lists {
-    width: 350px;
-    min-width: 260px;
-    max-width: 420px;
-
+    width: auto;
+    min-width: 140px;
+    max-width: 30%;
     background: var(--panel-bg);
-
     display: flex;
     flex-direction: column;
-
     border-left: 1px solid #30363d;
-
+    font-size: 0.7em;
     user-select: none;
-    overflow: hidden;
 }
-
 #search-bar { 
     padding: 0 8px 8px 10px;
     display: flex; 
@@ -395,7 +373,7 @@ body {
 }
 #search { 
     flex: 1; background: #010409; border: 1px solid #30363d; 
-    color: #fff; padding: 8px; border-radius: 4px; min-width: 0; /*35%;*/
+    color: #fff; padding: 8px; border-radius: 4px; min-width: 35%;
     width: auto;
 }
 
@@ -434,7 +412,7 @@ body {
 #auto-next-btn {
     border-radius: 8px;
     color: #00ffcc;
-    font-size: 0.6em;
+    font-size: 0.8em;
     padding: 3px;
     cursor: pointer;
 }
@@ -459,32 +437,15 @@ body {
     100% { transform: scale(1);    }
 }
 
-#channel-count{
-    font-size:0.9rem;
-    min-width:70px;
-    text-align:center;
-}
 
 #playList {
-    flex: 1;
-
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 3px;
+    -webkit-overflow-scrolling: touch;
     overflow-y: auto;
-    overflow-x: hidden;
-
-    padding: 8px;
-
-    display: grid;
-
-    grid-template-columns: repeat(
-        auto-fill,
-        minmax(180px,1fr)
-    );
-
-    gap: 6px;
-
-    align-content: start;
+    padding: 10px;
+    flex: 1;
 }
-
 
 #playList div {
     scroll-snap-align: start;
@@ -695,120 +656,60 @@ button.list-item.active {
 }
 
 /* 8. RESPONSIVE (Móvil - Vertical) */
-@media (max-width:900px){
-
-    #contenedor{
-        flex-direction:column;
-        height:calc(100dvh - 60px);
-    }
-
-    #player{
-        width:100%;
-        height:auto;
-        aspect-ratio:16/9;
-        flex:none;
-    }
-
-    #lists{
-        width:100%;
-        min-width:unset;
-        max-width:unset;
-        flex:1;
-    }
-
-    #playList{
-        grid-template-columns:
-            repeat(
-                auto-fill,
-                minmax(140px,1fr)
-            );
-    }
-
-}
-
-/* 9. Adaptación Android TV */
-@media (min-width:1800px){
-
-    body{
-        font-size:18px;
-    }
-
-    #lists{
-        width:450px;
-    }
-
-    .list-item{
-        min-height:48px;
-        font-size:1rem;
-    }
-
-    #top-bar{
-        height:70px;
-    }
-
-}
-
-/*10 exclusivo para móviles horizontales*/
-@media (max-aspect-ratio: 1.40) {
-
-    #contenedor {
+@media  (max-aspect-ratio: 1.40) {
+        #contenedor {
         height: calc(100dvh - 50px);
         flex-direction: column;
         overflow: hidden;
     }
-
-    #playList {
+        #playList {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 0.5rem;
+        gap: calc(100vh / 50);
         padding-top: 2px;
         height: auto !important;
-        align-content: flex-start;
+        gap: 0.5rem;
+        align-content: flex-start;   /* 🔥 clave */
         grid-auto-rows: max-content;
+        max-width: auto;
     }
-
     #lists {
         display: flex;
         flex-direction: column;
+        scroll-snap-type: y mandatory;
         overflow: auto;
+        overflow-x: hidden;
         width: -webkit-fill-available;
+        z-index: 2;
+        list-style: none;
         max-width: 100%;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
         flex: 1;
-        min-height: 0;
+        height: auto;
+        min-height: 0; 
     }
-
+    html, body {
+        overflow: hidden;
+        height: 100dvh;
+    }
     #player {
         width: 99.5vw;
+        align-self: center;
         height: calc(100vw * 9 / 16);
         max-width: none;
     }
+    #link-info-container {
+        bottom: 50%;
+    }
+    #m3u-history{
+        height: auto;
+        max-height: 20vh;
+    }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
-
-    #contenedor {
-        flex-direction: row;
-    }
-
-    #player {
-        flex: 1;
-        min-width: 0;
-    }
-
-    #lists {
-        width: calc(100vh * 0.5);
- 
-        /*width: 340px;
-        min-width: 340px;
-        max-width: 340px;*/
-    }
-
-    #playList {
-        display: block;
-    }
-
-}
-
+/* 9. Adaptación Android TV */
 @media (hover: none) {
     button.list-item:focus { }
 }
